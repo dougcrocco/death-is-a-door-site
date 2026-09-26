@@ -356,6 +356,9 @@ class Component extends DCLogic {
     if (v.__loading) return;
     v.__loading = true;
     const url = v.getAttribute('data-src');
+    v.loop = true;
+    v.addEventListener('ended', () => { try { v.currentTime = 0; } catch (x) {} v.play().catch(()=>{}); });
+    v.addEventListener('timeupdate', () => { if (v.duration && v.currentTime >= v.duration - 0.25 && !v.paused) { try { v.currentTime = 0; } catch (x) {} } });
     fetch(url).then(r => r.blob()).then(b => {
       v.src = URL.createObjectURL(b.type ? b : new Blob([b], { type: 'video/mp4' }));
       v.load();
