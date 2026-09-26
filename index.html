@@ -86,7 +86,7 @@
 
   <div data-page="" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;justify-content:safe center;opacity:1;visibility:visible;transition:opacity 450ms ease,visibility 0s linear 450ms;">
   <article style="max-width:1440px;margin:0 auto;min-height:100svh;box-sizing:border-box;padding:96px clamp(20px,5vw,64px) 48px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
-    <video autoplay="" muted="" loop="" playsinline="" controls="" preload="metadata" poster="art/crossing.jpg" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 150px);width:auto;height:auto;object-fit:contain;background:#000;">
+    <video loop="" playsinline="" controls="" preload="metadata" poster="art/crossing.jpg" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 150px);width:auto;height:auto;object-fit:contain;background:#000;">
       <source src="art/ferry.webm" type="video/webm">
       <source src="art/ferry.mp4" type="video/mp4">
     </video>
@@ -306,7 +306,10 @@ class Component extends DCLogic {
       p.style.visibility = on ? 'visible' : 'hidden';
       p.style.transition = on ? 'opacity 450ms ease 150ms,visibility 0s' : 'opacity 300ms ease,visibility 0s linear 300ms';
       p.style.zIndex = on ? '1' : '0';
-      p.querySelectorAll('video').forEach(v => { if (on) { v.play && v.play().catch(()=>{}); } else { v.pause && v.pause(); } });
+      p.querySelectorAll('video').forEach(v => {
+        if (on) { v.muted = false; v.volume = 1; const pr = v.play && v.play(); if (pr) pr.catch(() => { v.muted = true; v.play().catch(()=>{}); }); }
+        else { v.pause && v.pause(); }
+      });
       if (Math.abs(k - this.state.i) <= 1) p.querySelectorAll('img[loading="lazy"]').forEach(im => im.loading = 'eager');
     });
     if (ps[this.state.i]) ps[this.state.i].scrollTop = 0;
