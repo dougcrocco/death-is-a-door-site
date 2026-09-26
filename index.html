@@ -156,9 +156,12 @@
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
   <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
-    <div style="flex:1.4 1 0;min-width:0;display:flex;gap:16px;align-items:flex-end;justify-content:center;">
-      <img src="art/cowan.jpg" alt="Benjamin Cowan, Pigeon Feather, Stone, Giotto Crying Angels" loading="lazy" decoding="async" width="1120" height="1400" style="display:block;flex:1.4 1 0;min-width:0;width:auto;height:auto;max-height:calc(100svh - 160px);object-fit:contain;">
-      <img src="art/cowan_detail.jpg" alt="Detail" loading="lazy" decoding="async" width="960" height="1200" style="display:block;flex:1 1 0;min-width:0;width:auto;height:auto;max-height:calc(70svh - 160px);object-fit:contain;">
+    <div data-noswipe="" onClick="{{ toggleCowan }}" style="flex:1.4 1 0;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;">
+      <div style="position:relative;display:grid;max-width:100%;">
+        <img src="art/cowan.jpg" alt="Benjamin Cowan, Pigeon Feather, Stone, Giotto Crying Angels" loading="lazy" decoding="async" width="1120" height="1400" style="grid-area:1/1;display:block;max-width:100%;max-height:calc(100svh - 190px);width:auto;height:auto;object-fit:contain;justify-self:center;align-self:center;transition:opacity 400ms ease;opacity:{{ cowanMainOp }};">
+        <img src="art/cowan_detail.jpg" alt="Detail" loading="lazy" decoding="async" width="960" height="1200" style="grid-area:1/1;display:block;max-width:100%;max-height:calc(100svh - 190px);width:auto;height:auto;object-fit:contain;justify-self:center;align-self:center;transition:opacity 400ms ease;opacity:{{ cowanDetailOp }};">
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6d675c;">{{ cowanLabel }}</div>
     </div>
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VII</div>
@@ -304,20 +307,20 @@
   </footer>
   </div>
 
-  <div style="position:absolute;right:clamp(16px,4vw,48px);bottom:clamp(8px,1.5vw,16px);z-index:20;display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;">
-    <sc-if value="{{ showSound }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleMute }}" aria-label="Toggle sound" style="cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#6d675c;background:transparent;border:none;padding:0;" style-hover="color:#7fa39b;">
+  <div style="position:absolute;right:clamp(12px,4vw,48px);bottom:clamp(8px,1.5vw,16px);z-index:20;display:flex;flex-direction:row;flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:clamp(4px,1vw,10px);font-family:'Space Mono',monospace;">
+    <sc-if value="{{ showSound }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleMute }}" aria-label="Toggle sound" style="flex:0 0 auto;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#6d675c;background:transparent;border:none;padding:0;" style-hover="color:#7fa39b;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"></path><sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}"><path d="M16.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 6a8.5 8.5 0 0 1 0 12"></path></sc-if><sc-if value="{{ muted }}" hint-placeholder-val="{{ false }}"><path d="M16 9l5 6"></path><path d="M21 9l-5 6"></path></sc-if></svg>
       </button></sc-if>
-    <span style="font-size:12px;letter-spacing:0.14em;color:#8f887c;margin-right:8px;">{{ counter }}</span>
-    <button onClick="{{ prev }}" aria-label="Previous" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#e9e3d6;background:rgba(13,12,11,0.45);border:none;backdrop-filter:blur(4px);" style-hover="color:#7fa39b;">←</button>
-    <button onClick="{{ next }}" aria-label="Next" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#e9e3d6;background:rgba(13,12,11,0.45);border:none;backdrop-filter:blur(4px);" style-hover="color:#7fa39b;">→</button>
+    <span style="flex:0 0 auto;white-space:nowrap;font-size:12px;letter-spacing:0.14em;color:#8f887c;margin-right:8px;">{{ counter }}</span>
+    <button onClick="{{ prev }}" aria-label="Previous" style="flex:0 0 auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#e9e3d6;background:rgba(13,12,11,0.45);border:none;backdrop-filter:blur(4px);" style-hover="color:#7fa39b;">←</button>
+    <button onClick="{{ next }}" aria-label="Next" style="flex:0 0 auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#e9e3d6;background:rgba(13,12,11,0.45);border:none;backdrop-filter:blur(4px);" style-hover="color:#7fa39b;">→</button>
   </div>
 
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { i: 0, n: 18, muted: false };
+  state = { i: 0, n: 18, muted: false, cowanDetail: false };
   rootRef = React.createRef();
   pages() { return this.rootRef.current ? [...this.rootRef.current.querySelectorAll('[data-page]')] : []; }
   go = (i, e) => {
@@ -377,7 +380,7 @@ class Component extends DCLogic {
       if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); this.go(this.state.i + 1); }
       else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); this.go(this.state.i - 1); }
     };
-    this.onTs = e => { this.tx = e.touches[0].clientX; this.ty = e.touches[0].clientY; };
+    this.onTs = e => { if (e.target.closest && e.target.closest('[data-noswipe]')) { this.tx = null; return; } this.tx = e.touches[0].clientX; this.ty = e.touches[0].clientY; };
     this.onTe = e => {
       if (this.tx == null) return;
       const dx = e.changedTouches[0].clientX - this.tx, dy = e.changedTouches[0].clientY - this.ty;
@@ -400,6 +403,10 @@ class Component extends DCLogic {
     const pad = x => String(x).padStart(2, '0');
     return {
       rootRef: this.rootRef,
+      cowanMainOp: this.state.cowanDetail ? 0 : 1,
+      cowanDetailOp: this.state.cowanDetail ? 1 : 0,
+      cowanLabel: this.state.cowanDetail ? 'Detail · click for full work' : 'Click for detail',
+      toggleCowan: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.lastGo = Date.now(); this.setState(s => ({ cowanDetail: !s.cowanDetail })); },
       soundOn: !this.state.muted,
       showSound: !!this.state.started,
       muted: !!this.state.muted,
