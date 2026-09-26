@@ -10,6 +10,12 @@
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Death Is a Door — CC Jasper</title>
+<meta name="description" content="Death Is a Door — a group exhibition at CC Jasper, 131 Chrystie Street, New York. Opens Thursday, November 12, 2026.">
+<meta property="og:title" content="Death Is a Door — CC Jasper">
+<meta property="og:description" content="A group exhibition. Opens Thursday, November 12, 2026 · 131 Chrystie Street, New York.">
+<meta property="og:image" content="https://dougcrocco.github.io/death-is-a-door-site/art/door_closeup.jpg">
+<meta property="og:url" content="https://dougcrocco.github.io/death-is-a-door-site/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +26,47 @@
   html{scroll-behavior:smooth;background:#0d0c0b}
   body{margin:0;overflow:hidden;overscroll-behavior:none;background:#0d0c0b;-webkit-font-smoothing:antialiased}
   a{color:#7fa39b;text-decoration:none}
+  @media (max-width:760px){
+    article[data-wide]{display:grid !important;grid-template-columns:minmax(0,1fr) !important;row-gap:0 !important;align-content:center !important;padding:60px 20px 64px !important}
+    article[data-wide] > :first-child{grid-row:3 !important;width:100% !important;min-width:0 !important;max-width:100% !important;height:auto !important;max-height:40svh !important;object-fit:contain !important;margin:12px 0 14px !important}
+    article[data-wide] > :last-child{display:contents !important}
+    article[data-wide] > :last-child > *{min-width:0 !important;max-width:none !important}
+    article[data-wide] > :last-child > :nth-child(1){grid-row:1 !important}
+    article[data-wide] > :last-child > :nth-child(2){grid-row:2 !important}
+    article[data-wide] > :last-child > :nth-child(3){grid-row:4 !important;margin-top:0 !important}
+    article[data-wide] > :last-child > :nth-child(4){grid-row:5 !important}
+    article[data-stack]{display:grid !important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;column-gap:14px !important;row-gap:0 !important;align-content:center !important;align-items:start !important;padding:64px 20px 64px !important}
+    article[data-stack] > :first-child{grid-column:1 !important;grid-row:3 / span 4 !important;width:100% !important;min-width:0 !important;max-width:100% !important;display:flex !important;flex-direction:column !important;align-items:center !important}
+    article[data-stack] > :last-child{display:contents !important}
+    article[data-stack] > :last-child > *{grid-column:2 !important;min-width:0 !important}
+    article[data-stack] > :last-child > :nth-child(1){grid-column:1 / -1 !important;grid-row:1 !important}
+    article[data-stack] > :last-child > :nth-child(2){grid-column:1 / -1 !important;grid-row:2 !important;margin-bottom:14px !important}
+    article[data-stack] > :last-child > :nth-child(3){grid-row:3 !important;margin-top:0 !important}
+    article[data-stack] > :last-child > :nth-child(4){grid-row:4 !important}
+    article[data-stack] > :last-child > :nth-child(5){grid-row:5 !important}
+    article[data-mid]{display:grid !important;grid-template-columns:minmax(0,1fr) !important;row-gap:0 !important;align-content:center !important;padding:60px 20px 60px !important}
+    article[data-mid] > :first-child{grid-row:3 !important;width:100% !important;min-width:0 !important;max-width:100% !important;display:flex !important;flex-direction:column !important;align-items:center !important;margin:12px 0 14px !important}
+    article[data-mid] > :last-child{display:contents !important}
+    article[data-mid] > :last-child > *{min-width:0 !important;max-width:none !important}
+    article[data-mid] > :last-child > :nth-child(1){grid-row:1 !important}
+    article[data-mid] > :last-child > :nth-child(2){grid-row:2 !important}
+    article[data-mid] > :last-child > :nth-child(3){grid-row:4 !important;margin-top:0 !important}
+    article[data-mid] > :last-child > :nth-child(4){grid-row:5 !important}
+    article[data-mid] > :last-child > :nth-child(5){grid-row:6 !important}
+    article[data-mid] img, article[data-mid] video{width:auto !important;height:auto !important;max-height:36svh !important;max-width:100% !important}
+    article[data-stack] img, article[data-stack] video{width:100% !important;height:auto !important;max-height:62svh !important;max-width:100% !important}
+    [data-page]{overflow:hidden !important}
+    article p{font-size:14px !important;line-height:1.45 !important}
+    article h3{font-size:26px !important}
+    header{letter-spacing:0.12em !important;font-size:10px !important;padding:14px 16px !important}
+    [data-grid2]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;column-gap:16px !important}
+    [data-span]{grid-column:1 / -1 !important}
+    [data-names2]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;column-gap:16px !important}
+    [data-names2] > div, [data-grid2] [data-name]{font-size:20px !important}
+    [data-cur] p{font-size:15px !important;line-height:1.5 !important}
+    [data-cur]{padding-top:64px !important;padding-bottom:72px !important}
+    [data-cur] h2{margin-bottom:20px !important}
+  }
   a:hover{color:#c98f7e}
 </style>
 </helmet>
@@ -60,7 +107,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <section style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
+  <section data-cur="" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
     <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">Curatorial Statement</div>
     <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(28px,6vh,64px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,min(6vw,9vh),96px);line-height:1;color:#f0eadd;">The room between two worlds</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,48px);">
@@ -79,7 +126,7 @@
 
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/door.jpg" alt="Doug Crocco, Death Is a Door" loading="lazy" decoding="async" width="820" height="1600" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">I</div>
@@ -91,7 +138,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <div style="flex:1.4 1 0;min-width:0;position:relative;display:flex;justify-content:center;align-items:center;">
       <div style="position:relative;max-width:100%;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
       <video loop="{{ true }}" playsinline="{{ true }}" preload="none" data-src="art/ferry.mp4" poster="art/crossing.jpg" style="display:block;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
@@ -109,7 +156,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/vanitas.jpg" alt="Aramis Gutierrez, The Turning" loading="lazy" decoding="async" width="1410" height="1598" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">III</div>
@@ -121,7 +168,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/empty.jpg" alt="Meredith Sellers, Empty (After Holbein)" loading="lazy" decoding="async" width="1600" height="791" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
         <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">IV</div>
@@ -133,7 +180,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/requiem.jpg" alt="Ellen R Hanson, Funeral Flowers" loading="lazy" decoding="async" width="1600" height="1053" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">V</div>
@@ -145,7 +192,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/mask.jpg" alt="Henry Swanson, Mask from Dallas" loading="lazy" decoding="async" width="576" height="723" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VI</div>
@@ -157,7 +204,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <div data-noswipe="" onClick="{{ toggleCowan }}" style="flex:1.4 1 0;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;">
       <div style="position:relative;display:grid;max-width:100%;">
         <img src="art/cowan.jpg" alt="Benjamin Cowan, Pigeon Feather, Stone, Giotto Crying Angels" loading="lazy" decoding="async" width="1120" height="1400" style="grid-area:1/1;display:block;max-width:100%;max-height:calc(100svh - 190px);width:auto;height:auto;object-fit:contain;justify-self:center;align-self:center;transition:opacity 400ms ease;opacity:{{ cowanMainOp }};">
@@ -175,7 +222,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/spell.jpg" alt="Lazaros, Spell for Manifestation" loading="lazy" decoding="async" width="842" height="1358" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VIII</div>
@@ -187,7 +234,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/desire.jpg" alt="Meredith Sellers, Desire (After Dieric Bouts)" loading="lazy" decoding="async" width="1600" height="1099" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">IX</div>
@@ -199,7 +246,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/charlie_tower.jpg" alt="Charlie Goering, Three-Tiered Camera Obscura" loading="lazy" decoding="async" width="800" height="641" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">X</div>
@@ -211,7 +258,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/era.jpg" alt="Megan Lindeman, New Enlightened Era Coming Soon" loading="lazy" decoding="async" width="1080" height="1470" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XI</div>
@@ -223,7 +270,7 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
     <img src="art/charlie_globe.jpg" alt="Charlie Goering, Metamorphosis, or The Dark Night of the Soul" loading="lazy" decoding="async" width="1259" height="1285" style="display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
     <div style="flex:1 1 0;min-width:0;max-width:540px;">
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XII</div>
@@ -238,10 +285,10 @@
   <section id="artists" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
     <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">The Artists</div>
     <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(24px,5vh,56px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,min(5vw,7vh),64px);line-height:1.02;color:#f0eadd;">Many practices, one threshold</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,40px);">
-      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);grid-column:span 2;">
+    <div data-grid2="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,40px);">
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);grid-column:span 2;" data-span="">
         <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Painting</div>
-        <div style="margin-top:clamp(8px,1.6vh,14px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));column-gap:clamp(20px,3vw,40px);">
+        <div data-names2="" style="margin-top:clamp(8px,1.6vh,14px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));column-gap:clamp(20px,3vw,40px);">
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Aramis Gutierrez</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Ellen R Hanson</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Benjamin Cowan</div>
@@ -277,7 +324,7 @@
   <section id="visit" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
     <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">Visit</div>
     <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(24px,5vh,56px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,min(5vw,7vh),64px);line-height:1.02;color:#f0eadd;">Opening November 12</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,40px);">
+    <div data-grid2="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,40px);">
       <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
         <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Venue</div>
         <div style="margin-top:clamp(8px,1.6vh,14px);font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">CC Jasper</div>
