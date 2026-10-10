@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=EB+Garamond:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0d0c0b"></rect><rect x="30" y="26" width="40" height="48" fill="#f1efea"></rect><rect x="42" y="36" width="16" height="38" fill="#2b6a60"></rect></svg></template>
+<style>
+body{margin:0;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;-webkit-font-smoothing:antialiased}
+a{color:#7fa39b}a:hover{color:#e9e3d6}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:56px clamp(20px,4vw,56px) 96px;display:flex;flex-direction:column;gap:72px;">
+  <header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;border-bottom:1px solid rgba(233,227,214,0.18);padding-bottom:28px;">
+    <div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">CC Jasper · Install plan</div>
+      <h1 style="margin:12px 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(36px,5vw,64px);line-height:1;color:#f0eadd;">Death Is a Door</h1>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px;max-width:440px;">
+      <p style="margin:0;font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:#8f887c;text-align:right;">Elevations drawn to scale · wall height 113 in · works hung on a {{ centerline }} in center line. Drag any work to reposition; spacing updates live.</p>
+      <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Reset to even spacing</button>
+    </div>
+  </header>
+
+  <section data-screen-label="In the room" style="display:flex;flex-direction:column;gap:28px;">
+    <div style="display:flex;align-items:baseline;gap:16px;">
+      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VIEWS</span>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">In the room</h2>
+    </div>
+    <sc-for list="{{ views }}" as="v" hint-placeholder-count="2">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px;">
+        <div ref="{{ v.ref }}" style="position:relative;width:{{ v.boxW }};aspect-ratio:{{ v.aspect }};overflow:hidden;background:#1a1917;">
+          <div style="position:absolute;left:0;top:0;width:{{ v.pw }};height:{{ v.ph }};transform-origin:0 0;transform:{{ v.scale }};">
+            <img src="{{ v.src }}" alt="{{ v.caption }}" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;">
+            <sc-for list="{{ v.els }}" as="p" hint-placeholder-count="0">
+              <div style="position:absolute;left:0;top:0;width:{{ p.w }};height:{{ p.h }};transform-origin:0 0;transform:{{ p.tf }};background:{{ p.bg }};box-shadow:{{ p.sh }};backface-visibility:hidden;">
+                <sc-if value="{{ p.src }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ p.src }}" alt="" style="display:block;width:100%;height:100%;object-fit:{{ p.fit }};">
+                </sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{ v.fg }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ v.fg }}" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none;">
+            </sc-if>
+          </div>
+        </div>
+        <figcaption style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">{{ v.caption }}</figcaption>
+      </figure>
+    </sc-for>
+  </section>
+
+  <sc-for list="{{ walls }}" as="wall" hint-placeholder-count="4">
+    <section data-screen-label="{{ wall.name }}" style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
+        <div style="display:flex;align-items:baseline;gap:16px;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">{{ wall.letter }}</span>
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">{{ wall.name }}</h2>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ wall.lenLabel }} · {{ wall.used }}</div>
+      </div>
+      <div style="width:{{ wall.boxW }};display:flex;flex-direction:column;">
+        <div data-wall="" style="position:relative;width:100%;aspect-ratio:{{ wall.aspect }};background:#f1efea;box-shadow:inset 0 -6px 0 #d9d4ca;overflow:hidden;">
+          <div style="position:absolute;left:0;right:0;top:{{ wall.cTop }};border-top:1px dashed rgba(43,106,96,0.55);"></div>
+          <div style="position:absolute;right:6px;top:{{ wall.cTop }};transform:translateY(-120%);font-family:'Space Mono',monospace;font-size:9px;color:#2b6a60;">{{ wall.cLabel }}</div>
+          <sc-for list="{{ wall.items }}" as="it" hint-placeholder-count="3">
+            <div style="position:absolute;left:{{ it.plLeft }};width:{{ it.plW }};top:{{ it.plTop }};bottom:0;background:#e2ded6;border:1px solid #cfc9be;box-sizing:border-box;"></div>
+            <div style="position:absolute;top:0;left:{{ it.wireLeft }};height:{{ it.wireH }};border-left:1px solid #7a746a;"></div>
+            <div onPointerDown="{{ it.onDown }}" title="{{ it.tip }}" style="position:absolute;left:{{ it.left }};top:{{ it.top }};width:{{ it.w }};height:{{ it.h }};cursor:grab;touch-action:none;box-shadow:0 2px 6px rgba(0,0,0,0.28);background:#222;">
+              <img src="{{ it.src }}" alt="{{ it.title }}" draggable="false" style="display:block;width:100%;height:100%;object-fit:{{ it.fit }};pointer-events:none;">
+              <div style="position:absolute;left:50%;bottom:100%;transform:translate(-50%,-4px);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#2b6a60;white-space:nowrap;pointer-events:none;">{{ it.num }}</div>
+            </div>
+          </sc-for>
+          <sc-for list="{{ wall.fixtures }}" as="fx" hint-placeholder-count="0">
+            <div title="{{ fx.tip }}" style="position:absolute;left:{{ fx.left }};width:{{ fx.w }};top:{{ fx.top }};bottom:0;background:rgba(170,196,198,0.22);border-left:2px solid rgba(120,140,142,0.7);border-right:2px solid rgba(120,140,142,0.7);border-top:3px solid #9aa3a3;box-sizing:border-box;cursor:grab;touch-action:none;" onPointerDown="{{ fx.onDown }}">
+              <div style="position:absolute;left:50%;top:100%;transform:translate(-50%,-140%);pointer-events:none;;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;color:#5d6a6a;white-space:nowrap;">{{ fx.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ showDims }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;height:30px;">
+            <sc-for list="{{ wall.gaps }}" as="g" hint-placeholder-count="4">
+              <div style="position:absolute;top:8px;left:{{ g.left }};width:{{ g.w }};height:8px;border-left:1px solid #5d584f;border-right:1px solid #5d584f;box-sizing:border-box;">
+                <div style="position:absolute;left:0;right:0;top:3px;border-top:1px solid #5d584f;"></div>
+                <div style="position:absolute;left:50%;top:10px;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:9px;color:#a39c8f;white-space:nowrap;">{{ g.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px 32px;margin-top:6px;">
+        <sc-for list="{{ wall.items }}" as="it" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;border-top:1px solid rgba(233,227,214,0.12);padding-top:10px;">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;">{{ it.num }}</div>
+            <div>
+              <div style="font-style:italic;font-size:17px;line-height:1.25;color:#f0eadd;text-wrap:pretty;">{{ it.title }}</div>
+              <div style="margin-top:3px;font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">{{ it.artist }} · {{ it.dims }}</div>
+              <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#a39c8f;">{{ it.posLabel }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+
+  <footer style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.8;color:#8f887c;border-top:1px solid rgba(233,227,214,0.18);padding-top:20px;">Assumptions — The Ferry shown 24 in high at the video's native ratio (16½ in wide). Spell for Manifestation (16 × 42 in) and New Enlightened Era Coming Soon (18 × 42 in) on pedestals in the center of the room; shown side by side, floor position not plotted. The World of Symbol… suspended from the ceiling on a wire, center at the center line. Elevations are drawn as seen facing each wall. Room views are perspective approximations from the gallery photos, calibrated from the 113 in wall height and the installed works in the Systems of Gesture photos; they follow the elevations live as works are dragged. Pedestal, hanging and desk positions in the room are estimated; desk shown as a 60 × 30 × 29 in glass desk freestanding in the front of the room, about 3 ft off the left back wall, long side running front to back.</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;centerline&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:60,&quot;min&quot;:54,&quot;max&quot;:66,&quot;step&quot;:1,&quot;unit&quot;:&quot;in&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;scale&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Fit each wall&quot;,&quot;options&quot;:[&quot;Fit each wall&quot;,&quot;Same scale&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;showDims&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const H = 113;
+const WALLS = [
+  { id: 'entry', letter: 'A', name: 'Left entry wall', len: 208.57 },
+  { id: 'center', letter: 'B', name: 'Center back wall', len: 137.24 },
+  { id: 'right', letter: 'C', name: 'Right wall', len: 551.54 },
+  { id: 'back', letter: 'D', name: 'Left back wall', len: 334.5 },
+  { id: 'floor', letter: 'E', name: 'Center of room · freestanding', len: 108, floor: true }
+];
+const WORKS = [
+  { id: 'crocco', wall: 'center', num: 'I', artist: 'Doug Crocco', title: 'Death Is a Door (installation)', file: 'doug-crocco-death-is-a-door-install.jpg', w: 105, h: 95, dims: '95 × 105 in', floorMount: true },
+  
+  { id: 'ferry', wall: 'back', num: 'II', artist: 'unitedfutures', title: 'The Ferry', file: 'unitedfutures-the-ferry-still.jpg', w: 16.5, h: 24, dims: 'Moving image · 24 × 16½ in (native ratio)' },
+  { id: 'cowan', wall: 'right', num: 'IV', artist: 'Benjamin Cowan', title: 'Pigeon Feather, Stone, Giotto Crying Angels', file: 'benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-crop.jpg', w: 16, h: 20, dims: '20 × 16 in' },
+  { id: 'empty-e', wall: 'entry', num: 'V', artist: 'Meredith Sellers', title: 'Empty (After Holbein)', file: 'meredith-sellers-empty-after-holbein.jpg', w: 29, h: 14.5, dims: '14½ × 29 × 1¾ in' },
+  { id: 'swanson', wall: 'right', num: 'VI', artist: 'Henry Swanson', title: 'Mask from Dallas', file: 'henry-swanson-mask-from-dallas.jpg', w: 8, h: 10, dims: '10 × 8 in' },
+  { id: 'gutierrez', wall: 'right', num: 'VII', artist: 'Aramis Gutierrez', title: 'The Turning', file: 'aramis-gutierrez-the-turning.jpg', w: 48, h: 54, dims: '54 × 48 in' },
+  { id: 'lazaros', wall: 'floor', num: 'VIII', artist: 'Lazaros', title: 'Spell for Manifestation', file: 'lazaros-spell-for-manifestation.jpg', w: 6.5, h: 12, dims: '6½ × 6½ × 12 in · on pedestal', plinth: { w: 16, h: 42 } },
+  { id: 'obscura', wall: 'right', num: 'IX', artist: 'Charlie Goering', title: 'Three-Tiered Camera Obscura', file: 'charlie-goering-three-tiered-camera-obscura.jpg', w: 10, h: 8, dims: '8 × 10 in' },
+  { id: 'delaney', wall: 'right', num: 'X', artist: 'Tom DeLaney', title: 'Rage and Eternal', file: 'tom-delaney-rage-and-eternal.jpg', w: 24, h: 18, dims: '18 × 24 in' },
+  { id: 'desire-e', wall: 'entry', num: 'XI', artist: 'Meredith Sellers', title: 'Desire (After Dieric Bouts)', file: 'meredith-sellers-desire-after-dieric-bouts.jpg', w: 21, h: 14.5, dims: '14½ × 21 × 1¾ in' },
+  { id: 'hanson-r', wall: 'right', num: 'III', artist: 'Ellen R Hanson', title: 'Funeral Flowers', file: 'ellen-r-hanson-funeral-flowers-crop.jpg', w: 59, h: 22, dims: '22 × 59 in' },
+  { id: 'radu', wall: 'back', num: 'XII', artist: 'Pandele Radu', title: 'Floating Coffin', file: 'pandele-radu-floating-coffin.jpg', w: 40, h: 40, dims: '40 × 40 in' },
+  { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New Enlightened Era Coming Soon', file: 'megan-lindeman-new-enlightened-era-coming-soon.jpg', w: 10, h: 20, dims: '20 × 10 × 10 in · on pedestal', plinth: { w: 18, h: 42 } },
+  { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Durwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling', hang: true },
+  { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' }
+];
+const KEY = 'didad-install-pos-v12';
+const BAKED = {"empty-e":75.25,"desire-e":112.25,"crocco":16.12,"cowan":320.5,"swanson":168.25,"gutierrez":189.75,"obscura":293,"delaney":60.75,"hanson-r":417,"ferry":75.5,"radu":239.75,"metamorphosis":131.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0};
+const VIEWS = [
+  { id: 'back', src: 'install/gallery-back.png', W: 2250, H: 1266, f: 1200, cx: 1198, cy: 655, cam: 53,
+    caption: 'Looking toward the back — left back wall (D), center back wall (B), right wall (C), freestanding works (E).',
+    walls: { back: x => [-92, 102.5 + x], right: x => [85, 437 - x], center: x => [-54 + x, 437] } },
+  { id: 'ig', hom: [7.2869701,-1.4339894,198.34292,2.5415647,-10.36086,1067.6911,0.0051222067,-0.0018846909], wall: 'back', src: 'install/view-ig-door.jpg', fg: 'install/view-ig-door-fg.png', W: 1080, H: 1525, caption: 'Left back wall (D) during install planning — from the pillar toward the back door.' },
+  { id: 'f13', flat: true, src: 'install/view-13.jpg', W: 1600, H: 980, wall: 'center', s: 9.4, floor: 928, u0: 160, caption: 'Center back wall (B), straight on.' },
+  { id: 'f9', flat: true, src: 'install/view-9.jpg', W: 1600, H: 900, wall: 'right', s: 8.35, floor: 835, u0: -890, caption: 'Right wall (C), back section, straight on.' },
+  { id: 'f15', flat: true, src: 'install/view-15.jpg', W: 2320, H: 900, wall: 'back', s: 6.55, floor: 660, u0: 59, caption: 'Left back wall (D), full length from the pillar end, straight on.' },
+  { id: 'f19', flat: true, src: 'install/view-19.jpg', W: 1257, H: 900, wall: 'right', s: 8.6, floor: 845, u0: -2072, caption: 'Right wall (C), middle, straight on.' },
+  { id: 'f5', flat: true, src: 'install/view-5.jpg', W: 1600, H: 900, wall: 'right', s: 10.5, floor: 992, u0: -3872, caption: 'Right wall (C), toward the entry, close up.' },
+  { id: 'entry', src: 'install/gallery-entry.png', W: 1938, H: 1320, f: 1410, cx: 587, cy: 638, cam: 53.7,
+    caption: 'Looking toward the entry — right wall (C) at left, left entry wall (A) at right.',
+    walls: { right: x => [-40.6, x - 245.5], entry: x => [68, 306 - x] } }
+];
+const FREE = { lazaros: { X: 0, Z: 190 }, lindeman: { X: 40, Z: 215 }, durwood: { X: -2, Z: 335 } };
+const DESK = { x0: -58, x1: -28, z0: 112, z1: 172, h: 29 };
+function homog(w, h, q) {
+  const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = q;
+  const dx1 = x1 - x2, dx2 = x3 - x2, dx3 = x0 - x1 + x2 - x3, dy1 = y1 - y2, dy2 = y3 - y2, dy3 = y0 - y1 + y2 - y3;
+  const den = dx1 * dy2 - dx2 * dy1;
+  const g = (dx3 * dy2 - dx2 * dy3) / den, k = (dx1 * dy3 - dx3 * dy1) / den;
+  const a = (x1 - x0 + g * x1) / w, b = (x3 - x0 + k * x3) / h, d = (y1 - y0 + g * y1) / w, e = (y3 - y0 + k * y3) / h;
+  return 'matrix3d(' + [a, d, 0, g / w, b, e, 0, k / h, 0, 0, 1, 0, x0, y0, 0, 1].map(n => +n.toFixed(6)).join(',') + ')';
+}
+const pct = (a, b) => (a / b * 100).toFixed(3) + '%';
+function fmt(x) {
+  x = Math.round(x * 4) / 4;
+  const ft = Math.floor(x / 12), r = x - ft * 12, wh = Math.floor(r), fr = r - wh;
+  const f = fr === 0.25 ? '¼' : fr === 0.5 ? '½' : fr === 0.75 ? '¾' : '';
+  const inch = (wh || f) ? (wh ? wh : '') + f + '"' : (ft ? '' : '0"');
+  return (ft ? ft + "' " : '') + inch;
+}
+function evenPositions() {
+  const pos = {};
+  WALLS.forEach(wl => {
+    const items = WORKS.filter(w => w.wall === wl.id && !w.stackOn);
+    const fw = w => Math.max(w.w, w.plinth ? w.plinth.w : 0);
+    const gap = (wl.len - items.reduce((s, w) => s + fw(w), 0)) / (items.length + 1);
+    let x = gap;
+    items.forEach(w => { pos[w.id] = x + (fw(w) - w.w) / 2; x += fw(w) + gap; });
+  });
+  pos.desk = 9.5;
+  return pos;
+}
+class Component extends DCLogic {
+  state = { pos: (() => { try { return { ...evenPositions(), ...BAKED, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch (e) { return { ...evenPositions(), ...BAKED }; } })() };
+  save() { try { localStorage.setItem(KEY, JSON.stringify(this.state.pos)); } catch (e) {} }
+  componentWillUnmount() { this.end && this.end(); this.ro && this.ro.disconnect(); }
+  refFor(V) {
+    this.refs_ = this.refs_ || {};
+    if (!this.refs_[V.id]) this.refs_[V.id] = el => {
+      if (!el) return;
+      this.ro = this.ro || new ResizeObserver(es => es.forEach(en => { const id = en.target.dataset.view; const v = VIEWS.find(k => k.id === id); const sc = en.contentRect.width / v.W; this.setState(s => ((s.sc || {})[id] === sc ? null : { sc: { ...(s.sc || {}), [id]: sc } })); }));
+      el.dataset.view = V.id; this.ro.observe(el);
+    };
+    return this.refs_[V.id];
+  }
+  down(e, work, len) {
+    e.preventDefault();
+    const rect = e.currentTarget.parentElement.getBoundingClientRect();
+    const sx = e.clientX, s0 = this.state.pos[work.id];
+    const move = ev => {
+      let x = s0 + (ev.clientX - sx) / rect.width * len;
+      x = Math.max(0, Math.min(len - work.w, Math.round(x * 4) / 4));
+      this.setState(s => ({ pos: { ...s.pos, [work.id]: x } }));
+    };
+    const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); this.end = null; this.save(); };
+    this.end = up;
+    window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+  }
+  renderVals() {
+    const c = this.props.centerline ?? 60;
+    const same = (this.props.scale ?? 'Fit each wall') === 'Same scale';
+    const maxLen = Math.max(...WALLS.map(w => w.len));
+    const pos = this.state.pos;
+    const dx = pos.desk ?? 9.5; DESK.z0 = 102.5 + dx; DESK.z1 = DESK.z0 + 60;
+    const walls = WALLS.map(wl => {
+      const L = wl.len;
+      const items = WORKS.filter(w => w.wall === wl.id).map(w => {
+        const base = w.stackOn ? WORKS.find(k => k.id === w.stackOn) : null;
+        const above = WORKS.find(k => k.stackOn === w.id);
+        const x = base ? (pos[base.id] ?? 0) + (base.w - w.w) / 2 : pos[w.id] ?? 0;
+        const stackH = above ? w.h + above.stackGap + above.h : 0;
+        const bottom = w.plinth ? w.plinth.h : w.floorMount ? 0 : base ? c - (base.h + w.stackGap + w.h) / 2 + base.h + w.stackGap : above ? c - stackH / 2 : c - w.h / 2;
+        const px = x + w.w / 2 - (w.plinth ? w.plinth.w / 2 : 0);
+        return {
+          ...w, x, bottom,
+          src: 'art/' + w.file, fit: w.fit || 'cover',
+          left: pct(x, L), w: pct(w.w, L), h: pct(w.h, H), top: pct(H - bottom - w.h, H),
+          plLeft: w.plinth ? pct(px, L) : '0%', plW: w.plinth ? pct(w.plinth.w, L) : '0%', plTop: w.plinth ? pct(H - w.plinth.h, H) : '100%',
+          tip: w.num + ' · ' + w.title, wireLeft: pct(x + w.w / 2, L), wireH: w.hang ? pct(H - bottom - w.h, H) : '0%',
+          posLabel: wl.floor ? (w.hang ? 'Suspended from ceiling · center ' + c + '" AFF' : 'Pedestal ' + w.plinth.w + '" wide × ' + w.plinth.h + '" high · center of room') : 'Left edge ' + fmt(x) + ' from wall start · ' + (base ? 'stacked ' + w.stackGap + '" above ' + base.num + ' · bottom ' + fmt(bottom) + ' AFF' : above ? 'bottom of stack · bottom ' + fmt(bottom) + ' AFF' : w.plinth ? 'plinth ' + w.plinth.h + '" high' : w.floorMount ? 'starts at floor · top 95" AFF' : 'center ' + c + '" AFF'),
+          onDown: e => this.down(e, base || WORKS.find(k => k.id === w.id), L)
+        };
+      });
+      const sorted = items.filter(it => !it.stackOn).sort((a, b) => a.x - b.x);
+      const gaps = []; let prev = 0;
+      sorted.forEach(it => { const g = it.x - prev; if (g > 0.5) gaps.push({ left: pct(prev, L), w: pct(g, L), label: fmt(g) }); prev = Math.max(prev, it.x + WORKS.find(k => k.id === it.id).w); });
+      if (L - prev > 0.5) gaps.push({ left: pct(prev, L), w: pct(L - prev, L), label: fmt(L - prev) });
+      const occ = WORKS.filter(w => w.wall === wl.id).reduce((s, w) => s + w.w, 0);
+      return {
+        ...wl, items, gaps,
+        fixtures: wl.id === 'back' ? [{ onDown: e => this.down(e, { id: 'desk', w: 60 }, L), left: pct(DESK.z0 - 102.5, L), w: pct(DESK.z1 - DESK.z0, L), top: pct(H - DESK.h, H), label: 'DESK · 3 ft off wall', tip: 'Glass desk 60 × 30 × 29 in, freestanding ~3 ft in front of this wall' }] : [],
+        lenLabel: wl.floor ? 'Freestanding' : fmt(L) + ' long (' + L + ' in)',
+        used: (wl.floor ? 'freestanding, viewed in the round' : items.length + (items.length === 1 ? ' work' : ' works') + ' · ' + fmt(occ) + ' of art'),
+        aspect: (L / H).toFixed(4),
+        boxW: same ? pct(L, maxLen) : 'min(100%, calc(64vh * ' + (L / H).toFixed(4) + '))',
+        cTop: pct(H - c, H), cLabel: c + '" CL'
+      };
+    });
+    const placed = {};
+    walls.forEach(wl => wl.items.forEach(it => { placed[it.id] = { wall: wl.id, x: it.x, bottom: it.bottom, w: WORKS.find(k => k.id === it.id).w, h: WORKS.find(k => k.id === it.id).h, src: it.src, fit: it.fit }; }));
+    const views = VIEWS.map(V => {
+      const P = (X, Y, Z) => [V.cx + V.f * X / Z, V.cy - V.f * (Y - V.cam) / Z];
+      const els = [];
+      const quad = (w, h, pts, extra) => { if (pts.some(p => p[2] < 12)) return; const q = pts.map(p => P(p[0], p[1], p[2])); els.push({ w: w + 'px', h: h + 'px', tf: homog(w, h, q), z: pts.reduce((s, p) => s + p[2], 0) / 4, bg: 'transparent', sh: 'none', src: '', fit: 'cover', ...extra }); };
+      if (V.flat) {
+        Object.values(placed).forEach(p => { if (p.wall !== V.wall) return;
+          const L0 = V.u0 + p.x * V.s, T0 = V.floor - (p.bottom + p.h) * V.s;
+          if (L0 > V.W || L0 + p.w * V.s < 0) return;
+          els.push({ w: p.w + 'px', h: p.h + 'px', tf: 'translate(' + L0.toFixed(1) + 'px,' + T0.toFixed(1) + 'px) scale(' + V.s + ')', z: 0, bg: '#222', sh: '0 0.4px 1.2px rgba(0,0,0,0.35)', src: p.src, fit: p.fit });
+        });
+      }
+      if (V.hom) {
+        const h = V.hom, ap = (x, y) => { const w = h[6] * x + h[7] * y + 1; return [(h[0] * x + h[1] * y + h[2]) / w, (h[3] * x + h[4] * y + h[5]) / w]; };
+        Object.values(placed).forEach(p => { if (p.wall !== V.wall) return; const t = p.bottom + p.h, b = p.bottom;
+          els.push({ w: p.w + 'px', h: p.h + 'px', tf: homog(p.w, p.h, [ap(p.x, t), ap(p.x + p.w, t), ap(p.x + p.w, b), ap(p.x, b)]), z: 0, bg: '#222', sh: '0 1px 3px rgba(0,0,0,0.35)', src: p.src, fit: p.fit }); });
+      }
+      if (V.flat && V.wall === 'back') {
+        const d0 = DESK.z0 - 102.5, dl = DESK.z1 - DESK.z0, k = 1.12, h = DESK.h;
+        const box = (x, y, w, hh, bg, sh) => els.push({ w: w + 'px', h: hh + 'px', tf: 'translate(' + (V.u0 + x * V.s).toFixed(1) + 'px,' + (V.floor + 14 - y * V.s * k).toFixed(1) + 'px) scale(' + (V.s * k) + ')', z: -1, bg, sh: sh || 'none', src: '', fit: 'cover' });
+        box(d0, h, dl, h, 'rgba(190,212,214,0.22)', 'inset 0 0 0 0.3px rgba(110,130,132,0.6)');
+        box(d0, h, dl, 1.4, '#a7aeae');
+        box(d0, h, 0.6, h, 'rgba(150,170,172,0.7)');
+        box(d0 + dl - 0.6, h, 0.6, h, 'rgba(150,170,172,0.7)');
+      }
+      if (!V.flat && !V.hom) Object.entries(placed).forEach(([id, p]) => {
+        const fn = V.walls[p.wall];
+        if (fn) {
+          const t = p.bottom + p.h, b = p.bottom;
+          const A = fn(p.x), B = fn(p.x + p.w);
+          quad(p.w, p.h, [[A[0], t, A[1]], [B[0], t, B[1]], [B[0], b, B[1]], [A[0], b, A[1]]], { src: p.src, fit: p.fit, bg: '#222', sh: '0 2px 6px rgba(0,0,0,0.35)' });
+        } else if (p.wall === 'floor' && V.id === 'back' && FREE[id]) {
+          const { X, Z } = FREE[id]; const wk = WORKS.find(k => k.id === id);
+          if (wk.plinth) {
+            const pw = wk.plinth.w, ph = wk.plinth.h, l = X - pw / 2, r = X + pw / 2, sx = X < 0 ? r : l;
+            quad(pw, pw, [[l, ph, Z + pw], [r, ph, Z + pw], [r, ph, Z], [l, ph, Z]], { bg: '#f7f6f3', z: Z + pw / 2 + 0.2 });
+            quad(pw, ph, X < 0 ? [[sx, ph, Z], [sx, ph, Z + pw], [sx, 0, Z + pw], [sx, 0, Z]] : [[sx, ph, Z + pw], [sx, ph, Z], [sx, 0, Z], [sx, 0, Z + pw]], { bg: '#d9d6d0', z: Z + pw / 2 + 0.1 });
+            quad(pw, ph, [[l, ph, Z], [r, ph, Z], [r, 0, Z], [l, 0, Z]], { bg: '#eceae6', sh: '0 3px 10px rgba(0,0,0,0.12)', z: Z });
+            const zc = Z + pw / 2;
+            quad(wk.w, wk.h, [[X - wk.w / 2, ph + wk.h, zc], [X + wk.w / 2, ph + wk.h, zc], [X + wk.w / 2, ph, zc], [X - wk.w / 2, ph, zc]], { src: p.src, fit: 'cover', z: Z - 0.1 });
+          } else {
+            const t = p.bottom + wk.h;
+            quad(0.4, H - t, [[X - 0.2, H, Z], [X + 0.2, H, Z], [X + 0.2, t, Z], [X - 0.2, t, Z]], { bg: '#8a857c', z: Z + 0.1 });
+            quad(wk.w, wk.h, [[X - wk.w / 2, t, Z], [X + wk.w / 2, t, Z], [X + wk.w / 2, p.bottom, Z], [X - wk.w / 2, p.bottom, Z]], { src: p.src, fit: 'cover', z: Z });
+          }
+        }
+      });
+      if (V.id === 'back') {
+        const { x0, x1, h } = DESK, z0 = DESK.z0 - 34, z1 = DESK.z1 - 34, glass = 'rgba(190,212,214,0.32)', edge = 'rgba(120,140,142,0.55)';
+        [z0, z1].forEach(z => quad(x1 - x0, h, [[x0, h, z], [x1, h, z], [x1, 0, z], [x0, 0, z]], { bg: glass, sh: 'inset 0 0 0 1px ' + edge, z: z + 0.5 }));
+        quad(x1 - x0, z1 - z0, [[x0, h, z1], [x1, h, z1], [x1, h, z0], [x0, h, z0]], { bg: 'rgba(200,220,222,0.45)', sh: 'inset 0 0 0 1.2px ' + edge, z: z0 - 0.5 });
+        quad(z1 - z0, 1.2, [[x1, h, z0], [x1, h, z1], [x1, h - 1.2, z1], [x1, h - 1.2, z0]], { bg: '#9aa3a3', z: z0 - 0.6 });
+      }
+      els.sort((a, b) => b.z - a.z);
+      const sc = (this.state.sc || {})[V.id] || 0;
+      return { ...V, els, aspect: V.W + ' / ' + V.H, boxW: 'min(100%, calc(82vh * ' + (V.W / V.H).toFixed(4) + '))', pw: V.W + 'px', ph: V.H + 'px', scale: 'scale(' + sc + ')', ref: this.refFor(V) };
+    });
+    return {
+      views, walls, centerline: c, showDims: this.props.showDims ?? true,
+      reset: () => { this.setState({ pos: evenPositions() }, () => this.save()); }
+    };
+  }
+}
+</script>
+</body>
+</html>
