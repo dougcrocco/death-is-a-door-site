@@ -17,14 +17,19 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
 </style>
 </helmet>
 <div style="max-width:1440px;margin:0 auto;padding:56px clamp(20px,4vw,56px) 96px;display:flex;flex-direction:column;gap:72px;">
-  <header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;border-bottom:1px solid rgba(233,227,214,0.18);padding-bottom:28px;">
+  <header style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:end;gap:24px;border-bottom:1px solid rgba(233,227,214,0.18);padding-bottom:28px;">
     <div>
       <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">CC Jasper · Install plan</div>
       <h1 style="margin:12px 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(36px,5vw,64px);line-height:1;color:#f0eadd;">Death Is a Door</h1>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px;max-width:440px;">
-      <p style="margin:0;font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:#8f887c;text-align:right;">Elevations drawn to scale · wall height 113 in · works hung on a {{ centerline }} in center line. Drag any work to reposition; spacing updates live.</p>
-      <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Reset to even spacing</button>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:440px;justify-self:end;">
+      <p style="margin:0;font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:#8f887c;">Elevations drawn to scale · wall height 113 in · works hung on a {{ centerline }} in center line. Drag any work to reposition; spacing updates live.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button onClick="{{ saveStart }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0d0c0b;background:#7fa39b;border:1px solid #7fa39b;padding:10px 16px;cursor:pointer;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">{{ saveLabel }}</button>
+        <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Back to saved</button>
+        <button onClick="{{ toDefault }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Oct 11 layout</button>
+        <button onClick="{{ even }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;background:transparent;border:1px solid rgba(233,227,214,0.18);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Even spacing</button>
+      </div>
     </div>
   </header>
 
@@ -55,6 +60,78 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
     </sc-for>
   </section>
 
+  <section data-screen-label="Walkthrough" style="display:flex;flex-direction:column;gap:18px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;">
+      <div style="display:flex;align-items:baseline;gap:16px;">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">3D</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">Walkthrough</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button onClick="{{ walkEntry }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:9px 14px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">From entry</button>
+        <button onClick="{{ walkRight }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:9px 14px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Face right wall</button>
+        <button onClick="{{ walkBack }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:9px 14px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">From back</button>
+      </div>
+    </div>
+    <div style="position:relative;width:100%;">
+      <div ref="{{ walkRef }}" style="position:relative;width:100%;aspect-ratio:16 / 9;max-height:78vh;background:#1a1917;overflow:hidden;touch-action:none;cursor:grab;outline:none;"></div>
+      <sc-if value="{{ walkSel }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:16px;bottom:16px;max-width:min(360px,calc(100% - 32px));background:rgba(13,12,11,0.88);border:1px solid rgba(233,227,214,0.18);padding:14px 16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:start;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;padding-top:3px;">{{ walkSel.num }}</div>
+          <div>
+            <div style="font-style:italic;font-size:18px;line-height:1.25;color:#f0eadd;text-wrap:pretty;">{{ walkSel.title }}</div>
+            <div style="margin-top:4px;font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#a39c8f;">{{ walkSel.artist }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">{{ walkSel.dims }}</div>
+          </div>
+          <button onClick="{{ walkClose }}" style="background:transparent;border:0;color:#8f887c;font-family:'Space Mono',monospace;font-size:14px;cursor:pointer;padding:0 2px;line-height:1;" style-hover="color:#e9e3d6;">×</button>
+        </div>
+      </sc-if>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">Drag to look around · click a work to see its label and walk to it · click the floor to walk there · W A S D or arrow keys to walk. Follows the plan and elevations live.</div>
+  </section>
+
+  <section data-screen-label="Plan" style="display:flex;flex-direction:column;gap:18px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
+      <div style="display:flex;align-items:baseline;gap:16px;">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">PLAN</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">Top down</h2>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">Entry at left · back at right · drag anything</div>
+    </div>
+    <div data-plan="" style="position:relative;width:100%;aspect-ratio:583.5 / 209;background:#1a1917;overflow:hidden;user-select:none;">
+      <div style="position:absolute;left:2.735%;width:37.196%;top:40.383%;height:51.962%;background:#f1efea;"></div>
+      <div style="position:absolute;left:39.931%;width:57.326%;top:7.656%;height:84.689%;background:#f1efea;"></div>
+      <div style="position:absolute;left:2.735%;width:94.523%;top:92.344%;height:1.914%;background:#8f887c;"></div>
+      <div style="position:absolute;left:39.931%;width:57.326%;top:5.742%;height:1.914%;background:#8f887c;"></div>
+      <div style="position:absolute;left:97.258%;width:0.686%;top:25.837%;height:68.421%;background:#8f887c;"></div>
+      <div style="position:absolute;left:2.735%;width:35.745%;top:38.469%;height:1.914%;background:#8f887c;"></div>
+      <div style="position:absolute;left:38.48%;width:1.452%;top:5.742%;height:34.641%;background:#8f887c;"></div>
+      <div title="Back door" style="position:absolute;left:97.258%;width:0.686%;top:7.656%;height:18.182%;border:1px dashed #8f887c;box-sizing:border-box;"></div>
+      <div title="Entry" style="position:absolute;left:2.05%;width:0.686%;top:40.383%;height:51.962%;border:1px dashed #8f887c;box-sizing:border-box;"></div>
+      <div style="position:absolute;left:0.9%;top:66%;transform:translate(-50%,-50%) rotate(-90deg);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;color:#8f887c;">ENTRY</div>
+      <div style="position:absolute;left:20.65%;top:32.54%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">A</div>
+      <div style="position:absolute;left:98.97%;top:51.67%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">B</div>
+      <div style="position:absolute;left:49.79%;top:97.6%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">C</div>
+      <div style="position:absolute;left:68.64%;top:2.87%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">D</div>
+      <div title="{{ planDesk.tip }}" style="position:absolute;left:{{ planDesk.left }};top:{{ planDesk.top }};width:{{ planDesk.w }};height:{{ planDesk.h }};background:rgba(170,196,198,0.35);border:1px solid #9aa3a3;box-sizing:border-box;display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#5d6a6a;pointer-events:none;">DESK</div>
+        <div onPointerDown="{{ planDesk.onDown }}" style="position:absolute;inset:0;cursor:grab;touch-action:none;"></div>
+      </div>
+      <sc-for list="{{ planWorks }}" as="pw" hint-placeholder-count="0">
+        <div title="{{ pw.tip }}" style="position:absolute;left:{{ pw.left }};top:{{ pw.top }};width:{{ pw.w }};height:{{ pw.h }};background:#2b6a60;">
+          <div onPointerDown="{{ pw.onDown }}" style="position:absolute;inset:-7px;cursor:grab;touch-action:none;" style-hover="background:rgba(43,106,96,0.12);"></div>
+        </div>
+        <div style="position:absolute;left:{{ pw.lx }};top:{{ pw.ly }};transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:9px;color:#2b6a60;white-space:nowrap;pointer-events:none;">{{ pw.num }}</div>
+      </sc-for>
+      <sc-for list="{{ planFree }}" as="pf" hint-placeholder-count="0">
+        <div title="{{ pf.tip }}" style="position:absolute;left:{{ pf.left }};top:{{ pf.top }};width:{{ pf.w }};height:{{ pf.h }};background:#eceae6;border:1px solid #2b6a60;border-radius:{{ pf.radius }};box-sizing:border-box;">
+          <div style="position:absolute;left:50%;bottom:100%;transform:translate(-50%,-3px);font-family:'Space Mono',monospace;font-size:9px;color:#0d0c0b;background:#7fa39b;padding:1px 4px;white-space:nowrap;pointer-events:none;">{{ pf.num }}</div>
+          <div onPointerDown="{{ pf.onDown }}" style="position:absolute;inset:-8px;cursor:grab;touch-action:none;border-radius:50%;" style-hover="background:rgba(43,106,96,0.14);"></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">Wall works slide along their wall; pedestals, the hanging work and the desk move anywhere in the room. Elevations and room views follow.</div>
+  </section>
+
   <sc-for list="{{ walls }}" as="wall" hint-placeholder-count="4">
     <section data-screen-label="{{ wall.name }}" style="display:flex;flex-direction:column;gap:18px;">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
@@ -65,6 +142,22 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
         <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ wall.lenLabel }} · {{ wall.used }}</div>
       </div>
       <div style="width:{{ wall.boxW }};display:flex;flex-direction:column;">
+        <sc-if value="{{ wall.hasGhosts }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;height:58px;">
+            <sc-for list="{{ wall.ghosts }}" as="gh" hint-placeholder-count="0">
+              <div onPointerDown="{{ gh.onDown }}" title="{{ gh.tip }}" style="position:absolute;top:0;left:{{ gh.cx }};transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;cursor:grab;touch-action:none;user-select:none;">
+                <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#0d0c0b;background:#7fa39b;padding:3px 7px;white-space:nowrap;" style-hover="background:#f0eadd;">{{ gh.num }} · {{ gh.ft }}</div>
+                <div style="height:30px;border-left:1px dashed #7fa39b;"></div>
+              </div>
+            </sc-for>
+            <sc-for list="{{ wall.ghostGaps }}" as="g" hint-placeholder-count="0">
+              <div style="position:absolute;bottom:8px;left:{{ g.left }};width:{{ g.w }};height:8px;border-left:1px dashed #2b6a60;border-right:1px dashed #2b6a60;box-sizing:border-box;">
+                <div style="position:absolute;left:0;right:0;top:3px;border-top:1px dashed #2b6a60;"></div>
+                <div style="position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:9px;color:#7fa39b;white-space:nowrap;">{{ g.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
         <div data-wall="" style="position:relative;width:100%;aspect-ratio:{{ wall.aspect }};background:#f1efea;box-shadow:inset 0 -6px 0 #d9d4ca;overflow:hidden;">
           <div style="position:absolute;left:0;right:0;top:{{ wall.cTop }};border-top:1px dashed rgba(43,106,96,0.55);"></div>
           <div style="position:absolute;right:6px;top:{{ wall.cTop }};transform:translateY(-120%);font-family:'Space Mono',monospace;font-size:9px;color:#2b6a60;">{{ wall.cLabel }}</div>
@@ -75,6 +168,14 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
               <img src="{{ it.src }}" alt="{{ it.title }}" draggable="false" style="display:block;width:100%;height:100%;object-fit:{{ it.fit }};pointer-events:none;">
               <div style="position:absolute;left:50%;bottom:100%;transform:translate(-50%,-4px);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#2b6a60;white-space:nowrap;pointer-events:none;">{{ it.num }}</div>
             </div>
+          </sc-for>
+          <sc-for list="{{ wall.ghosts }}" as="gh" hint-placeholder-count="0">
+            <div style="position:absolute;left:{{ gh.plLeft }};width:{{ gh.plW }};top:{{ gh.plTop }};bottom:0;background:rgba(236,234,230,0.55);border:1px dashed rgba(43,106,96,0.7);box-sizing:border-box;z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;top:0;left:{{ gh.wireLeft }};height:{{ gh.wireH }};border-left:1px dashed #2b6a60;z-index:2;pointer-events:none;"></div>
+            <div title="{{ gh.tip }}" style="position:absolute;left:{{ gh.left }};top:{{ gh.top }};width:{{ gh.w }};height:{{ gh.h }};opacity:0.85;outline:1px dashed #2b6a60;outline-offset:2px;z-index:2;pointer-events:none;">
+              <img src="{{ gh.src }}" alt="{{ gh.title }}" draggable="false" style="display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+              </div>
+            <div onPointerDown="{{ gh.onDown }}" title="{{ gh.tip }}" style="position:absolute;left:calc({{ gh.cx }} - max({{ gh.w2 }}, 18px));width:max(calc({{ gh.w2 }} * 2), 36px);top:{{ gh.top }};bottom:0;z-index:3;cursor:grab;touch-action:none;" style-hover="background:rgba(43,106,96,0.08);"></div>
           </sc-for>
           <sc-for list="{{ wall.fixtures }}" as="fx" hint-placeholder-count="0">
             <div title="{{ fx.tip }}" style="position:absolute;left:{{ fx.left }};width:{{ fx.w }};top:{{ fx.top }};bottom:0;background:rgba(170,196,198,0.22);border-left:2px solid rgba(120,140,142,0.7);border-right:2px solid rgba(120,140,142,0.7);border-top:3px solid #9aa3a3;box-sizing:border-box;cursor:grab;touch-action:none;" onPointerDown="{{ fx.onDown }}">
@@ -93,6 +194,9 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
           </div>
         </sc-if>
       </div>
+      <sc-if value="{{ wall.hasGhosts }}" hint-placeholder-val="{{ false }}">
+        <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">Dashed: freestanding works (E) — {{ wall.ghostList }} — projected onto this wall at their depth in the room, standing in front of the wall works. Tags above show each piece's center from the wall start; drag a tag to move it.</div>
+      </sc-if>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px 32px;margin-top:6px;">
         <sc-for list="{{ wall.items }}" as="it" hint-placeholder-count="3">
           <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;border-top:1px solid rgba(233,227,214,0.12);padding-top:10px;">
@@ -139,12 +243,11 @@ const WORKS = [
   { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' }
 ];
 const KEY = 'didad-install-pos-v12';
-const BAKED = {"empty-e":75.25,"desire-e":112.25,"crocco":16.12,"cowan":320.5,"swanson":168.25,"gutierrez":189.75,"obscura":293,"delaney":60.75,"hanson-r":417,"ferry":75.5,"radu":239.75,"metamorphosis":131.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0};
+const BAKED = {"empty-e":65,"desire-e":118.25,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":32.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":248,"fz-lindeman":101.75,"fz-durwood":89,"fx-lindeman":43,"fx-lazaros":61.75,"deskX":-43.75};
 const VIEWS = [
   { id: 'back', src: 'install/gallery-back.png', W: 2250, H: 1266, f: 1200, cx: 1198, cy: 655, cam: 53,
     caption: 'Looking toward the back — left back wall (D), center back wall (B), right wall (C), freestanding works (E).',
     walls: { back: x => [-92, 102.5 + x], right: x => [85, 437 - x], center: x => [-54 + x, 437] } },
-  { id: 'ig', hom: [7.2869701,-1.4339894,198.34292,2.5415647,-10.36086,1067.6911,0.0051222067,-0.0018846909], wall: 'back', src: 'install/view-ig-door.jpg', fg: 'install/view-ig-door-fg.png', W: 1080, H: 1525, caption: 'Left back wall (D) during install planning — from the pillar toward the back door.' },
   { id: 'f13', flat: true, src: 'install/view-13.jpg', W: 1600, H: 980, wall: 'center', s: 9.4, floor: 928, u0: 160, caption: 'Center back wall (B), straight on.' },
   { id: 'f9', flat: true, src: 'install/view-9.jpg', W: 1600, H: 900, wall: 'right', s: 8.35, floor: 835, u0: -890, caption: 'Right wall (C), back section, straight on.' },
   { id: 'f15', flat: true, src: 'install/view-15.jpg', W: 2320, H: 900, wall: 'back', s: 6.55, floor: 660, u0: 59, caption: 'Left back wall (D), full length from the pillar end, straight on.' },
@@ -155,6 +258,8 @@ const VIEWS = [
     walls: { right: x => [-40.6, x - 245.5], entry: x => [68, 306 - x] } }
 ];
 const FREE = { lazaros: { X: 0, Z: 190 }, lindeman: { X: 40, Z: 215 }, durwood: { X: -2, Z: 335 } };
+const FERRY_VID = 'art/unitedfutures-the-ferry.mp4';
+const FREE0 = JSON.parse(JSON.stringify(FREE));
 const DESK = { x0: -58, x1: -28, z0: 112, z1: 172, h: 29 };
 function homog(w, h, q) {
   const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = q;
@@ -186,8 +291,171 @@ function evenPositions() {
 }
 class Component extends DCLogic {
   state = { pos: (() => { try { return { ...evenPositions(), ...BAKED, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch (e) { return { ...evenPositions(), ...BAKED }; } })() };
+  startPos() { try { const sv = JSON.parse(localStorage.getItem(KEY + '-saved') || 'null'); if (sv) return { ...evenPositions(), ...BAKED, ...sv }; } catch (e) {} return { ...evenPositions(), ...BAKED }; }
   save() { try { localStorage.setItem(KEY, JSON.stringify(this.state.pos)); } catch (e) {} }
-  componentWillUnmount() { this.end && this.end(); this.ro && this.ro.disconnect(); }
+  componentWillUnmount() { this.end && this.end(); this.ro && this.ro.disconnect(); const t = this.t3; if (t && t.R) { cancelAnimationFrame(t.raf); t.ro.disconnect(); t.io.disconnect(); t.video && t.video.pause(); t.R.dispose(); } this.t3 = null; }
+  componentDidUpdate() { this.sync3d(); }
+  async init3d() {
+    if (this.t3 || !this.walkEl) return;
+    this.t3 = { loading: true };
+    let THREE;
+    try { THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'); } catch (e) { this.walkEl.textContent = '3D viewer failed to load'; return; }
+    const el = this.walkEl; if (!el || !el.isConnected) return;
+    const R = new THREE.WebGLRenderer({ antialias: true });
+    R.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); R.outputColorSpace = THREE.SRGBColorSpace;
+    R.domElement.style.cssText = 'display:block;width:100%;height:100%;';
+    el.appendChild(R.domElement); el.tabIndex = 0;
+    const S = new THREE.Scene(); S.background = new THREE.Color('#1a1917');
+    const cam = new THREE.PerspectiveCamera(62, 16 / 9, 1, 3000); cam.rotation.order = 'YXZ';
+    S.add(new THREE.AmbientLight(0xffffff, 2.2));
+    S.add(new THREE.HemisphereLight(0xffffff, 0x9a958c, 1.2));
+    const dl = new THREE.DirectionalLight(0xffffff, 0.5); dl.position.set(60, 40, 80); S.add(dl);
+    const box = (w, h, d, m, x, y, z) => { const me = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); me.position.set(x, y, z); S.add(me); return me; };
+    const wallM = new THREE.MeshLambertMaterial({ color: '#f1efea' });
+    const trM = new THREE.MeshLambertMaterial({ color: '#f4f2ee' }), glowM = new THREE.MeshBasicMaterial({ color: '#ffffff' }), pipeM = new THREE.MeshLambertMaterial({ color: '#eeece8' });
+    box(1.4, 1, 530, trM, 49, 112.3, -160); box(1.4, 1, 330, trM, -56, 112.3, -270); box(1.4, 1, 205, trM, 12, 112.3, -7.5); box(135, 1, 1.4, trM, 15, 112.3, -400);
+    box(2, 0.6, 320, glowM, 62, 112.8, -272); box(2, 0.6, 320, glowM, -70, 112.8, -272); box(134, 0.6, 2, glowM, -4, 112.8, -431);
+    box(4, 3, 320, trM, 64.5, 111.5, -272); box(4, 3, 320, trM, -72.5, 111.5, -272); box(140, 3, 4, trM, -4, 111.5, -433.5);
+    const pipe = (x, y, z, len, axis) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, len, 12), pipeM); m.position.set(x, y, z); if (axis === 'z') m.rotation.x = Math.PI / 2; else m.rotation.z = Math.PI / 2; S.add(m); };
+    pipe(80, 106, -160, 550, 'z'); pipe(-87, 107, -270, 334, 'z'); pipe(-18.6, 107, -7.5, 214, 'z'); pipe(30, 109, 100, 108, 'x');
+    const fc = document.createElement('canvas'); fc.width = 512; fc.height = 512; const fx = fc.getContext('2d');
+    const tones = ['#d9bf98', '#d4b991', '#dcc39d', '#d6bc95', '#d2b78f'];
+    for (let i = 0; i < 8; i++) { let y = -Math.random() * 512; while (y < 512) { const L = 300 + Math.random() * 120; fx.fillStyle = tones[(Math.random() * tones.length) | 0]; fx.fillRect(i * 64, y, 64, L); for (let g = 0; g < 7; g++) { fx.strokeStyle = 'rgba(150,115,75,' + (0.08 + Math.random() * 0.06) + ')'; fx.lineWidth = 1 + Math.random(); const gx = i * 64 + 6 + Math.random() * 52; fx.beginPath(); fx.moveTo(gx, y); fx.bezierCurveTo(gx + 6, y + L / 3, gx - 6, y + L * 2 / 3, gx, y + L); fx.stroke(); } fx.fillStyle = 'rgba(140,105,70,0.35)'; fx.fillRect(i * 64, y, 64, 1.5); y += L; } }
+    fx.fillStyle = 'rgba(140,105,70,0.32)'; for (let i = 0; i <= 8; i++) fx.fillRect(i * 64 - 1, 0, 2, 512);
+    const ft = new THREE.CanvasTexture(fc); ft.colorSpace = THREE.SRGBColorSpace; ft.wrapS = ft.wrapT = THREE.RepeatWrapping; ft.repeat.set(177 / 40, 551.54 / 40); ft.anisotropy = 8;
+    box(177, 1, 551.54, new THREE.MeshLambertMaterial({ map: ft }), -3.5, -0.5, -161.23);
+    box(177, 1, 551.54, new THREE.MeshLambertMaterial({ color: '#f4f2ee' }), -3.5, 113.5, -161.23);
+    const wl = (X1, Z1, X2, Z2) => X1 === X2 ? box(2, 113, Math.abs(Z2 - Z1), wallM, X1, 56.5, -(Z1 + Z2) / 2) : box(Math.abs(X2 - X1), 113, 2, wallM, (X1 + X2) / 2, 56.5, -Z1);
+    wl(86, -115.54, 86, 438); wl(-93, 438, 86, 438); wl(-93, 100.5, -93, 438); wl(-93, 100.5, -23.6, 100.5); wl(-24.6, -115.54, -24.6, 100.5); wl(-24.6, -115.54, 86, -115.54);
+    const darkM = new THREE.MeshLambertMaterial({ color: '#3b3731' });
+    const edgeM = new THREE.MeshLambertMaterial({ color: '#b9b6b0' }), doorM = new THREE.MeshLambertMaterial({ color: '#f3f1ed' });
+    box(33, 85, 0.3, edgeM, -73, 42.5, -436.85); box(32, 84, 0.6, doorM, -73, 42, -436.6);
+    box(0.8, 9, 0.8, edgeM, -60, 40, -436);
+    const blk = new THREE.MeshLambertMaterial({ color: '#141414' }), glsM = new THREE.MeshBasicMaterial({ color: '#f3f5f6' }), barM = new THREE.MeshLambertMaterial({ color: '#c9c9c9' });
+    const ez = 114.25, ex = 30;
+    box(100, 104, 0.4, glsM, ex, 52, ez + 0.2);
+    [[ex - 50, 104], [ex - 37, 104], [ex - 0.5, 84], [ex + 0.5, 84], [ex + 37, 104], [ex + 50, 104], [ex - 18, 84], [ex + 18, 84]].forEach(([x, h], i) => box(i > 5 ? 0 : 2, h, 1.5, blk, x, h / 2, ez - 0.4));
+    box(102, 3, 1.5, blk, ex, 104, ez - 0.4); box(74, 3, 1.5, blk, ex, 84, ez - 0.4); box(102, 2.5, 1.5, blk, ex, 1.25, ez - 0.4); box(102, 0.6, 3, blk, ex, 0.3, ez - 1);
+    box(2, 84, 1.5, blk, ex - 36, 42, ez - 0.4); box(2, 84, 1.5, blk, ex + 36, 42, ez - 0.4);
+    box(30, 1, 1, barM, ex - 18, 40, ez - 1.6); box(30, 1, 1, barM, ex + 18, 40, ez - 1.6);
+    const art = new THREE.Group(); S.add(art);
+    const t = this.t3 = { THREE, R, S, cam, art, tex: {}, yaw: 0, pitch: 0, x: 30, z: 95, keys: {}, target: null, vis: true };
+    const ok = (x, zt) => { const Z = -zt; return x > -88 && x < 81 && Z > -110 && Z < 433 && (Z > 105 || x > -19.6); };
+    const dom = R.domElement; let drag = null;
+    dom.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, m: 0 }; try { dom.setPointerCapture(e.pointerId); } catch (er) {} el.focus({ preventScroll: true }); });
+    dom.addEventListener('pointermove', e => { if (!drag) return; t.yawTo = null; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.m += Math.abs(dx) + Math.abs(dy); drag.x = e.clientX; drag.y = e.clientY; t.yaw += dx * 0.005; t.pitch = Math.max(-1.2, Math.min(1.2, t.pitch + dy * 0.005)); });
+    dom.addEventListener('pointerup', e => {
+      if (drag && drag.m < 6) {
+        const r = dom.getBoundingClientRect(), rc = new THREE.Raycaster();
+        rc.setFromCamera(new THREE.Vector2((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), cam);
+        const o = rc.ray.origin, d = rc.ray.direction;
+        const hit = rc.intersectObjects(art.children, true).find(h => h.object.userData.info);
+        if (hit) { this.focusWork(hit.object.userData); drag = null; return; }
+        if (this.state.walkSel) this.setState({ walkSel: null });
+        if (d.y < -0.01) { const k = -o.y / d.y, px = o.x + d.x * k, pz = o.z + d.z * k; t.target = [Math.max(-86, Math.min(79, px)), Math.max(-431, Math.min(108, pz))]; }
+      }
+      drag = null;
+    });
+    el.addEventListener('keydown', e => { const k = e.key.toLowerCase(); if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k)) { e.preventDefault(); t.keys[k] = true; } });
+    el.addEventListener('keyup', e => { t.keys[e.key.toLowerCase()] = false; });
+    el.addEventListener('blur', () => { t.keys = {}; });
+    t.ro = new ResizeObserver(() => { const w = el.clientWidth, h = el.clientHeight; if (!w || !h) return; R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); });
+    t.ro.observe(el);
+    t.io = new IntersectionObserver(es => { t.vis = es[0].isIntersecting; }); t.io.observe(el);
+    let last = performance.now();
+    const tick = now => {
+      t.raf = requestAnimationFrame(tick);
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (!t.vis) return;
+      const k = t.keys, f = (k.w || k.arrowup ? 1 : 0) - (k.s || k.arrowdown ? 1 : 0), s = (k.d ? 1 : 0) - (k.a ? 1 : 0);
+      t.yaw += ((k.arrowleft ? 1 : 0) - (k.arrowright ? 1 : 0)) * dt * 1.6;
+      const sy = Math.sin(t.yaw), cy = Math.cos(t.yaw); let mx = 0, mz = 0;
+      if (t.yawTo != null) { const a = Math.min(1, dt * 3.5); let dy = ((t.yawTo - t.yaw + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI; t.yaw += dy * a; t.pitch += (t.pitchTo - t.pitch) * a; if (Math.abs(dy) < 0.002 && Math.abs(t.pitchTo - t.pitch) < 0.002) t.yawTo = null; }
+      if (f || s || k.arrowleft || k.arrowright) t.yawTo = null;
+      if (f || s) { t.target = null; mx = (-sy * f + cy * s) * 70 * dt; mz = (-cy * f - sy * s) * 70 * dt; }
+      else if (t.target) { const dx = t.target[0] - t.x, dz = t.target[1] - t.z, d = Math.hypot(dx, dz); if (d < 2) t.target = null; else { const st = Math.min(d, 90 * dt); mx = dx / d * st; mz = dz / d * st; } }
+      const ox = t.x, oz = t.z;
+      if (mx && ok(t.x + mx, t.z)) t.x += mx; if (mz && ok(t.x, t.z + mz)) t.z += mz;
+      if (t.target && ox === t.x && oz === t.z) t.target = null;
+      cam.position.set(t.x, 62, t.z); cam.rotation.set(t.pitch, t.yaw, 0);
+      R.render(S, cam);
+    };
+    t.raf = requestAnimationFrame(tick);
+    this.sig3 = null; this.sync3d();
+  }
+  focusWork(u) {
+    const t = this.t3; if (!t) return;
+    const nx = Math.sin(u.ry), nz = Math.cos(u.ry), dist = Math.max(55, Math.max(u.w, u.h) * 1.25);
+    let x = u.cx + nx * dist, z = u.cz + nz * dist, Z = -z;
+    x = Math.max(-86, Math.min(79, x)); Z = Math.max(-108, Math.min(431, Z)); if (Z < 105 && x < -17) x = -17;
+    t.target = [x, -Z]; t.yawTo = u.ry;
+    t.pitchTo = Math.max(-0.5, Math.min(0.5, Math.atan2(u.cy - 62, Math.hypot(u.cx - x, u.cz + Z))));
+    this.setState({ walkSel: u.info });
+  }
+  texFor(src) {
+    const t = this.t3, THREE = t.THREE;
+    if (t.tex[src]) return t.tex[src];
+    let tx;
+    tx = new THREE.TextureLoader().load(src);
+    tx.colorSpace = THREE.SRGBColorSpace;
+    return (t.tex[src] = tx);
+  }
+  sync3d() {
+    const t = this.t3; if (!t || !t.R || !this.s3) return;
+    const sig = JSON.stringify(this.s3); if (sig === this.sig3) return; this.sig3 = sig;
+    const THREE = t.THREE, G = t.art;
+    G.children.slice().forEach(ch => { G.remove(ch); ch.traverse(o => { o.geometry && o.geometry.dispose(); }); });
+    const mesh = (geo, mat, x, y, z, ry, parent) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); if (ry) m.rotation.y = ry; (parent || G).add(m); return m; };
+    const backM = new THREE.MeshLambertMaterial({ color: '#2a2724' }), shM = new THREE.MeshBasicMaterial({ color: '#000', transparent: true, opacity: 0.1, depthWrite: false });
+    const DEPTH = { 'empty-e': 1.75, 'desire-e': 1.75, crocco: 3, metamorphosis: 2, gutierrez: 2, radu: 2, 'hanson-r': 1.5, ferry: 2.5 };
+    const P = { back: p => [-92 + 0.4, 102.5 + p.x + p.w / 2, Math.PI / 2], right: p => [85 - 0.4, 437 - p.x - p.w / 2, -Math.PI / 2], center: p => [-54 + p.x + p.w / 2, 437 - 0.4, 0], entry: p => [-23.6 + 0.4, -114.54 + p.x + p.w / 2, Math.PI / 2] };
+    const info = id => { const w = WORKS.find(k => k.id === id); return w ? { num: w.num, title: w.title, artist: w.artist, dims: w.dims } : null; };
+    Object.entries(this.s3.placed).forEach(([id, p]) => {
+      if (!P[p.wall]) return;
+      const [x, z, ry] = P[p.wall](p), g = new THREE.Group(); g.position.set(x, p.bottom + p.h / 2, -z); g.rotation.y = ry; G.add(g);
+      const dep = DEPTH[id] || (Math.max(p.w, p.h) < 21 ? 1 : 1.5), tx = this.texFor(p.src);
+      const side = /ferry/.test(id) ? new THREE.MeshLambertMaterial({ color: '#111' }) : new THREE.MeshLambertMaterial({ map: tx, color: '#a8a39b' });
+      const sh = mesh(new THREE.PlaneGeometry(p.w + 2 + dep, p.h + 2 + dep), shM, 0.4, -0.8 - dep * 0.3, -0.35, 0, g); sh.renderOrder = -1;
+      const pl = mesh(new THREE.BoxGeometry(p.w, p.h, dep), [side, side, side, side, new THREE.MeshBasicMaterial({ map: tx }), backM], 0, 0, dep / 2 - 0.4, 0, g);
+      pl.userData = { info: info(id), cx: x, cy: p.bottom + p.h / 2, cz: -z, ry, w: p.w, h: p.h };
+    });
+    const fxM = new THREE.MeshLambertMaterial({ color: '#f2f0ec' }), lensM = new THREE.MeshBasicMaterial({ color: '#fffbea' });
+    const spot = (fx, fz, tx, ty, tz, ang) => {
+      const g = new THREE.Group(); g.position.set(fx, 108, fz); G.add(g); g.lookAt(tx, ty, tz);
+      mesh(new THREE.BoxGeometry(1.2, 4, 1.2), fxM, 0, 0, 0, 0, null).position.set(fx, 110.3, fz);
+      const can = mesh(new THREE.CylinderGeometry(1.4, 1.4, 4.5, 14), fxM, 0, 0, 0, 0, g); can.rotation.x = Math.PI / 2;
+      const ln = mesh(new THREE.CircleGeometry(1.2, 14), lensM, 0, 0, 2.3, 0, g);
+    };
+    const FX = { back: (z) => [-56, -z], right: (z) => [49, -z], center: (x) => [x, -400], entry: (z) => [12, -z] };
+    Object.values(this.s3.placed).forEach(p => {
+      if (!P[p.wall]) return; const [x, z] = P[p.wall](p), y = p.bottom + p.h / 2;
+      const big = Math.max(p.w, p.h) > 50, n = p.w > 70 ? 2 : 1;
+      for (let i = 0; i < n; i++) { const off = n === 2 ? (i ? 1 : -1) * p.w / 4 : 0;
+        if (p.wall === 'center') { const [fx, fz] = FX.center(x + off); spot(fx, fz, x + off, y, -z, big ? 0.42 : 0.3); }
+        else { const [fx, fz] = FX[p.wall](z + off * (p.wall === 'right' ? -1 : 1)); spot(fx, fz, x, y, -(z + off * (p.wall === 'right' ? -1 : 1)), big ? 0.42 : 0.3); } }
+    });
+    this.s3.free.forEach(w => { const zc = w.plinth ? w.Z + w.plinth.w / 2 : w.Z, nx = w.X > 0 ? 49 : -56; spot(nx, -zc + 30, w.X, w.plinth ? w.plinth.h + w.h / 2 : w.bottom + w.h / 2, -zc, 0.22); });
+    const plM = new THREE.MeshLambertMaterial({ color: '#eceae6' });
+    this.s3.free.forEach(w => {
+      if (w.plinth) {
+        const pw = w.plinth.w, ph = w.plinth.h, zc = -(w.Z + pw / 2);
+        mesh(new THREE.BoxGeometry(pw, ph, pw), plM, w.X, ph / 2, zc);
+        const ob = mesh(new THREE.BoxGeometry(w.w, w.h, w.w), new THREE.MeshBasicMaterial({ map: this.texFor(w.src) }), w.X, ph + w.h / 2, zc);
+        ob.userData = { info: info(w.id), cx: w.X, cy: ph + w.h / 2, cz: zc, ry: 0, w: 30, h: w.h };
+      } else {
+        const top = w.bottom + w.h;
+        const hg = mesh(new THREE.PlaneGeometry(w.w, w.h), new THREE.MeshBasicMaterial({ map: this.texFor(w.src), side: THREE.DoubleSide }), w.X, w.bottom + w.h / 2, -w.Z);
+        hg.userData = { info: info(w.id), cx: w.X, cy: w.bottom + w.h / 2, cz: -w.Z, ry: 0, w: 30, h: w.h };
+        mesh(new THREE.BoxGeometry(0.15, 113 - top, 0.15), backM, w.X, top + (113 - top) / 2, -w.Z);
+      }
+    });
+    const D = this.s3.desk, gl = new THREE.MeshLambertMaterial({ color: '#bcd4d6', transparent: true, opacity: 0.32, depthWrite: false }), dw = D.x1 - D.x0, dd = D.z1 - D.z0, cx = (D.x0 + D.x1) / 2, cz = -(D.z0 + D.z1) / 2;
+    mesh(new THREE.BoxGeometry(dw, 1, dd), gl, cx, D.h - 0.5, cz);
+    mesh(new THREE.BoxGeometry(dw, D.h - 1, 0.5), gl, cx, (D.h - 1) / 2, -D.z0 - 0.25);
+    mesh(new THREE.BoxGeometry(dw, D.h - 1, 0.5), gl, cx, (D.h - 1) / 2, -D.z1 + 0.25);
+  }
+  walkTo(x, Z, yaw) { const t = this.t3; if (!t || !t.R) return; t.x = x; t.z = -Z; t.yaw = yaw; t.pitch = 0; t.target = null; t.yawTo = null; this.setState({ walkSel: null }); }
+
   refFor(V) {
     this.refs_ = this.refs_ || {};
     if (!this.refs_[V.id]) this.refs_[V.id] = el => {
@@ -196,6 +464,14 @@ class Component extends DCLogic {
       el.dataset.view = V.id; this.ro.observe(el);
     };
     return this.refs_[V.id];
+  }
+  pdown(e, fn) {
+    e.preventDefault(); e.stopPropagation();
+    const r = e.currentTarget.closest('[data-plan]').getBoundingClientRect(), k = r.width / 583.5, sx = e.clientX, sy = e.clientY;
+    const move = ev => this.setState(s => ({ pos: { ...s.pos, ...fn((ev.clientX - sx) / k, (ev.clientY - sy) / k) } }));
+    const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); this.end = null; this.save(); };
+    this.end = up;
+    window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   }
   down(e, work, len) {
     e.preventDefault();
@@ -215,6 +491,9 @@ class Component extends DCLogic {
     const same = (this.props.scale ?? 'Fit each wall') === 'Same scale';
     const maxLen = Math.max(...WALLS.map(w => w.len));
     const pos = this.state.pos;
+    WORKS.filter(w => FREE0[w.id]).forEach(w => { const fw = w.plinth ? w.plinth.w : w.w, d = 437 - FREE0[w.id].Z - (w.plinth ? fw / 2 : 0) - fw / 2, xx = pos['fz-' + w.id] ?? d; FREE[w.id].Z = 437 - xx - fw / 2 - (w.plinth ? fw / 2 : 0); });
+    WORKS.filter(w => FREE0[w.id]).forEach(w => { const s = w.plinth ? w.plinth.w : w.w; FREE[w.id].X = pos['fx-' + w.id] ?? FREE0[w.id].X; });
+    DESK.x0 = pos.deskX ?? -58; DESK.x1 = DESK.x0 + 30;
     const dx = pos.desk ?? 9.5; DESK.z0 = 102.5 + dx; DESK.z1 = DESK.z0 + 60;
     const walls = WALLS.map(wl => {
       const L = wl.len;
@@ -239,10 +518,19 @@ class Component extends DCLogic {
       const gaps = []; let prev = 0;
       sorted.forEach(it => { const g = it.x - prev; if (g > 0.5) gaps.push({ left: pct(prev, L), w: pct(g, L), label: fmt(g) }); prev = Math.max(prev, it.x + WORKS.find(k => k.id === it.id).w); });
       if (L - prev > 0.5) gaps.push({ left: pct(prev, L), w: pct(L - prev, L), label: fmt(L - prev) });
+      const ghosts = wl.id === 'right' ? WORKS.filter(w => FREE[w.id]).map(w => {
+        const zc = FREE[w.id].Z + (w.plinth ? w.plinth.w / 2 : 0), x = 437 - zc - w.w / 2, bottom = w.plinth ? w.plinth.h : c - w.h / 2;
+        const fw = w.plinth ? w.plinth.w : w.w;
+        return { ft: fmt(437 - zc), cx: pct(437 - zc, L), w2: pct(fw / 2, L), x0: 437 - zc - fw / 2, fw, onDown: e => this.down(e, { id: 'fz-' + w.id, w: fw }, L), num: w.num, title: w.title, src: 'art/' + w.file, tip: w.num + ' · ' + w.title + ' (freestanding, ~' + fmt(437 - zc) + ' along this wall)',
+          left: pct(x, L), w: pct(w.w, L), h: pct(w.h, H), top: pct(H - bottom - w.h, H),
+          plLeft: w.plinth ? pct(437 - zc - w.plinth.w / 2, L) : '0%', plW: w.plinth ? pct(w.plinth.w, L) : '0%', plTop: w.plinth ? pct(H - w.plinth.h, H) : '100%',
+          wireLeft: pct(437 - zc, L), wireH: w.hang ? pct(H - bottom - w.h, H) : '0%' };
+      }) : [];
+      const ghostGaps = []; { let p = 0; ghosts.slice().sort((a, b) => a.x0 - b.x0).forEach(g => { if (g.x0 - p > 0.5) ghostGaps.push({ left: pct(p, L), w: pct(g.x0 - p, L), label: fmt(g.x0 - p) }); p = Math.max(p, g.x0 + g.fw); }); if (ghosts.length && L - p > 0.5) ghostGaps.push({ left: pct(p, L), w: pct(L - p, L), label: fmt(L - p) }); }
       const occ = WORKS.filter(w => w.wall === wl.id).reduce((s, w) => s + w.w, 0);
       return {
-        ...wl, items, gaps,
-        fixtures: wl.id === 'back' ? [{ onDown: e => this.down(e, { id: 'desk', w: 60 }, L), left: pct(DESK.z0 - 102.5, L), w: pct(DESK.z1 - DESK.z0, L), top: pct(H - DESK.h, H), label: 'DESK · 3 ft off wall', tip: 'Glass desk 60 × 30 × 29 in, freestanding ~3 ft in front of this wall' }] : [],
+        ...wl, items, gaps, ghosts, ghostGaps, hasGhosts: ghosts.length > 0, ghostList: ghosts.map(g => g.num).join(', '),
+        fixtures: wl.id === 'back' ? [{ onDown: e => this.down(e, { id: 'desk', w: 60 }, L), left: pct(DESK.z0 - 102.5, L), w: pct(DESK.z1 - DESK.z0, L), top: pct(H - DESK.h, H), label: 'DESK · ' + fmt(DESK.x0 + 92) + ' off wall', tip: 'Glass desk 60 × 30 × 29 in, freestanding ~3 ft in front of this wall' }] : [],
         lenLabel: wl.floor ? 'Freestanding' : fmt(L) + ' long (' + L + ' in)',
         used: (wl.floor ? 'freestanding, viewed in the round' : items.length + (items.length === 1 ? ' work' : ' works') + ' · ' + fmt(occ) + ' of art'),
         aspect: (L / H).toFixed(4),
@@ -250,6 +538,25 @@ class Component extends DCLogic {
         cTop: pct(H - c, H), cLabel: c + '" CL'
       };
     });
+    const PZ = -130.5, PWD = 583.5, PX = -108, PHT = 209;
+    const pl = z => pct(z - PZ, PWD), pt = x => pct(x - PX, PHT);
+    const RR = (z0, z1, x0, x1) => ({ left: pl(Math.min(z0, z1)), top: pt(Math.min(x0, x1)), w: pct(Math.abs(z1 - z0), PWD), h: pct(Math.abs(x1 - x0), PHT) });
+    const q = v => Math.round(v * 4) / 4, cl = (v, a, b) => Math.max(a, Math.min(b, v));
+    const GEO = {
+      back: { len: 334.5, r: (x, w) => RR(102.5 + x, 102.5 + x + w, -92, -89), lab: (x, w) => [102.5 + x + w / 2, -82], d: (dZ, dX) => dZ },
+      right: { len: 551.54, r: (x, w) => RR(437 - x - w, 437 - x, 82, 85), lab: (x, w) => [437 - x - w / 2, 75], d: (dZ, dX) => -dZ },
+      center: { len: 137.24, r: (x, w) => RR(434, 437, -54 + x, -54 + x + w), lab: (x, w) => [425, -54 + x + w / 2], d: (dZ, dX) => dX },
+      entry: { len: 208.57, r: (x, w) => RR(-114.54 + x, -114.54 + x + w, -23.6, -20.6), lab: (x, w) => [-114.54 + x + w / 2, -13], d: (dZ, dX) => dZ }
+    };
+    const planWorks = WORKS.filter(w => GEO[w.wall]).map(w => { const g = GEO[w.wall], x = pos[w.id] ?? 0, lb = g.lab(x, w.w);
+      return { ...g.r(x, w.w), num: w.num, tip: w.num + ' · ' + w.title + ' · ' + fmt(x) + ' from wall start', lx: pl(lb[0]), ly: pt(lb[1]),
+        onDown: e => this.pdown(e, (dZ, dX) => ({ [w.id]: q(cl(x + g.d(dZ, dX), 0, g.len - w.w)) })) }; });
+    const planFree = WORKS.filter(w => FREE[w.id]).map(w => { const f = FREE[w.id], s = w.plinth ? w.plinth.w : w.w, zc = f.Z + (w.plinth ? s / 2 : 0), fz0 = 437 - zc - s / 2, X0 = f.X;
+      return { ...RR(zc - s / 2, zc + s / 2, X0 - s / 2, X0 + s / 2), num: w.num, radius: w.plinth ? '0' : '50%', tip: w.num + ' · ' + w.title + ' · ' + fmt(85 - X0) + ' off right wall · ' + fmt(437 - zc) + ' from back wall',
+        onDown: e => this.pdown(e, (dZ, dX) => ({ ['fz-' + w.id]: q(cl(fz0 - dZ, 0, 551.54 - s)), ['fx-' + w.id]: q(cl(X0 + dX, -92 + s / 2, 85 - s / 2)) })) }; });
+    const d0 = pos.desk ?? 9.5, dX0 = DESK.x0;
+    const planDesk = { ...RR(DESK.z0, DESK.z1, DESK.x0, DESK.x1), tip: 'Glass desk 60 × 30 × 29 in · ' + fmt(DESK.x0 + 92) + ' off left back wall',
+      onDown: e => this.pdown(e, (dZ, dX) => ({ desk: q(cl(d0 + dZ, 0, 274.5)), deskX: q(cl(dX0 + dX, -92, 55)) })) };
     const placed = {};
     walls.forEach(wl => wl.items.forEach(it => { placed[it.id] = { wall: wl.id, x: it.x, bottom: it.bottom, w: WORKS.find(k => k.id === it.id).w, h: WORKS.find(k => k.id === it.id).h, src: it.src, fit: it.fit }; }));
     const views = VIEWS.map(V => {
@@ -308,9 +615,16 @@ class Component extends DCLogic {
       const sc = (this.state.sc || {})[V.id] || 0;
       return { ...V, els, aspect: V.W + ' / ' + V.H, boxW: 'min(100%, calc(82vh * ' + (V.W / V.H).toFixed(4) + '))', pw: V.W + 'px', ph: V.H + 'px', scale: 'scale(' + sc + ')', ref: this.refFor(V) };
     });
+    this.s3 = { placed, desk: { ...DESK }, free: WORKS.filter(w => FREE[w.id]).map(w => ({ id: w.id, w: w.w, h: w.h, plinth: w.plinth, src: 'art/' + w.file, X: FREE[w.id].X, Z: FREE[w.id].Z, bottom: w.plinth ? w.plinth.h : c - w.h / 2 })) };
+    this.walkRef = this.walkRef || (el => { this.walkEl = el; if (el) this.init3d(); });
     return {
-      views, walls, centerline: c, showDims: this.props.showDims ?? true,
-      reset: () => { this.setState({ pos: evenPositions() }, () => this.save()); }
+      walkRef: this.walkRef, walkSel: this.state.walkSel || null, walkClose: () => this.setState({ walkSel: null }), walkEntry: () => this.walkTo(30, -95, 0), walkBack: () => this.walkTo(10, 420, Math.PI), walkRight: () => this.walkTo(-10, 170, -Math.PI / 2),
+      views, walls, planWorks, planFree, planDesk, centerline: c, showDims: this.props.showDims ?? true,
+      saveLabel: this.state.justSaved ? 'Saved ✓' : 'Save as starting point',
+      saveStart: () => { try { localStorage.setItem(KEY + '-saved', JSON.stringify(this.state.pos)); } catch (e) {} this.save(); this.setState({ justSaved: true }); clearTimeout(this.st); this.st = setTimeout(() => this.setState({ justSaved: false }), 1600); },
+      reset: () => { this.setState({ pos: this.startPos() }, () => this.save()); },
+      toDefault: () => { this.setState({ pos: { ...evenPositions(), ...BAKED } }, () => this.save()); },
+      even: () => { this.setState({ pos: evenPositions() }, () => this.save()); }
     };
   }
 }
