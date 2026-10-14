@@ -246,7 +246,7 @@ const WORKS = [
   { id: 'hanson-r', wall: 'right', num: 'III', artist: 'Ellen R Hanson', title: 'Funeral Flowers', file: 'ellen-r-hanson-funeral-flowers-v3.jpg', w: 59, h: 22, dims: '22 × 59 in' },
   { id: 'radu', wall: 'back', num: 'XII', artist: 'Pandele Radu', title: 'Down the River', file: 'pandele-radu-down-the-river-v2.jpg', w: 39.37, h: 39.37, dims: '39.37 × 39.37 in' },
   { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New Enlightened Era Coming Soon', file: 'megan-lindeman-new-enlightened-era-coming-soon-2.jpg', w: 10, h: 20, dims: '20 × 10 × 10 in · on pedestal', plinth: { w: 18, h: 42 } },
-  { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Durwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling', hang: true },
+  { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Durwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', file3d: 'kenny-durwood-install.png', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling', hang: true },
   { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' }
 ];
 const KEY = 'didad-install-pos-v12';
@@ -384,6 +384,7 @@ class Component extends DCLogic {
       const ox = t.x, oz = t.z;
       if (mx && ok(t.x + mx, t.z)) t.x += mx; if (mz && ok(t.x, t.z + mz)) t.z += mz;
       if (t.target && ox === t.x && oz === t.z) t.target = null;
+      if (t.spin) { t.spinA = ((t.spinA || 0) + dt * 0.35) % (Math.PI * 2); t.spin.rotation.y = t.spinA; }
       cam.position.set(t.x, 62, t.z); cam.rotation.set(t.pitch, t.yaw, 0);
       R.render(S, cam);
     };
@@ -451,8 +452,9 @@ class Component extends DCLogic {
         ob.userData = { info: info(w.id), cx: w.X, cy: ph + w.h / 2, cz: zc, ry: 0, w: 30, h: w.h };
       } else {
         const top = w.bottom + w.h;
-        const hg = mesh(new THREE.PlaneGeometry(w.w, w.h), new THREE.MeshBasicMaterial({ map: this.texFor(w.src), side: THREE.DoubleSide }), w.X, w.bottom + w.h / 2, -w.Z);
+        const hg = mesh(new THREE.PlaneGeometry(w.w, w.h), new THREE.MeshBasicMaterial({ map: this.texFor(w.src), side: THREE.DoubleSide, transparent: /\.png$/i.test(w.src), alphaTest: /\.png$/i.test(w.src) ? 0.05 : 0 }), w.X, w.bottom + w.h / 2, -w.Z);
         hg.userData = { info: info(w.id), cx: w.X, cy: w.bottom + w.h / 2, cz: -w.Z, ry: 0, w: 30, h: w.h };
+        if (w.id === 'durwood') { this.t3.spin = hg; hg.rotation.y = this.t3.spinA || 0; }
         mesh(new THREE.BoxGeometry(0.15, 113 - top, 0.15), backM, w.X, top + (113 - top) / 2, -w.Z);
       }
     });
@@ -632,7 +634,7 @@ class Component extends DCLogic {
       const sc = (this.state.sc || {})[V.id] || 0;
       return { ...V, els, aspect: V.W + ' / ' + V.H, boxW: 'min(100%, calc(82vh * ' + (V.W / V.H).toFixed(4) + '))', pw: V.W + 'px', ph: V.H + 'px', scale: 'scale(' + sc + ')', ref: this.refFor(V) };
     });
-    this.s3 = { placed, desk: { ...DESK }, free: WORKS.filter(w => FREE[w.id]).map(w => ({ id: w.id, w: w.w, h: w.h, plinth: w.plinth, src: 'art/' + w.file, X: FREE[w.id].X, Z: FREE[w.id].Z, bottom: w.plinth ? w.plinth.h : c - w.h / 2 })) };
+    this.s3 = { placed, desk: { ...DESK }, free: WORKS.filter(w => FREE[w.id]).map(w => ({ id: w.id, w: w.w, h: w.h, plinth: w.plinth, src: 'art/' + (w.file3d || w.file), X: FREE[w.id].X, Z: FREE[w.id].Z, bottom: w.plinth ? w.plinth.h : c - w.h / 2 })) };
     this.walkRef = this.walkRef || (el => { this.walkEl = el; if (el) this.init3d(); });
     return {
       walkRef: this.walkRef, walkSel: this.state.walkSel || null, walkClose: () => this.setState({ walkSel: null }), walkEntry: () => this.walkTo(30, -95, 0), walkBack: () => this.walkTo(10, 420, Math.PI), walkRight: () => this.walkTo(-10, 170, -Math.PI / 2),
