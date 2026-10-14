@@ -53,7 +53,13 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
     </div>
     <div style="position:relative;width:100%;">
       <div ref="{{ walkRef }}" style="position:relative;width:100%;aspect-ratio:16 / 9;max-height:78vh;background:#1a1917;overflow:hidden;touch-action:none;cursor:grab;outline:none;"></div>
-      <sc-if value="{{ walkSel }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ walkSelPhone }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(13,12,11,0.88);border-top:1px solid rgba(233,227,214,0.18);padding:8px 12px;display:flex;align-items:baseline;gap:10px;">
+          <div style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><span style="font-style:italic;font-size:15px;color:#f0eadd;">{{ walkSel.title }}</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#a39c8f;"> · {{ walkSel.artist }}</span></div>
+          <button onClick="{{ walkClose }}" style="flex:0 0 auto;background:transparent;border:0;color:#8f887c;font-family:'Space Mono',monospace;font-size:16px;cursor:pointer;padding:0 2px;line-height:1;min-width:28px;min-height:28px;">×</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ walkSelDesk }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;left:16px;bottom:16px;max-width:min(360px,calc(100% - 32px));background:rgba(13,12,11,0.88);border:1px solid rgba(233,227,214,0.18);padding:14px 16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:start;">
           <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;padding-top:3px;">{{ walkSel.num }}</div>
           <div>
@@ -252,7 +258,7 @@ const WORKS = [
   { id: 'hanson-r', wall: 'right', num: 'III', artist: 'Ellen R Hanson', title: 'Funeral Flowers', file: 'ellen-r-hanson-funeral-flowers-v3.jpg', w: 59, h: 22, dims: '22 × 59 in' },
   { id: 'radu', wall: 'back', num: 'XII', artist: 'Pandele Radu', title: 'Down the River', file: 'pandele-radu-down-the-river-v2.jpg', w: 39.37, h: 39.37, dims: '39.37 × 39.37 in' },
   { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New Enlightened Era Coming Soon', file: 'megan-lindeman-new-enlightened-era-coming-soon-2.jpg', w: 10, h: 20, dims: '20 × 10 × 10 in · on pedestal', plinth: { w: 18, h: 42 } },
-  { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Durwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', file3d: 'kenny-durwood-install.png', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling', hang: true },
+  { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Curwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', file3d: 'kenny-durwood-install.png', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling, 72 in center', hang: true, cl: 72 },
   { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' }
 ];
 const KEY = 'didad-install-pos-v12';
@@ -397,6 +403,7 @@ class Component extends DCLogic {
     t.raf = requestAnimationFrame(tick);
     this.sig3 = null; this.sync3d();
   }
+  isPhone() { return typeof window !== 'undefined' && window.innerWidth < 700; }
   focusWork(u) {
     const t = this.t3; if (!t) return;
     const nx = Math.sin(u.ry), nz = Math.cos(u.ry), dist = u.dist || Math.max(55, Math.max(u.w, u.h) * 1.7);
@@ -536,7 +543,7 @@ class Component extends DCLogic {
       sorted.forEach(it => { const g = it.x - prev; if (g > 0.5) gaps.push({ left: pct(prev, L), w: pct(g, L), label: fmt(g) }); prev = Math.max(prev, it.x + WORKS.find(k => k.id === it.id).w); });
       if (L - prev > 0.5) gaps.push({ left: pct(prev, L), w: pct(L - prev, L), label: fmt(L - prev) });
       const ghosts = wl.id === 'right' ? WORKS.filter(w => FREE[w.id]).map(w => {
-        const zc = FREE[w.id].Z + (w.plinth ? w.plinth.w / 2 : 0), x = 437 - zc - w.w / 2, bottom = w.plinth ? w.plinth.h : c - w.h / 2;
+        const zc = FREE[w.id].Z + (w.plinth ? w.plinth.w / 2 : 0), x = 437 - zc - w.w / 2, bottom = w.plinth ? w.plinth.h : (w.cl ?? c) - w.h / 2;
         const fw = w.plinth ? w.plinth.w : w.w;
         return { ft: fmt(437 - zc), cx: pct(437 - zc, L), w2: pct(fw / 2, L), x0: 437 - zc - fw / 2, fw, onDown: e => this.down(e, { id: 'fz-' + w.id, w: fw }, L), num: w.num, title: w.title, src: 'art/' + w.file, tip: w.num + ' · ' + w.title + ' (freestanding, ~' + fmt(437 - zc) + ' along this wall)',
           left: pct(x, L), w: pct(w.w, L), h: pct(w.h, H), top: pct(H - bottom - w.h, H),
@@ -641,10 +648,10 @@ class Component extends DCLogic {
       const sc = (this.state.sc || {})[V.id] || 0;
       return { ...V, els, aspect: V.W + ' / ' + V.H, boxW: 'min(100%, calc(82vh * ' + (V.W / V.H).toFixed(4) + '))', pw: V.W + 'px', ph: V.H + 'px', scale: 'scale(' + sc + ')', ref: this.refFor(V) };
     });
-    this.s3 = { placed, desk: { ...DESK }, free: WORKS.filter(w => FREE[w.id]).map(w => ({ id: w.id, w: w.w, h: w.h, plinth: w.plinth, src: 'art/' + (w.file3d || w.file), X: FREE[w.id].X, Z: FREE[w.id].Z, bottom: w.plinth ? w.plinth.h : c - w.h / 2 })) };
+    this.s3 = { placed, desk: { ...DESK }, free: WORKS.filter(w => FREE[w.id]).map(w => ({ id: w.id, w: w.w, h: w.h, plinth: w.plinth, src: 'art/' + (w.file3d || w.file), X: FREE[w.id].X, Z: FREE[w.id].Z, bottom: w.plinth ? w.plinth.h : (w.cl ?? c) - w.h / 2 })) };
     this.walkRef = this.walkRef || (el => { this.walkEl = el; if (el) this.init3d(); });
     return {
-      walkRef: this.walkRef, walkSel: this.state.walkSel || null, walkClose: () => this.setState({ walkSel: null }), walkEntry: () => this.walkTo(30, -95, 0), walkBack: () => this.walkTo(10, 420, Math.PI), walkRight: () => this.walkTo(-10, 170, -Math.PI / 2),
+      walkRef: this.walkRef, walkSel: this.state.walkSel || null, walkSelPhone: !!this.state.walkSel && this.isPhone(), walkSelDesk: !!this.state.walkSel && !this.isPhone(), walkClose: () => this.setState({ walkSel: null }), walkEntry: () => this.walkTo(30, -95, 0), walkBack: () => this.walkTo(10, 420, Math.PI), walkRight: () => this.walkTo(-10, 170, -Math.PI / 2),
       views, walls, planWorks, planFree, planDesk, centerline: c, showDims: this.props.showDims ?? true,
       saveLabel: this.state.justSaved ? 'Saved ✓' : 'Save as starting point',
       saveStart: () => { try { localStorage.setItem(KEY + '-saved', JSON.stringify(this.state.pos)); } catch (e) {} this.save(); this.setState({ justSaved: true }); clearTimeout(this.st); this.st = setTimeout(() => this.setState({ justSaved: false }), 1600); },
