@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#0d0c0b}
+  a{color:#7fa39b}
+  a:hover{color:#a9c6bf}
+  [contenteditable]:empty:before{content:'—';color:#4a4640}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
+  <div style="max-width:1400px;margin:0 auto 20px;display:flex;justify-content:flex-end;">
+  <nav style="display:flex;align-items:center;gap:0;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;border:1px solid rgba(233,227,214,0.3);width:max-content;">
+    <a href="../install-plan.html" style="padding:9px 16px;text-decoration:none;color:#e9e3d6;">Installation Design</a>
+    <a href="tracker.html" style="padding:9px 16px;text-decoration:none;border-left:1px solid rgba(233,227,214,0.3);background:#e9e3d6;color:#0d0c0b;">Consignment Tracker</a>
+  </nav>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;max-width:1400px;margin:0 auto;">
+    <div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door · CC Jasper</div>
+      <h1 style="margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Consignment Tracker</h1>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ summary }}</div>
+  </div>
+
+  <div style="max-width:1400px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:12px 14px;background:#16150f;border:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:11px;">
+    <span style="color:{{ statusC }};letter-spacing:0.08em;white-space:nowrap;">{{ status }}</span>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-left:auto;">
+      <button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:#2b6a60;color:#fff;border:1px solid #2b6a60;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="background:#1d4a43;">Save edits</button>
+      <button onClick="{{ resetOriginal }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#c9a24a;color:#c9a24a;">Return to original</button>
+      <button onClick="{{ downloadCsv }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">Download CSV</button>
+    </div>
+    <sc-if value="{{ hasVersions }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border-top:1px solid #2a2722;padding-top:10px;">
+        <span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;margin-right:4px;">Versions</span>
+        <sc-for list="{{ versions }}" as="v" hint-placeholder-count="0">
+          <span style="display:flex;align-items:center;border:1px solid {{ v.border }};white-space:nowrap;">
+            <button onClick="{{ v.load }}" style="font-family:'Space Mono',monospace;font-size:10.5px;background:{{ v.bg }};color:{{ v.fg }};border:none;padding:5px 9px;cursor:pointer;" style-hover="color:#7fa39b;">{{ v.label }}</button>
+            <button onClick="{{ v.del }}" aria-label="Delete version" style="font-family:'Space Mono',monospace;font-size:10.5px;background:transparent;color:#6d675c;border:none;border-left:1px solid #2a2722;padding:5px 7px;cursor:pointer;" style-hover="color:#c98f7e;">×</button>
+          </span>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="max-width:1400px;margin:16px auto 0;overflow-x:auto;">
+    <div style="display:grid;grid-template-columns:2.2em 64px minmax(9em,1fr) minmax(12em,1.6fr) 6.5em minmax(12em,1.3fr) 4.2em 4.2em 4.2em 4.2em;min-width:1000px;font-size:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px 0;border-bottom:1px solid #6d675c;">No.</div>
+      <div style="border-bottom:1px solid #6d675c;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Artist</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Work</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Price</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Contact</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 0 8px;border-bottom:1px solid #6d675c;text-align:center;">Sent</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 0 8px;border-bottom:1px solid #6d675c;text-align:center;">Signed</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 0 8px;border-bottom:1px solid #6d675c;text-align:center;">Shipped</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 0 8px;border-bottom:1px solid #6d675c;text-align:center;">Received</div>
+
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="15">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;padding:12px 8px 12px 0;border-bottom:1px solid #2a2722;">{{ r.no }}</div>
+        <div style="padding:10px 0;border-bottom:1px solid #2a2722;"><img src="{{ r.img }}" alt="" loading="lazy" style="display:block;width:56px;height:56px;object-fit:contain;background:#16150f;"></div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.artist }}" style="outline:none;color:#f0eadd;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.artist }}</div></div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;">
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.title }}" style="outline:none;font-style:italic;color:#f0eadd;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.title }}</div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.desc }}" style="outline:none;font-size:12px;color:#8f887c;white-space:pre-line;line-height:1.4;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.desc }}</div>
+        </div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.price }}" style="outline:none;font-family:'Space Mono',monospace;font-size:12px;color:#e9e3d6;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.price }}</div></div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:2px;font-size:12.5px;color:#c4bcae;word-break:break-word;">
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.email }}" style="outline:none;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.email }}</div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.contact }}" style="outline:none;color:#8f887c;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.contact }}</div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.phone }}" style="outline:none;font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.phone }}</div>
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid #2a2722;display:flex;justify-content:center;"><button onClick="{{ r.tog.sent }}" aria-label="Toggle sent" style="width:34px;height:34px;background:transparent;border:none;cursor:pointer;font-size:16px;color:{{ r.sentC }};" style-hover="background:#1c1a16;">{{ r.sent }}</button></div>
+        <div style="padding:8px 0;border-bottom:1px solid #2a2722;display:flex;justify-content:center;"><button onClick="{{ r.tog.signed }}" aria-label="Toggle signed" style="width:34px;height:34px;background:transparent;border:none;cursor:pointer;font-size:16px;color:{{ r.signedC }};" style-hover="background:#1c1a16;">{{ r.signed }}</button></div>
+        <div style="padding:8px 0;border-bottom:1px solid #2a2722;display:flex;justify-content:center;"><button onClick="{{ r.tog.shipped }}" aria-label="Toggle shipped" style="width:34px;height:34px;background:transparent;border:none;cursor:pointer;font-size:16px;color:{{ r.shippedC }};" style-hover="background:#1c1a16;">{{ r.shipped }}</button></div>
+        <div style="padding:8px 0;border-bottom:1px solid #2a2722;display:flex;justify-content:center;"><button onClick="{{ r.tog.received }}" aria-label="Toggle received" style="width:34px;height:34px;background:transparent;border:none;cursor:pointer;font-size:16px;color:{{ r.receivedC }};" style-hover="background:#1c1a16;">{{ r.received }}</button></div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="max-width:1400px;margin:14px auto 0;font-family:'Space Mono',monospace;font-size:10.5px;color:#6d675c;line-height:1.7;">Click any text to edit · click a mark to toggle · edits autosave in this browser. “Return to original” reloads the published tracker.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+function parseCSV(t) {
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(f); f = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; }
+    else f += c;
+  }
+  if (f || row.length) { row.push(f); rows.push(row); }
+  return rows;
+}
+const toCSV = rows => rows.map(r => r.map(v => '"' + String(v ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+const KEY = 'didad-tracker-v1';
+const COL = { artist: 2, title: 3, desc: 4, price: 5, email: 6, contact: 7, phone: 8, sent: 9, signed: 10, shipped: 11, received: 12 };
+class Component extends DCLogic {
+  state = { orig: [], head: [], rows: [], versions: [], cur: null, dirty: false, msg: '' };
+  componentDidMount() {
+    let saved = null; try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    fetch('tracker.csv?t=' + Date.now()).then(r => r.text()).then(t => {
+      const all = parseCSV(t); const h = all.findIndex(r => r[0] === 'No.');
+      const head = all.slice(0, h + 1), orig = all.slice(h + 1).filter(r => r.length > 5 && r[0]);
+      if (saved && saved.rows) this.setState({ head, orig, rows: saved.rows, versions: saved.versions || [], cur: saved.cur ?? null, dirty: !!saved.dirty });
+      else this.setState({ head, orig, rows: JSON.parse(JSON.stringify(orig)) });
+    }).catch(() => this.setState({ msg: 'Could not load the CSV' }));
+  }
+  persist(patch) { this.setState(patch, () => { try { const { rows, versions, cur, dirty } = this.state; localStorage.setItem(KEY, JSON.stringify({ rows, versions, cur, dirty })); } catch (e) {} }); }
+  setCell(i, c, v) { const rows = this.state.rows.map((r, k) => k === i ? r.map((x, j) => j === c ? v : x) : r); this.persist({ rows, dirty: true, msg: '' }); }
+  renderVals() {
+    const mark = v => /true/i.test(v) ? ['✓', '#5fa08f'] : ['○', '#4a4640'];
+    const rows = this.state.rows.map((r, i) => {
+      const url = ((r[1] || '').match(/"(https?:[^"]+)"/) || [])[1] || '';
+      const file = url.split('/art/')[1] || '';
+      const out = { no: r[0], img: file ? '../art/' + file : '', on: {}, tog: {} };
+      ['artist', 'title', 'desc', 'price', 'email', 'contact', 'phone'].forEach(k => { out[k] = r[COL[k]] || ''; out.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== (r[COL[k]] || '')) this.setCell(i, COL[k], v); }; });
+      ['sent', 'signed', 'shipped', 'received'].forEach(k => { const [m, c] = mark(r[COL[k]]); out[k] = m; out[k + 'C'] = c; out.tog[k] = () => this.setCell(i, COL[k], /true/i.test(r[COL[k]]) ? 'FALSE' : 'TRUE'); });
+      return out;
+    });
+    const n = rows.length, cnt = k => rows.filter(r => r[k] === '✓').length;
+    const vs = this.state.versions;
+    const curV = vs.find(v => v.id === this.state.cur);
+    const status = this.state.msg || (this.state.dirty ? 'Unsaved changes' + (curV ? ' (from ' + curV.label + ')' : '') : curV ? 'Viewing ' + curV.label : 'Original from CSV');
+    return {
+      rows,
+      summary: n ? `${n} works · ${cnt('sent')} sent · ${cnt('signed')} signed · ${cnt('shipped')} shipped · ${cnt('received')} received` : 'Loading…',
+      status, statusC: this.state.dirty ? '#c9a24a' : '#7fa39b',
+      hasVersions: vs.length > 0,
+      versions: vs.map(v => { const on = v.id === this.state.cur; return { label: v.label, bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#16150f' : '#c4bcae', border: on ? '#e9e3d6' : '#3a3630',
+        load: () => this.persist({ rows: JSON.parse(JSON.stringify(v.rows)), cur: v.id, dirty: false, msg: '' }),
+        del: () => { if (!window.confirm('Delete ' + v.label + '?')) return; this.persist({ versions: vs.filter(x => x.id !== v.id), cur: this.state.cur === v.id ? null : this.state.cur }); } }; }),
+      saveVersion: () => {
+        const d = new Date(); const id = d.getTime();
+        const label = 'v' + (vs.length + 1) + ' · ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        this.persist({ versions: [...vs, { id, label, rows: JSON.parse(JSON.stringify(this.state.rows)) }], cur: id, dirty: false, msg: 'Saved ' + label });
+      },
+      resetOriginal: () => { if (this.state.dirty && !window.confirm('Discard unsaved changes and return to the original CSV?')) return; this.persist({ rows: JSON.parse(JSON.stringify(this.state.orig)), cur: null, dirty: false, msg: 'Returned to original' }); },
+      downloadCsv: () => {
+        const head = this.state.head.map(r => r.length === 1 && r[0] === '' ? [] : r);
+        const text = head.map(r => r.length ? r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',') : '').join('\n') + '\n' + toCSV(this.state.rows) + '\n';
+        const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv' })); a.download = 'Death Is a Door - Consignment Tracker.csv'; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
