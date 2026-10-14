@@ -33,33 +33,6 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
     </div>
   </header>
 
-  <section data-screen-label="In the room" style="display:flex;flex-direction:column;gap:28px;">
-    <div style="display:flex;align-items:baseline;gap:16px;">
-      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VIEWS</span>
-      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">In the room</h2>
-    </div>
-    <sc-for list="{{ views }}" as="v" hint-placeholder-count="2">
-      <figure style="margin:0;display:flex;flex-direction:column;gap:10px;">
-        <div ref="{{ v.ref }}" style="position:relative;width:{{ v.boxW }};aspect-ratio:{{ v.aspect }};overflow:hidden;background:#1a1917;">
-          <div style="position:absolute;left:0;top:0;width:{{ v.pw }};height:{{ v.ph }};transform-origin:0 0;transform:{{ v.scale }};">
-            <img src="{{ v.src }}" alt="{{ v.caption }}" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;">
-            <sc-for list="{{ v.els }}" as="p" hint-placeholder-count="0">
-              <div style="position:absolute;left:0;top:0;width:{{ p.w }};height:{{ p.h }};transform-origin:0 0;transform:{{ p.tf }};background:{{ p.bg }};box-shadow:{{ p.sh }};backface-visibility:hidden;">
-                <sc-if value="{{ p.src }}" hint-placeholder-val="{{ false }}">
-                  <img src="{{ p.src }}" alt="" style="display:block;width:100%;height:100%;object-fit:{{ p.fit }};">
-                </sc-if>
-              </div>
-            </sc-for>
-            <sc-if value="{{ v.fg }}" hint-placeholder-val="{{ false }}">
-              <img src="{{ v.fg }}" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none;">
-            </sc-if>
-          </div>
-        </div>
-        <figcaption style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">{{ v.caption }}</figcaption>
-      </figure>
-    </sc-for>
-  </section>
-
   <section data-screen-label="Walkthrough" style="display:flex;flex-direction:column;gap:18px;">
     <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;">
       <div style="display:flex;align-items:baseline;gap:16px;">
@@ -217,6 +190,35 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
       </div>
     </section>
   </sc-for>
+
+  <section data-screen-label="In the room" style="display:flex;flex-direction:column;gap:28px;">
+    <div style="display:flex;align-items:baseline;gap:16px;">
+      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VIEWS</span>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">In the room</h2>
+    </div>
+    <sc-for list="{{ views }}" as="v" hint-placeholder-count="2">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px;">
+        <div ref="{{ v.ref }}" style="position:relative;width:{{ v.boxW }};aspect-ratio:{{ v.aspect }};overflow:hidden;background:#1a1917;">
+          <div style="position:absolute;left:0;top:0;width:{{ v.pw }};height:{{ v.ph }};transform-origin:0 0;transform:{{ v.scale }};">
+            <img src="{{ v.src }}" alt="{{ v.caption }}" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;">
+            <sc-for list="{{ v.els }}" as="p" hint-placeholder-count="0">
+              <div style="position:absolute;left:0;top:0;width:{{ p.w }};height:{{ p.h }};transform-origin:0 0;transform:{{ p.tf }};background:{{ p.bg }};box-shadow:{{ p.sh }};backface-visibility:hidden;">
+                <sc-if value="{{ p.src }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ p.src }}" alt="" style="display:block;width:100%;height:100%;object-fit:{{ p.fit }};">
+                </sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{ v.fg }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ v.fg }}" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none;">
+            </sc-if>
+          </div>
+        </div>
+        <figcaption style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">{{ v.caption }}</figcaption>
+      </figure>
+    </sc-for>
+  </section>
+
+
   <footer style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.8;color:#8f887c;border-top:1px solid rgba(233,227,214,0.18);padding-top:20px;">Assumptions — The Ferry shown 24 in high at the video's native ratio (16½ in wide). Spell for Manifestation (16 × 42 in) and New Enlightened Era Coming Soon (18 × 42 in) on pedestals in the center of the room; shown side by side, floor position not plotted. The World of Symbol… suspended from the ceiling on a wire, center at the center line. Elevations are drawn as seen facing each wall. Room views are perspective approximations from the gallery photos, calibrated from the 113 in wall height and the installed works in the Systems of Gesture photos; they follow the elevations live as works are dragged. Pedestal, hanging and desk positions in the room are estimated; desk shown as a 60 × 30 × 29 in glass desk freestanding in the front of the room, about 3 ft off the left back wall, long side running front to back.</footer>
 </div>
 </x-dc>
@@ -500,7 +502,8 @@ class Component extends DCLogic {
     WORKS.filter(w => FREE0[w.id]).forEach(w => { const s = w.plinth ? w.plinth.w : w.w; FREE[w.id].X = pos['fx-' + w.id] ?? FREE0[w.id].X; });
     DESK.x0 = pos.deskX ?? -58; DESK.x1 = DESK.x0 + 30;
     const dx = pos.desk ?? 9.5; DESK.z0 = 102.5 + dx; DESK.z1 = DESK.z0 + 60;
-    const walls = WALLS.map(wl => {
+    const ORDER = ['entry', 'back', 'center', 'right', 'floor'];
+    const walls = ORDER.map(id => WALLS.find(w => w.id === id)).map(wl => {
       const L = wl.len;
       const items = WORKS.filter(w => w.wall === wl.id).map(w => {
         const base = w.stackOn ? WORKS.find(k => k.id === w.stackOn) : null;
