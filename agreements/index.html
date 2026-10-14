@@ -74,7 +74,7 @@
     <p style="margin:0;"><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.intro1 }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.intro1 }}</span> <input value="{{ f.date }}" onChange="{{ on.date }}" placeholder="Date" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:11em;"> <span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.intro2 }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.intro2 }}</span></p>
     <div style="display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:4pt 10pt;">
       <strong style="font-weight:600;">Gallery</strong><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.gallery }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.gallery }}</span>
-      <strong style="font-weight:600;">Artist</strong>
+      <strong style="font-weight:600;">{{ partyLabel }}</strong>
       <span style="display:flex;flex-wrap:wrap;gap:2pt 6pt;align-items:baseline;">
         <input value="{{ f.legal }}" onChange="{{ on.legal }}" placeholder="Artist legal name" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:14em;">
         <input value="{{ f.address }}" onChange="{{ on.address }}" placeholder="Mailing address" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;flex:1 1 18em;min-width:0;">
@@ -139,12 +139,12 @@
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Date</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:14pt;">
-        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Artist ({{ artistName }})</div>
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">{{ sigHead }}</div>
         <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
         <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;min-height:1.3em;">{{ f.legal }}</div>
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
-        <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;">Artist</div>
+        <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;">{{ sigTitle }}</div>
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Title</div>
         <div style="border-bottom:0.75pt solid #16150f;height:18pt;"></div>
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Date</div>
@@ -248,7 +248,7 @@ const ARTISTS = [
     { t: 'Three-Tiered Camera Obscura', d: '2024\nOil on canvas · 8 × 10 in', i: 'art/charlie-goering-three-tiered-camera-obscura.jpg', p: '$1,500' }] },
   { id: 'gutierrez', name: 'Aramis Gutierrez', email: 'aramisg@gmail.com', works: [{ t: 'The Turning', d: '2026\nOil on canvas · 48 × 54 in', i: 'art/aramis-gutierrez-the-turning-v2.jpg' }] },
   { id: 'hanson', name: 'Ellen R Hanson', email: 'ellenrhanson@gmail.com', rep: 'RUBY/DAKOTA', works: [{ t: 'Funeral Flowers', d: '2024\nOil and acrylic primer on lycra · 22 × 59 in', i: 'art/ellen-r-hanson-funeral-flowers-v3.jpg' }] },
-  { id: 'lazaros', name: 'L', email: '', works: [{ t: 'Spell for blue light = 222D alignment', d: '2020\nGlass, oil, mixed materials · 5 × 5 × 10.75 in', i: 'art/l-spell-for-blue-light-222d-alignment.jpg' }] },
+  { id: 'lazaros', name: 'L', legal: 'Casey Leghorn', owner: true, email: '', gPct: 20, works: [{ t: 'Spell for blue light = 222D alignment', d: '2020\nGlass, oil, mixed materials · 5 × 5 × 10.75 in', i: 'art/l-spell-for-blue-light-222d-alignment.jpg' }] },
   { id: 'lindeman', name: 'Megan Lindeman', email: 'megan@meganlindeman.com', works: [{ t: 'New Enlightened Era Coming Soon', d: '2026\nPlaster · 20 × 10 × 10 in', i: 'art/megan-lindeman-new-enlightened-era-coming-soon-2.jpg' }] },
   { id: 'radu', name: 'Pandele Radu', email: '', works: [{ t: 'Down the River', d: '2026\nAcrylic on linen · 39.37 × 39.37 in', i: 'art/pandele-radu-down-the-river-v2.jpg' }] },
   { id: 'sellers', name: 'Meredith Sellers', email: 'meredithmsellers@gmail.com', works: [
@@ -269,7 +269,7 @@ async function buildDocx(m) {
   b.push(P(R(m.tx.heading, { sz: 40 }), { after: 240 }));
   b.push(P([R(m.tx.intro1 + ' '), R(blank(m.f.date, 16)), R(' ' + m.tx.intro2)]));
   b.push(P([R('Gallery: ', { b: true }), R(m.tx.gallery)], { after: 40 }));
-  b.push(P([R('Artist: ', { b: true }), R(blank(m.f.legal)), R(', '), R(blank(m.f.address, 36))], { after: 40 }));
+  b.push(P([R(m.partyLabel + ': ', { b: true }), R(blank(m.f.legal)), R(', '), R(blank(m.f.address, 36))], { after: 40 }));
   b.push(P([R('Email: ', { b: true }), R(blank(m.f.email))], { after: 40 }));
   b.push(P([R('Phone: ', { b: true }), R(blank(m.f.phone, 16))], { after: 240 }));
   b.push(P(R('SUMMARY OF TERMS', { b: true, c: '2B6A60', sz: 18 }), { keep: true }));
@@ -284,7 +284,7 @@ async function buildDocx(m) {
   b.push(P(R(m.goodFaith, { i: true }), { before: 160, after: 360 }));
   const sig = (who, name, title) => [P(R(who, { b: true }), { keep: true, after: 240 }), P(R('Signature: ________________________________'), { keep: true }), P(R('Printed name: ' + blank(name, 28)), { keep: true }), P(R('Title: ' + blank(title, 28)), { keep: true }), P(R('Date: ____________________'), { after: 360 })].join('');
   b.push(sig('GALLERY (CC JASPER)', m.gSigner, m.gTitle));
-  b.push(sig('ARTIST (' + m.artistName + ')', m.f.legal, 'Artist'));
+  b.push(sig(m.sigHead.toUpperCase(), m.f.legal, m.sigTitle));
   if (m.hasRep) b.push(sig('ACKNOWLEDGED BY ARTIST’S REPRESENTING GALLERY (' + m.repName + ')', m.repSigner, m.repTitle));
   b.push(BR);
   b.push(P(R('EXHIBIT A', { b: true, c: '2B6A60', sz: 18 })));
@@ -325,21 +325,25 @@ class Component extends DCLogic {
     const val = (k, def) => (d[k] !== undefined ? d[k] : def);
     const fields = ['date', 'legal', 'address', 'email', 'phone'];
     const on = {}; fields.forEach(k => { on[k] = ev => this.setField(k, ev.target.value); });
+    const OWN = !!A.owner;
+    const OWN_NOTE = OWN ? ' The Artwork was created by ' + A.name + ' (deceased). ' + (A.legal || '') + ' is the sole owner of the Artwork and consigns it under this Agreement as the “Consignor”; for purposes of this Agreement, all references to the “Artist” refer to the Consignor, except references to authorship.' : '';
+    const GP = A.gPct ?? 50;
+    const PW = n => ({ 20: 'twenty percent (20%)', 50: 'fifty percent (50%)', 80: 'eighty percent (80%)' })[n] || n + '%';
     const clauses = [
-      ['Consignment', 'The Artist consigns the artworks listed in Exhibit A (“Artwork”) to the Gallery for exhibition and sale. Ownership remains with the Artist until payment is received in full. In accordance with Article 12 of the New York Arts and Cultural Affairs Law, the Artwork and any proceeds from its sale are held in trust for the benefit of the Artist and are not subject to the claims of the Gallery’s creditors.'],
+      ['Consignment', 'The Artist consigns the artworks listed in Exhibit A (“Artwork”) to the Gallery for exhibition and sale.' + OWN_NOTE + ' Ownership remains with the Artist until payment is received in full. In accordance with Article 12 of the New York Arts and Cultural Affairs Law, the Artwork and any proceeds from its sale are held in trust for the benefit of the Artist and are not subject to the claims of the Gallery’s creditors.'],
       ['Term', `This Agreement runs for ${months} months from the opening of the exhibition, beginning on ${fmt(o)} and continuing through ${fmt(e)}, unless otherwise agreed in writing.`],
       ['Return of Artwork', `The Gallery may return any unsold Artwork to the Artist at its discretion at any time after the exhibition closes and before the end of the Term. All unsold Artwork shall be returned to the Artist no later than the end of the Term (${fmt(e)}), unless the parties mutually agree in writing to extend the consignment period.`],
       ['Pricing', 'Prices are mutually agreed and listed in Exhibit A. No price change may be made without the Artist’s prior written approval, except as permitted under Discounts below.'],
       ['Discounts', 'The Gallery may offer collector discounts of up to ten percent (10%) at its discretion; any such discount shall be shared equally between the Gallery and the Artist. Discounts greater than ten percent (10%) require the Artist’s prior written approval.' + (A.prod ? ' Any discount applies to the sale price before production costs are reimbursed.' : '')],
-      ['Commission', 'The Gallery’s commission is fifty percent (50%) of the sale price, and the Artist receives the remaining fifty percent (50%).' + (A.prod ? ' Upon sale, the Artist shall first be reimbursed from the sale proceeds for production costs' + (val('prod', typeof A.prod === 'string' ? A.prod : '') ? ' in the amount of ' + val('prod', typeof A.prod === 'string' ? A.prod : '') : ' in the amount listed in the Summary of Terms') + ', which amount is fixed and may not be increased after signing. The remaining balance shall then be divided 50% Gallery / 50% Artist. Production costs are reimbursed only from the proceeds of a sale; if the Artwork does not sell, no reimbursement is owed by the Gallery.' : '') + (val('rep', A.rep || '') ? ` Any commission owed to the Artist’s representing gallery (${val('rep', A.rep || '')}) shall be paid from the Artist’s share, unless otherwise agreed in writing by all three parties.` : '')],
+      ['Commission', `The Gallery’s commission is ${PW(GP)} of the sale price, and the Artist receives the remaining ${PW(100 - GP)}.` + (A.prod ? ' Upon sale, the Artist shall first be reimbursed from the sale proceeds for production costs' + (val('prod', typeof A.prod === 'string' ? A.prod : '') ? ' in the amount of ' + val('prod', typeof A.prod === 'string' ? A.prod : '') : ' in the amount listed in the Summary of Terms') + ', which amount is fixed and may not be increased after signing. The remaining balance shall then be divided ' + GP + '% Gallery / ' + (100 - GP) + '% Artist. Production costs are reimbursed only from the proceeds of a sale; if the Artwork does not sell, no reimbursement is owed by the Gallery.' : '') + (val('rep', A.rep || '') ? ` Any commission owed to the Artist’s representing gallery (${val('rep', A.rep || '')}) shall be paid from the Artist’s share, unless otherwise agreed in writing by all three parties.` : '')],
       ['Sales Tax', 'All prices are exclusive of applicable sales tax. The Gallery shall collect sales tax from the buyer and remit it to the appropriate taxing authority.'],
       ['Payment', 'Payment will be made within 14 business days of receipt of funds from the buyer. If a buyer pays in installments, the Artist will be paid the Artist’s share of each installment within 14 business days of its receipt. Expedited payment may be accommodated upon request. Upon each sale, the Gallery will provide the Artist with the sale price and date and, upon request, the name and contact information of the buyer for the Artist’s records.'],
       ['Collector Holds & Reserves', 'The Gallery may place Artwork on reserve for a prospective collector for up to seven (7) days without the Artist’s approval. Holds longer than seven (7) days require the Artist’s prior consent, and the Artist will be notified of any hold upon request.'],
       ['Care & Insurance', 'From the time of delivery until the Artwork is returned to the Artist or sold, the Gallery will insure Artwork at retail value and take reasonable care in its handling, storage and display. If any Artwork is lost, stolen or damaged beyond repair while in the Gallery’s care, the Artist will be paid the Artist’s share of the retail price listed in Exhibit A, as though the Artwork had been sold.'],
       ['Transportation', 'The Artist is responsible for the cost of delivering the Artwork to the Gallery. The Gallery is responsible for the cost of returning any unsold Artwork to the Artist. Shipping and delivery of sold Artwork to a buyer is paid by the buyer. Any other arrangement must be agreed in writing in advance. All Artwork will be handled and packed professionally.'],
       ['Promotion', 'The Gallery will present and promote the Artwork in good faith across its network and programming.'],
-      ['Image Use', 'The Artist retains all copyright and reproduction rights in the Artwork. The Gallery may reproduce Artwork images for promotional purposes with proper credit.'],
-      ['Artist Warranty', 'The Artist confirms authorship and ownership of the Artwork, and that the Artwork is free of all liens, claims and encumbrances.'],
+      ['Image Use', (OWN ? 'All copyright in the Artwork remains with the rights holder of ' + A.name + '’s work.' : 'The Artist retains all copyright and reproduction rights in the Artwork.') + ' The Gallery may reproduce Artwork images for promotional purposes with proper credit.'],
+      [OWN ? 'Consignor Warranty' : 'Artist Warranty', OWN ? 'The Consignor confirms that the Artwork is an authentic work by ' + A.name + ', that the Consignor is its sole owner with full right to consign and sell it, and that the Artwork is free of all liens, claims and encumbrances.' : 'The Artist confirms authorship and ownership of the Artwork, and that the Artwork is free of all liens, claims and encumbrances.'],
       ['Governing Law', 'This Agreement is governed by the laws of the State of New York. Any dispute arising under this Agreement shall be resolved in the state or federal courts located in New York County, New York.'],
       ['Notices', 'Any notice required under this Agreement shall be in writing and may be delivered by email to the addresses listed above, and is effective upon sending.'],
       ['Entire Agreement', 'This Agreement, including Exhibit A, is the entire agreement between the parties regarding the Artwork and supersedes any prior discussions. It may be amended only in writing signed by both parties. If any provision is found unenforceable, the remaining provisions remain in effect.'],
@@ -358,7 +362,7 @@ class Component extends DCLogic {
     const SPLIT = (() => {
         const rep = val('rep', A.rep || '');
         const prod = val('prod', typeof A.prod === 'string' ? A.prod : '');
-        let t = A.prod ? `Production costs${prod ? ' of ' + prod : ''} are first reimbursed to the Artist from the sale price; the balance is split 50% Gallery / 50% Artist.` : 'Sale price is split 50% Gallery / 50% Artist.';
+        let t = A.prod ? `Production costs${prod ? ' of ' + prod : ''} are first reimbursed to the Artist from the sale price; the balance is split ${GP}% Gallery / ${100 - GP}% Artist.` : `Sale price is split ${GP}% Gallery / ${100 - GP}% Artist.`;
         if (rep) t += ` Any commission owed to ${rep} is paid from the Artist’s share.`;
         return t + ' See Commission clause.';
       })();
@@ -369,7 +373,7 @@ class Component extends DCLogic {
       gallery: 'CC Jasper, 131 Chrystie Street, New York, NY 10002',
       exhibition: 'Death Is a Door, CC Jasper · opens ' + fmt(o),
       term: months + ' months · ' + fmt(o) + ' – ' + fmt(e),
-      commission: '50% Gallery / 50% Artist',
+      commission: GP + '% Gallery / ' + (100 - GP) + '% Artist',
       repLine: 'Any commission owed to ' + (val('rep', A.rep || '') || 'the representing gallery') + ' is paid from the Artist’s share',
       prodTail: 'reimbursed to Artist before commission split',
       fullDetails: 'Full details of each work appear in Exhibit A.',
@@ -418,6 +422,9 @@ class Component extends DCLogic {
       toggleSent: ev => this.setField('sent', ev.target.checked),
       toggleSigned: ev => { this.setField('signed', ev.target.checked); if (ev.target.checked && !this.status(A).sent) setTimeout(() => this.setField('sent', true), 0); },
       artistName: A.name,
+      partyLabel: A.owner ? 'Consignor' : 'Artist',
+      sigHead: A.owner ? 'Consignor (' + (A.legal || '') + ', owner of work by ' + A.name + ')' : 'Artist (' + A.name + ')',
+      sigTitle: A.owner ? 'Owner' : 'Artist',
       splitNote: TX.split,
       hasProd: !!A.prod,
       prodCost: val('prod', typeof A.prod === 'string' ? A.prod : ''),
@@ -431,7 +438,7 @@ class Component extends DCLogic {
       onRepSigner: ev => this.setField('repSigner', ev.target.value),
       openingLong: fmt(o),
       termLine: `${months} months · ${fmt(o)} – ${fmt(e)}`,
-      f: { date: val('date', 'October 14, 2026'), legal: val('legal', A.name), address: val('address', ''), email: val('email', A.email), phone: val('phone', '') },
+      f: { date: val('date', 'October 14, 2026'), legal: val('legal', A.legal || A.name), address: val('address', ''), email: val('email', A.email), phone: val('phone', '') },
       on,
       clauses,
       works: A.works.map((w, i) => ({ title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wt' + i, w.t)) this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wd' + i, w.d)) this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
