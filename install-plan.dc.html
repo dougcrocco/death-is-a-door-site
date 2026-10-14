@@ -463,7 +463,7 @@ class Component extends DCLogic {
         mesh(new THREE.BoxGeometry(pw, ph, pw), plM, w.X, ph / 2, zc);
         const ob = mesh(new THREE.BoxGeometry(w.w, w.h, w.w), new THREE.MeshBasicMaterial({ map: this.texFor(w.src) }), w.X, ph + w.h / 2, zc);
         ob.userData = { info: info(w.id), cx: w.X, cy: ph + w.h / 2, cz: zc, ry: 0, w: 30, h: w.h };
-        if (w.id === 'lindeman') { ob.userData.ry = -Math.PI / 2; ob.userData.dist = 48; }
+        if (w.id === 'lindeman' || w.id === 'lazaros') { ob.userData.ry = -Math.PI / 2; ob.userData.dist = 48; }
       } else {
         const top = w.bottom + w.h;
         const hg = mesh(new THREE.PlaneGeometry(w.w, w.h), new THREE.MeshBasicMaterial({ map: this.texFor(w.src), side: THREE.DoubleSide, transparent: /\.png$/i.test(w.src), alphaTest: /\.png$/i.test(w.src) ? 0.05 : 0 }), w.X, w.bottom + w.h / 2, -w.Z);
