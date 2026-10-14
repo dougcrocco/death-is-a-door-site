@@ -390,7 +390,7 @@ class Component extends DCLogic {
       const ox = t.x, oz = t.z;
       if (mx && ok(t.x + mx, t.z)) t.x += mx; if (mz && ok(t.x, t.z + mz)) t.z += mz;
       if (t.target && ox === t.x && oz === t.z) t.target = null;
-      if (t.spin) { t.spinA = ((t.spinA || 0) + dt * 0.35) % (Math.PI * 2); t.spin.rotation.y = t.spinA; }
+      if (t.spin) { const hold = !!(this.state.walkSel && this.state.walkSel.num === 'XIV'); if (hold) { const F = -Math.PI / 2, tgt = F + Math.round(((t.spinA || 0) - F) / (Math.PI * 2)) * Math.PI * 2; t.spinA += (tgt - t.spinA) * Math.min(1, dt * 4); } else { t.spinA = (t.spinA || 0) + dt * 0.35; if (t.spinA > Math.PI * 4) t.spinA -= Math.PI * 2; } t.spin.rotation.y = t.spinA; }
       cam.position.set(t.x, 62, t.z); cam.rotation.set(t.pitch, t.yaw, 0);
       R.render(S, cam);
     };
@@ -399,11 +399,11 @@ class Component extends DCLogic {
   }
   focusWork(u) {
     const t = this.t3; if (!t) return;
-    const nx = Math.sin(u.ry), nz = Math.cos(u.ry), dist = Math.max(55, Math.max(u.w, u.h) * 1.25);
-    let x = u.cx + nx * dist, z = u.cz + nz * dist, Z = -z;
+    const nx = Math.sin(u.ry), nz = Math.cos(u.ry), dist = u.dist || Math.max(55, Math.max(u.w, u.h) * 1.7);
+    let x = u.camAt ? u.camAt[0] : u.cx + nx * dist, z = u.camAt ? -u.camAt[1] : u.cz + nz * dist, Z = -z;
     x = Math.max(-86, Math.min(79, x)); Z = Math.max(-108, Math.min(431, Z)); if (Z < 105 && x < -17) x = -17;
     t.target = [x, -Z]; t.yawTo = u.ry;
-    t.pitchTo = Math.max(-0.5, Math.min(0.5, Math.atan2(u.cy - 62, Math.hypot(u.cx - x, u.cz + Z))));
+    t.pitchTo = u.camAt ? -0.2 : Math.max(-0.5, Math.min(0.5, Math.atan2(u.cy - 62, Math.hypot(u.cx - x, u.cz + Z)) - 0.13));
     this.setState({ walkSel: u.info });
   }
   texFor(src) {
@@ -431,7 +431,7 @@ class Component extends DCLogic {
       const side = /ferry/.test(id) ? new THREE.MeshLambertMaterial({ color: '#111' }) : new THREE.MeshLambertMaterial({ map: tx, color: '#a8a39b' });
       const sh = mesh(new THREE.PlaneGeometry(p.w + 2 + dep, p.h + 2 + dep), shM, 0.4, -0.8 - dep * 0.3, -0.35, 0, g); sh.renderOrder = -1;
       const pl = mesh(new THREE.BoxGeometry(p.w, p.h, dep), [side, side, side, side, new THREE.MeshBasicMaterial({ map: tx }), backM], 0, 0, dep / 2 - 0.4, 0, g);
-      pl.userData = { info: info(id), cx: x, cy: p.bottom + p.h / 2, cz: -z, ry, w: p.w, h: p.h };
+      pl.userData = { info: info(id), cx: x, cy: p.bottom + p.h / 2, cz: -z, ry, w: p.w, h: p.h, dist: ({ swanson: 30, obscura: 30, cowan: 40 })[id] };
     });
     const fxM = new THREE.MeshLambertMaterial({ color: '#f2f0ec' }), lensM = new THREE.MeshBasicMaterial({ color: '#fffbea' });
     const spot = (fx, fz, tx, ty, tz, ang) => {
@@ -456,11 +456,12 @@ class Component extends DCLogic {
         mesh(new THREE.BoxGeometry(pw, ph, pw), plM, w.X, ph / 2, zc);
         const ob = mesh(new THREE.BoxGeometry(w.w, w.h, w.w), new THREE.MeshBasicMaterial({ map: this.texFor(w.src) }), w.X, ph + w.h / 2, zc);
         ob.userData = { info: info(w.id), cx: w.X, cy: ph + w.h / 2, cz: zc, ry: 0, w: 30, h: w.h };
+        if (w.id === 'lindeman') { ob.userData.ry = -Math.PI / 2; ob.userData.dist = 48; }
       } else {
         const top = w.bottom + w.h;
         const hg = mesh(new THREE.PlaneGeometry(w.w, w.h), new THREE.MeshBasicMaterial({ map: this.texFor(w.src), side: THREE.DoubleSide, transparent: /\.png$/i.test(w.src), alphaTest: /\.png$/i.test(w.src) ? 0.05 : 0 }), w.X, w.bottom + w.h / 2, -w.Z);
         hg.userData = { info: info(w.id), cx: w.X, cy: w.bottom + w.h / 2, cz: -w.Z, ry: 0, w: 30, h: w.h };
-        if (w.id === 'durwood') { this.t3.spin = hg; hg.rotation.y = this.t3.spinA || 0; }
+        if (w.id === 'durwood') { this.t3.spin = hg; hg.rotation.y = this.t3.spinA || 0; hg.userData.ry = -Math.PI / 2; hg.userData.camAt = [Math.max(-84, w.X - 24), w.Z]; }
         mesh(new THREE.BoxGeometry(0.15, 113 - top, 0.15), backM, w.X, top + (113 - top) / 2, -w.Z);
       }
     });
