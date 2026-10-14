@@ -357,7 +357,7 @@ class Component extends DCLogic {
         const hit = rc.intersectObjects(art.children, true).find(h => h.object.userData.info);
         if (hit) { this.focusWork(hit.object.userData); drag = null; return; }
         if (this.state.walkSel) this.setState({ walkSel: null });
-        if (d.y < -0.01) { const k = -o.y / d.y, px = o.x + d.x * k, pz = o.z + d.z * k; t.target = [Math.max(-86, Math.min(79, px)), Math.max(-431, Math.min(108, pz))]; }
+        if (d.y < -0.01) { const k = -o.y / d.y; let px = o.x + d.x * k, pz = o.z + d.z * k; const ddx = px - t.x, ddz = pz - t.z, dd = Math.hypot(ddx, ddz), MAX = 48; if (dd > MAX) { px = t.x + ddx / dd * MAX; pz = t.z + ddz / dd * MAX; } t.target = [Math.max(-86, Math.min(79, px)), Math.max(-431, Math.min(108, pz))]; }
       }
       drag = null;
     });
@@ -378,7 +378,7 @@ class Component extends DCLogic {
       if (t.yawTo != null) { const a = Math.min(1, dt * 3.5); let dy = ((t.yawTo - t.yaw + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI; t.yaw += dy * a; t.pitch += (t.pitchTo - t.pitch) * a; if (Math.abs(dy) < 0.002 && Math.abs(t.pitchTo - t.pitch) < 0.002) t.yawTo = null; }
       if (f || s || k.arrowleft || k.arrowright) t.yawTo = null;
       if (f || s) { t.target = null; mx = (-sy * f + cy * s) * 70 * dt; mz = (-cy * f - sy * s) * 70 * dt; }
-      else if (t.target) { const dx = t.target[0] - t.x, dz = t.target[1] - t.z, d = Math.hypot(dx, dz); if (d < 2) t.target = null; else { const st = Math.min(d, 90 * dt); mx = dx / d * st; mz = dz / d * st; } }
+      else if (t.target) { const dx = t.target[0] - t.x, dz = t.target[1] - t.z, d = Math.hypot(dx, dz); if (d < 2) t.target = null; else { const st = Math.min(d, 55 * dt); mx = dx / d * st; mz = dz / d * st; } }
       const ox = t.x, oz = t.z;
       if (mx && ok(t.x + mx, t.z)) t.x += mx; if (mz && ok(t.x, t.z + mz)) t.z += mz;
       if (t.target && ox === t.x && oz === t.z) t.target = null;
