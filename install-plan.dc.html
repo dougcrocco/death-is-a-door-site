@@ -123,6 +123,12 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
         <div style="position:absolute;left:{{ pw.lx }};top:{{ pw.ly }};transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:9px;color:#2b6a60;white-space:nowrap;pointer-events:none;">{{ pw.num }}</div>
       </sc-for>
       <sc-for list="{{ planFree }}" as="pf" hint-placeholder-count="0">
+        <sc-for list="{{ pf.dims }}" as="dm" hint-placeholder-count="0">
+          <div style="position:absolute;left:{{ dm.left }};top:{{ dm.top }};width:{{ dm.w }};height:{{ dm.h }};border-top:{{ dm.bt }};border-left:{{ dm.bl }};pointer-events:none;"></div>
+          <div style="position:absolute;left:{{ dm.lx }};top:{{ dm.ly }};transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:8.5px;color:#2b6a60;background:#f1efea;padding:0 3px;white-space:nowrap;pointer-events:none;">{{ dm.label }}</div>
+        </sc-for>
+      </sc-for>
+      <sc-for list="{{ planFree }}" as="pf" hint-placeholder-count="0">
         <div title="{{ pf.tip }}" style="position:absolute;left:{{ pf.left }};top:{{ pf.top }};width:{{ pf.w }};height:{{ pf.h }};background:#eceae6;border:1px solid #2b6a60;border-radius:{{ pf.radius }};box-sizing:border-box;">
           <div style="position:absolute;left:50%;bottom:100%;transform:translate(-50%,-3px);font-family:'Space Mono',monospace;font-size:9px;color:#0d0c0b;background:#7fa39b;padding:1px 4px;white-space:nowrap;pointer-events:none;">{{ pf.num }}</div>
           <div onPointerDown="{{ pf.onDown }}" style="position:absolute;inset:-8px;cursor:grab;touch-action:none;border-radius:50%;" style-hover="background:rgba(43,106,96,0.14);"></div>
@@ -211,7 +217,6 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
       </div>
     </section>
   </sc-for>
-
   <footer style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.8;color:#8f887c;border-top:1px solid rgba(233,227,214,0.18);padding-top:20px;">Assumptions — The Ferry shown 24 in high at the video's native ratio (16½ in wide). Spell for Manifestation (16 × 42 in) and New Enlightened Era Coming Soon (18 × 42 in) on pedestals in the center of the room; shown side by side, floor position not plotted. The World of Symbol… suspended from the ceiling on a wire, center at the center line. Elevations are drawn as seen facing each wall. Room views are perspective approximations from the gallery photos, calibrated from the 113 in wall height and the installed works in the Systems of Gesture photos; they follow the elevations live as works are dragged. Pedestal, hanging and desk positions in the room are estimated; desk shown as a 60 × 30 × 29 in glass desk freestanding in the front of the room, about 3 ft off the left back wall, long side running front to back.</footer>
 </div>
 </x-dc>
@@ -238,12 +243,12 @@ const WORKS = [
   { id: 'desire-e', wall: 'entry', num: 'XI', artist: 'Meredith Sellers', title: 'Desire (After Dieric Bouts)', file: 'meredith-sellers-desire-after-dieric-bouts.jpg', w: 21, h: 14.5, dims: '14½ × 21 × 1¾ in' },
   { id: 'hanson-r', wall: 'right', num: 'III', artist: 'Ellen R Hanson', title: 'Funeral Flowers', file: 'ellen-r-hanson-funeral-flowers-crop.jpg', w: 59, h: 22, dims: '22 × 59 in' },
   { id: 'radu', wall: 'back', num: 'XII', artist: 'Pandele Radu', title: 'Floating Coffin', file: 'pandele-radu-floating-coffin.jpg', w: 40, h: 40, dims: '40 × 40 in' },
-  { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New Enlightened Era Coming Soon', file: 'megan-lindeman-new-enlightened-era-coming-soon.jpg', w: 10, h: 20, dims: '20 × 10 × 10 in · on pedestal', plinth: { w: 18, h: 42 } },
+  { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New Enlightened Era Coming Soon', file: 'megan-lindeman-new-enlightened-era-coming-soon-2.jpg', w: 10, h: 20, dims: '20 × 10 × 10 in · on pedestal', plinth: { w: 18, h: 42 } },
   { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Durwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling', hang: true },
   { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' }
 ];
 const KEY = 'didad-install-pos-v12';
-const BAKED = {"empty-e":65,"desire-e":118.25,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":32.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":248,"fz-lindeman":101.75,"fz-durwood":89,"fx-lindeman":43,"fx-lazaros":61.75,"deskX":-43.75};
+const BAKED = {"empty-e":65,"desire-e":118.25,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":32.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":249,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":42,"fx-lazaros":40.25,"deskX":-43.75,"fx-durwood":-14.5};
 const VIEWS = [
   { id: 'back', src: 'install/gallery-back.png', W: 2250, H: 1266, f: 1200, cx: 1198, cy: 655, cam: 53,
     caption: 'Looking toward the back — left back wall (D), center back wall (B), right wall (C), freestanding works (E).',
@@ -552,7 +557,16 @@ class Component extends DCLogic {
       return { ...g.r(x, w.w), num: w.num, tip: w.num + ' · ' + w.title + ' · ' + fmt(x) + ' from wall start', lx: pl(lb[0]), ly: pt(lb[1]),
         onDown: e => this.pdown(e, (dZ, dX) => ({ [w.id]: q(cl(x + g.d(dZ, dX), 0, g.len - w.w)) })) }; });
     const planFree = WORKS.filter(w => FREE[w.id]).map(w => { const f = FREE[w.id], s = w.plinth ? w.plinth.w : w.w, zc = f.Z + (w.plinth ? s / 2 : 0), fz0 = 437 - zc - s / 2, X0 = f.X;
-      return { ...RR(zc - s / 2, zc + s / 2, X0 - s / 2, X0 + s / 2), num: w.num, radius: w.plinth ? '0' : '50%', tip: w.num + ' · ' + w.title + ' · ' + fmt(85 - X0) + ' off right wall · ' + fmt(437 - zc) + ' from back wall',
+      const h = s / 2, z0 = zc - h, z1 = zc + h, x0 = X0 - h, x1 = X0 + h;
+      let topW = zc >= 102.5 ? -92 : -23.6, leftW = X0 < -23.6 ? 102.5 : -114.54, rightW = 437, botW = 85;
+      const D = DESK, inZ = z1 > D.z0 && z0 < D.z1, inX = x1 > D.x0 && x0 < D.x1;
+      if (inZ) { if (D.x1 <= x0) topW = Math.max(topW, D.x1); if (D.x0 >= x1) botW = Math.min(botW, D.x0); }
+      if (inX) { if (D.z1 <= z0) leftW = Math.max(leftW, D.z1); if (D.z0 >= z1) rightW = Math.min(rightW, D.z0); }
+      const dl = [];
+      const hz = (a, b, x) => { if (b - a < 0.5) return; dl.push({ left: pl(a), top: pt(x), w: pct(b - a, PWD), h: '0', bt: '1px dashed #2b6a60', bl: 'none', lx: pl((a + b) / 2), ly: pt(x), label: fmt(q(b - a)) }); };
+      const vt = (a, b, z) => { if (b - a < 0.5) return; dl.push({ left: pl(z), top: pt(a), w: '0', h: pct(b - a, PHT), bt: 'none', bl: '1px dashed #2b6a60', lx: pl(z), ly: pt((a + b) / 2), label: fmt(q(b - a)) }); };
+      hz(leftW, z0, X0); hz(z1, rightW, X0); vt(topW, x0, zc); vt(x1, botW, zc);
+      return { ...RR(zc - s / 2, zc + s / 2, X0 - s / 2, X0 + s / 2), dims: dl, num: w.num, radius: w.plinth ? '0' : '50%', tip: w.num + ' · ' + w.title + ' · ' + fmt(85 - X0) + ' off right wall · ' + fmt(437 - zc) + ' from back wall',
         onDown: e => this.pdown(e, (dZ, dX) => ({ ['fz-' + w.id]: q(cl(fz0 - dZ, 0, 551.54 - s)), ['fx-' + w.id]: q(cl(X0 + dX, -92 + s / 2, 85 - s / 2)) })) }; });
     const d0 = pos.desk ?? 9.5, dX0 = DESK.x0;
     const planDesk = { ...RR(DESK.z0, DESK.z1, DESK.x0, DESK.x1), tip: 'Glass desk 60 × 30 × 29 in · ' + fmt(DESK.x0 + 92) + ' off left back wall',

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Consignment Agreements · Death Is a Door · CC Jasper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  body{margin:0;background:#e9e6df}
+  a{color:#2b6a60}
+  a:hover{color:#1d4a43}
+  input::placeholder{color:#b3ad a1;color:#b3ada1}
+  @media print{[data-noprint]{display:none !important} input{border-bottom:0.75pt solid #16150f !important} input::placeholder{color:transparent !important}}
+</style>
+<script src="./doc-page.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</helmet>
+
+<div data-noprint="" style="position:sticky;top:0;z-index:10;background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:14px clamp(14px,3vw,32px) 16px;display:flex;flex-direction:column;gap:12px;">
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px;">
+    <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door · CC Jasper</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;font-size:10.5px;color:#8f887c;white-space:nowrap;">
+      <span style="color:#e9e3d6;">{{ progress }}</span>
+      <button onClick="{{ toggleView }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:5px 10px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ viewBtn }}</button>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;border:1px solid #6d675c;"></span>Not sent</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;background:#c9a24a;border:1px solid #c9a24a;"></span>Sent</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;background:#5fa08f;border:1px solid #5fa08f;"></span>Signed</span>
+    </div>
+  </div>
+  <sc-if value="{{ isAgreements }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="13">
+      <button onClick="{{ t.pick }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;padding:6px 10px;cursor:pointer;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};display:flex;align-items:center;gap:7px;white-space:nowrap;"><span style="width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:{{ t.dot }};border:1px solid {{ t.dotBorder }};"></span>{{ t.name }}</button>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;border-top:1px solid #2a2722;padding-top:12px;">
+    <div style="font-family:'EB Garamond',serif;font-size:17px;color:#f0eadd;margin-right:6px;">{{ artistName }}</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
+      <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8f887c;margin-right:2px;">Download</span>
+      <button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:#2b6a60;color:#fff;border:1px solid #2b6a60;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="background:#1d4a43;border-color:#1d4a43;">Word / Pages</button>
+      <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">PDF</button>
+      <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">Print</button>
+    </div>
+    <div style="display:flex;gap:14px;align-items:center;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#c4bcae;margin-left:auto;">
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" checked="{{ isSent }}" onChange="{{ toggleSent }}" style="accent-color:#c9a24a;width:15px;height:15px;cursor:pointer;">Sent</label>
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" checked="{{ isSigned }}" onChange="{{ toggleSigned }}" style="accent-color:#5fa08f;width:15px;height:15px;cursor:pointer;">Signed</label>
+    </div>
+    <div style="font-size:10.5px;color:#8f887c;flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;"><span>{{ actionHint }}</span><sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c9a24a;border:none;border-bottom:1px solid #c9a24a;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Reset wording to original</button></sc-if></div>
+  </div>
+  </sc-if>
+</div>
+
+<sc-if value="{{ isAgreements }}" hint-placeholder-val="{{ true }}">
+<doc-page margin="0.8in">
+
+  <div slot="footer" style="display:flex;justify-content:space-between;align-items:baseline;font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.1em;text-transform:uppercase;color:#8a8478;border-top:0.5pt solid #d6d1c6;padding-top:6pt;">
+    <span>CC Jasper · Art Consignment Agreement</span>
+    <span>{{ artistName }}</span>
+  </div>
+
+  <div style="font-family:'Space Mono',monospace;font-size:9pt;letter-spacing:0.28em;text-transform:uppercase;color:#2b6a60;">CC Jasper</div>
+  <h1 contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.heading }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30pt;line-height:1.05;margin:8pt 0 18pt;color:#16150f;outline:none;border-radius:2px;">{{ tx.heading }}</h1>
+
+  <div style="font-family:'EB Garamond',serif;font-size:11.5pt;line-height:1.55;color:#22201a;display:flex;flex-direction:column;gap:10pt;">
+    <p style="margin:0;"><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.intro1 }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.intro1 }}</span> <input value="{{ f.date }}" onChange="{{ on.date }}" placeholder="Date" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:11em;"> <span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.intro2 }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.intro2 }}</span></p>
+    <div style="display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:4pt 10pt;">
+      <strong style="font-weight:600;">Gallery</strong><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.gallery }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.gallery }}</span>
+      <strong style="font-weight:600;">Artist</strong>
+      <span style="display:flex;flex-wrap:wrap;gap:2pt 6pt;align-items:baseline;">
+        <input value="{{ f.legal }}" onChange="{{ on.legal }}" placeholder="Artist legal name" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:14em;">
+        <input value="{{ f.address }}" onChange="{{ on.address }}" placeholder="Mailing address" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;flex:1 1 18em;min-width:0;">
+      </span>
+      <strong style="font-weight:600;">Email</strong>
+      <input value="{{ f.email }}" onChange="{{ on.email }}" placeholder="Email" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;max-width:22em;">
+      <strong style="font-weight:600;">Phone</strong>
+      <input type="tel" value="{{ f.phone }}" onChange="{{ on.phone }}" placeholder="Phone number" style="font:inherit;color:inherit;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;max-width:14em;">
+    </div>
+
+    <div style="break-inside:avoid;margin:8pt 0 4pt;border-top:0.75pt solid #16150f;border-bottom:0.75pt solid #16150f;padding:10pt 0;display:flex;flex-direction:column;gap:8pt;">
+      <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#2b6a60;">Summary of Terms</div>
+      <div style="display:grid;grid-template-columns:7em minmax(0,1fr);gap:6pt 10pt;font-size:11pt;">
+        <strong style="font-weight:600;">Artwork</strong>
+        <div style="display:flex;flex-direction:column;gap:6pt;">
+          <sc-for list="{{ works }}" as="w" hint-placeholder-count="1">
+            <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2pt 12pt;">
+              <span><em contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ w.onTitle }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ w.title }}</em>, {{ w.short }}</span>
+              <span style="display:flex;align-items:baseline;gap:6pt;font-family:'Space Mono',monospace;font-size:9.5pt;">
+                <span style="letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">Price</span>
+                <input value="{{ w.price }}" onChange="{{ w.onPrice }}" placeholder="$ —" style="font-family:'Space Mono',monospace;font-size:10.5pt;color:#16150f;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:7em;">
+              </span>
+            </div>
+          </sc-for>
+        </div>
+        <strong style="font-weight:600;">Exhibition</strong><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.exhibition }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.exhibition }}</span>
+        <strong style="font-weight:600;">Term</strong><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.term }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.term }}</span>
+        <strong style="font-weight:600;">Commission</strong><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.commission }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.commission }}</span>
+        <sc-if value="{{ hasRep }}" hint-placeholder-val="{{ false }}">
+          <strong style="font-weight:600;">Representation</strong><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.repLine }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.repLine }}</span>
+        </sc-if>
+        <sc-if value="{{ hasProd }}" hint-placeholder-val="{{ false }}">
+          <strong style="font-weight:600;">Production</strong>
+          <span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:2pt 8pt;">
+            <input value="{{ prodCost }}" onChange="{{ onProd }}" placeholder="$ —" style="font-family:'Space Mono',monospace;font-size:10.5pt;color:#16150f;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:7em;">
+            <span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.prodTail }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="outline:none;border-radius:2px;">{{ tx.prodTail }}</span>
+          </span>
+        </sc-if>
+      </div>
+      <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.fullDetails }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10pt;color:#5c574c;outline:none;border-radius:2px;">{{ tx.fullDetails }}</div>
+    </div>
+
+    <sc-for list="{{ clauses }}" as="c" hint-placeholder-count="13">
+      <div style="break-inside:avoid;">
+        <div style="display:flex;gap:0.5em;font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#2b6a60;margin:6pt 0 2pt;"><span>{{ c.num }}</span><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ c.onTitle }}" style="outline:none;border-radius:2px;" style-hover="background:#f3efe6;" style-focus="background:#efe9dc;">{{ c.name }}</span></div>
+        <p contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ c.onBody }}" style="margin:0;outline:none;border-radius:2px;white-space:pre-wrap;" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;">{{ c.body }}</p>
+      </div>
+    </sc-for>
+
+    <p contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onGoodFaith }}" style="margin:14pt 0 0;font-style:italic;color:#3c382f;outline:none;border-radius:2px;white-space:pre-wrap;" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;">{{ goodFaith }}</p>
+
+    <div style="break-inside:avoid;margin-top:18pt;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24pt;">
+      <div style="display:flex;flex-direction:column;gap:14pt;">
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Gallery (CC Jasper)</div>
+        <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
+        <input value="{{ gSigner }}" onChange="{{ onGSigner }}" placeholder="Printed name" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
+        <input value="{{ gTitle }}" onChange="{{ onGTitle }}" placeholder="Title" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Title</div>
+        <div style="border-bottom:0.75pt solid #16150f;height:18pt;"></div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Date</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14pt;">
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Artist ({{ artistName }})</div>
+        <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
+        <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;min-height:1.3em;">{{ f.legal }}</div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
+        <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;">Artist</div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Title</div>
+        <div style="border-bottom:0.75pt solid #16150f;height:18pt;"></div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Date</div>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasRep }}" hint-placeholder-val="{{ false }}">
+      <div style="break-inside:avoid;margin-top:18pt;display:flex;flex-direction:column;gap:14pt;max-width:calc(50% - 12pt);">
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Acknowledged by Artist’s Representing Gallery</div>
+        <input value="{{ repName }}" onChange="{{ onRep }}" placeholder="Gallery name" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Representing gallery</div>
+        <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
+        <input value="{{ repSigner }}" onChange="{{ onRepSigner }}" placeholder="Printed name" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
+        <input value="{{ repTitle }}" onChange="{{ onRepTitle }}" placeholder="Title" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Title</div>
+        <div style="border-bottom:0.75pt solid #16150f;height:18pt;"></div>
+        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Date</div>
+      </div>
+    </sc-if>
+
+    <div style="break-before:page;"></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9pt;letter-spacing:0.22em;text-transform:uppercase;color:#2b6a60;">Exhibit A</div>
+    <h2 contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.exTitle }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:22pt;margin:2pt 0 4pt;color:#16150f;outline:none;border-radius:2px;">{{ tx.exTitle }}</h2>
+    <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.exSub }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10.5pt;color:#5c574c;outline:none;border-radius:2px;">{{ tx.exSub }}</div>
+
+    <sc-for list="{{ works }}" as="w" hint-placeholder-count="1">
+      <div style="break-inside:avoid;display:grid;grid-template-columns:1.6in minmax(0,1fr);gap:16pt;padding:14pt 0;border-top:0.5pt solid #d6d1c6;">
+        <img src="{{ w.img }}" alt="" style="display:block;width:100%;height:auto;max-height:2in;object-fit:contain;object-position:left top;">
+        <div style="display:flex;flex-direction:column;gap:3pt;">
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ w.onTitle }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-style:italic;font-size:14pt;color:#16150f;outline:none;border-radius:2px;">{{ w.title }}</div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ w.onDesc }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10.5pt;color:#3c382f;white-space:pre-line;outline:none;border-radius:2px;">{{ w.desc }}</div>
+          <div style="margin-top:8pt;display:flex;align-items:baseline;gap:8pt;font-family:'Space Mono',monospace;font-size:9.5pt;">
+            <span style="letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">Retail price</span>
+            <input value="{{ w.price }}" onChange="{{ w.onPrice }}" placeholder="$ —" style="font-family:'Space Mono',monospace;font-size:10.5pt;color:#16150f;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:9em;">
+          </div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.split }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10pt;color:#5c574c;outline:none;border-radius:2px;">{{ tx.split }}</div>
+        </div>
+      </div>
+    </sc-for>
+    <div style="border-top:0.5pt solid #d6d1c6;"></div>
+    <div style="break-inside:avoid;margin-top:14pt;display:flex;flex-direction:column;gap:10pt;">
+      <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.initials }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10pt;color:#5c574c;outline:none;border-radius:2px;">{{ tx.initials }}</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24pt;">
+        <div style="display:flex;flex-direction:column;gap:4pt;">
+          <div style="display:flex;gap:10pt;align-items:flex-end;"><div style="border-bottom:0.75pt solid #16150f;height:22pt;width:5em;"></div><div style="border-bottom:0.75pt solid #16150f;height:22pt;flex:1;"></div></div>
+          <div style="display:flex;gap:10pt;font-size:10pt;color:#5c574c;"><span style="width:5em;">Initials</span><span>Date · Gallery (CC Jasper)</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4pt;">
+          <div style="display:flex;gap:10pt;align-items:flex-end;"><div style="border-bottom:0.75pt solid #16150f;height:22pt;width:5em;"></div><div style="border-bottom:0.75pt solid #16150f;height:22pt;flex:1;"></div></div>
+          <div style="display:flex;gap:10pt;font-size:10pt;color:#5c574c;"><span style="width:5em;">Initials</span><span>Date · Artist ({{ artistName }})</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</doc-page>
+</sc-if>
+
+<sc-if value="{{ isChecklist }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:8.5in;margin:24px auto;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,0.08);padding:0.6in 0.7in;box-sizing:border-box;font-family:'EB Garamond',serif;color:#16150f;">
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.22em;text-transform:uppercase;color:#2b6a60;">CC Jasper · Death Is a Door</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28pt;line-height:1.05;margin:6pt 0 0;">Consignment Checklist</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="font-family:'Space Mono',monospace;font-size:9pt;color:#5c574c;">{{ progress }}</div>
+        <button data-noprint="" onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:#2b6a60;color:#fff;border:none;padding:7px 12px;cursor:pointer;white-space:nowrap;" style-hover="background:#1d4a43;">Print</button>
+      </div>
+    </div>
+    <div style="margin-top:16pt;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 4.2em 4.6em;font-size:10.5pt;">
+      <div style="font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;padding:0 8pt 6pt 0;border-bottom:0.75pt solid #16150f;">Artist</div>
+      <div style="font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;padding:0 8pt 6pt 0;border-bottom:0.75pt solid #16150f;">Work</div>
+      <div style="font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;padding:0 0 6pt;border-bottom:0.75pt solid #16150f;text-align:center;">Sent</div>
+      <div style="font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;padding:0 0 6pt;border-bottom:0.75pt solid #16150f;text-align:center;">Signed</div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="13">
+        <div style="padding:7pt 8pt 7pt 0;border-bottom:0.5pt solid #d6d1c6;display:flex;flex-direction:column;gap:1pt;">
+          <button data-noprint-style="" onClick="{{ r.open }}" style="font:inherit;font-weight:600;color:#16150f;background:transparent;border:none;padding:0;text-align:left;cursor:pointer;" style-hover="color:#2b6a60;">{{ r.name }}</button>
+          <span style="font-size:9pt;color:#6d675c;">{{ r.rep }}</span>
+        </div>
+        <div style="padding:7pt 8pt 7pt 0;border-bottom:0.5pt solid #d6d1c6;font-style:italic;color:#3c382f;">{{ r.works }}</div>
+        <div style="padding:7pt 0;border-bottom:0.5pt solid #d6d1c6;display:flex;justify-content:center;align-items:flex-start;"><input type="checkbox" checked="{{ r.sent }}" onChange="{{ r.toggleSent }}" style="accent-color:#c9a24a;width:16px;height:16px;cursor:pointer;margin:2px 0 0;"></div>
+        <div style="padding:7pt 0;border-bottom:0.5pt solid #d6d1c6;display:flex;justify-content:center;align-items:flex-start;"><input type="checkbox" checked="{{ r.signed }}" onChange="{{ r.toggleSigned }}" style="accent-color:#2b6a60;width:16px;height:16px;cursor:pointer;margin:2px 0 0;"></div>
+      </sc-for>
+    </div>
+    <div data-noprint="" style="margin-top:12pt;font-family:'Space Mono',monospace;font-size:8.5pt;color:#8a8478;">Click an artist to open their agreement.</div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;openingDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-11-12&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;termMonths&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:1,&quot;max&quot;:24,&quot;tsType&quot;:&quot;number&quot;}}">
+const IMG = 'https://dougcrocco.github.io/death-is-a-door-site/art/';
+const ARTISTS = [
+  { id: 'cowan', name: 'Benjamin Cowan', email: 'cowan.benjamin@gmail.com', sent: true, signed: true, rep: 'Deanna Evans Projects', works: [{ t: 'Pigeon Feather, Stone, Giotto Crying Angels', d: '2024\nOil and acrylic on canvas · 20 × 16 in · integrated wood frame', i: 'art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg' }] },
+  { id: 'crocco', name: 'Doug Crocco', email: 'doug@allart.la', prod: '$3,600', works: [{ t: 'Death Is a Door', d: '2026\nMetallic photo paper face-mounted to acrylic · 80 × 36 in\nEdition 1/3 (edition of 3 + 1 AP)', i: 'art/doug-crocco-death-is-a-door.jpg', p: '$10,000' }] },
+  { id: 'delaney', name: 'Tom DeLaney', email: '', works: [{ t: 'Rage and Eternal', d: '2024\nOil on linen · 18 × 24 in', i: 'art/tom-delaney-rage-and-eternal-v2.jpg' }] },
+  { id: 'durwood', name: 'Kenny Durwood', email: '', works: [{ t: 'The World of Symbol Vanishes in the World as God', d: '2021\nBrass and solder · 10 × 6 in', i: 'art/kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg' }] },
+  { id: 'goering', name: 'Charlie Goering', email: 'goering.charlie@gmail.com', works: [
+    { t: 'Metamorphosis, or The Dark Night of the Soul', d: '2025\nOil on canvas · 72 × 72 in', i: 'art/charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg' },
+    { t: 'Three-Tiered Camera Obscura', d: '2024\nOil on canvas · 8 × 10 in', i: 'art/charlie-goering-three-tiered-camera-obscura.jpg', p: '$1,500' }] },
+  { id: 'gutierrez', name: 'Aramis Gutierrez', email: 'aramisg@gmail.com', works: [{ t: 'The Turning', d: '2026\nOil on canvas · 48 × 54 in', i: 'art/aramis-gutierrez-the-turning-v2.jpg' }] },
+  { id: 'hanson', name: 'Ellen R Hanson', email: 'ellenrhanson@gmail.com', rep: 'RUBY/DAKOTA', works: [{ t: 'Funeral Flowers', d: '2024\nOil and acrylic primer on lycra · 22 × 59 in', i: 'art/ellen-r-hanson-funeral-flowers-v3.jpg' }] },
+  { id: 'lazaros', name: 'Lazaros', email: '', works: [{ t: 'Spell for Manifestation', d: '2018\nGlass, mineral oil, mixed materials · 6½ × 6½ × 12 in', i: 'art/lazaros-spell-for-manifestation.jpg' }] },
+  { id: 'lindeman', name: 'Megan Lindeman', email: 'megan@meganlindeman.com', works: [{ t: 'New Enlightened Era Coming Soon', d: '2026\nPlaster · 20 × 10 × 10 in', i: 'art/megan-lindeman-new-enlightened-era-coming-soon-2.jpg' }] },
+  { id: 'radu', name: 'Pandele Radu', email: '', works: [{ t: 'Down the River', d: '2026\nAcrylic on linen · 39.37 × 39.37 in', i: 'art/pandele-radu-down-the-river-v2.jpg' }] },
+  { id: 'sellers', name: 'Meredith Sellers', email: 'meredithmsellers@gmail.com', works: [
+    { t: 'Empty (After Holbein)', d: '2026\nOil and latex paint on panel · 14½ × 29 × 1¾ in', i: 'art/meredith-sellers-empty-after-holbein.jpg', p: '$6,000' },
+    { t: 'Desire (After Dieric Bouts)', d: '2026\nOil and latex paint on panel · 14½ × 21 × 1¾ in', i: 'art/meredith-sellers-desire-after-dieric-bouts.jpg', p: '$5,000' }] },
+  { id: 'swanson', name: 'Henry Swanson', email: 'henryswanson@icloud.com', works: [{ t: 'Mask from Dallas', d: '2024\nOil on canvas · 10 × 8 in', i: 'art/henry-swanson-mask-from-dallas-v3.jpg' }] },
+  { id: 'unitedfutures', name: 'unitedfutures', email: 'caco@unitedfutur.es', works: [{ t: 'The Ferry', d: 'Moving image with sound\nEdition 1/3 (edition of 3)', i: 'art/unitedfutures-the-ferry-still.jpg' }] }
+];
+
+const X = t => String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const R = (t, o = {}) => '<w:r><w:rPr><w:rFonts w:ascii="Garamond" w:hAnsi="Garamond"/>' + (o.b ? '<w:b/>' : '') + (o.i ? '<w:i/>' : '') + (o.c ? '<w:color w:val="' + o.c + '"/>' : '') + '<w:sz w:val="' + (o.sz || 22) + '"/></w:rPr><w:t xml:space="preserve">' + X(t) + '</w:t></w:r>';
+const P = (runs, o = {}) => '<w:p><w:pPr><w:spacing w:before="' + (o.before || 0) + '" w:after="' + (o.after ?? 120) + '"/>' + (o.keep ? '<w:keepNext/>' : '') + '</w:pPr>' + (Array.isArray(runs) ? runs.join('') : runs) + '</w:p>';
+const BR = '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+const blank = (v, n = 24) => v && String(v).trim() ? v : '_'.repeat(n);
+async function buildDocx(m) {
+  const b = [];
+  b.push(P(R('CC JASPER', { b: true, c: '2B6A60', sz: 20 })));
+  b.push(P(R(m.tx.heading, { sz: 40 }), { after: 240 }));
+  b.push(P([R(m.tx.intro1 + ' '), R(blank(m.f.date, 16)), R(' ' + m.tx.intro2)]));
+  b.push(P([R('Gallery: ', { b: true }), R(m.tx.gallery)], { after: 40 }));
+  b.push(P([R('Artist: ', { b: true }), R(blank(m.f.legal)), R(', '), R(blank(m.f.address, 36))], { after: 40 }));
+  b.push(P([R('Email: ', { b: true }), R(blank(m.f.email))], { after: 40 }));
+  b.push(P([R('Phone: ', { b: true }), R(blank(m.f.phone, 16))], { after: 240 }));
+  b.push(P(R('SUMMARY OF TERMS', { b: true, c: '2B6A60', sz: 18 }), { keep: true }));
+  m.works.forEach(w => b.push(P([R('Artwork: ', { b: true }), R(w.title, { i: true }), R(', ' + w.short + ' — Price: '), R(blank(w.price, 10))], { after: 40 })));
+  b.push(P([R('Exhibition: ', { b: true }), R(m.tx.exhibition)], { after: 40 }));
+  b.push(P([R('Term: ', { b: true }), R(m.tx.term)], { after: 40 }));
+  b.push(P([R('Commission: ', { b: true }), R(m.tx.commission)], { after: 40 }));
+  if (m.hasProd) b.push(P([R('Production: ', { b: true }), R(blank(m.prodCost, 10) + ' ' + m.tx.prodTail)], { after: 40 }));
+  if (m.hasRep) b.push(P([R('Representation: ', { b: true }), R(m.tx.repLine)], { after: 40 }));
+  b.push(P('', { after: 120 }));
+  m.clauses.forEach(c => { b.push(P(R(c.title, { b: true }), { before: 120, after: 40, keep: true })); b.push(P(R(c.body))); });
+  b.push(P(R(m.goodFaith, { i: true }), { before: 160, after: 360 }));
+  const sig = (who, name, title) => [P(R(who, { b: true }), { keep: true, after: 240 }), P(R('Signature: ________________________________'), { keep: true }), P(R('Printed name: ' + blank(name, 28)), { keep: true }), P(R('Title: ' + blank(title, 28)), { keep: true }), P(R('Date: ____________________'), { after: 360 })].join('');
+  b.push(sig('GALLERY (CC JASPER)', m.gSigner, m.gTitle));
+  b.push(sig('ARTIST (' + m.artistName + ')', m.f.legal, 'Artist'));
+  if (m.hasRep) b.push(sig('ACKNOWLEDGED BY ARTIST’S REPRESENTING GALLERY (' + m.repName + ')', m.repSigner, m.repTitle));
+  b.push(BR);
+  b.push(P(R('EXHIBIT A', { b: true, c: '2B6A60', sz: 18 })));
+  b.push(P(R(m.tx.exTitle, { sz: 32 }), { after: 60 }));
+  b.push(P(R(m.tx.exSub, { c: '5C574C', sz: 20 }), { after: 240 }));
+  m.works.forEach(w => {
+    b.push(P(R(w.title, { i: true, sz: 26 }), { before: 120, after: 40, keep: true }));
+    w.desc.split('\n').forEach(line => b.push(P(R(line), { after: 20, keep: true })));
+    b.push(P([R('Retail price: ', { b: true }), R(blank(w.price, 10))], { before: 80, after: 40, keep: true }));
+    b.push(P(R(m.splitNote, { c: '5C574C', sz: 20 }), { after: 200 }));
+  });
+  b.push(P(R(m.tx.initials, { c: '5C574C', sz: 20 }), { before: 200, after: 240 }));
+  b.push(P(R('Gallery initials: ______   Date: ______________          Artist initials: ______   Date: ______________')));
+  const doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' + b.join('') + '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1152" w:right="1152" w:bottom="1152" w:left="1152" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr></w:body></w:document>';
+  const zip = new window.JSZip();
+  zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>');
+  zip.file('_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>');
+  zip.file('word/document.xml', doc);
+  return zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+}
+const KEY = 'didad-consign-v1';
+class Component extends DCLogic {
+  state = { sel: 'cowan', data: {} };
+  componentDidMount() {
+    try { const s = JSON.parse(localStorage.getItem(KEY) || '{}'); this.setState({ data: s.data || {}, sel: s.sel || 'cowan', view: s.view || 'agreements' }); } catch (e) {}
+  }
+  save(next) { this.setState(next, () => { try { localStorage.setItem(KEY, JSON.stringify({ data: this.state.data, sel: this.state.sel, view: this.state.view })); } catch (e) {} }); }
+  status(x) { const d = this.state.data[x.id] || {}; return { sent: d.sent !== undefined ? !!d.sent : !!x.sent, signed: d.signed !== undefined ? !!d.signed : !!x.signed }; }
+  setField(k, v) { const a = this.state.sel; const d = { ...this.state.data }; d[a] = { ...(d[a] || {}), [k]: v }; this.save({ data: d }); }
+  renderVals() {
+    const opening = this.props.openingDate ?? '2026-11-12';
+    const months = this.props.termMonths ?? 6;
+    const o = new Date(opening + 'T12:00:00');
+    const e = new Date(o); e.setMonth(e.getMonth() + months);
+    const fmt = d => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const A = ARTISTS.find(x => x.id === this.state.sel) || ARTISTS[0];
+    const d = this.state.data[A.id] || {};
+    const val = (k, def) => (d[k] !== undefined ? d[k] : def);
+    const fields = ['date', 'legal', 'address', 'email', 'phone'];
+    const on = {}; fields.forEach(k => { on[k] = ev => this.setField(k, ev.target.value); });
+    const clauses = [
+      ['Consignment', 'The Artist consigns the artworks listed in Exhibit A (“Artwork”) to the Gallery for exhibition and sale. Ownership remains with the Artist until payment is received in full. In accordance with Article 12 of the New York Arts and Cultural Affairs Law, the Artwork and any proceeds from its sale are held in trust for the benefit of the Artist and are not subject to the claims of the Gallery’s creditors.'],
+      ['Term', `This Agreement runs for ${months} months from the opening of the exhibition, beginning on ${fmt(o)} and continuing through ${fmt(e)}, unless otherwise agreed in writing.`],
+      ['Return of Artwork', `The Gallery may return any unsold Artwork to the Artist at its discretion at any time after the exhibition closes and before the end of the Term. All unsold Artwork shall be returned to the Artist no later than the end of the Term (${fmt(e)}), unless the parties mutually agree in writing to extend the consignment period.`],
+      ['Pricing', 'Prices are mutually agreed and listed in Exhibit A. No price change may be made without the Artist’s prior written approval, except as permitted under Discounts below.'],
+      ['Discounts', 'The Gallery may offer collector discounts of up to ten percent (10%) at its discretion; any such discount shall be shared equally between the Gallery and the Artist. Discounts greater than ten percent (10%) require the Artist’s prior written approval.' + (A.prod ? ' Any discount applies to the sale price before production costs are reimbursed.' : '')],
+      ['Commission', 'The Gallery’s commission is fifty percent (50%) of the sale price, and the Artist receives the remaining fifty percent (50%).' + (A.prod ? ' Upon sale, the Artist shall first be reimbursed from the sale proceeds for production costs' + (val('prod', typeof A.prod === 'string' ? A.prod : '') ? ' in the amount of ' + val('prod', typeof A.prod === 'string' ? A.prod : '') : ' in the amount listed in the Summary of Terms') + ', which amount is fixed and may not be increased after signing. The remaining balance shall then be divided 50% Gallery / 50% Artist. Production costs are reimbursed only from the proceeds of a sale; if the Artwork does not sell, no reimbursement is owed by the Gallery.' : '') + (val('rep', A.rep || '') ? ` Any commission owed to the Artist’s representing gallery (${val('rep', A.rep || '')}) shall be paid from the Artist’s share, unless otherwise agreed in writing by all three parties.` : '')],
+      ['Sales Tax', 'All prices are exclusive of applicable sales tax. The Gallery shall collect sales tax from the buyer and remit it to the appropriate taxing authority.'],
+      ['Payment', 'Payment will be made within 14 business days of receipt of funds from the buyer. If a buyer pays in installments, the Artist will be paid the Artist’s share of each installment within 14 business days of its receipt. Expedited payment may be accommodated upon request. Upon each sale, the Gallery will provide the Artist with the sale price and date and, upon request, the name and contact information of the buyer for the Artist’s records.'],
+      ['Collector Holds & Reserves', 'The Gallery may place Artwork on reserve for a prospective collector for up to seven (7) days without the Artist’s approval. Holds longer than seven (7) days require the Artist’s prior consent, and the Artist will be notified of any hold upon request.'],
+      ['Care & Insurance', 'From the time of delivery until the Artwork is returned to the Artist or sold, the Gallery will insure Artwork at retail value and take reasonable care in its handling, storage and display. If any Artwork is lost, stolen or damaged beyond repair while in the Gallery’s care, the Artist will be paid the Artist’s share of the retail price listed in Exhibit A, as though the Artwork had been sold.'],
+      ['Transportation', 'The Artist is responsible for the cost of delivering the Artwork to the Gallery. The Gallery is responsible for the cost of returning any unsold Artwork to the Artist. Shipping and delivery of sold Artwork to a buyer is paid by the buyer. Any other arrangement must be agreed in writing in advance. All Artwork will be handled and packed professionally.'],
+      ['Promotion', 'The Gallery will present and promote the Artwork in good faith across its network and programming.'],
+      ['Image Use', 'The Artist retains all copyright and reproduction rights in the Artwork. The Gallery may reproduce Artwork images for promotional purposes with proper credit.'],
+      ['Artist Warranty', 'The Artist confirms authorship and ownership of the Artwork, and that the Artwork is free of all liens, claims and encumbrances.'],
+      ['Governing Law', 'This Agreement is governed by the laws of the State of New York. Any dispute arising under this Agreement shall be resolved in the state or federal courts located in New York County, New York.'],
+      ['Notices', 'Any notice required under this Agreement shall be in writing and may be delivered by email to the addresses listed above, and is effective upon sending.'],
+      ['Entire Agreement', 'This Agreement, including Exhibit A, is the entire agreement between the parties regarding the Artwork and supersedes any prior discussions. It may be amended only in writing signed by both parties. If any provision is found unenforceable, the remaining provisions remain in effect.'],
+      ['Counterparts & Signatures', 'This Agreement may be signed in counterparts, each of which is an original and together form one agreement. Signatures delivered electronically or as scanned copies are as valid as originals.'],
+    ].map(([title, body], i) => {
+      const ov = (d.cl || {})[title] || {};
+      const name = ov.t ?? title, text = ov.b ?? body;
+      const setOv = (k, v) => { const cur = this.state.data[A.id] || {}; const cl = { ...(cur.cl || {}) }; cl[title] = { ...(cl[title] || {}), [k]: v }; this.setField('cl', cl); };
+      return { num: (i + 1) + '.', name, body: text, title: (i + 1) + '. ' + name,
+        onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== name) setOv('t', v); },
+        onBody: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== text) setOv('b', v); } };
+    });
+    const view = this.state.view || 'agreements';
+    const GF = 'Both parties agree to work together collaboratively and in good faith, and to address any unforeseen circumstances reasonably.';
+    const edited = !!(d.cl && Object.keys(d.cl).length) || d.gf !== undefined || !!(d.tx && Object.keys(d.tx).length) || Object.keys(d).some(k => /^w[td]\d+$/.test(k));
+    const SPLIT = (() => {
+        const rep = val('rep', A.rep || '');
+        const prod = val('prod', typeof A.prod === 'string' ? A.prod : '');
+        let t = A.prod ? `Production costs${prod ? ' of ' + prod : ''} are first reimbursed to the Artist from the sale price; the balance is split 50% Gallery / 50% Artist.` : 'Sale price is split 50% Gallery / 50% Artist.';
+        if (rep) t += ` Any commission owed to ${rep} is paid from the Artist’s share.`;
+        return t + ' See Commission clause.';
+      })();
+    const TXD = {
+      heading: 'Art Consignment Agreement',
+      intro1: 'This Consignment Agreement (“Agreement”) is made as of',
+      intro2: 'by and between:',
+      gallery: 'CC Jasper, 131 Chrystie Street, New York, NY 10002',
+      exhibition: 'Death Is a Door, CC Jasper · opens ' + fmt(o),
+      term: months + ' months · ' + fmt(o) + ' – ' + fmt(e),
+      commission: '50% Gallery / 50% Artist',
+      repLine: 'Any commission owed to ' + (val('rep', A.rep || '') || 'the representing gallery') + ' is paid from the Artist’s share',
+      prodTail: 'reimbursed to Artist before commission split',
+      fullDetails: 'Full details of each work appear in Exhibit A.',
+      exTitle: 'Consigned Artwork',
+      exSub: 'Death Is a Door · CC Jasper · Opens ' + fmt(o),
+      split: SPLIT,
+      initials: 'Initial below to confirm the works and prices listed in this Exhibit.'
+    };
+    const TX = {}, ONTX = {};
+    Object.keys(TXD).forEach(k => {
+      TX[k] = (d.tx || {})[k] ?? TXD[k];
+      ONTX[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v === TX[k]) return; const cur = this.state.data[A.id] || {}; this.setField('tx', { ...(cur.tx || {}), [k]: v }); };
+    });
+    const vals = {
+      goodFaith: d.gf ?? GF,
+      tx: TX,
+      onTx: ONTX,
+      onGoodFaith: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== (d.gf ?? GF)) this.setField('gf', v); },
+      isEdited: edited,
+      resetText: () => { const cur = { ...(this.state.data[A.id] || {}) }; delete cur.cl; delete cur.gf; delete cur.tx; Object.keys(cur).filter(k => /^w[td]\d+$/.test(k)).forEach(k => delete cur[k]); this.save({ data: { ...this.state.data, [A.id]: cur } }); },
+      isAgreements: view === 'agreements',
+      isChecklist: view === 'checklist',
+      viewBtn: view === 'checklist' ? '← Back to Agreements' : 'Consignment Status Checklist →',
+      toggleView: () => this.save({ view: view === 'checklist' ? 'agreements' : 'checklist' }),
+      rows: ARTISTS.map(x => { const st = this.status(x); const setF = (k, v) => { const d = { ...this.state.data }; d[x.id] = { ...(d[x.id] || {}), [k]: v }; if (k === 'signed' && v) d[x.id].sent = true; this.save({ data: d }); }; return { name: x.name, rep: (this.state.data[x.id] || {}).rep ?? x.rep ?? '', works: x.works.map(w => w.t).join('; '), sent: st.sent, signed: st.signed, toggleSent: ev => setF('sent', ev.target.checked), toggleSigned: ev => setF('signed', ev.target.checked), open: () => this.save({ sel: x.id, view: 'agreements' }) }; }),
+      doPrint: () => window.print(),
+      doPdf: () => { this.setState({ hint: 'In the print dialog, choose “Save as PDF” as the destination.' }); setTimeout(() => window.print(), 50); },
+      actionHint: this.state.hint || 'Click any text in the agreement to edit it. Edits save per artist and carry into the Word, PDF and print versions.',
+      downloadDocx: async () => {
+        if (!window.JSZip) { this.setState({ hint: 'Still loading — try again in a moment.' }); return; }
+        const blob = await buildDocx(this._m);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'CC Jasper Consignment Agreement - ' + A.name + '.docx';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      },
+      gSigner: (this.state.data._gallery || {}).name ?? '',
+      gTitle: (this.state.data._gallery || {}).title ?? '',
+      onGSigner: ev => { const d = { ...this.state.data, _gallery: { ...(this.state.data._gallery || {}), name: ev.target.value } }; this.save({ data: d }); },
+      onGTitle: ev => { const d = { ...this.state.data, _gallery: { ...(this.state.data._gallery || {}), title: ev.target.value } }; this.save({ data: d }); },
+      tabs: ARTISTS.map(x => { const on2 = x.id === A.id; const st = this.status(x); return { name: x.name, pick: () => this.save({ sel: x.id }), bg: on2 ? '#e9e3d6' : 'transparent', fg: on2 ? '#16150f' : '#c4bcae', border: on2 ? '#e9e3d6' : '#3a3630', dot: st.signed ? '#5fa08f' : st.sent ? '#c9a24a' : 'transparent', dotBorder: st.signed ? '#5fa08f' : st.sent ? '#c9a24a' : '#6d675c' }; }),
+      progress: (() => { const all = ARTISTS.map(x => this.status(x)); return all.filter(z => z.signed).length + ' of ' + ARTISTS.length + ' signed · ' + all.filter(z => z.sent || z.signed).length + ' sent'; })(),
+      isSent: this.status(A).sent,
+      isSigned: this.status(A).signed,
+      toggleSent: ev => this.setField('sent', ev.target.checked),
+      toggleSigned: ev => { this.setField('signed', ev.target.checked); if (ev.target.checked && !this.status(A).sent) setTimeout(() => this.setField('sent', true), 0); },
+      artistName: A.name,
+      splitNote: TX.split,
+      hasProd: !!A.prod,
+      prodCost: val('prod', typeof A.prod === 'string' ? A.prod : ''),
+      onProd: ev => this.setField('prod', ev.target.value),
+      hasRep: !!val('rep', A.rep || ''),
+      repName: val('rep', A.rep || ''),
+      onRep: ev => this.setField('rep', ev.target.value),
+      repTitle: val('repTitle', ''),
+      onRepTitle: ev => this.setField('repTitle', ev.target.value),
+      repSigner: val('repSigner', ''),
+      onRepSigner: ev => this.setField('repSigner', ev.target.value),
+      openingLong: fmt(o),
+      termLine: `${months} months · ${fmt(o)} – ${fmt(e)}`,
+      f: { date: val('date', 'October 14, 2026'), legal: val('legal', A.name), address: val('address', ''), email: val('email', A.email), phone: val('phone', '') },
+      on,
+      clauses,
+      works: A.works.map((w, i) => ({ title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wt' + i, w.t)) this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wd' + i, w.d)) this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
+    };
+    this._m = vals;
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
