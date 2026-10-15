@@ -18,20 +18,30 @@
   body{margin:0;background:#0d0c0b}
   a{color:#7fa39b}
   a:hover{color:#a9c6bf}
-  @page{size:letter;margin:0.6in}
+  @page{size:letter;margin:0}
   @media print{
     body{background:#fff !important}
     [data-noprint]{display:none !important}
-    [data-sheet]{background:#fff !important;color:#16150f !important;padding:0 !important;min-height:0 !important}
+    [data-sheet]{background:#fff !important;color:#16150f !important;padding:0.5in 0.55in 0.3in !important;min-height:0 !important}
+    html,body{height:auto !important}
     [data-sheet] *{color:#16150f !important;border-color:#d6d1c6 !important}
     [data-sheet] [data-accent]{color:#2b6a60 !important}
     [data-sheet] [data-muted]{color:#5c574c !important}
     [data-sheet] img{background:#fff !important}
+    [data-grid] img{width:0.36in !important;height:0.36in !important}
+    [data-grid] > div,[data-grid] [data-row]{padding-top:3pt !important;padding-bottom:3pt !important}
+    [data-grid] [data-row] > span{gap:0 !important}
+    [data-grid] span{font-size:7.5pt !important;line-height:1.2 !important}
+    [data-grid] span[style*="italic"]{font-size:9.5pt !important}
+    [data-sheet] [data-foot]{display:none !important}
+    [data-sheet] h1{font-size:22pt !important;margin:4pt 0 0 !important;font-weight:300 !important}
+    [data-grid]{margin-top:14pt !important;border-top-width:0.75pt !important}
     [data-row]{break-inside:avoid}
   }
   [data-pinline]{display:none}
   @media (max-width:700px){
-    [data-grid]{grid-template-columns:2em 56px minmax(0,1fr) !important}
+    [data-grid]{grid-template-columns:3em 56px minmax(0,1fr) !important}
+    [data-grid][data-noimg]{grid-template-columns:3em minmax(0,1fr) !important}
     [data-pcol]{display:none !important}
     [data-pinline]{display:block}
     [data-grid] img{width:52px !important;height:52px !important}
@@ -41,6 +51,7 @@
 <div data-sheet="" style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
   <div data-noprint="" style="max-width:1100px;margin:0 auto 20px;display:flex;justify-content:flex-end;">
   <nav style="display:flex;flex-wrap:wrap;gap:1px;background:rgba(233,227,214,0.3);border:1px solid rgba(233,227,214,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;max-width:100%;box-sizing:border-box;">
+    <a href="../index.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Site</a>
     <a href="../install-plan.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Installation Design</a>
     <a href="checklist.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#e9e3d6;color:#0d0c0b;">Checklist</a>
     <a href="tracker.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Consignment Tracker</a>
@@ -48,10 +59,10 @@
   </div>
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
     <div>
-      <div data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door · CC Jasper</div>
+      <div data-accent="" data-pnone="" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door · CC Jasper</div>
       <h1 style="margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Exhibition Checklist</h1>
     </div>
-    <div data-muted="" style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ count }} works · opens November 12, 2026</div>
+    <div data-muted="" data-pnone="" style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ count }} works</div>
   </div>
   <div data-noprint="" style="max-width:1100px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 28px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;">
     <div style="display:flex;flex-direction:column;gap:6px;">
@@ -59,18 +70,18 @@
       <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ saveChanges }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ saveSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">{{ saveLabel }}</button><button onClick="{{ backToSaved }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Back to saved</button><button onClick="{{ resetEdits }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Revert to original</button></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices</div>
-      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOnSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOffSt }}border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Hide</button></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices · Images</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOnSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOffSt }}border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Hide</button></div><div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ imgsOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;{{ imgsOnSt }}" style-hover="color:#7fa39b;">Images</button><button onClick="{{ imgsOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;{{ imgsOffSt }}border-left:1px solid #3a3630;" style-hover="color:#7fa39b;">Text only</button></div></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;margin-left:auto;">
       <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
-      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Word / Pages</button><button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">PDF</button><button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Print</button></div>
+      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Word / Pages</button></div>
     </div>
   </div>
-  <div data-grid="" style="max-width:1100px;margin:20px auto 0;display:grid;grid-template-columns:{{ cols }};border-top:1px solid #6d675c;">
+  <div data-grid="" data-noimg="{{ noImgAttr }}" style="max-width:1100px;margin:20px auto 0;display:grid;grid-template-columns:{{ cols }};border-top:1px solid #6d675c;">
     <sc-for list="{{ rows }}" as="r" hint-placeholder-count="15">
-      <div data-row="" data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;padding:14px 10px 14px 0;border-bottom:1px solid #2a2722;">{{ r.num }}</div>
-      <div data-row="" style="padding:10px 0;border-bottom:1px solid #2a2722;"><img src="{{ r.img }}" alt="" loading="lazy" style="display:block;width:64px;height:64px;object-fit:contain;background:#16150f;"></div>
+      <div data-row="" data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;padding:14px 10px 14px 0;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:4px;"><span>{{ r.num }}</span><span data-muted="" style="font-size:8.5px;letter-spacing:0.08em;color:#6d675c;white-space:nowrap;">{{ r.loc }}</span></div>
+      <sc-if value="{{ imgs }}" hint-placeholder-val="{{ true }}"><div data-row="" style="padding:10px 0;border-bottom:1px solid #2a2722;"><img src="{{ r.img }}" alt="" loading="lazy" style="display:block;width:64px;height:64px;object-fit:contain;background:#16150f;"></div></sc-if>
       <div data-row="" style="padding:14px 10px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;">
         <span data-accent="" contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.artist }}" style-hover="background:#1c1a16;" style-focus="background:#24211c;" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#7fa39b;outline:none;">{{ r.artist }}</span>
         <span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.title }}" style-hover="background:#1c1a16;" style-focus="background:#24211c;" style="font-style:italic;font-size:16px;line-height:1.25;color:#f0eadd;outline:none;">{{ r.title }}</span>
@@ -82,18 +93,17 @@
       </sc-if>
     </sc-for>
   </div>
-  <div data-muted="" style="max-width:1100px;margin:14px auto 0;font-family:'Space Mono',monospace;font-size:10.5px;color:#6d675c;line-height:1.7;">{{ footnote }}</div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
-const ROWS = [{"num":"I","artist":"Doug Crocco","title":"Death Is a Door","line":"2026 · Metallic photo paper face-mounted to acrylic · 80 × 40 in, over 95 × 104 in wall vinyl · Edition of 3 + 1 AP","img":"art/doug-crocco-death-is-a-door-vinyl.jpg","price":"$10,000"},{"num":"II","artist":"unitedfutures","title":"The Ferry","line":"2026 · Moving image with sound, 30-second loop · dimensions variable · edition of 3","img":"art/unitedfutures-the-ferry-still.jpg","price":"On request"},{"num":"III","artist":"Ellen R Hanson","title":"Funeral Flowers","line":"2024 · Oil and acrylic primer on lycra · 22 × 59 in","img":"art/ellen-r-hanson-funeral-flowers-v3.jpg","price":"$6,000"},{"num":"IV","artist":"Benjamin Cowan","title":"Pigeon Feather, Stone, Giotto Crying Angels","line":"2024 · Oil and acrylic on canvas · 20 × 16 in · integrated wood frame","img":"art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg","price":"$4,000"},{"num":"V","artist":"Meredith Sellers","title":"Empty (After Holbein)","line":"2026 · Oil and latex paint on panel · 14½ × 29 × 1¾ in","img":"art/meredith-sellers-empty-after-holbein.jpg","price":"$6,000"},{"num":"VI","artist":"Henry Swanson","title":"Mask from Dallas","line":"2024 · Oil on canvas · 10 × 8 in","img":"art/henry-swanson-mask-from-dallas-v3.jpg","price":"On request"},{"num":"VII","artist":"Aramis Gutierrez","title":"Bletting, Bananas, and Mangos","line":"2026 · Oil on canvas · 48 × 54 in","img":"art/aramis-gutierrez-the-turning-v2.jpg","price":"$20,000"},{"num":"VIII","artist":"L","title":"Spell for blue light = 222D alignment","line":"2020 · Glass, oil, mixed materials · 5 × 5 × 10.75 in","img":"art/l-spell-for-blue-light-222d-alignment.jpg","price":"On request"},{"num":"IX","artist":"Charlie Goering","title":"Three-Tiered Camera Obscura","line":"2024 · Oil on canvas · 8 × 10 in","img":"art/charlie-goering-three-tiered-camera-obscura.jpg","price":"$1,500"},{"num":"X","artist":"Tom DeLaney","title":"Rage and Eternal","line":"2024 · Oil on linen · 18 × 24 in","img":"art/tom-delaney-rage-and-eternal-v2.jpg","price":"$3,300"},{"num":"XI","artist":"Meredith Sellers","title":"Desire (After Dieric Bouts)","line":"2026 · Oil and latex paint on panel · 14½ × 21 × 1¾ in","img":"art/meredith-sellers-desire-after-dieric-bouts.jpg","price":"$5,000"},{"num":"XII","artist":"Pandele Radu","title":"Down the River","line":"2026 · Acrylic on linen · 39.37 × 39.37 in","img":"art/pandele-radu-down-the-river-v2.jpg","price":"On request"},{"num":"XIII","artist":"Megan Lindeman","title":"New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","line":"2026 · Plaster, pigment, fragrance · 18.25 × 8.5 × 5.5 in","img":"art/megan-lindeman-new-enlightened-era-coming-soon.jpg","price":"$2,400"},{"num":"XIV","artist":"Kenny Curwood","title":"The World of Symbol Vanishes in the World as God","line":"2021 · Brass and solder · 10 × 6 in","img":"art/kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg","price":"$1,200"},{"num":"XV","artist":"Charlie Goering","title":"Metamorphosis, or The Dark Night of the Soul","line":"2025 · Oil on canvas · 72 × 72 in","img":"art/charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg","price":"$10,000"}];
+const ROWS = [{"num":"V","artist":"Meredith Sellers","title":"Empty (After Holbein)","line":"2026 · Oil and latex paint on panel · 14½ × 29 × 1¾ in","img":"art/meredith-sellers-empty-after-holbein.jpg","price":"$6,000","loc":"Wall A"},{"num":"XI","artist":"Meredith Sellers","title":"Desire (After Dieric Bouts)","line":"2026 · Oil and latex paint on panel · 14½ × 21 × 1¾ in","img":"art/meredith-sellers-desire-after-dieric-bouts.jpg","price":"$5,000","loc":"Wall A"},{"num":"II","artist":"unitedfutures","title":"The Ferry","line":"2026 · Moving image with sound, 30-second loop · dimensions variable · edition of 3","img":"art/unitedfutures-the-ferry-still.jpg","price":"On request","loc":"Wall B"},{"num":"XV","artist":"Charlie Goering","title":"Metamorphosis, or The Dark Night of the Soul","line":"2025 · Oil on canvas · 72 × 72 in","img":"art/charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg","price":"$10,000","loc":"Wall B"},{"num":"XII","artist":"Pandele Radu","title":"Down the River","line":"2026 · Acrylic on linen · 39.37 × 39.37 in","img":"art/pandele-radu-down-the-river-v2.jpg","price":"On request","loc":"Wall B"},{"num":"I","artist":"Doug Crocco","title":"Death Is a Door","line":"2026 · Metallic photo paper face-mounted to acrylic · 80 × 40 in, over 95 × 104 in wall vinyl · Edition of 3 + 1 AP","img":"art/doug-crocco-death-is-a-door-vinyl.jpg","price":"$10,000","loc":"Wall C"},{"num":"X","artist":"Tom DeLaney","title":"Rage and Eternal","line":"2024 · Oil on linen · 18 × 24 in","img":"art/tom-delaney-rage-and-eternal-v2.jpg","price":"$3,300","loc":"Wall D"},{"num":"VI","artist":"Henry Swanson","title":"Mask from Dallas","line":"2024 · Oil on canvas · 10 × 8 in","img":"art/henry-swanson-mask-from-dallas-v3.jpg","price":"On request","loc":"Wall D"},{"num":"VII","artist":"Aramis Gutierrez","title":"Bletting, Bananas, and Mangos","line":"2026 · Oil on canvas · 48 × 54 in","img":"art/aramis-gutierrez-the-turning-v2.jpg","price":"$20,000","loc":"Wall D"},{"num":"IX","artist":"Charlie Goering","title":"Three-Tiered Camera Obscura","line":"2024 · Oil on canvas · 8 × 10 in","img":"art/charlie-goering-three-tiered-camera-obscura.jpg","price":"$1,500","loc":"Wall D"},{"num":"IV","artist":"Benjamin Cowan","title":"Pigeon Feather, Stone, Giotto Crying Angels","line":"2024 · Oil and acrylic on canvas · 20 × 16 in · integrated wood frame","img":"art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg","price":"$4,000","loc":"Wall D"},{"num":"III","artist":"Ellen R Hanson","title":"Funeral Flowers","line":"2024 · Oil and acrylic primer on lycra · 22 × 59 in","img":"art/ellen-r-hanson-funeral-flowers-v3.jpg","price":"$6,000","loc":"Wall D"},{"num":"VIII","artist":"L","title":"Spell for blue light = 222D alignment","line":"2020 · Glass, oil, mixed materials · 5 × 5 × 10.75 in","img":"art/l-spell-for-blue-light-222d-alignment.jpg","price":"On request","loc":"Wall E"},{"num":"XIII","artist":"Megan Lindeman","title":"New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","line":"2026 · Plaster, pigment, fragrance · 18.25 × 8.5 × 5.5 in","img":"art/megan-lindeman-new-enlightened-era-coming-soon.jpg","price":"$2,400","loc":"Wall E"},{"num":"XIV","artist":"Kenny Curwood","title":"The World of Symbol Vanishes in the World as God","line":"2021 · Brass and solder · 10 × 6 in","img":"art/kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg","price":"$1,200","loc":"Wall E"}];
 const X = t => String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const run = (t, o = {}) => '<w:r><w:rPr><w:rFonts w:ascii="Garamond" w:hAnsi="Garamond"/>' + (o.b ? '<w:b/>' : '') + (o.i ? '<w:i/>' : '') + (o.c ? '<w:color w:val="' + o.c + '"/>' : '') + '<w:sz w:val="' + (o.sz || 20) + '"/></w:rPr><w:t xml:space="preserve">' + X(t) + '</w:t></w:r>';
+const run = (t, o = {}) => '<w:r><w:rPr><w:rFonts w:ascii="Garamond" w:hAnsi="Garamond"/>' + (o.b ? '<w:b/>' : '') + (o.i ? '<w:i/>' : '') + (o.c ? '<w:color w:val="' + o.c + '"/>' : '') + '<w:sz w:val="' + Math.round(o.sz || 20) + '"/></w:rPr><w:t xml:space="preserve">' + X(t) + '</w:t></w:r>';
 const para = (runs, o = {}) => '<w:p><w:pPr><w:spacing w:before="' + (o.before || 0) + '" w:after="' + (o.after ?? 60) + '"/>' + (o.right ? '<w:jc w:val="right"/>' : '') + '</w:pPr>' + runs + '</w:p>';
 const cell = (w, inner) => '<w:tc><w:tcPr><w:tcW w:w="' + w + '" w:type="dxa"/><w:tcBorders><w:bottom w:val="single" w:sz="4" w:color="D6D1C6"/></w:tcBorders></w:tcPr>' + inner + '</w:tc>';
 class Component extends DCLogic {
-  state = { show: true, ed: {}, saved: {}, justSaved: false };
-  componentDidMount() { try { const v = localStorage.getItem('didad-checklist-prices'); const e = JSON.parse(localStorage.getItem('didad-checklist-edits') || '{}'); const sv = JSON.parse(localStorage.getItem('didad-checklist-saved') || 'null'); this.setState({ show: v === null ? true : v === '1', ed: e, saved: sv || e }); } catch (e) {} }
+  state = { imgs: true, show: true, ed: {}, saved: {}, justSaved: false };
+  componentDidMount() { try { const v = localStorage.getItem('didad-checklist-prices'); const e = JSON.parse(localStorage.getItem('didad-checklist-edits') || '{}'); const sv = JSON.parse(localStorage.getItem('didad-checklist-saved') || 'null'); this.setState({ show: true, ed: e, saved: sv || e }); } catch (e) {} }
   setEd(i, k, v) { const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
   renderVals() {
     const show = this.state.show;
@@ -106,9 +116,12 @@ class Component extends DCLogic {
       saveChanges: () => { const sv = JSON.parse(JSON.stringify(this.state.ed)); this.setState({ saved: sv, justSaved: true }); try { localStorage.setItem('didad-checklist-saved', JSON.stringify(sv)); } catch (e) {} clearTimeout(this._t); this._t = setTimeout(() => this.setState({ justSaved: false }), 1600); },
       backToSaved: () => { const ed = JSON.parse(JSON.stringify(this.state.saved)); this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} },
       resetEdits: () => { this.setState({ ed: {} }); try { localStorage.setItem('didad-checklist-edits', '{}'); } catch (e) {} }, count: ROWS.length, showPrices: show,
-      cols: show ? '2.6em 72px minmax(0,1fr) auto' : '2.6em 72px minmax(0,1fr)',
+      imgs: this.state.imgs, noImgAttr: this.state.imgs ? undefined : '',
+      cols: (this.state.imgs ? '3.4em 72px ' : '3.4em ') + (show ? 'minmax(0,1fr) auto' : 'minmax(0,1fr)'),
+      imgsOn: () => this.setState({ imgs: true }), imgsOff: () => this.setState({ imgs: false }),
+      imgsOnSt: this.state.imgs ? 'background:transparent;color:#7fa39b;' : 'background:transparent;color:#8f887c;', imgsOffSt: this.state.imgs ? 'background:transparent;color:#8f887c;' : 'background:transparent;color:#7fa39b;',
       priceBtn: show ? 'Hide prices' : 'Show prices',
-      footnote: show ? 'Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Dimensions height × width (× depth).',
+      footnote: show ? 'Listed in installation order, clockwise from the entrance. Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Listed in installation order, clockwise from the entrance. Dimensions height × width (× depth).',
       showOnSt: show ? 'background:transparent;color:#7fa39b;' : 'background:transparent;color:#8f887c;',
       showOffSt: show ? 'background:transparent;color:#8f887c;' : 'background:transparent;color:#7fa39b;',
       saveSt: JSON.stringify(this.state.ed) !== JSON.stringify(this.state.saved) ? 'background:#7fa39b;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;',
@@ -119,25 +132,31 @@ class Component extends DCLogic {
       doPdf: () => { window.alert('In the print dialog, choose “Save as PDF” as the destination.'); window.print(); },
       downloadDocx: async () => {
         if (!window.JSZip) { window.alert('Still loading — try again in a moment.'); return; }
-        const W = show ? [700, 6400, 2200] : [700, 8600];
+        const IM = this.state.imgs, T = IM ? 1 : 0.8;
+        const W = IM ? (show ? [700, 1100, 5300, 2200] : [700, 1100, 7500]) : (show ? [900, 7300, 2000] : [900, 9300]);
+        const media = !IM ? [] : await Promise.all(rows.map(async (r, k) => { try { const im = new Image(); im.src = r.img; await im.decode(); const S = 300, sc = Math.min(S / im.naturalWidth, S / im.naturalHeight), w = Math.round(im.naturalWidth * sc), h = Math.round(im.naturalHeight * sc); const cv = document.createElement('canvas'); cv.width = w; cv.height = h; cv.getContext('2d').drawImage(im, 0, 0, w, h); const b64 = cv.toDataURL('image/jpeg', 0.85).split(',')[1]; return { b64, w, h, id: 'rImg' + k, n: k + 1 }; } catch (e) { return null; } }));
+        const pic = m => { if (!m) return para(''); const box = 685800, cx = Math.round(box * Math.min(1, m.w / m.h)), cy = Math.round(box * Math.min(1, m.h / m.w)); return '<w:p><w:pPr><w:spacing w:before="80" w:after="80"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="' + cx + '" cy="' + cy + '"/><wp:docPr id="' + m.n + '" name="Picture ' + m.n + '"/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="' + m.n + '" name="img' + m.n + '.jpg"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="' + m.id + '"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + cx + '" cy="' + cy + '"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>'; };
         let body = para(run('DEATH IS A DOOR · CC JASPER', { b: true, c: '2B6A60', sz: 18 }));
-        body += para(run('Exhibition Checklist', { sz: 40 }), { after: 80 });
-        body += para(run(ROWS.length + ' works · opens November 12, 2026', { c: '5C574C', sz: 18 }), { after: 240 });
+        body += para(run('Exhibition Checklist', { sz: IM ? 40 : 32 }), { after: IM ? 80 : 40 });
+        body += para(run(ROWS.length + ' works', { c: '5C574C', sz: 18 }), { after: IM ? 240 : 140 });
         let tbl = '<w:tbl><w:tblPr><w:tblW w:w="' + W.reduce((a, b) => a + b, 0) + '" w:type="dxa"/><w:tblLayout w:type="fixed"/></w:tblPr><w:tblGrid>' + W.map(w => '<w:gridCol w:w="' + w + '"/>').join('') + '</w:tblGrid>';
-        rows.forEach(r => {
-          tbl += '<w:tr><w:trPr><w:cantSplit/></w:trPr>' + cell(W[0], para(run(r.num, { c: '2B6A60', sz: 18 }), { before: 100 }))
-            + cell(W[1], para(run(r.artist.toUpperCase(), { c: '2B6A60', sz: 16 }), { before: 100, after: 20 }) + para(run(r.title, { i: true, sz: 24 }), { after: 20 }) + para(run(r.line, { c: '5C574C', sz: 18 }), { after: 100 }))
-            + (show ? cell(W[2], para(run(r.price, { sz: 18 }), { before: 100, right: true })) : '') + '</w:tr>';
+        rows.forEach((r, k) => {
+          tbl += '<w:tr><w:trPr><w:cantSplit/></w:trPr>' + cell(W[0], para(run(r.num, { c: '2B6A60', sz: 18 * T }), { before: Math.round(100 * T), after: 0 }) + para(run(r.loc, { c: '6D675C', sz: 14 * T })))
+            + (IM ? cell(W[1], pic(media[k])) : '')
+            + cell(W[IM ? 2 : 1], para(run(r.artist.toUpperCase(), { c: '2B6A60', sz: IM ? 16 : 14 }), { before: IM ? 100 : 60, after: IM ? 20 : 0 }) + para(run(r.title, { i: true, sz: IM ? 24 : 20 }), { after: IM ? 20 : 0 }) + para(run(r.line, { c: '5C574C', sz: IM ? 18 : 15 }), { after: IM ? 100 : 60 }))
+            + (show ? cell(W[IM ? 3 : 2], para(run(r.price, { sz: IM ? 18 : 16 }), { before: IM ? 100 : 60, right: true })) : '') + '</w:tr>';
         });
         tbl += '</w:tbl>';
-        body += tbl + para(run(show ? 'Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Dimensions height × width (× depth).', { c: '6D675C', sz: 16 }), { before: 200 });
-        const doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' + body + '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1008" w:right="1008" w:bottom="1008" w:left="1008" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr></w:body></w:document>';
+        body += tbl;
+        const doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>' + body + '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="' + (IM ? 1008 : 720) + '" w:right="1008" w:bottom="' + (IM ? 1008 : 576) + '" w:left="1008" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr></w:body></w:document>';
         const zip = new window.JSZip();
-        zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>');
+        zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>');
         zip.file('_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>');
         zip.file('word/document.xml', doc);
+        zip.file('word/_rels/document.xml.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' + media.filter(Boolean).map(m => '<Relationship Id="' + m.id + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/img' + m.n + '.jpg"/>').join('') + '</Relationships>');
+        media.filter(Boolean).forEach(m => zip.file('word/media/img' + m.n + '.jpg', m.b64, { base64: true }));
         const blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Death Is a Door - Checklist' + (show ? '' : ' (no prices)') + '.docx'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Death Is a Door - Checklist' + (IM ? '' : ' (text only)') + (show ? '' : ' (no prices)') + '.docx'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
       }
     };
   }

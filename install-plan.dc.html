@@ -19,6 +19,7 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
 <div style="max-width:1440px;margin:0 auto;padding:28px clamp(20px,4vw,56px) 96px;display:flex;flex-direction:column;gap:72px;">
   <div style="display:flex;justify-content:flex-end;margin-bottom:-48px;">
   <nav style="display:flex;flex-wrap:wrap;gap:1px;background:rgba(233,227,214,0.3);border:1px solid rgba(233,227,214,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;max-width:100%;box-sizing:border-box;">
+    <a href="index.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Site</a>
     <a href="install-plan.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#e9e3d6;color:#0d0c0b;">Installation Design</a>
     <a href="agreements/checklist.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Checklist</a>
     <a href="agreements/tracker.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Consignment Tracker</a>
@@ -239,9 +240,9 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
 const H = 113;
 const WALLS = [
   { id: 'entry', letter: 'A', name: 'Left entry wall', len: 208.57 },
-  { id: 'center', letter: 'B', name: 'Center back wall', len: 137.24 },
-  { id: 'right', letter: 'C', name: 'Right wall', len: 551.54 },
-  { id: 'back', letter: 'D', name: 'Left back wall', len: 334.5 },
+  { id: 'center', letter: 'C', name: 'Center back wall', len: 137.24 },
+  { id: 'right', letter: 'D', name: 'Right wall', len: 551.54 },
+  { id: 'back', letter: 'B', name: 'Left back wall', len: 334.5 },
   { id: 'floor', letter: 'E', name: 'Center of room · freestanding', len: 108, floor: true }
 ];
 const WORKS = [
@@ -527,7 +528,7 @@ class Component extends DCLogic {
         const above = WORKS.find(k => k.stackOn === w.id);
         const x = base ? (pos[base.id] ?? 0) + (base.w - w.w) / 2 : pos[w.id] ?? 0;
         const stackH = above ? w.h + above.stackGap + above.h : 0;
-        const bottom = w.plinth ? w.plinth.h : w.floorMount ? 0 : base ? c - (base.h + w.stackGap + w.h) / 2 + base.h + w.stackGap : above ? c - stackH / 2 : c - w.h / 2;
+        const bottom = w.plinth ? w.plinth.h : w.floorMount ? 0 : base ? c - (base.h + w.stackGap + w.h) / 2 + base.h + w.stackGap : above ? c - stackH / 2 : (w.cl ?? c) - w.h / 2;
         const px = x + w.w / 2 - (w.plinth ? w.plinth.w / 2 : 0);
         return {
           ...w, x, bottom,
@@ -535,7 +536,7 @@ class Component extends DCLogic {
           left: pct(x, L), w: pct(w.w, L), h: pct(w.h, H), top: pct(H - bottom - w.h, H),
           plLeft: w.plinth ? pct(px, L) : '0%', plW: w.plinth ? pct(w.plinth.w, L) : '0%', plTop: w.plinth ? pct(H - w.plinth.h, H) : '100%',
           tip: w.num + ' · ' + w.title, wireLeft: pct(x + w.w / 2, L), wireH: w.hang ? pct(H - bottom - w.h, H) : '0%',
-          posLabel: wl.floor ? (w.hang ? 'Suspended from ceiling · center ' + c + '" AFF' : 'Pedestal ' + w.plinth.w + '" wide × ' + w.plinth.h + '" high · center of room') : 'Left edge ' + fmt(x) + ' from wall start · ' + (base ? 'stacked ' + w.stackGap + '" above ' + base.num + ' · bottom ' + fmt(bottom) + ' AFF' : above ? 'bottom of stack · bottom ' + fmt(bottom) + ' AFF' : w.plinth ? 'plinth ' + w.plinth.h + '" high' : w.floorMount ? 'starts at floor · top 95" AFF' : 'center ' + c + '" AFF'),
+          posLabel: wl.floor ? (w.hang ? 'Suspended from ceiling · center ' + (w.cl ?? c) + '" AFF' : 'Pedestal ' + w.plinth.w + '" wide × ' + w.plinth.h + '" high · center of room') : 'Left edge ' + fmt(x) + ' from wall start · ' + (base ? 'stacked ' + w.stackGap + '" above ' + base.num + ' · bottom ' + fmt(bottom) + ' AFF' : above ? 'bottom of stack · bottom ' + fmt(bottom) + ' AFF' : w.plinth ? 'plinth ' + w.plinth.h + '" high' : w.floorMount ? 'starts at floor · top 95" AFF' : 'center ' + c + '" AFF'),
           onDown: e => this.down(e, base || WORKS.find(k => k.id === w.id), L)
         };
       });
