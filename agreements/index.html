@@ -49,6 +49,7 @@
       <button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:#2b6a60;color:#fff;border:1px solid #2b6a60;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="background:#1d4a43;border-color:#1d4a43;">Word / Pages</button>
       <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">PDF</button>
       <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">Print</button>
+      <button onClick="{{ downloadAll }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:9px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ allLabel }}</button>
     </div>
     <div style="display:flex;gap:14px;align-items:center;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#c4bcae;margin-left:auto;">
       <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" checked="{{ isSent }}" onChange="{{ toggleSent }}" style="accent-color:#c9a24a;width:15px;height:15px;cursor:pointer;">Sent</label>
@@ -402,6 +403,23 @@ class Component extends DCLogic {
       doPrint: () => window.print(),
       doPdf: () => { this.setState({ hint: 'In the print dialog, choose “Save as PDF” as the destination.' }); setTimeout(() => window.print(), 50); },
       actionHint: this.state.hint || 'Click any text in the agreement to edit it. Edits save per artist and carry into the Word, PDF and print versions.',
+      allLabel: this.state.zipping ? 'Building zip…' : 'All artists (.zip)',
+      downloadAll: async () => {
+        if (!window.JSZip) { this.setState({ hint: 'Still loading — try again in a moment.' }); return; }
+        if (this.state.zipping) return;
+        this.setState({ zipping: true, hint: 'Building ' + ARTISTS.length + ' agreements…' });
+        try {
+          const zip = new window.JSZip(); const prev = this.state;
+          for (const x of ARTISTS) {
+            this.state = { ...prev, sel: x.id }; const m = this.renderVals(); this.state = prev;
+            zip.file('CC Jasper Consignment Agreement - ' + x.name.replace(/[\\/:*?"<>|]/g, '') + '.docx', await buildDocx(m));
+          }
+          const blob = await zip.generateAsync({ type: 'blob' });
+          const el = document.createElement('a'); el.href = URL.createObjectURL(blob); el.download = 'Death Is a Door - Consignment Agreements.zip';
+          document.body.appendChild(el); el.click(); el.remove(); setTimeout(() => URL.revokeObjectURL(el.href), 4000);
+          this.setState({ zipping: false, hint: 'Downloaded ' + ARTISTS.length + ' agreements as a zip.' });
+        } catch (e) { this.setState({ zipping: false, hint: 'Zip failed — try again.' }); }
+      },
       downloadDocx: async () => {
         if (!window.JSZip) { this.setState({ hint: 'Still loading — try again in a moment.' }); return; }
         const blob = await buildDocx(this._m);
