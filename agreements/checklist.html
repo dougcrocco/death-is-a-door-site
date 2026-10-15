@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Checklist · Death Is a Door · CC Jasper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<style>
+  body{margin:0;background:#0d0c0b}
+  a{color:#7fa39b}
+  a:hover{color:#a9c6bf}
+  @page{size:letter;margin:0.6in}
+  @media print{
+    body{background:#fff !important}
+    [data-noprint]{display:none !important}
+    [data-sheet]{background:#fff !important;color:#16150f !important;padding:0 !important;min-height:0 !important}
+    [data-sheet] *{color:#16150f !important;border-color:#d6d1c6 !important}
+    [data-sheet] [data-accent]{color:#2b6a60 !important}
+    [data-sheet] [data-muted]{color:#5c574c !important}
+    [data-sheet] img{background:#fff !important}
+    [data-row]{break-inside:avoid}
+  }
+</style>
+</helmet>
+<div data-sheet="" style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
+  <div data-noprint="" style="max-width:1100px;margin:0 auto 20px;display:flex;justify-content:flex-end;">
+  <nav style="display:flex;flex-wrap:nowrap;align-items:center;gap:0;font-family:'Space Mono',monospace;font-size:clamp(9px,1.1vw,11px);letter-spacing:clamp(0.06em,0.4vw,0.16em);text-transform:uppercase;border:1px solid rgba(233,227,214,0.3);width:max-content;max-width:100%;">
+    <a href="../install-plan.html" style="flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:9px clamp(8px,1.6vw,16px);text-decoration:none;color:#e9e3d6;">Installation Design</a>
+    <a href="tracker.html" style="flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:9px clamp(8px,1.6vw,16px);text-decoration:none;border-left:1px solid rgba(233,227,214,0.3);color:#e9e3d6;">Consignment Tracker</a>
+    <a href="checklist.html" style="flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:9px clamp(8px,1.6vw,16px);text-decoration:none;border-left:1px solid rgba(233,227,214,0.3);background:#e9e3d6;color:#0d0c0b;">Checklist</a>
+  </nav>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
+    <div>
+      <div data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door · CC Jasper</div>
+      <h1 style="margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Exhibition Checklist</h1>
+    </div>
+    <div data-muted="" style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ count }} works · opens November 12, 2026</div>
+  </div>
+  <div data-noprint="" style="max-width:1100px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 28px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;">
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:baseline;gap:10px;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Edits</div><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:{{ statusC }};">{{ status }}</span></div>
+      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ saveChanges }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ saveSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">{{ saveLabel }}</button><button onClick="{{ backToSaved }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Back to saved</button><button onClick="{{ resetEdits }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Revert to original</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices</div>
+      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOnSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOffSt }}border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Hide</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-left:auto;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
+      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Word / Pages</button><button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">PDF</button><button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Print</button></div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:20px auto 0;display:grid;grid-template-columns:{{ cols }};border-top:1px solid #6d675c;">
+    <sc-for list="{{ rows }}" as="r" hint-placeholder-count="15">
+      <div data-row="" data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;padding:14px 10px 14px 0;border-bottom:1px solid #2a2722;">{{ r.num }}</div>
+      <div data-row="" style="padding:10px 0;border-bottom:1px solid #2a2722;"><img src="{{ r.img }}" alt="" loading="lazy" style="display:block;width:64px;height:64px;object-fit:contain;background:#16150f;"></div>
+      <div data-row="" style="padding:14px 10px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;">
+        <span data-accent="" contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.artist }}" style-hover="background:#1c1a16;" style-focus="background:#24211c;" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#7fa39b;outline:none;">{{ r.artist }}</span>
+        <span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.title }}" style-hover="background:#1c1a16;" style-focus="background:#24211c;" style="font-style:italic;font-size:16px;line-height:1.25;color:#f0eadd;outline:none;">{{ r.title }}</span>
+        <span data-muted="" contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.line }}" style-hover="background:#1c1a16;" style-focus="background:#24211c;" style="font-size:13px;color:#8f887c;line-height:1.45;outline:none;">{{ r.line }}</span>
+      </div>
+      <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}">
+        <div data-row="" style="padding:14px 0 14px 10px;border-bottom:1px solid #2a2722;text-align:right;font-family:'Space Mono',monospace;font-size:12px;color:#e9e3d6;white-space:nowrap;"><span contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.price }}" style-hover="background:#1c1a16;" style-focus="background:#24211c;" style="outline:none;display:inline-block;min-width:3em;">{{ r.price }}</span></div>
+      </sc-if>
+    </sc-for>
+  </div>
+  <div data-muted="" style="max-width:1100px;margin:14px auto 0;font-family:'Space Mono',monospace;font-size:10.5px;color:#6d675c;line-height:1.7;">{{ footnote }}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ROWS = [{"num":"I","artist":"Doug Crocco","title":"Death Is a Door","line":"2026 · Metallic photo paper face-mounted to acrylic · 80 × 40 in, over 95 × 104 in wall vinyl · Edition of 3 + 1 AP","img":"art/doug-crocco-death-is-a-door-vinyl.jpg","price":"$10,000 · ed. 1/3"},{"num":"II","artist":"unitedfutures","title":"The Ferry","line":"2026 · Moving image with sound, 30-second loop · dimensions variable · edition of 3","img":"art/unitedfutures-the-ferry-still.jpg","price":"On request"},{"num":"III","artist":"Ellen R Hanson","title":"Funeral Flowers","line":"2024 · Oil and acrylic primer on lycra · 22 × 59 in","img":"art/ellen-r-hanson-funeral-flowers-v3.jpg","price":"$6,000"},{"num":"IV","artist":"Benjamin Cowan","title":"Pigeon Feather, Stone, Giotto Crying Angels","line":"2024 · Oil and acrylic on canvas · 20 × 16 in · integrated wood frame","img":"art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg","price":"On request"},{"num":"V","artist":"Meredith Sellers","title":"Empty (After Holbein)","line":"2026 · Oil and latex paint on panel · 14½ × 29 × 1¾ in","img":"art/meredith-sellers-empty-after-holbein.jpg","price":"$6,000"},{"num":"VI","artist":"Henry Swanson","title":"Mask from Dallas","line":"2024 · Oil on canvas · 10 × 8 in","img":"art/henry-swanson-mask-from-dallas-v3.jpg","price":"On request"},{"num":"VII","artist":"Aramis Gutierrez","title":"Bletting, Bananas, and Mangos","line":"2026 · Oil on canvas · 48 × 54 in","img":"art/aramis-gutierrez-the-turning-v2.jpg","price":"$20,000"},{"num":"VIII","artist":"L","title":"Spell for blue light = 222D alignment","line":"2020 · Glass, oil, mixed materials · 5 × 5 × 10.75 in","img":"art/l-spell-for-blue-light-222d-alignment.jpg","price":"On request"},{"num":"IX","artist":"Charlie Goering","title":"Three-Tiered Camera Obscura","line":"2024 · Oil on canvas · 8 × 10 in","img":"art/charlie-goering-three-tiered-camera-obscura.jpg","price":"$1,500"},{"num":"X","artist":"Tom DeLaney","title":"Rage and Eternal","line":"2024 · Oil on linen · 18 × 24 in","img":"art/tom-delaney-rage-and-eternal-v2.jpg","price":"$3,300"},{"num":"XI","artist":"Meredith Sellers","title":"Desire (After Dieric Bouts)","line":"2026 · Oil and latex paint on panel · 14½ × 21 × 1¾ in","img":"art/meredith-sellers-desire-after-dieric-bouts.jpg","price":"$5,000"},{"num":"XII","artist":"Pandele Radu","title":"Down the River","line":"2026 · Acrylic on linen · 39.37 × 39.37 in","img":"art/pandele-radu-down-the-river-v2.jpg","price":"On request"},{"num":"XIII","artist":"Megan Lindeman","title":"New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","line":"2026 · Plaster, pigment, fragrance · 18.25 × 8.5 × 5.5 in","img":"art/megan-lindeman-new-enlightened-era-coming-soon.jpg","price":"$2,400"},{"num":"XIV","artist":"Kenny Curwood","title":"The World of Symbol Vanishes in the World as God","line":"2021 · Brass and solder · 10 × 6 in","img":"art/kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg","price":"$1,200"},{"num":"XV","artist":"Charlie Goering","title":"Metamorphosis, or The Dark Night of the Soul","line":"2025 · Oil on canvas · 72 × 72 in","img":"art/charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg","price":"$10,000"}];
+const X = t => String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const run = (t, o = {}) => '<w:r><w:rPr><w:rFonts w:ascii="Garamond" w:hAnsi="Garamond"/>' + (o.b ? '<w:b/>' : '') + (o.i ? '<w:i/>' : '') + (o.c ? '<w:color w:val="' + o.c + '"/>' : '') + '<w:sz w:val="' + (o.sz || 20) + '"/></w:rPr><w:t xml:space="preserve">' + X(t) + '</w:t></w:r>';
+const para = (runs, o = {}) => '<w:p><w:pPr><w:spacing w:before="' + (o.before || 0) + '" w:after="' + (o.after ?? 60) + '"/>' + (o.right ? '<w:jc w:val="right"/>' : '') + '</w:pPr>' + runs + '</w:p>';
+const cell = (w, inner) => '<w:tc><w:tcPr><w:tcW w:w="' + w + '" w:type="dxa"/><w:tcBorders><w:bottom w:val="single" w:sz="4" w:color="D6D1C6"/></w:tcBorders></w:tcPr>' + inner + '</w:tc>';
+class Component extends DCLogic {
+  state = { show: true, ed: {}, saved: {}, justSaved: false };
+  componentDidMount() { try { const v = localStorage.getItem('didad-checklist-prices'); const e = JSON.parse(localStorage.getItem('didad-checklist-edits') || '{}'); const sv = JSON.parse(localStorage.getItem('didad-checklist-saved') || 'null'); this.setState({ show: v === null ? true : v === '1', ed: e, saved: sv || e }); } catch (e) {} }
+  setEd(i, k, v) { const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
+  renderVals() {
+    const show = this.state.show;
+    const rows = ROWS.map((r0, i) => { const o = this.state.ed[i] || {}; const r = { ...r0, ...o, on: {} }; ['artist', 'title', 'line', 'price'].forEach(k => { r.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== r[k]) this.setEd(i, k, v); }; }); return r; });
+    return {
+      rows,
+      saveLabel: this.state.justSaved ? 'Saved ✓' : 'Save changes',
+      status: JSON.stringify(this.state.ed) === JSON.stringify(this.state.saved) ? (Object.keys(this.state.ed).length ? 'Saved edits' : 'Original') : 'Unsaved · click text to edit',
+      statusC: JSON.stringify(this.state.ed) === JSON.stringify(this.state.saved) ? '#7fa39b' : '#c9a24a',
+      saveChanges: () => { const sv = JSON.parse(JSON.stringify(this.state.ed)); this.setState({ saved: sv, justSaved: true }); try { localStorage.setItem('didad-checklist-saved', JSON.stringify(sv)); } catch (e) {} clearTimeout(this._t); this._t = setTimeout(() => this.setState({ justSaved: false }), 1600); },
+      backToSaved: () => { const ed = JSON.parse(JSON.stringify(this.state.saved)); this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} },
+      resetEdits: () => { this.setState({ ed: {} }); try { localStorage.setItem('didad-checklist-edits', '{}'); } catch (e) {} }, count: ROWS.length, showPrices: show,
+      cols: show ? '2.6em 72px minmax(0,1fr) auto' : '2.6em 72px minmax(0,1fr)',
+      priceBtn: show ? 'Hide prices' : 'Show prices',
+      footnote: show ? 'Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Dimensions height × width (× depth).',
+      showOnSt: show ? 'background:transparent;color:#7fa39b;' : 'background:transparent;color:#8f887c;',
+      showOffSt: show ? 'background:transparent;color:#8f887c;' : 'background:transparent;color:#7fa39b;',
+      saveSt: JSON.stringify(this.state.ed) !== JSON.stringify(this.state.saved) ? 'background:#7fa39b;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;',
+      showPricesOn: () => { this.setState({ show: true }); try { localStorage.setItem('didad-checklist-prices', '1'); } catch (e) {} },
+      showPricesOff: () => { this.setState({ show: false }); try { localStorage.setItem('didad-checklist-prices', '0'); } catch (e) {} },
+      togglePrices: () => { const v = !show; this.setState({ show: v }); try { localStorage.setItem('didad-checklist-prices', v ? '1' : '0'); } catch (e) {} },
+      doPrint: () => window.print(),
+      doPdf: () => { window.alert('In the print dialog, choose “Save as PDF” as the destination.'); window.print(); },
+      downloadDocx: async () => {
+        if (!window.JSZip) { window.alert('Still loading — try again in a moment.'); return; }
+        const W = show ? [700, 6400, 2200] : [700, 8600];
+        let body = para(run('DEATH IS A DOOR · CC JASPER', { b: true, c: '2B6A60', sz: 18 }));
+        body += para(run('Exhibition Checklist', { sz: 40 }), { after: 80 });
+        body += para(run(ROWS.length + ' works · opens November 12, 2026', { c: '5C574C', sz: 18 }), { after: 240 });
+        let tbl = '<w:tbl><w:tblPr><w:tblW w:w="' + W.reduce((a, b) => a + b, 0) + '" w:type="dxa"/><w:tblLayout w:type="fixed"/></w:tblPr><w:tblGrid>' + W.map(w => '<w:gridCol w:w="' + w + '"/>').join('') + '</w:tblGrid>';
+        rows.forEach(r => {
+          tbl += '<w:tr><w:trPr><w:cantSplit/></w:trPr>' + cell(W[0], para(run(r.num, { c: '2B6A60', sz: 18 }), { before: 100 }))
+            + cell(W[1], para(run(r.artist.toUpperCase(), { c: '2B6A60', sz: 16 }), { before: 100, after: 20 }) + para(run(r.title, { i: true, sz: 24 }), { after: 20 }) + para(run(r.line, { c: '5C574C', sz: 18 }), { after: 100 }))
+            + (show ? cell(W[2], para(run(r.price, { sz: 18 }), { before: 100, right: true })) : '') + '</w:tr>';
+        });
+        tbl += '</w:tbl>';
+        body += tbl + para(run(show ? 'Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Dimensions height × width (× depth).', { c: '6D675C', sz: 16 }), { before: 200 });
+        const doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' + body + '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1008" w:right="1008" w:bottom="1008" w:left="1008" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr></w:body></w:document>';
+        const zip = new window.JSZip();
+        zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>');
+        zip.file('_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>');
+        zip.file('word/document.xml', doc);
+        const blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Death Is a Door - Checklist' + (show ? '' : ' (no prices)') + '.docx'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
