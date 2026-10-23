@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#0d0c0b}
+  a{color:#7fa39b}
+  a:hover{color:#a9c6bf}
+  [contenteditable]:empty:before{content:'—';color:#4a4640}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
+  <div style="max-width:1400px;margin:0 auto 20px;display:flex;justify-content:flex-end;">
+  <nav style="display:flex;flex-wrap:wrap;gap:1px;background:rgba(233,227,214,0.3);border:1px solid rgba(233,227,214,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;max-width:100%;box-sizing:border-box;">
+    <a href="../index.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Site</a>
+    <a href="../install-plan.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Installation Design</a>
+    <a href="checklist.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Checklist</a>
+    <a href="tracker.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Consignment Tracker</a>
+    <a href="shipping.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#e9e3d6;color:#0d0c0b;">Shipping Tracker</a>
+  </nav>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;max-width:1400px;margin:0 auto;">
+    <div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door · CC Jasper</div>
+      <h1 style="margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Shipping Tracker</h1>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ summary }}</div>
+  </div>
+
+  <div style="max-width:1400px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 32px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:11px;">
+    <div style="flex-basis:100%;font-family:'Space Mono',monospace;font-size:11px;color:{{ legC }};letter-spacing:0.08em;">{{ legLine }}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:baseline;gap:10px;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Edits</div><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:{{ statusC }};">{{ status }}</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">Save version</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">View</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ toggleRet }}" role="switch" aria-checked="{{ ret }}" style="display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:{{ retBg }};color:{{ retFg }};border:1px solid #6d675c;" style-hover="border-color:#7fa39b;"><span style="position:relative;display:inline-block;width:24px;height:12px;border-radius:6px;background:{{ trackBg }};"><span style="position:absolute;top:2px;left:{{ knobL }};width:8px;height:8px;border-radius:50%;background:{{ retFg }};"></span></span>Return shipping</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Data file</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportFile }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Export file</button><button onClick="{{ importFile }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Import file</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-left:auto;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">PDF</button><button onClick="{{ exportDoc }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Word / Pages</button><button onClick="{{ downloadCsv }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">CSV</button></div>
+    </div>
+    <sc-if value="{{ hasVersions }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border-top:1px solid #2a2722;padding-top:10px;">
+        <span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;margin-right:4px;">Versions</span>
+        <sc-for list="{{ versions }}" as="v" hint-placeholder-count="0">
+          <span style="display:flex;align-items:center;border:1px solid {{ v.border }};white-space:nowrap;">
+            <button onClick="{{ v.load }}" style="font-family:'Space Mono',monospace;font-size:10.5px;background:{{ v.bg }};color:{{ v.fg }};border:none;padding:5px 9px;cursor:pointer;" style-hover="color:#7fa39b;">{{ v.label }}</button>
+          </span>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="flex-basis:100%;border-top:1px solid #2a2722;padding-top:10px;">
+      <button onClick="{{ toggleLog }}" aria-expanded="{{ logOpen }}" style="display:flex;align-items:center;gap:10px;width:100%;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:2px 0;cursor:pointer;text-align:left;" style-hover="color:#7fa39b;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-size:13px;line-height:1;">{{ logIcon }}</span>Updates<span style="color:#8f887c;">{{ logCount }}</span>
+      </button>
+      <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;">
+          <button onClick="{{ revertLast }}" disabled="{{ noVersions }}" title="{{ revertTitle }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#c9a24a;color:#c9a24a;">Revert to last saved</button>
+          <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#c9a24a;color:#c9a24a;">Return to original</button>
+        </div>
+        <div style="margin-top:10px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;border-top:1px solid #2a2722;">
+          <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;color:#6d675c;">No updates yet.</div></sc-if>
+          <sc-for list="{{ log }}" as="e" hint-placeholder-count="0">
+            <div style="display:grid;grid-template-columns:9.5em minmax(8em,0.8fr) minmax(0,2fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;">
+              <span style="color:#8f887c;white-space:nowrap;">{{ e.when }}</span>
+              <span style="color:{{ e.c }};">{{ e.who }}</span>
+              <span style="font-family:'EB Garamond',serif;font-size:13.5px;color:#c4bcae;word-break:break-word;">{{ e.what }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="max-width:1400px;margin:16px auto 0;overflow-x:auto;">
+    <div style="display:grid;grid-template-columns:{{ cols }};min-width:1380px;font-size:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px 0;border-bottom:1px solid #6d675c;">No.</div>
+      <div style="border-bottom:1px solid #6d675c;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Artist · Work</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Notes</div>
+      <sc-if value="{{ ret }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 0 8px;border-bottom:1px solid #6d675c;text-align:center;">Sold</div></sc-if>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">{{ fromLabel }}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Carrier</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Tracking no.</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Shipped</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Expected</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px;border-bottom:1px solid #6d675c;">Status</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 0 8px;border-bottom:1px solid #6d675c;text-align:center;">Done</div>
+
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="13">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;padding:12px 8px 12px 0;border-bottom:1px solid #2a2722;">{{ r.no }}</div>
+        <div style="padding:10px 0;border-bottom:1px solid #2a2722;"><img src="{{ r.img }}" alt="" loading="lazy" style="display:block;width:56px;height:56px;object-fit:contain;background:#16150f;"></div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;">
+          <div style="color:#f0eadd;">{{ r.artist }}</div>
+          <div style="font-style:italic;font-size:13px;color:#8f887c;">{{ r.title }}</div>
+          <div style="margin-top:4px;display:flex;flex-direction:column;gap:1px;font-size:12px;color:#c4bcae;word-break:break-word;">
+            <sc-if value="{{ r.email }}" hint-placeholder-val="{{ false }}"><a href="{{ r.mailto }}" style="text-decoration:none;">{{ r.email }}</a></sc-if>
+            <div style="color:#8f887c;">{{ r.contact }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">{{ r.phone }}</div>
+          </div>
+        </div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.notes }}" style="outline:none;font-size:13px;color:#e9e3d6;line-height:1.4;white-space:pre-line;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.notes }}</div></div>
+        <sc-if value="{{ ret }}" hint-placeholder-val="{{ false }}"><div style="padding:8px 0;border-bottom:1px solid #2a2722;display:flex;justify-content:center;"><button onClick="{{ r.togSold }}" aria-label="Toggle sold" style="width:34px;height:34px;background:transparent;border:none;cursor:pointer;font-size:16px;color:{{ r.soldC }};" style-hover="background:#1c1a16;">{{ r.sold }}</button></div></sc-if>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.from }}" style="outline:none;font-size:13px;color:#c4bcae;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.from }}</div></div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.carrier }}" style="outline:none;font-size:13px;color:#c4bcae;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.carrier }}</div>
+          <sc-if value="{{ r.carrierPhone }}" hint-placeholder-val="{{ false }}"><a href="{{ r.carrierTel }}" style="font-family:'Space Mono',monospace;font-size:10.5px;text-decoration:none;white-space:nowrap;">{{ r.carrierPhone }}</a></sc-if>
+          <sc-if value="{{ r.carrierNote }}" hint-placeholder-val="{{ false }}"><div style="font-size:11.5px;color:#8f887c;word-break:break-word;">{{ r.carrierNote }}</div></sc-if>
+        </div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:4px;">
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.tracking }}" style="outline:none;font-family:'Space Mono',monospace;font-size:11px;color:#e9e3d6;word-break:break-all;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.tracking }}</div>
+          <sc-if value="{{ r.hasLink }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ r.link }}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">Track →</a>
+          </sc-if>
+        </div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.shipDate }}" style="outline:none;font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.shipDate }}</div></div>
+        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ r.on.eta }}" style="outline:none;font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;border-radius:2px;" style-hover="background:#1c1a16;" style-focus="background:#24211c;">{{ r.eta }}</div></div>
+        <div style="padding:9px 8px;border-bottom:1px solid #2a2722;"><button onClick="{{ r.next }}" title="Click to advance" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;background:transparent;color:{{ r.sc }};border:1px solid {{ r.sc }};padding:6px 8px;cursor:pointer;white-space:nowrap;width:100%;text-align:left;" style-hover="background:#1c1a16;">{{ r.status }}</button></div>
+        
+        <div style="padding:8px 0;border-bottom:1px solid #2a2722;display:flex;justify-content:center;"><button onClick="{{ r.togDone }}" aria-label="Toggle done" style="width:34px;height:34px;background:transparent;border:none;cursor:pointer;font-size:16px;color:{{ r.doneC }};" style-hover="background:#1c1a16;">{{ r.done }}</button></div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="max-width:1400px;margin:14px auto 0;font-family:'Space Mono',monospace;font-size:10.5px;color:#6d675c;line-height:1.7;">Click any field to edit · click a status to advance it · a Track link appears for UPS, FedEx, USPS and DHL numbers · Return shipping switches every field to the return leg · edits autosave in this browser · Save version keeps a permanent snapshot you can return to · + Updates shows every change · Export file to move your tracker to another computer or share it, Import file to load one.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+function parseCSV(t) {
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(f); f = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; }
+    else f += c;
+  }
+  if (f || row.length) { row.push(f); rows.push(row); }
+  return rows;
+}
+function esc(v) { return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>'); }
+function buildDoc(title, sub, head, body, imgCol) {
+  const th = head.map(h => '<th style="text-align:left;font:600 8.5pt Arial,sans-serif;text-transform:uppercase;letter-spacing:0.06em;color:#555;border-bottom:1.5pt solid #222;padding:5pt 6pt;">' + esc(h) + '</th>').join('');
+  const tr = body.map(r => '<tr>' + r.map((c, j) => '<td style="vertical-align:top;font:9.5pt Georgia,serif;color:#111;border-bottom:0.5pt solid #ccc;padding:6pt;">' + (j === imgCol && c ? '<img src="' + c + '" width="48" height="48" style="width:48px;height:48px;object-fit:contain;">' : esc(c)) + '</td>').join('') + '</tr>').join('');
+  return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + esc(title) + '</title><style>@page{size:landscape;margin:0.5in}body{margin:0;padding:24px}tr{page-break-inside:avoid}</style></head><body>' +
+    '<div style="font:9pt Arial,sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#2b6a60;">Death Is a Door · CC Jasper</div>' +
+    '<h1 style="font:300 22pt Georgia,serif;margin:4pt 0 2pt;">' + esc(title) + '</h1>' +
+    '<div style="font:9pt Arial,sans-serif;color:#666;margin-bottom:12pt;">' + esc(sub) + ' · ' + esc(new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })) + '</div>' +
+    '<table style="border-collapse:collapse;width:100%;"><thead><tr>' + th + '</tr></thead><tbody>' + tr + '</tbody></table></body></html>';
+}
+function printDoc(html) {
+  const w = window.open('', '_blank'); if (!w) { alert('Allow pop-ups to export a PDF.'); return; }
+  w.document.open(); w.document.write(html); w.document.close();
+  const go = () => { w.focus(); w.print(); };
+  if (w.document.readyState === 'complete') setTimeout(go, 400); else w.onload = () => setTimeout(go, 300);
+}
+function saveDoc(html, name) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff', html], { type: 'application/msword' })); a.download = name + '.doc'; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+const absImg = p => p ? new URL(p, location.href).href : '';
+const KEY = 'didad-shipping-v1';
+const DEFAULTS = {"unitedfutures":{"from":"Artist","carrier":"Artist drop-off","eta":"Install week","notes":"unitedfutures is bringing his work to the gallery."},"Henry Swanson":{"from":"NYC studio","carrier":"TBD — Sienna arranging","eta":"TBD","notes":"Leaving this to Sienna to arrange. Work is at Henry’s NYC studio."},"Pandele Radu":{"from":"Bucharest, via friend’s flight","carrier":"Friend carry-on","eta":"TBD","notes":"Pandele is having his friend bring it on a flight. We may need to pick it up from a Midtown hotel. It’s rolled in a tube and also has stretcher bars — will need someone to stretch it."},"Meredith Sellers":{"from":"Philadelphia, PA","carrier":"FedEx","eta":"TBD","notes":"Work is in Philly, can be FedEx. Need to talk to Meredith about transport — might only be 1 painting if we get Srijon’s work."},"Megan Lindeman":{"from":"Los Angeles","carrier":"Doug — carry-on","eta":"Install week","notes":"Doug is bringing Megan’s piece on the plane."},"L":{"from":"NYC — Casey Gleghorn (collector)","carrier":"Consignor drop-off","carrierPhone":"570-447-5778","carrierTel":"tel:+15704475778","carrierNote":"Casey Gleghorn · info@nononogallery.com","eta":"Install week","notes":"Needs to be dropped off by Casey the week of install. Email Casey and ask if he would be so kind — it’s very small."},"Ellen R Hanson":{"from":"NYC — another gallery’s storage","carrier":"Gallery pickup","eta":"Install week","notes":"Ellen’s work is in NYC, in storage at another gallery. Needs to be picked up the week of, or just before, the show."},"Aramis Gutierrez":{"from":"Miami, FL","carrier":"Hangman","carrierPhone":"(212) 974-7669","carrierTel":"tel:+12129747669","carrierNote":"Miami ops: adam@hangmannyc.com","eta":"TBD","status":1,"notes":"Aramis already booked Hangman, but talk to him about the details."},"Kenny Curwood":{"from":"NYC studio","carrier":"Artist drop-off (TBC)","eta":"TBD","notes":"Kenny’s work is in his NYC studio. I think he can bring it, but I’ll ask him."},"Charlie Goering":{"from":"Cincinnati, OH","carrier":"Artist drop-off","eta":"TBD","notes":"Need to talk to Charlie about when he can bring his painting."},"Tom DeLaney":{"from":"NYC studio","carrier":"Artist drop-off","notes":"Tom will drop his work off at the gallery."},"Doug Crocco":{"from":"Print shop, NYC","carrier":"Print shop delivery","notes":"Will be delivered from the print shop to the gallery."},"Benjamin Cowan":{"from":"NYC studio","carrier":"Gallery pickup","eta":"Install week","notes":"Needs to be picked up from Ben’s NYC studio the install week."}};
+const LABELS = { from: 'Ships from', carrier: 'Carrier', tracking: 'Tracking', shipDate: 'Shipped', eta: 'Expected', notes: 'Notes', status: 'Status', sold: 'Sold', done: 'Done' };
+const FIELDS = ['from', 'carrier', 'tracking', 'shipDate', 'eta', 'notes'];
+const OUT = [['Not booked', '#6d675c'], ['Booked', '#c9a24a'], ['In transit', '#7fa39b'], ['Delivered', '#5fa08f']];
+const RET = [['Not booked', '#6d675c'], ['Booked', '#c9a24a'], ['In transit', '#7fa39b'], ['Returned', '#a99fc9'], ['Delivered to collector', '#5fa08f']];
+function trackUrl(carrier, n) {
+  const c = (carrier || '').toLowerCase(), t = encodeURIComponent((n || '').trim());
+  if (!t) return '';
+  if (c.includes('ups')) return 'https://www.ups.com/track?tracknum=' + t;
+  if (c.includes('fedex')) return 'https://www.fedex.com/fedextrack/?trknbr=' + t;
+  if (c.includes('usps')) return 'https://tools.usps.com/go/TrackConfirmAction?tLabels=' + t;
+  if (c.includes('dhl')) return 'https://www.dhl.com/us-en/home/tracking.html?tracking-id=' + t;
+  return '';
+}
+class Component extends DCLogic {
+  state = { works: [], data: {}, ret: false, versions: [], cur: null, dirty: false, msg: '', log: [], logOpen: false };
+  componentDidMount() {
+    let data = {}, ret = false; try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); ret = localStorage.getItem(KEY + '-ret') === '1'; } catch (e) {}
+    let meta = {}; try { meta = JSON.parse(localStorage.getItem(KEY + '-versions') || '{}'); } catch (e) {}
+    let log = []; try { log = JSON.parse(localStorage.getItem(KEY + '-log') || '[]'); } catch (e) {}
+    this.setState({ data, ret, versions: meta.versions || [], cur: meta.cur ?? null, dirty: !!meta.dirty, log });
+    fetch('tracker.csv?t=' + Date.now()).then(r => r.text()).then(t => {
+      const all = parseCSV(t); const h = all.findIndex(r => r[0] === 'No.');
+      const works = all.slice(h + 1).filter(r => r.length > 5 && r[0]).map(r => {
+        const url = ((r[1] || '').match(/"(https?:[^"]+)"/) || [])[1] || '';
+        const file = url.split('/art/')[1] || '';
+        return { no: r[0], img: file ? 'art/' + file : '', artist: r[2], title: r[3], email: r[6] || '', mailto: r[6] ? 'mailto:' + r[6] : '', contact: r[7] || '', phone: r[8] || '' };
+      });
+      this.setState({ works });
+    });
+  }
+  addLog(entry) {
+    const log = [{ t: Date.now(), ...entry }, ...this.state.log].slice(0, 500);
+    this.setState({ log }); try { localStorage.setItem(KEY + '-log', JSON.stringify(log)); } catch (e) {}
+  }
+  save(no, patch) {
+    const w = this.state.works.find(x => x.no === no) || {};
+    const cur = { ...(DEFAULTS[w.artist] || {}), ...(this.state.data[no] || {}) };
+    const parts = Object.keys(patch).map(k => {
+      const r = k.startsWith('r_'), base = r ? k.slice(2) : k, lab = (r ? 'Return ' : '') + (LABELS[base] || base);
+      let a = cur[k], b = patch[k];
+      if (base === 'status') { const L = r ? RET : OUT; a = L[Math.min(a || 0, L.length - 1)][0]; b = L[Math.min(b || 0, L.length - 1)][0]; }
+      if (base === 'sold' || base === 'done') { a = a ? 'yes' : 'no'; b = b ? 'yes' : 'no'; }
+      return lab + ': ' + (a || '—') + ' → ' + (b || '—');
+    });
+    this.addLog({ who: w.artist || ('No. ' + no), what: parts.join(' · ') });
+    const data = { ...this.state.data, [no]: { ...(this.state.data[no] || {}), ...patch } };
+    this.setAll({ data, dirty: true, msg: '' });
+  }
+  setAll(patch) {
+    this.setState(patch, () => { try { const { data, versions, cur, dirty } = this.state; localStorage.setItem(KEY, JSON.stringify(data)); localStorage.setItem(KEY + '-versions', JSON.stringify({ versions, cur, dirty })); } catch (e) {} });
+  }
+  renderVals() {
+    const ret = this.state.ret, P = ret ? 'r_' : '', ST = ret ? RET : OUT;
+    const rows = this.state.works.map(w => {
+      const d = { ...(DEFAULTS[w.artist] || {}), ...(this.state.data[w.no] || {}) }; const s = Math.min(d[P + 'status'] || 0, ST.length - 1);
+      const out = { ...w, on: {}, status: ST[s][0], sc: ST[s][1], next: () => this.save(w.no, { [P + 'status']: (s + 1) % ST.length }) };
+      FIELDS.forEach(k => { const key = P + k; out[k] = d[key] || ''; out.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== (d[key] || '')) this.save(w.no, { [key]: v }); }; });
+      out.carrierPhone = ret ? '' : (d.carrierPhone || ''); out.carrierTel = d.carrierTel || ''; out.carrierNote = ret ? '' : (d.carrierNote || '');
+      out.link = trackUrl(d[P + 'carrier'], d[P + 'tracking']); out.hasLink = !!out.link;
+      out.isSold = !!d.sold; out.sold = d.sold ? '✓' : '○'; out.soldC = d.sold ? '#c98f7e' : '#4a4640';
+      out.togSold = () => this.save(w.no, { sold: !d.sold });
+      const dk = P + 'done'; out.isDone = !!d[dk]; out.done = d[dk] ? '✓' : '○'; out.doneC = d[dk] ? '#5fa08f' : '#4a4640';
+      out.togDone = () => this.save(w.no, { [dk]: !d[dk] });
+      return out;
+    });
+    const cnt = i => rows.filter(r => r.status === ST[i][0]).length;
+    const nSold = rows.filter(r => r.isSold).length, nDone = rows.filter(r => r.isDone).length;
+    return {
+      rows,
+      ret, retBg: ret ? '#e9e3d6' : 'transparent', retFg: ret ? '#0d0c0b' : '#e9e3d6', retBd: ret ? '#e9e3d6' : '#6d675c', trackBg: ret ? '#8f887c' : '#3a3630', knobL: ret ? '14px' : '2px',
+      toggleRet: () => { this.setState({ ret: !ret }); try { localStorage.setItem(KEY + '-ret', ret ? '0' : '1'); } catch (e) {} },
+      cols: '2.2em 64px minmax(12em,1.3fr) minmax(16em,1.6fr) ' + (ret ? '3.6em ' : '') + 'minmax(7em,0.8fr) minmax(7em,0.8fr) minmax(10em,1fr) 6.5em 6.5em 9.5em 3.6em',
+      fromLabel: ret ? 'Ships to' : 'Ships from',
+      legLine: ret ? 'Return leg · from CC Jasper, 131 Chrystie Street, New York · sold works ship to the collector' : 'Deliver to: CC Jasper · 131 Chrystie Street, New York · opens Nov 12',
+      legC: ret ? '#c9a24a' : '#8f887c',
+      summary: rows.length ? `${rows.length} works · ${ret ? nSold + ' sold · ' : ''} ${cnt(1)} booked · ${cnt(2)} in transit · ${cnt(3)} ${ret ? 'returned' : 'delivered'} · ${nDone} done` : 'Loading…',
+      reset: () => { if (this.state.dirty && !window.confirm('Discard your edits and return to the original tracker? Saved versions are kept.')) return; this.setAll({ data: {}, cur: null, dirty: false, msg: 'Returned to original' }); this.addLog({ who: 'Tracker', what: 'Returned to original', kind: 'v' }); },
+      status: this.state.msg || (this.state.dirty ? 'Unsaved changes' : (vs => { const v = vs.find(x => x.id === this.state.cur); return v ? 'Viewing ' + v.label : ''; })(this.state.versions)),
+      statusC: this.state.dirty ? '#c9a24a' : '#7fa39b',
+      hasVersions: this.state.versions.length > 0,
+      versions: this.state.versions.map(v => { const on = v.id === this.state.cur; return { label: v.label, bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#16150f' : '#c4bcae', border: on ? '#e9e3d6' : '#3a3630',
+        load: () => { if (this.state.dirty && !window.confirm('Discard unsaved changes and load ' + v.label + '?')) return; this.setAll({ data: JSON.parse(JSON.stringify(v.data)), cur: v.id, dirty: false, msg: 'Loaded ' + v.label }); this.addLog({ who: 'Version', what: 'Loaded ' + v.label, kind: 'v' }); }, }; }),
+      noVersions: this.state.versions.length === 0, revertC: this.state.versions.length ? '#e9e3d6' : '#4a4640',
+      revertTitle: this.state.versions.length ? 'Load ' + this.state.versions[this.state.versions.length - 1].label : 'Save a version first',
+      revertLast: () => {
+        const vs = this.state.versions, v = vs[vs.length - 1]; if (!v) return;
+        if (this.state.dirty && !window.confirm('Discard unsaved changes and revert to ' + v.label + '?')) return;
+        this.setAll({ data: JSON.parse(JSON.stringify(v.data)), cur: v.id, dirty: false, msg: 'Reverted to ' + v.label });
+        this.addLog({ who: 'Version', what: 'Reverted to last saved (' + v.label + ')', kind: 'v' });
+      },
+      logOpen: this.state.logOpen, logIcon: this.state.logOpen ? '−' : '+',
+      toggleLog: () => this.setState({ logOpen: !this.state.logOpen }),
+      logCount: '(' + this.state.log.length + ')', logEmpty: this.state.log.length === 0,
+      log: this.state.log.map(e => ({ when: new Date(e.t).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + new Date(e.t).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }), who: e.who, what: e.what, c: e.kind === 'v' ? '#7fa39b' : '#f0eadd' })),
+      saveVersion: () => {
+        const vs = this.state.versions, d = new Date(), id = d.getTime();
+        const label = 'v' + (vs.length + 1) + ' · ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        this.setAll({ versions: [...vs, { id, label, data: JSON.parse(JSON.stringify(this.state.data)) }], cur: id, dirty: false, msg: 'Saved ' + label });
+        this.addLog({ who: 'Version', what: 'Saved ' + label, kind: 'v' });
+      },
+      exportFile: () => {
+        const blob = new Blob([JSON.stringify({ app: 'didad-shipping', saved: new Date().toISOString(), data: this.state.data, versions: this.state.versions, log: this.state.log }, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Death Is a Door - Shipping Tracker ' + new Date().toISOString().slice(0, 10) + '.json'; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000); this.setState({ msg: 'Exported file' });
+      },
+      importFile: () => {
+        const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json';
+        inp.onchange = () => { const f = inp.files && inp.files[0]; if (!f) return; f.text().then(t => {
+          let j; try { j = JSON.parse(t); } catch (e) { this.setState({ msg: 'Could not read that file' }); return; }
+          if (!j || !j.data) { this.setState({ msg: 'Not a shipping tracker file' }); return; }
+          if (!window.confirm('Replace the tracker in this browser with ' + f.name + '?')) return;
+          this.setAll({ data: j.data, versions: j.versions || this.state.versions, cur: null, dirty: false, msg: 'Imported ' + f.name });
+          if (j.log) { this.setState({ log: j.log }); try { localStorage.setItem(KEY + '-log', JSON.stringify(j.log)); } catch (e) {} }
+          this.addLog({ who: 'Tracker', what: 'Imported ' + f.name, kind: 'v' });
+        }); };
+        inp.click();
+      },
+      exportRows: () => {
+        const ret = this.state.ret;
+        return { title: 'Shipping Tracker' + (ret ? ' — Return' : ''), sub: rows.length + ' works' + (ret ? ' · return leg' : ''),
+          head: ['No.', '', 'Artist · Work', 'Notes'].concat(ret ? ['Sold'] : []).concat([ret ? 'Ships to' : 'Ships from', 'Carrier', 'Tracking', 'Shipped', 'Expected', 'Status', 'Done']),
+          body: rows.map(r => [r.no, absImg(r.img), r.artist + '\n' + r.title + (r.email ? '\n' + r.email : '') + (r.phone ? '\n' + r.phone : ''), r.notes].concat(ret ? [r.isSold ? 'Sold' : ''] : []).concat([r.from, r.carrier + (r.carrierPhone ? '\n' + r.carrierPhone : '') + (r.carrierNote ? '\n' + r.carrierNote : ''), r.tracking, r.shipDate, r.eta, r.status, r.isDone ? '✓' : ''])) };
+      },
+      exportPdf: () => { const x = this.renderVals().exportRows(); printDoc(buildDoc(x.title, x.sub, x.head, x.body, 1)); },
+      exportDoc: () => { const x = this.renderVals().exportRows(); saveDoc(buildDoc(x.title, x.sub, x.head, x.body, 1), 'Death Is a Door - ' + x.title); },
+      downloadCsv: () => {
+        const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+        const head = ['No.', 'Artist', 'Work', 'Sold', 'Ships from', 'Carrier', 'Tracking no.', 'Shipped', 'Expected', 'Status', 'Notes', 'Done', 'Return to', 'Return carrier', 'Return tracking no.', 'Return shipped', 'Return expected', 'Return status', 'Return notes', 'Return done'];
+        const D = this.state.data, A = {}; this.state.works.forEach(w => A[w.no] = w.artist);
+        const g = (no, k) => ({ ...(DEFAULTS[A[no]] || {}), ...(D[no] || {}) })[k] || '';
+        const st = (no, p, L) => L[Math.min(g(no, p + 'status') || 0, L.length - 1)][0];
+        const text = [head, ...this.state.works.map(w => [w.no, w.artist, w.title, g(w.no, 'sold') ? 'Yes' : '', ...['from', 'carrier', 'tracking', 'shipDate', 'eta'].map(k => g(w.no, k)), st(w.no, '', OUT), g(w.no, 'notes'), g(w.no, 'done') ? 'Yes' : '', ...['from', 'carrier', 'tracking', 'shipDate', 'eta'].map(k => g(w.no, 'r_' + k)), st(w.no, 'r_', RET), g(w.no, 'r_notes'), g(w.no, 'r_done') ? 'Yes' : ''])].map(r => r.map(q).join(',')).join('\n') + '\n';
+        const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv' })); a.download = 'Death Is a Door - Shipping Tracker.csv'; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

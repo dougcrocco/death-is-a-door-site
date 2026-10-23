@@ -50,11 +50,12 @@
 </helmet>
 <div data-sheet="" style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
   <div data-noprint="" style="max-width:1100px;margin:0 auto 20px;display:flex;justify-content:flex-end;">
-  <nav style="display:flex;flex-wrap:wrap;gap:1px;background:rgba(233,227,214,0.3);border:1px solid rgba(233,227,214,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;max-width:100%;box-sizing:border-box;">
-    <a href="../index.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Site</a>
-    <a href="../install-plan.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Installation Design</a>
-    <a href="checklist.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#e9e3d6;color:#0d0c0b;">Checklist</a>
-    <a href="tracker.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 14px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Consignment Tracker</a>
+  <nav style="display:flex;flex-wrap:wrap;gap:1px;background:rgba(233,227,214,0.3);border:1px solid rgba(233,227,214,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;max-width:100%;box-sizing:border-box;">
+    <a href="../index.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Site</a>
+    <a href="../install-plan.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Installation Design</a>
+    <a href="checklist.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#e9e3d6;color:#0d0c0b;">Checklist</a>
+    <a href="tracker.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Consignment Tracker</a>
+    <a href="shipping.html" style="flex:1 1 auto;text-align:center;white-space:nowrap;padding:9px 11px;text-decoration:none;background:#0d0c0b;color:#e9e3d6;">Shipping Tracker</a>
   </nav>
   </div>
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
@@ -64,18 +65,53 @@
     </div>
     <div data-muted="" data-pnone="" style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ count }} works</div>
   </div>
-  <div data-noprint="" style="max-width:1100px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 28px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;">
-    <div style="display:flex;flex-direction:column;gap:6px;">
+  <div data-noprint="" style="max-width:1100px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 32px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;">
+    <div style="display:flex;flex-direction:column;gap:8px;">
       <div style="display:flex;align-items:baseline;gap:10px;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Edits</div><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:{{ statusC }};">{{ status }}</span></div>
-      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ saveChanges }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ saveSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">{{ saveLabel }}</button><button onClick="{{ backToSaved }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Back to saved</button><button onClick="{{ resetEdits }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Revert to original</button></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">Save version</button></div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:6px;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices · Images</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOnSt }}border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;{{ showOffSt }}border:none;border-left:1px solid #3a3630;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Hide</button></div><div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ imgsOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;{{ imgsOnSt }}" style-hover="color:#7fa39b;">Images</button><button onClick="{{ imgsOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;{{ imgsOffSt }}border-left:1px solid #3a3630;" style-hover="color:#7fa39b;">Text only</button></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ showOnSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ showOffSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Hide</button></div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:6px;margin-left:auto;">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Images</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ imgsOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ imgsOnSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Images</button><button onClick="{{ imgsOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ imgsOffSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Text only</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-left:auto;">
       <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
-      <div style="display:flex;border:1px solid #3a3630;width:max-content;"><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Word / Pages</button></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">PDF</button><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Word / Pages</button></div>
+    </div>
+    <sc-if value="{{ hasVersions }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border-top:1px solid #2a2722;padding-top:10px;font-family:'Space Mono',monospace;font-size:11px;">
+        <span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;margin-right:4px;">Versions</span>
+        <sc-for list="{{ versions }}" as="v" hint-placeholder-count="0">
+          <span style="display:flex;align-items:center;border:1px solid {{ v.border }};white-space:nowrap;">
+            <button onClick="{{ v.load }}" style="font-family:'Space Mono',monospace;font-size:10.5px;background:{{ v.bg }};color:{{ v.fg }};border:none;padding:5px 9px;cursor:pointer;" style-hover="color:#7fa39b;">{{ v.label }}</button>
+          </span>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="flex-basis:100%;border-top:1px solid #2a2722;padding-top:10px;font-family:'Space Mono',monospace;font-size:11px;">
+      <button onClick="{{ toggleLog }}" aria-expanded="{{ logOpen }}" style="display:flex;align-items:center;gap:10px;width:100%;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:2px 0;cursor:pointer;text-align:left;" style-hover="color:#7fa39b;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-size:13px;line-height:1;">{{ logIcon }}</span>Updates<span style="color:#8f887c;">{{ logCount }}</span>
+      </button>
+      <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;">
+          <button onClick="{{ revertLast }}" disabled="{{ noVersions }}" title="{{ revertTitle }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#c9a24a;color:#c9a24a;">Revert to last saved</button>
+          <button onClick="{{ resetEdits }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#c9a24a;color:#c9a24a;">Return to original</button>
+        </div>
+        <div style="margin-top:10px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;border-top:1px solid #2a2722;">
+          <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;color:#6d675c;">No updates yet.</div></sc-if>
+          <sc-for list="{{ log }}" as="e" hint-placeholder-count="0">
+            <div style="display:grid;grid-template-columns:9.5em minmax(8em,0.8fr) minmax(0,2fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;">
+              <span style="color:#8f887c;white-space:nowrap;">{{ e.when }}</span>
+              <span style="color:{{ e.c }};">{{ e.who }}</span>
+              <span style="font-family:'EB Garamond',serif;font-size:13.5px;color:#c4bcae;word-break:break-word;">{{ e.what }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
     </div>
   </div>
   <div data-grid="" data-noimg="{{ noImgAttr }}" style="max-width:1100px;margin:20px auto 0;display:grid;grid-template-columns:{{ cols }};border-top:1px solid #6d675c;">
@@ -102,29 +138,49 @@ const run = (t, o = {}) => '<w:r><w:rPr><w:rFonts w:ascii="Garamond" w:hAnsi="Ga
 const para = (runs, o = {}) => '<w:p><w:pPr><w:spacing w:before="' + (o.before || 0) + '" w:after="' + (o.after ?? 60) + '"/>' + (o.right ? '<w:jc w:val="right"/>' : '') + '</w:pPr>' + runs + '</w:p>';
 const cell = (w, inner) => '<w:tc><w:tcPr><w:tcW w:w="' + w + '" w:type="dxa"/><w:tcBorders><w:bottom w:val="single" w:sz="4" w:color="D6D1C6"/></w:tcBorders></w:tcPr>' + inner + '</w:tc>';
 class Component extends DCLogic {
-  state = { imgs: true, show: true, ed: {}, saved: {}, justSaved: false };
-  componentDidMount() { try { const v = localStorage.getItem('didad-checklist-prices'); const e = JSON.parse(localStorage.getItem('didad-checklist-edits') || '{}'); const sv = JSON.parse(localStorage.getItem('didad-checklist-saved') || 'null'); this.setState({ show: true, ed: e, saved: sv || e }); } catch (e) {} }
-  setEd(i, k, v) { const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
+  state = { imgs: true, show: true, ed: {}, versions: [], cur: null, log: [], logOpen: false };
+  componentDidMount() { try {
+    const e = JSON.parse(localStorage.getItem('didad-checklist-edits') || '{}');
+    let meta = JSON.parse(localStorage.getItem('didad-checklist-versions') || 'null');
+    if (!meta) { const sv = JSON.parse(localStorage.getItem('didad-checklist-saved') || 'null'); meta = { versions: [], cur: null }; if (sv && Object.keys(sv).length) { const id = Date.now(); meta = { versions: [{ id, label: 'v1 · earlier save', ed: sv }], cur: id }; } localStorage.setItem('didad-checklist-versions', JSON.stringify(meta)); }
+    const log = JSON.parse(localStorage.getItem('didad-checklist-log') || '[]');
+    this.setState({ show: true, ed: e, versions: meta.versions || [], cur: meta.cur ?? null, log });
+  } catch (e) {} }
+  addLog(entry) { const log = [{ t: Date.now(), ...entry }, ...this.state.log].slice(0, 500); this.setState({ log }); try { localStorage.setItem('didad-checklist-log', JSON.stringify(log)); } catch (e) {} }
+  setMeta(patch) { this.setState(patch, () => { try { localStorage.setItem('didad-checklist-versions', JSON.stringify({ versions: this.state.versions, cur: this.state.cur })); localStorage.setItem('didad-checklist-edits', JSON.stringify(this.state.ed)); } catch (e) {} }); }
+  setEd(i, k, v) { const L = { artist: 'Artist', title: 'Title', line: 'Details', price: 'Price' }; const old = (this.state.ed[i] || {})[k] ?? ROWS[i][k]; this.addLog({ who: ROWS[i].artist, what: L[k] + ': ' + (old || '—') + ' → ' + (v || '—') }); const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
   renderVals() {
     const show = this.state.show;
     const rows = ROWS.map((r0, i) => { const o = this.state.ed[i] || {}; const r = { ...r0, ...o, on: {} }; ['artist', 'title', 'line', 'price'].forEach(k => { r.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== r[k]) this.setEd(i, k, v); }; }); return r; });
     return {
       rows,
-      saveLabel: this.state.justSaved ? 'Saved ✓' : 'Save changes',
-      status: JSON.stringify(this.state.ed) === JSON.stringify(this.state.saved) ? (Object.keys(this.state.ed).length ? 'Saved edits' : 'Original') : 'Unsaved · click text to edit',
-      statusC: JSON.stringify(this.state.ed) === JSON.stringify(this.state.saved) ? '#7fa39b' : '#c9a24a',
-      saveChanges: () => { const sv = JSON.parse(JSON.stringify(this.state.ed)); this.setState({ saved: sv, justSaved: true }); try { localStorage.setItem('didad-checklist-saved', JSON.stringify(sv)); } catch (e) {} clearTimeout(this._t); this._t = setTimeout(() => this.setState({ justSaved: false }), 1600); },
-      backToSaved: () => { const ed = JSON.parse(JSON.stringify(this.state.saved)); this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} },
-      resetEdits: () => { this.setState({ ed: {} }); try { localStorage.setItem('didad-checklist-edits', '{}'); } catch (e) {} }, count: ROWS.length, showPrices: show,
+      ...(() => {
+        const vs = this.state.versions, curV = vs.find(v => v.id === this.state.cur), base = curV ? curV.ed : {};
+        const dirty = JSON.stringify(this.state.ed) !== JSON.stringify(base), last = vs[vs.length - 1];
+        return {
+          status: dirty ? 'Unsaved changes · click text to edit' : curV ? 'Viewing ' + curV.label : 'Original',
+          statusC: dirty ? '#c9a24a' : '#7fa39b',
+          hasVersions: vs.length > 0, noVersions: !last, revertTitle: last ? 'Load ' + last.label : 'Save a version first',
+          versions: vs.map(v => { const on = v.id === this.state.cur; return { label: v.label, bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#16150f' : '#c4bcae', border: on ? '#e9e3d6' : '#3a3630',
+            load: () => { if (dirty && !window.confirm('Discard unsaved changes and load ' + v.label + '?')) return; this.setMeta({ ed: JSON.parse(JSON.stringify(v.ed)), cur: v.id }); this.addLog({ who: 'Version', what: 'Loaded ' + v.label, kind: 'v' }); } }; }),
+          saveVersion: () => { const d = new Date(), id = d.getTime(); const label = 'v' + (vs.length + 1) + ' · ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); this.setMeta({ versions: [...vs, { id, label, ed: JSON.parse(JSON.stringify(this.state.ed)) }], cur: id }); this.addLog({ who: 'Version', what: 'Saved ' + label, kind: 'v' }); },
+          revertLast: () => { if (!last) return; if (dirty && !window.confirm('Discard unsaved changes and revert to ' + last.label + '?')) return; this.setMeta({ ed: JSON.parse(JSON.stringify(last.ed)), cur: last.id }); this.addLog({ who: 'Version', what: 'Reverted to last saved (' + last.label + ')', kind: 'v' }); },
+          resetEdits: () => { if (dirty && !window.confirm('Discard your edits and return to the original checklist? Saved versions are kept.')) return; this.setMeta({ ed: {}, cur: null }); this.addLog({ who: 'Checklist', what: 'Returned to original', kind: 'v' }); },
+        };
+      })(),
+      logOpen: this.state.logOpen, logIcon: this.state.logOpen ? '−' : '+',
+      toggleLog: () => this.setState({ logOpen: !this.state.logOpen }),
+      logCount: '(' + this.state.log.length + ')', logEmpty: this.state.log.length === 0,
+      log: this.state.log.map(e => ({ when: new Date(e.t).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + new Date(e.t).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }), who: e.who, what: e.what, c: e.kind === 'v' ? '#7fa39b' : '#f0eadd' })),
+      count: ROWS.length, showPrices: show,
       imgs: this.state.imgs, noImgAttr: this.state.imgs ? undefined : '',
       cols: (this.state.imgs ? '3.4em 72px ' : '3.4em ') + (show ? 'minmax(0,1fr) auto' : 'minmax(0,1fr)'),
       imgsOn: () => this.setState({ imgs: true }), imgsOff: () => this.setState({ imgs: false }),
-      imgsOnSt: this.state.imgs ? 'background:transparent;color:#7fa39b;' : 'background:transparent;color:#8f887c;', imgsOffSt: this.state.imgs ? 'background:transparent;color:#8f887c;' : 'background:transparent;color:#7fa39b;',
+      imgsOnSt: this.state.imgs ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;', imgsOffSt: this.state.imgs ? 'background:transparent;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;',
       priceBtn: show ? 'Hide prices' : 'Show prices',
       footnote: show ? 'Listed in installation order, clockwise from the entrance. Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Listed in installation order, clockwise from the entrance. Dimensions height × width (× depth).',
-      showOnSt: show ? 'background:transparent;color:#7fa39b;' : 'background:transparent;color:#8f887c;',
-      showOffSt: show ? 'background:transparent;color:#8f887c;' : 'background:transparent;color:#7fa39b;',
-      saveSt: JSON.stringify(this.state.ed) !== JSON.stringify(this.state.saved) ? 'background:#7fa39b;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;',
+      showOnSt: show ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;',
+      showOffSt: show ? 'background:transparent;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;',
       showPricesOn: () => { this.setState({ show: true }); try { localStorage.setItem('didad-checklist-prices', '1'); } catch (e) {} },
       showPricesOff: () => { this.setState({ show: false }); try { localStorage.setItem('didad-checklist-prices', '0'); } catch (e) {} },
       togglePrices: () => { const v = !show; this.setState({ show: v }); try { localStorage.setItem('didad-checklist-prices', v ? '1' : '0'); } catch (e) {} },
