@@ -78,7 +78,7 @@
     <nav style="display:flex;gap:clamp(14px,3vw,32px);">
       <a href="#4" onClick="{{ goWorks }}">Works</a>
       <a href="artists.html">Artists</a>
-      <a href="#21" onClick="{{ goVisit }}">Visit</a>
+      <a href="#20" onClick="{{ goVisit }}">Visit</a>
     </nav>
   </header>
 
@@ -337,18 +337,6 @@
   </div>
 
   <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
-  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
-    <img src="art/srijon-chowdhury-moth-xiii-c.jpg" alt="Srijon Chowdhury, Moth (XIII)" loading="lazy" decoding="async" width="1600" height="1065" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
-    <div style="flex:1 1 0;min-width:0;max-width:540px;">
-      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XVI</div>
-      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Moth (XIII)</h3>
-      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Srijon Chowdhury · 2026<br>Oil on linen · 24 × 36 in</div>
-      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">The moth has long been read as the soul leaving the body — the Greeks used one word, <em style="color:#e9e3d6;">psyche</em>, for both. It flies only at night and dies seeking the light. Here its wings hold the dead: skeletons riding bone horses, archers drawing bows, a heart at the center, all spread over a field of night flowers. <em style="color:#e9e3d6;">Death as metamorphosis — the body a cocoon, the soul the thing that leaves it.</em></p>
-    </div>
-  </article>
-  </div>
-
-  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
   <section id="artists" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
     <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">The Artists</div>
     <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(24px,5vh,56px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,min(5vw,7vh),64px);line-height:1.02;color:#f0eadd;">Many practices, one threshold</h2>
@@ -364,7 +352,6 @@
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Henry Swanson</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Tom DeLaney</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Pandele Radu</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Srijon Chowdhury</div>
         </div>
       </div>
       <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
@@ -597,8 +584,8 @@ class Component extends DCLogic {
       goHome: e => this.go(0, e),
       goWorks: e => this.go(3, e),
       goArtists: e => this.go(20, e),
-      goVisit: e => this.go(21, e),
-      worksIndex: [["I","Death Is a Door","Doug Crocco","doug-crocco-death-is-a-door-pr.jpg"],["II","The Isle of the Dead 2026","unitedfutures","unitedfutures-the-ferry-still.jpg"],["III","Funeral Flowers","Ellen R Hanson","ellen-r-hanson-funeral-flowers-v3.jpg"],["IV","Pigeon Feather, Stone, Giotto Crying Angels","Benjamin Cowan","benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg"],["V","Empty (After Holbein)","Meredith Sellers","meredith-sellers-empty-after-holbein.jpg"],["VI","Mask from Dallas","Henry Swanson","henry-swanson-mask-from-dallas-v3.jpg"],["VII","Bletting Bananas and Mangos","Aramis Gutierrez","aramis-gutierrez-the-turning-v2.jpg"],["VIII","Spell for blue light = 222D alignment","L","l-spell-for-blue-light-222d-alignment.jpg"],["IX","Three-Tiered Camera Obscura","Charlie Goering","charlie-goering-three-tiered-camera-obscura.jpg"],["X","Rage and Eternal","Tom DeLaney","tom-delaney-rage-and-eternal-v2.jpg"],["XI","Desire (After Dieric Bouts)","Meredith Sellers","meredith-sellers-desire-after-dieric-bouts.jpg"],["XII","Down the River","Pandele Radu","pandele-radu-down-the-river-v2.jpg"],["XIII","New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","Megan Lindeman","megan-lindeman-new-enlightened-era-coming-soon.jpg"],["XIV","The World of Symbol Vanishes in the World as God","Kenny Curwood","kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg"],["XV","Metamorphosis, or The Dark Night of the Soul","Charlie Goering","charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg"],["XVI","Moth (XIII)","Srijon Chowdhury","srijon-chowdhury-moth-xiii-c.jpg"]].map(([num, title, artist, f], k) => ({ num, title, artist, img: 'art/' + f, go: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.go(4 + k, e); } })),
+      goVisit: e => this.go(20, e),
+      worksIndex: [["I","Death Is a Door","Doug Crocco","doug-crocco-death-is-a-door-pr.jpg"],["II","The Isle of the Dead 2026","unitedfutures","unitedfutures-the-ferry-still.jpg"],["III","Funeral Flowers","Ellen R Hanson","ellen-r-hanson-funeral-flowers-v3.jpg"],["IV","Pigeon Feather, Stone, Giotto Crying Angels","Benjamin Cowan","benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg"],["V","Empty (After Holbein)","Meredith Sellers","meredith-sellers-empty-after-holbein.jpg"],["VI","Mask from Dallas","Henry Swanson","henry-swanson-mask-from-dallas-v3.jpg"],["VII","Bletting Bananas and Mangos","Aramis Gutierrez","aramis-gutierrez-the-turning-v2.jpg"],["VIII","Spell for blue light = 222D alignment","L","l-spell-for-blue-light-222d-alignment.jpg"],["IX","Three-Tiered Camera Obscura","Charlie Goering","charlie-goering-three-tiered-camera-obscura.jpg"],["X","Rage and Eternal","Tom DeLaney","tom-delaney-rage-and-eternal-v2.jpg"],["XI","Desire (After Dieric Bouts)","Meredith Sellers","meredith-sellers-desire-after-dieric-bouts.jpg"],["XII","Down the River","Pandele Radu","pandele-radu-down-the-river-v2.jpg"],["XIII","New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","Megan Lindeman","megan-lindeman-new-enlightened-era-coming-soon.jpg"],["XIV","The World of Symbol Vanishes in the World as God","Kenny Curwood","kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg"],["XV","Metamorphosis, or The Dark Night of the Soul","Charlie Goering","charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg"]].map(([num, title, artist, f], k) => ({ num, title, artist, img: 'art/' + f, go: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.go(4 + k, e); } })),
     };
   }
 }
