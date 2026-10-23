@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Exhibition Desk · Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#a9c6bf}</style>
+<script src="sync.js"></script>
+</helmet>
+<div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(28px,6vw,72px) clamp(20px,5vw,64px);box-sizing:border-box;">
+  <div style="max-width:1100px;margin:0 auto;min-height:calc(100vh - 2 * clamp(28px,6vw,72px));display:flex;flex-direction:column;gap:clamp(16px,2.4vw,26px);">
+
+    <header style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;">
+        <img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:clamp(18px,2.2vw,24px);width:auto;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Death Is a Door <span style="color:#8f887c;">· 131 Chrystie St</span></div>
+      </div>
+      <div ref="{{ rowRef }}" style="display:flex;flex-direction:{{ rowDir }};justify-content:flex-start;align-items:stretch;gap:clamp(16px,3vw,36px);margin-top:8px;">
+        <h1 style="margin:0;flex:0 1 auto;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6vw,76px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1>
+      <div ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+        <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
+          <a href="{{ c.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:#0d0c0b;color:#e9e3d6;text-decoration:none;" style-hover="background:#16150f;color:#7fa39b;">
+            <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">{{ c.title }}</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">→</span>
+          </a>
+        </sc-for>
+      </div>
+      </div>
+    </header>
+
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);align-items:end;border-top:1px solid #2a2722;padding-top:16px;">
+      <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">{{ instLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ instBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Fri, Nov 6</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">{{ countLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ countBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Thu, Nov 12</span></div>
+      <div style="display:flex;flex-direction:column;gap:14px;font-family:'Space Mono',monospace;">
+        <a href="{{ agTracker }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
+          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
+        </a>
+        <a href="{{ agShipping }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
+          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#7fa39b;"></div></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;border-top:1px solid #6d675c;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;padding:12px 0 12px;">
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Needs attention · {{ todoCount }}</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;">
+          <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="5">
+            <button type="button" onClick="{{ tb.pick }}" style="background:{{ tb.bg }};color:{{ tb.fg }};border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;">{{ tb.label }}</button>
+          </sc-for>
+          <span style="flex:none;width:1px;height:22px;background:#3a3630;margin:0 4px;"></span>
+          <button type="button" onClick="{{ openAdd }}" style="background:#e9e3d6;color:#0d0c0b;border:1px solid #e9e3d6;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="background:#7fa39b;border-color:#7fa39b;">+ Add</button>
+          <button type="button" onClick="{{ openLog }}" style="background:transparent;color:#c4bcae;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">Log {{ logCount }}</button>
+          <button type="button" onClick="{{ emailChanges }}" title="Email the changes made in this browser" style="background:transparent;color:#c4bcae;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">Email changes {{ unsentCount }}</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,16px);align-items:start;">
+        <sc-for list="{{ cols }}" as="col" hint-placeholder-count="3">
+          <div onDragOver="{{ col.over }}" onDrop="{{ col.drop }}" style="display:flex;flex-direction:column;gap:6px;min-width:0;min-height:140px;">
+            <div style="display:flex;align-items:center;gap:7px;padding-bottom:6px;border-bottom:2px solid {{ col.c }};"><span style="width:7px;height:7px;flex:none;border-radius:50%;background:{{ col.c }};"></span><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ col.c }};">{{ col.name }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ col.count }}</span></div>
+            <sc-for list="{{ col.items }}" as="t" hint-placeholder-count="2">
+              <a href="{{ t.href }}" target="_blank" rel="noopener" draggable="true" onDragStart="{{ t.drag }}" onDragOver="{{ t.over }}" onDrop="{{ t.drop }}" onDragEnd="{{ t.end }}" style="cursor:grab;opacity:{{ t.op }};background:#16150f;padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:{{ t.tc }};" style-hover="background:#201e18;">
+                <span style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ t.src }}</span><button onClick="{{ t.remove }}" title="Delete" style="margin-left:auto;background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;padding:0 6px;cursor:pointer;" style-hover="border-color:#e0614f;color:#e0614f;">✕</button></span>
+                <span style="font-size:14.5px;line-height:1.35;text-wrap:pretty;"><span style="color:#ffffff;">{{ t.who }}</span><span style="text-decoration:{{ t.td }};text-underline-offset:3px;">{{ t.what }}</span>{{ t.arrow }}</span>
+              </a>
+            </sc-for>
+            <button type="button" onClick="{{ col.add }}" style="background:transparent;border:1px dashed #3a3630;color:#6d675c;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 10px;cursor:pointer;text-align:left;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add</button>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <sc-if value="{{ hasHidden }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ restoreHidden }}" style="margin-top:10px;background:transparent;border:none;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:8px 4px;cursor:pointer;" style-hover="color:#7fa39b;">Restore deleted ({{ hiddenCount }})</button>
+      </sc-if>
+      <sc-if value="{{ hasOrder }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ resetOrder }}" style="margin-top:10px;background:transparent;border:none;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:8px 4px;cursor:pointer;" style-hover="color:#7fa39b;">Reset order &amp; urgency</button>
+      </sc-if>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;border-top:1px solid #6d675c;margin-top:12px;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;padding:12px 0 14px;">
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Timeline</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;">
+          <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+            <sc-for list="{{ calViews }}" as="v" hint-placeholder-count="2">
+              <button type="button" onClick="{{ v.pick }}" style="background:{{ v.bg }};color:{{ v.fg }};box-shadow:{{ v.sh }};border:none;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">{{ v.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ calEdited }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ calReset }}" style="background:transparent;color:#8f887c;border:none;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="color:#7fa39b;">Reset built-in dates</button></sc-if>
+          <button type="button" onClick="{{ openEvt }}" style="background:#e9e3d6;color:#0d0c0b;border:1px solid #e9e3d6;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="background:#7fa39b;border-color:#7fa39b;">+ Add event</button>
+        </div>
+      </div>
+
+      <sc-if value="{{ isMonth }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px 36px;align-items:start;">
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:320px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <span style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#f0eadd;">{{ monthName }}</span>
+              <span style="display:flex;gap:4px;">
+                <button type="button" onClick="{{ calPrev }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:2px 8px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">←</button>
+                <button type="button" onClick="{{ calToday }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:2px 8px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">TODAY</button>
+                <button type="button" onClick="{{ calNext }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:2px 8px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">→</button>
+              </span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));">
+              <sc-for list="{{ calHead }}" as="h" hint-placeholder-count="7"><span style="text-align:center;font-family:'Space Mono',monospace;font-size:8.5px;color:#6d675c;padding-bottom:4px;">{{ h }}</span></sc-for>
+              <sc-for list="{{ miniDays }}" as="d" hint-placeholder-count="35">
+                <button type="button" onClick="{{ d.add }}" title="{{ d.tip }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;background:{{ d.bg }};border:none;box-shadow:{{ d.sh }};cursor:pointer;" style-hover="background:#24211c;">
+                  <span style="font-family:'Space Mono',monospace;font-size:10.5px;color:{{ d.nc }};">{{ d.n }}</span>
+                  <span style="width:5px;height:5px;border-radius:50%;background:{{ d.dot }};"></span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 14px;padding-top:4px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">
+              <span style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:8px;background:#1b1a15;border:1px solid #3a3630;"></span>Install</span>
+              <span style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:8px;background:#132320;border:1px solid #3a3630;"></span>Opening</span>
+              <span style="display:flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:#e08a3c;"></span>Delivery</span><span>Click a day to add</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;min-width:0;">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;padding-bottom:4px;">Next up</span>
+            <sc-if value="{{ nextEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;font-size:15px;color:#6d675c;">Nothing scheduled.</div></sc-if>
+            <sc-for list="{{ nextUp }}" as="e" hint-placeholder-count="5">
+              <div onClick="{{ e.edit }}" title="Edit" style="cursor:pointer;display:grid;grid-template-columns:8px 7.5em minmax(0,1fr) auto auto;gap:10px;align-items:baseline;padding:9px 4px;border-bottom:1px solid #1f1d19;" style-hover="background:#16150f;">
+                <span style="width:7px;height:7px;border-radius:50%;background:{{ e.c }};align-self:center;"></span>
+                <span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#7fa39b;white-space:nowrap;">{{ e.when }}</span>
+                <span style="font-size:16px;line-height:1.3;color:#f0eadd;text-wrap:pretty;">{{ e.label }}</span>
+                <span style="font-family:'Space Mono',monospace;font-size:9px;color:#6d675c;white-space:nowrap;">{{ e.away }}</span>
+                <sc-if value="{{ e.canDel }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ e.remove }}" title="Delete" style="background:transparent;border:none;color:#6d675c;font-family:'Space Mono',monospace;font-size:10px;padding:0 2px;cursor:pointer;" style-hover="color:#e0614f;">✕</button></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isFull }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:30px;color:#f0eadd;">{{ monthName }}</span>
+            <span style="display:flex;gap:4px;">
+              <button type="button" onClick="{{ calPrev }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:3px 10px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">←</button>
+              <button type="button" onClick="{{ calToday }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:3px 10px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">TODAY</button>
+              <button type="button" onClick="{{ calNext }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:3px 10px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">→</button>
+            </span>
+          </div>
+          <div style="overflow-x:auto;">
+            <div style="display:grid;grid-template-columns:repeat(7,minmax(96px,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;min-width:700px;">
+              <sc-for list="{{ fullHead }}" as="h" hint-placeholder-count="7"><div style="background:#0d0c0b;padding:6px 8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ h }}</div></sc-for>
+              <sc-for list="{{ fullDays }}" as="d" hint-placeholder-count="35">
+                <div onClick="{{ d.add }}" onDragOver="{{ d.over }}" onDrop="{{ d.drop }}" title="Add event" style="cursor:pointer;background:{{ d.bg }};min-height:clamp(84px,10vw,120px);padding:6px;display:flex;flex-direction:column;gap:4px;min-width:0;box-shadow:{{ d.sh }};opacity:{{ d.op }};" style-hover="filter:brightness(1.25);">
+                  <span style="align-self:flex-end;font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1;color:{{ d.nc }};">{{ d.n }}</span>
+                  <sc-for list="{{ d.ev }}" as="e" hint-placeholder-count="0">
+                    <div onClick="{{ e.edit }}" draggable="{{ e.dragOk }}" onDragStart="{{ e.dstart }}" onDragEnd="{{ e.dend }}" title="{{ e.label }}" style="cursor:{{ e.cur }};display:flex;align-items:flex-start;gap:5px;background:rgba(127,163,155,0.13);border-left:2px solid {{ e.c }};padding:3px 5px;font-size:12.5px;line-height:1.25;color:#f0eadd;overflow-wrap:anywhere;" style-hover="outline:1px solid #7fa39b;">{{ e.label }}</div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isWeek }}" hint-placeholder-val="{{ false }}">
+        <div style="overflow-x:auto;">
+          <div style="display:grid;grid-template-columns:5.5em repeat(8,minmax(84px,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;min-width:760px;">
+            <div style="background:#0d0c0b;"></div>
+            <sc-for list="{{ weekHead }}" as="h" hint-placeholder-count="8">
+              <div style="background:{{ h.bg }};padding:6px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:{{ h.sh }};"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#7fa39b;">{{ h.dow }}</span><span style="font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1;color:#f0eadd;">{{ h.n }}</span></div>
+            </sc-for>
+            <sc-for list="{{ weekRows }}" as="r" hint-placeholder-count="4">
+              <div style="background:#0d0c0b;padding:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ r.name }}</div>
+              <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="8">
+                <div onClick="{{ c.add }}" title="Add event" style="cursor:pointer;background:#0d0c0b;min-height:64px;padding:4px;display:flex;flex-direction:column;gap:4px;" style-hover="background:#16150f;">
+                  <sc-for list="{{ c.ev }}" as="e" hint-placeholder-count="0">
+                    <div onClick="{{ e.edit }}" title="Edit" style="cursor:pointer;background:rgba(127,163,155,0.14);border-top:2px solid {{ e.c }};padding:4px 5px;font-size:12.5px;line-height:1.25;color:#f0eadd;overflow-wrap:anywhere;" style-hover="outline:1px solid #7fa39b;">{{ e.label }}</div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ evtOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ closeEvtBg }}" style="position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
+        <form onSubmit="{{ saveEvt }}" style="width:min(100%,440px);background:#16150f;border:1px solid #6d675c;padding:24px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><span style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#f0eadd;">{{ evtHead }}</span><button type="button" onClick="{{ closeEvt }}" style="background:transparent;border:none;color:#8f887c;font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;">✕</button></div>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">What</span><input value="{{ eTitle }}" onChange="{{ setETitle }}" placeholder="e.g. Ben pickup, NYC studio" style="background:#0d0c0b;color:#f0eadd;border:1px solid #6d675c;font-family:'EB Garamond',serif;font-size:16px;padding:8px 10px;outline:none;" style-focus="border-color:#7fa39b;"></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Date</span><input type="date" value="{{ eDate }}" onChange="{{ setEDate }}" style="background:#0d0c0b;color:#f0eadd;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:12px;padding:8px 10px;outline:none;color-scheme:dark;"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Time (optional)</span><input value="{{ eTime }}" onChange="{{ setETime }}" placeholder="e.g. 2 pm" style="background:#0d0c0b;color:#f0eadd;border:1px solid #6d675c;font-family:'EB Garamond',serif;font-size:16px;padding:8px 10px;outline:none;"></label>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px;"><sc-if value="{{ evtEditing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ delEvt }}" style="margin-right:auto;background:transparent;color:#e0614f;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#e0614f;">Delete</button></sc-if><button type="button" onClick="{{ closeEvt }}" style="background:transparent;color:#c4bcae;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;">Cancel</button><button type="submit" style="background:#e9e3d6;color:#0d0c0b;border:1px solid #e9e3d6;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="background:#7fa39b;border-color:#7fa39b;">Save event</button></div>
+        </form>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ closeLogBg }}" style="position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
+        <div style="width:min(100%,560px);max-height:80vh;background:#16150f;border:1px solid #6d675c;padding:24px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><span style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#f0eadd;">Change log</span><button type="button" onClick="{{ closeLog }}" style="background:transparent;border:none;color:#8f887c;font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;">✕</button></div>
+          <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="font-size:15px;color:#6d675c;">No changes yet.</div></sc-if>
+          <div style="display:flex;flex-direction:column;overflow-y:auto;">
+            <sc-for list="{{ logList }}" as="l" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:7.5em 5.5em minmax(0,1fr);gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid #2a2722;">
+                <span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ l.when }}</span>
+                <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:{{ l.c }};">{{ l.action }}</span>
+                <span style="font-size:15px;line-height:1.35;color:#c4bcae;text-wrap:pretty;">{{ l.text }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">Saved in this browser.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ closeBg }}" style="position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
+        <form onSubmit="{{ saveItem }}" style="width:min(100%,480px);background:#16150f;border:1px solid #6d675c;padding:24px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><span style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#f0eadd;">New item</span><button type="button" onClick="{{ closeForm }}" style="background:transparent;border:none;color:#8f887c;font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;">✕</button></div>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Item</span><input value="{{ fWho }}" onChange="{{ setWho }}" placeholder="e.g. Order pedestals" autofocus="" style="background:#0d0c0b;color:#f0eadd;border:1px solid #6d675c;font-family:'EB Garamond',serif;font-size:16px;padding:8px 10px;outline:none;" style-focus="border-color:#7fa39b;"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Details (optional)</span><textarea value="{{ fWhat }}" onChange="{{ setWhat }}" rows="3" placeholder="Who, when, anything to remember" style="background:#0d0c0b;color:#f0eadd;border:1px solid #6d675c;font-family:'EB Garamond',serif;font-size:15px;padding:8px 10px;outline:none;resize:vertical;" style-focus="border-color:#7fa39b;"></textarea></label>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Area</span><div style="display:flex;flex-wrap:wrap;gap:6px;"><sc-for list="{{ areaOpts }}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{ o.pick }}" style="background:{{ o.bg }};color:{{ o.fg }};border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;">{{ o.label }}</button></sc-for></div></div>
+          <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Urgency</span><div style="display:flex;flex-wrap:wrap;gap:6px;"><sc-for list="{{ urgOpts }}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:7px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;"><span style="width:7px;height:7px;border-radius:50%;background:{{ o.c }};"></span>{{ o.label }}</button></sc-for></div></div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px;"><button type="button" onClick="{{ closeForm }}" style="background:transparent;color:#c4bcae;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;">Cancel</button><button type="submit" style="background:#e9e3d6;color:#0d0c0b;border:1px solid #e9e3d6;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;cursor:pointer;white-space:nowrap;" style-hover="background:#7fa39b;border-color:#7fa39b;">Save item</button></div>
+        </form>
+      </div>
+    </sc-if>
+
+    <div style="margin-top:auto;padding-top:24px;font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.7;color:#6d675c;">Counts and to-dos reflect edits saved in this browser.</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const parseCSV = t => { const rows = []; let row = [], f = '', q = false; for (let i = 0; i < t.length; i++) { const c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; } else if (c === '"') q = true; else if (c === ',') { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; } else f += c; } if (f || row.length) { row.push(f); rows.push(row); } return rows; };
+const OPEN = new Date(2026, 10, 12), INSTALL = new Date(2026, 10, 6);
+const TASKS = [
+  { src: 'Install', who: 'Doug Crocco', what: ' — Death Is a Door wall vinyl delivered and installed Mon, Nov 9 at noon', u: 2 },
+  { src: 'Install', who: 'Show wall vinyl', what: ' — show title vinyl for the front door and entry' },
+  { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the new 80 / 20 split on L’s work (80% to Casey)', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
+];
+const FLAG = /(talk|confirm|ask|need|tbd|tbc|waiting|awaiting|arrange)/i;
+class Component extends DCLogic {
+  rowRef = React.createRef(); gridRef = React.createRef();
+  state = { con: null, ship: null, todos: [] };
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  componentDidMount() {
+    try { const ls = +localStorage.getItem('didad-desk-lastsent') || 0; if (ls) this.setState({ lastSent: ls }); } catch (e) {}
+    try { const eo = JSON.parse(localStorage.getItem('didad-desk-evo') || 'null'); if (eo) this.setState({ evo: eo }); } catch (e) {}
+    try { const ev = JSON.parse(localStorage.getItem('didad-desk-events') || '[]'); if (ev.length) this.setState({ events: ev }); } catch (e) {}
+    const fit = () => { const r = this.rowRef.current; if (r) { const stack = r.getBoundingClientRect().width < 640; if (stack !== !!this.state.stack) { this.setState({ stack }); return setTimeout(fit, 0); } } const g = this.gridRef.current; if (!g) return; const items = [...g.children].filter(c => c.tagName === 'A'); if (!items.length) return; const need = Math.max(...items.map(a => [...a.children].reduce((w, c) => w + c.scrollWidth, 0) + 46)); const w = g.getBoundingClientRect().width; const cols = w >= need * 3 + 2 ? 3 : w >= need * 2 + 1 ? 2 : 1; if (cols !== this.state.cols) this.setState({ cols }); };
+    this.ro = new ResizeObserver(fit); setTimeout(() => { if (this.rowRef.current) { this.ro.observe(this.rowRef.current); fit(); setTimeout(fit, 400); } }, 0);
+    try { const hd = JSON.parse(localStorage.getItem('didad-desk-hidden') || '[]'); if (hd.length) this.setState({ hidden: hd }); } catch (e) {}
+    try { const cu = JSON.parse(localStorage.getItem('didad-desk-custom') || '[]'); if (cu.length) this.setState({ custom: cu }); } catch (e) {}
+    fetch('agreements/tracker.html', { method: 'HEAD' }).then(r => { if (!r.ok) throw 0; }).catch(() => this.setState({ ag: '../agreements/' }));
+    try { const o = JSON.parse(localStorage.getItem('didad-desk-order') || 'null'); if (o) this.setState({ order: o }); } catch (e) {}
+    try { const lg = JSON.parse(localStorage.getItem('didad-desk-log') || '[]'); if (lg.length) this.setState({ log: lg }); } catch (e) {}
+    try { const ug = JSON.parse(localStorage.getItem('didad-desk-urg') || 'null'); if (ug) this.setState({ urg: ug }); } catch (e) {}
+    let saved = null, ship = {};
+    try { saved = JSON.parse(localStorage.getItem('didad-tracker-v1') || 'null'); } catch (e) {}
+    try { ship = JSON.parse(localStorage.getItem('didad-shipping-v1') || '{}'); } catch (e) {}
+    const get = p => fetch(p + '?t=' + Date.now()).then(r => { if (!r.ok) throw 0; return r.text(); }).catch(() => fetch('../' + p + '?t=' + Date.now()).then(r => { if (!r.ok) throw 0; return r.text(); }));
+    Promise.all([get('agreements/tracker.csv'), get('agreements/shipping.html').catch(() => '')]).then(([csv, shipHtml]) => {
+      let DEF = {}; try { const m = shipHtml.match(/const DEFAULTS = (\{[\s\S]*?\});\n/); if (m) DEF = JSON.parse(m[1]); } catch (e) {}
+      const all = parseCSV(csv); const h = all.findIndex(r => r[0] === 'No.');
+      const rows = saved && saved.rows ? saved.rows : all.slice(h + 1).filter(r => r.length > 5 && r[0]);
+      const artists = {}; rows.forEach(r => { const a = artists[r[2]] || (artists[r[2]] = { sent: true, signed: true }); if (!/true/i.test(r[9])) a.sent = false; if (!/true/i.test(r[10])) a.signed = false; });
+      const A = Object.values(artists), n = A.length, signed = A.filter(a => a.signed).length, sent = A.filter(a => a.sent && !a.signed).length, toSend = A.filter(a => !a.sent && !a.signed).length;
+      const st = r => ({ ...(DEF[r[2]] || {}), ...(ship[r[0]] || {}) });
+      const del = rows.filter(r => (st(r).status || 0) >= 3).length, moving = rows.filter(r => { const s = st(r).status || 0; return s === 1 || s === 2; }).length;
+      const todos = TASKS.map(t => ({ u: 1, href: 'install-plan.html', ...t }));
+      if (toSend) todos.push({ src: 'Agreements', u: 0, pin: 200, who: toSend + ' agreements', what: ' still to send', href: 'agreements/tracker.html' });
+      if (sent) todos.push({ src: 'Agreements', u: 1, who: sent + ' sent', what: ' — waiting on signatures', href: 'agreements/tracker.html' });
+      const seen = {};
+      const sh = [];
+      rows.forEach(r => { const d = st(r); if (seen[r[2]] || d.done || (d.status || 0) >= 3 || !d.notes) return; seen[r[2]] = 1; sh.push({ src: 'Shipping', who: r[2], what: ' — ' + d.notes, href: 'agreements/shipping.html', open: FLAG.test(d.notes + ' ' + (d.carrier || '') + ' ' + (d.eta || '')) }); });
+      const SET_U = { 'Benjamin Cowan': 1, 'Kenny Curwood': 2, 'Aramis Gutierrez': 2, 'Henry Swanson': 1, 'Pandele Radu': 1, 'Ellen R Hanson': 1 };
+      const SPLIT = { 'Pandele Radu': [
+        { src: 'Shipping', what: ' — friend is bringing it on a flight; may need pickup from a midtown hotel', href: 'agreements/shipping.html' },
+        { src: 'Install', what: ' — arrives rolled in a tube with stretcher bars; find someone to stretch it', href: 'install-plan.html' }
+      ] };
+      sh.forEach(t => { const u = SET_U[t.who] ?? (t.open ? 0 : 2); if (SPLIT[t.who]) SPLIT[t.who].forEach(x => todos.push({ ...t, ...x, u })); else todos.push(t.who === 'L' ? { ...t, u: 0, pin: 2, what: ' — confirm if Casey would be able to deliver the work the week before the show opens' } : t.who === 'Meredith Sellers' ? { ...t, u: 0, pin: 3 } : { ...t, u }); });
+      const UC = ['#e0614f', '#e08a3c', '#d9c255'];
+      todos.sort((a, b) => a.u - b.u).forEach(t => { t.c = UC[t.u]; });
+      const MO = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+      const pd = t => { t = (t || '').trim(); let m;
+        if ((m = t.match(/(\d{4})-(\d{1,2})-(\d{1,2})/))) return new Date(+m[1], +m[2] - 1, +m[3]);
+        if ((m = t.match(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/))) return new Date(m[3] ? (+m[3] < 100 ? 2000 + +m[3] : +m[3]) : 2026, +m[1] - 1, +m[2]);
+        if ((m = t.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})/i))) return new Date(2026, MO[m[1].toLowerCase()], +m[2]);
+        return null; };
+      const trackUrl = (c, n) => { if (!n) return ''; c = (c || '').toLowerCase(); n = encodeURIComponent(n.trim());
+        if (/fedex/.test(c)) return 'https://www.fedex.com/fedextrack/?trknbr=' + n; if (/ups/.test(c)) return 'https://www.ups.com/track?tracknum=' + n;
+        if (/usps|postal/.test(c)) return 'https://tools.usps.com/go/TrackConfirmAction?tLabels=' + n; if (/dhl/.test(c)) return 'https://www.dhl.com/us-en/home/tracking.html?tracking-id=' + n;
+        return 'https://www.google.com/search?q=' + encodeURIComponent((c ? c + ' ' : '') + 'tracking ' + decodeURIComponent(n)); };
+      const iso2 = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const shipEv = []; const seenE = {};
+      rows.forEach(r => { const d = st(r), dt = pd(d.eta); if (!dt || isNaN(dt)) return; const key = r[2] + iso2(dt); if (seenE[key]) return; seenE[key] = 1;
+        shipEv.push({ id: 's' + r[0], d: iso2(dt), title: 'Delivery · ' + r[2] + (d.carrier ? ' (' + d.carrier + ')' : ''), time: '', c: '#e08a3c', auto: true, tracking: d.tracking || '', url: trackUrl(d.carrier, d.tracking) }); });
+      this.setState({ con: { n, signed, sent }, ship: { works: rows.length, del, moving }, todos, shipEv });
+    }).catch(() => {});
+  }
+  calVals() {
+    const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const today = new Date(); today.setHours(0, 0, 0, 0); const tk = iso(today);
+    const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], MONL = ['January','February','March','April','May','June','July','August','September','October','November','December'], DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const BUILT = [
+      { d: '2026-11-06', label: 'Install begins', c: '#7fa39b' },
+      { d: '2026-11-08', label: 'Doug arrives in NYC', c: '#7fa39b' },
+      { d: '2026-11-09', label: 'Doug vinyl delivered + installed', time: 'noon', c: '#e08a3c' },
+      { d: '2026-11-12', label: 'Opening — Death Is a Door', time: '6–9 pm', c: '#5fa08f' },
+      { d: '2026-11-13', label: 'Megan Lindeman event', time: 'evening', c: '#5fa08f' }
+    ];
+    const log = (action, text) => { const lg = [{ ts: Date.now(), action, text }].concat(this.state.log || []).slice(0, 500); localStorage.setItem('didad-desk-log', JSON.stringify(lg)); return lg; };
+    const saveEv = (ev, action, text) => { localStorage.setItem('didad-desk-events', JSON.stringify(ev)); this.setState({ events: ev, log: log(action, text) }); };
+    const ovr = this.state.evo || {};
+    const saveO = (o, action, text) => { localStorage.setItem('didad-desk-evo', JSON.stringify(o)); this.setState({ evo: o, log: log(action, text) }); };
+    const open = ev => this.setState({ evt: { id: ev.id, title: ev.title, d: ev.d, time: ev.time || '' } });
+    const built = BUILT.map((e, i) => { const id = 'b' + i, o = ovr[id] || {}; return o.del ? null : { id, d: o.d || e.d, title: o.title ?? e.label, time: o.time ?? (e.time || ''), c: e.c }; }).filter(Boolean);
+    const custs = (this.state.events || []).map(e => ({ id: e.id, d: e.d, title: e.title, time: e.time, c: '#c4bcae', custom: true }));
+    const delEv = ev => ev.custom ? saveEv((this.state.events || []).filter(x => x.id !== ev.id), 'Deleted', 'Event · ' + ev.title + ' (' + ev.d + ')') : saveO({ ...ovr, [ev.id]: { ...(ovr[ev.id] || {}), del: true } }, 'Deleted', 'Event · ' + ev.title + ' (' + ev.d + ')');
+    const shipAg = this.state.ag || 'agreements/';
+    const all = built.concat(custs).concat(this.state.shipEv || []).map(ev => ({ ...ev, canDel: !ev.auto, label: (ev.time ? ev.time + ' · ' : '') + ev.title + (ev.tracking ? ' · #' + ev.tracking : ''), edit: e => { e.stopPropagation(); if (ev.auto) window.open(ev.url || shipAg + 'shipping.html', '_blank', 'noopener'); else open(ev); }, remove: e => { e.stopPropagation(); if (!ev.auto) delEv(ev); } })).sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
+    const moveEv = (id, k) => { const ev = all.find(x => x.id === id); this.setState({ dragEv: null }); if (!ev || ev.auto || ev.d === k) return; const txt = 'Event · ' + ev.title + ' → ' + k;
+      if (ev.custom) saveEv((this.state.events || []).map(x => x.id === id ? { ...x, d: k } : x), 'Moved', txt); else saveO({ ...ovr, [id]: { ...(ovr[id] || {}), title: ev.title, d: k, time: ev.time || '' } }, 'Moved', txt); };
+    all.forEach(ev => { ev.dragOk = ev.auto ? 'false' : 'true'; ev.cur = ev.auto ? 'pointer' : 'grab'; ev.dstart = e => { e.stopPropagation(); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(ev.id)); } catch (x) {} this.setState({ dragEv: ev.id }); }; ev.dend = () => this.setState({ dragEv: null }); });
+    const addOn = k => () => this.setState({ evt: { title: '', d: k, time: '' } });
+    const inst = k => k >= '2026-11-06' && k <= '2026-11-11';
+    const m0 = new Date(today.getFullYear(), today.getMonth() + (this.state.calOff ?? (today < new Date(2026, 10, 1) ? 1 : 0)), 1);
+    const start = new Date(m0); start.setDate(1 - ((m0.getDay() + 6) % 7));
+    const miniDays = [];
+    for (let i = 0; i < 42; i++) { const d = new Date(start); d.setDate(start.getDate() + i); const k = iso(d), inM = d.getMonth() === m0.getMonth(); if (i >= 35 && !inM) break; const ev = all.filter(e => e.d === k);
+      miniDays.push({ over: e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }, drop: e => { e.preventDefault(); let id = this.state.dragEv; if (!id) { try { id = e.dataTransfer.getData('text/plain'); } catch (x) {} } if (id) moveEv(isNaN(+id) || String(id).charAt(0) === 'b' ? id : +id, k); }, ev, op: inM ? (d < today ? 0.5 : 1) : 0.3, n: String(d.getDate()), add: addOn(k), tip: ev.length ? ev.map(e => e.label).join(' · ') : 'Add event', bg: k === '2026-11-12' ? '#132320' : inst(k) ? '#1b1a15' : 'transparent', sh: k === tk ? 'inset 0 0 0 1px #e9e3d6' : 'none', nc: !inM ? '#4a463f' : d < today ? '#6d675c' : '#e9e3d6', dot: ev.length ? ev[0].c : 'transparent' }); }
+    const nextUp = all.filter(e => e.d >= tk).map(e => { const d = new Date(e.d + 'T12:00'), n = Math.round((d - today) / 864e5) ; return { ...e, when: DOW[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate(), away: n === 0 ? 'today' : n === 1 ? 'tomorrow' : n + 'd' }; });
+    const slot = t => { t = (t || '').toLowerCase(); if (!t) return 0; if (/eve|night/.test(t)) return 3; if (/noon/.test(t)) return 2; const m = t.match(/(\d+)/); if (!m) return 1; let h = +m[1]; if (/pm/.test(t) && h < 12) h += 12; return h >= 17 ? 3 : h >= 12 ? 2 : 1; };
+    const wk = []; for (let i = 0; i < 8; i++) { const d = new Date(2026, 10, 6 + i); wk.push({ k: iso(d), d }); }
+    const weekHead = wk.map(({ k, d }) => ({ dow: DOW[d.getDay()], n: String(d.getDate()), bg: k === '2026-11-12' ? '#132320' : '#0d0c0b', sh: k === tk ? 'inset 0 0 0 1px #e9e3d6' : 'none' }));
+    const weekRows = ['All day', 'Morning', 'Afternoon', 'Evening'].map((name, si) => ({ name, cells: wk.map(({ k }) => ({ add: addOn(k), ev: all.filter(e => e.d === k && slot(e.time) === si) })) }));
+    const view = this.state.calView || 'month';
+    const F = this.state.evt, setF = p => this.setState(s => ({ evt: { ...s.evt, ...p } }));
+    const vb = on => ({ bg: on ? '#1f1d19' : '#0d0c0b', fg: on ? '#f0eadd' : '#c4bcae', sh: on ? 'inset 0 -2px 0 #7fa39b' : 'none' });
+    return {
+      calHead: ['M','T','W','T','F','S','S'], miniDays, monthName: MONL[m0.getMonth()] + (m0.getFullYear() !== today.getFullYear() ? ' ' + m0.getFullYear() : ''),
+      fullHead: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], fullDays: miniDays.map(d => ({ ...d, bg: d.bg === 'transparent' ? '#0d0c0b' : d.bg })),
+      isFull: view === 'full',
+      nextUp, nextEmpty: nextUp.length === 0, weekHead, weekRows,
+      isMonth: view === 'month', isWeek: view === 'week',
+      calViews: [['Overview', 'month'], ['Month', 'full'], ['Install week', 'week']].map(([label, v]) => ({ label, ...vb(view === v), pick: () => this.setState({ calView: v }) })),
+      calPrev: () => this.setState(s => ({ calOff: (s.calOff ?? (today < new Date(2026, 10, 1) ? 1 : 0)) - 1 })), calNext: () => this.setState(s => ({ calOff: (s.calOff ?? (today < new Date(2026, 10, 1) ? 1 : 0)) + 1 })), calToday: () => this.setState({ calOff: 0 }),
+      openEvt: () => this.setState({ evt: { title: '', d: tk, time: '' } }), evtOpen: !!F, evtHead: F && F.id ? 'Edit event' : 'New event', evtEditing: !!(F && F.id),
+      delEvt: () => { const ev = all.find(x => x.id === F.id); if (ev) delEv(ev); this.setState({ evt: null }); },
+      calEdited: Object.keys(ovr).length > 0, calReset: () => saveO({}, 'Reset', 'Built-in calendar dates restored'),
+      closeEvt: () => this.setState({ evt: null }), closeEvtBg: e => { if (e.target === e.currentTarget) this.setState({ evt: null }); },
+      eTitle: F ? F.title : '', eDate: F ? F.d : '', eTime: F ? F.time : '',
+      setETitle: e => setF({ title: e.target.value }), setEDate: e => setF({ d: e.target.value }), setETime: e => setF({ time: e.target.value }),
+      saveEvt: e => { e.preventDefault(); if (!F || !F.title.trim() || !F.d) return;
+        const txt = 'Event · ' + F.title.trim() + ' (' + F.d + (F.time.trim() ? ', ' + F.time.trim() : '') + ')';
+        if (F.id && String(F.id).charAt(0) === 'b') { saveO({ ...ovr, [F.id]: { title: F.title.trim(), d: F.d, time: F.time.trim() } }, 'Edited', txt); this.setState({ evt: null }); return; }
+        if (F.id) { saveEv((this.state.events || []).map(x => x.id === F.id ? { ...x, title: F.title.trim(), d: F.d, time: F.time.trim() } : x), 'Edited', txt); this.setState({ evt: null }); return; }
+        saveEv((this.state.events || []).concat([{ id: Date.now(), title: F.title.trim(), d: F.d, time: F.time.trim() }]), 'Added', txt); this.setState({ evt: null }); }
+    };
+  }
+  renderVals() {
+    const c = this.state.con, s = this.state.ship, pct = (a, b) => (b ? a / b * 100 : 0) + '%';
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const days = Math.round((OPEN - today) / 864e5), idays = Math.round((INSTALL - today) / 864e5);
+    const big = d => d > 1 ? d + ' days' : d === 1 ? '1 day' : d === 0 ? 'Today' : Math.abs(d) + ' days ago';
+    const span = Math.max(1, days);
+    const ag = this.state.ag || 'agreements/';
+    const fixC = h => h.indexOf('agreements/') === 0 ? ag + h.slice(11) : h;
+    return {
+      rowRef: this.rowRef, gridRef: this.gridRef, deskCols: String(this.state.cols || 3), rowDir: this.state.stack ? 'column' : 'row',
+      agTracker: ag + 'tracker.html', agShipping: ag + 'shipping.html',
+      countLabel: days >= 0 ? 'Show opens in' : 'Show opened', countBig: big(days),
+      instLabel: idays >= 0 ? 'Install begins in' : 'Install began', instBig: big(idays),
+      instLeft: Math.min(100, Math.max(0, idays / span * 100)).toFixed(1) + '%',
+      todayTxt: today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase(),
+      signedTxt: c ? c.signed + ' / ' + c.n : '—', sentTxt: c ? c.sent + ' sent, awaiting signature' : '',
+      barSigned: c ? pct(c.signed, c.n) : '0%', barSent: c ? pct(c.sent, c.n) : '0%',
+      delTxt: s ? s.del + ' / ' + s.works : '—', moveTxt: s ? s.moving + ' booked or in transit' : '',
+      barDel: s ? pct(s.del, s.works) : '0%', barMove: s ? pct(s.moving, s.works) : '0%',
+      ...this.calVals(),
+      ...(() => {
+        const fix = h => h && h.indexOf('agreements/') === 0 ? (this.state.ag || 'agreements/') + h.slice(11) : h;
+        const K = t => t.src + '|' + t.who, ord = this.state.order || [], urgO = this.state.urg || {};
+        const UCc = ['#e0614f', '#e08a3c', '#d9c255'], HREF = { Install: 'install-plan.html', Agreements: 'agreements/tracker.html', Shipping: 'agreements/shipping.html', Other: 'desk.html' };
+        const logIt = (action, text) => { const lg = [{ ts: Date.now(), action, text }].concat(this.state.log || []).slice(0, 500); localStorage.setItem('didad-desk-log', JSON.stringify(lg)); this.setState({ log: lg }); };
+        const UN = ['Urgent', 'Soon', 'Follow up'], desc = t => t.src + ' · ' + t.who + (t.what || '');
+        const saveCu = cu => { localStorage.setItem('didad-desk-custom', JSON.stringify(cu)); this.setState({ custom: cu }); };
+        const cust = (this.state.custom || []).map(x => ({ id: x.id, src: x.src, who: x.text, what: x.what ? ' — ' + x.what : '', u: x.u, href: HREF[x.src] || 'desk.html', custom: true, remove: e => { e.preventDefault(); e.stopPropagation(); saveCu((this.state.custom || []).filter(y => y.id !== x.id)); logIt('Deleted', x.src + ' · ' + x.text + (x.what ? ' — ' + x.what : '')); } }));
+        const hid = this.state.hidden || [];
+        const hideK = (k, t) => e => { e.preventDefault(); e.stopPropagation(); logIt('Deleted', desc(t)); const h = hid.concat([k]); localStorage.setItem('didad-desk-hidden', JSON.stringify(h)); this.setState({ hidden: h }); };
+        const auto = this.state.todos.filter(t => hid.indexOf(K(t)) < 0).map(t => ({ ...t, u: urgO[K(t)] ?? t.u, remove: hideK(K(t), t) }));
+        const merged = cust.concat(auto);
+        const all = merged.map((t, i) => ({ t, i })).sort((a, b) => { const pa = a.t.pin || 99, pb = b.t.pin || 99; if (pa !== pb) return pa - pb; const x = ord.indexOf(K(a.t)), y = ord.indexOf(K(b.t)); if (x < 0 && y < 0) return a.i - b.i; if (x < 0) return 1; if (y < 0) return -1; return x - y; }).map(o => o.t);
+        const tab = this.state.tab || 'All';
+        const setU = (key, u) => { const it = all.find(t => K(t) === key); if (!it || it.u === u) return; logIt('Moved', desc(it) + ' → ' + UN[u]); if (it.custom) saveCu((this.state.custom || []).map(y => y.id === it.id ? { ...y, u } : y)); else { const m = { ...(this.state.urg || {}), [key]: u }; localStorage.setItem('didad-desk-urg', JSON.stringify(m)); this.setState({ urg: m }); } };
+        const place = (from, before) => { const keys = all.map(K).filter(k => k !== from); const i = before ? keys.indexOf(before) : -1; if (i < 0) keys.push(from); else keys.splice(i, 0, from); localStorage.setItem('didad-desk-order', JSON.stringify(keys)); this.setState({ order: keys, dragKey: null }); };
+        const TC = ['#e8a497', '#e9b58a', '#e3d491'], WC = ['#f6c9c0', '#f6d3b3', '#f1e7b8'];
+        const deco = t => ({ ...t, td: t.link ? 'underline' : 'none', arrow: t.link ? ' ↗' : '', tc: TC[t.u], wc: WC[t.u], href: fix(t.href), op: this.state.dragKey === K(t) ? 0.4 : 1, drag: e => { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', K(t)); } catch (x) {} this.setState({ dragKey: K(t) }); }, over: e => e.preventDefault(), drop: e => { e.preventDefault(); e.stopPropagation(); const from = this.state.dragKey; if (!from || from === K(t)) return; setU(from, t.u); place(from, K(t)); }, end: () => this.setState({ dragKey: null }) });
+        const list = tab === 'All' ? all : all.filter(t => t.src === tab);
+        const openForm = u => this.setState({ form: { who: '', what: '', src: tab !== 'All' ? tab : 'Other', u } });
+        const cols = [['Urgent', 0], ['Soon', 1], ['Follow up', 2]].map(([name, u]) => { const items = list.filter(t => t.u === u); return { name, c: UCc[u], count: String(items.length), items: items.map(deco), add: () => openForm(u), over: e => e.preventDefault(), drop: e => { e.preventDefault(); const from = this.state.dragKey; if (!from) return; setU(from, u); place(from, null); } }; });
+        const tabs = ['All', 'Agreements', 'Shipping', 'Install', 'Other'].map(k => { const n = k === 'All' ? all.length : all.filter(t => t.src === k).length; const on = k === tab; return { label: k + ' ' + n, bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#0d0c0b' : '#c4bcae', pick: () => this.setState({ tab: k }) }; });
+        const F = this.state.form, setF = p => this.setState(s => ({ form: { ...s.form, ...p } }));
+        const seg = (on) => ({ bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#0d0c0b' : '#c4bcae' });
+        return {
+          tabs, cols, todoCount: String(all.length),
+          hiddenCount: hid.length, hasHidden: hid.length > 0, restoreHidden: () => { logIt('Restored', hid.length + ' deleted item' + (hid.length === 1 ? '' : 's')); localStorage.removeItem('didad-desk-hidden'); this.setState({ hidden: [] }); },
+          hasOrder: ord.length > 0 || Object.keys(urgO).length > 0, resetOrder: () => { logIt('Reset', 'Order and urgency back to automatic'); localStorage.removeItem('didad-desk-order'); localStorage.removeItem('didad-desk-urg'); this.setState({ order: null, urg: {} }); },
+          unsentCount: (() => { const n = (this.state.log || []).filter(l => l.ts > (this.state.lastSent || 0)).length; return n ? '(' + n + ')' : ''; })(),
+          emailChanges: () => {
+            const last = this.state.lastSent || 0, lg = (this.state.log || []).filter(l => l.ts > last).reverse();
+            const fmt = ts => new Date(ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+            const data = { custom: this.state.custom || [], hidden: this.state.hidden || [], urgency: this.state.urg || {}, order: this.state.order || [], events: this.state.events || [], eventEdits: this.state.evo || {} };
+            const body = 'Exhibition Desk changes — Death Is a Door\n' + 'Sent ' + fmt(Date.now()) + (last ? ' · since ' + fmt(last) : '') + '\n\n'
+              + (lg.length ? lg.map(l => fmt(l.ts) + ' — ' + l.action + ': ' + l.text).join('\n') : 'No new changes since last email.')
+              + '\n\n--- DATA (paste this to Claude to make it permanent) ---\n' + JSON.stringify(data);
+            const subj = 'Exhibition Desk changes — ' + new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            try { navigator.clipboard && navigator.clipboard.writeText(body); } catch (e) {}
+            window.location.href = 'mailto:doug@allart.la?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+            const now = Date.now(); localStorage.setItem('didad-desk-lastsent', String(now)); this.setState({ lastSent: now });
+          },
+          openLog: () => this.setState({ logOpen: true }), closeLog: () => this.setState({ logOpen: false }), closeLogBg: e => { if (e.target === e.currentTarget) this.setState({ logOpen: false }); },
+          logOpen: !!this.state.logOpen, logCount: String((this.state.log || []).length), logEmpty: !(this.state.log || []).length,
+          logList: (this.state.log || []).map(l => ({ ...l, c: { Added: '#5fa08f', Deleted: '#e0614f', Moved: '#e08a3c', Restored: '#7fa39b', Reset: '#8f887c', Edited: '#d9c255' }[l.action] || '#8f887c', when: new Date(l.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) })),
+          openAdd: () => openForm(1), formOpen: !!F, closeForm: () => this.setState({ form: null }), closeBg: e => { if (e.target === e.currentTarget) this.setState({ form: null }); },
+          fWho: F ? F.who : '', fWhat: F ? F.what : '', setWho: e => setF({ who: e.target.value }), setWhat: e => setF({ what: e.target.value }),
+          areaOpts: ['Agreements', 'Shipping', 'Install', 'Other'].map(k => ({ label: k, ...seg(F && F.src === k), pick: () => setF({ src: k }) })),
+          urgOpts: [['Urgent', 0], ['Soon', 1], ['Follow up', 2]].map(([label, u]) => ({ label, c: UCc[u], ...seg(F && F.u === u), pick: () => setF({ u }) })),
+          saveItem: e => { e.preventDefault(); if (!F || !F.who.trim()) return; saveCu([{ id: Date.now(), text: F.who.trim(), what: F.what.trim(), src: F.src, u: F.u }].concat(this.state.custom || [])); logIt('Added', F.src + ' · ' + F.who.trim() + (F.what.trim() ? ' — ' + F.what.trim() : '') + ' (' + UN[F.u] + ')'); this.setState({ form: null }); }
+        };
+      })(),
+      todos: this.state.todos, todoEmpty: !!s && this.state.todos.length + (this.state.custom || []).length === 0,
+      cards: [
+
+        { title: 'Checklist', href: 'agreements/checklist.html', span: 'auto' },
+        { title: 'Consignments', href: 'agreements/tracker.html', span: 'auto' },
+        { title: 'Press materials', href: 'press.html', span: 'auto' },
+        { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
+        { title: 'Site', href: 'index.html', span: 'auto' },
+        { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' }
+      ].map(c => ({ ...c, href: fixC(c.href) }))
+    };
+  }
+}
+</script>
+</body>
+</html>
