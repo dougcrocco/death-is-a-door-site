@@ -494,6 +494,7 @@ class Component extends DCLogic {
         if (on) { if (v.paused) this.playVid(v); if (v.readyState < 3) v.addEventListener('canplay', () => { if (this.pages()[this.state.i] === p) this.playVid(v); }, { once: true }); }
       });
       if (Math.abs(k - this.state.i) <= 1) { p.querySelectorAll('img[loading="lazy"]').forEach(im => im.loading = 'eager'); p.querySelectorAll('video[data-src]').forEach(v => this.loadVid(v, p)); }
+      else if (p.querySelector('#look-through') && (this.state.i >= ps.length - 8 || this.lastReady)) p.querySelectorAll('video[data-src]').forEach(v => this.loadVid(v, p));
     });
     if (ps[this.state.i]) ps[this.state.i].scrollTop = 0;
     try { history.replaceState(null, '', '#' + (this.state.i + 1)); } catch (e) {}
@@ -519,6 +520,7 @@ class Component extends DCLogic {
     if (pr) pr.catch(() => { v.muted = true; this.setState({ muted: true }); v.play().catch(()=>{}); });
   }
   componentDidMount() {
+    this.lastTimer = setTimeout(() => { this.lastReady = true; const ps = this.pages(); const lp = ps.find(p => p.querySelector('#look-through')); if (lp) lp.querySelectorAll('video[data-src]').forEach(v => this.loadVid(v, lp)); }, 3500);
     this.onFirst = () => {
       const p = this.pages()[this.state.i];
       if (p) p.querySelectorAll('video').forEach(v => { if (v.paused || (v.muted && !this.state.muted)) this.playVid(v); });
