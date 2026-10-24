@@ -27,7 +27,7 @@
         log = [{ ts: Date.now(), action: 'Updated', text: label(k) }];
       }
       setStatus('saving');
-      fetch(URL, { method: 'POST', body: JSON.stringify({ key: k, value: val, by: who(), page: page, log: log }) })
+      fetch(URL, { method: 'POST', keepalive: true, body: JSON.stringify({ key: k, value: val, by: who(), page: page, log: log }) })
         .then(function (r) { return r.json(); })
         .then(function (j) { setTs(k, Date.parse(j.updated) || Date.now()); setStatus('saved'); })
         .catch(function () { pending[k] = 1; setStatus('offline'); setTimeout(schedule, 15000); });
@@ -45,6 +45,8 @@
         if (rt > (t[k] || 0) && !pending[k]) {
           var cur = LS.getItem(k), nv = rem.value == null ? null : JSON.stringify(rem.value);
           if (cur !== nv) changed.push({ k: k, nv: nv, rt: rt, by: rem.by }); else setTs(k, rt);
+        } else if (rt && rt === (t[k] || 0) && !pending[k] && k !== 'didad-desk-log') {
+          var cv = LS.getItem(k); if (cv !== (rem.value == null ? null : JSON.stringify(rem.value))) { pending[k] = 1; schedule(); }
         }
       });
       Object.keys(localStorage).forEach(function (k) { if (synced(k) && !(k in (all || {})) && !t[k]) { pending[k] = 1; schedule(); } });
@@ -73,6 +75,7 @@
     box.appendChild(dot); box.appendChild(txt); box.appendChild(nameBtn); document.body.appendChild(box);
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
+    if (!who()) setTimeout(function () { var n = prompt('Your name (so the team can see who made each change):', ''); if (n && n.trim()) { rawSet('didad-who', n.trim()); paintName(); } }, 1500);
   }
   function paintName() { if (nameBtn) nameBtn.textContent = who() ? 'You: ' + who() : 'Set your name'; }
   function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; }
