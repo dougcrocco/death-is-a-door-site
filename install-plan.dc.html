@@ -43,6 +43,7 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
         <button onClick="{{ saveStart }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0d0c0b;background:#7fa39b;border:1px solid #7fa39b;padding:10px 16px;cursor:pointer;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">{{ saveLabel }}</button>
         <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Back to saved</button>
+        <button onClick="{{ oct24 }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.35);padding:9px 14px;cursor:pointer;">Oct 24 layout</button>
         <button onClick="{{ toDefault }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:1px solid rgba(233,227,214,0.3);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Oct 11 layout</button>
         <button onClick="{{ even }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;background:transparent;border:1px solid rgba(233,227,214,0.18);padding:10px 16px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">Even spacing</button>
       </div>
@@ -82,6 +83,27 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
       </sc-if>
     </div>
     <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">Drag to look around · click a work to see its label and walk to it · click the floor to walk there · W A S D or arrow keys to walk. Follows the plan and elevations live.</div>
+      <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #2a2722;padding-top:14px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+        <button onClick="{{ toggleBank }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;padding:9px 16px;cursor:pointer;background:{{ bankBg }};color:{{ bankFg }};border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">{{ bankLabel }}</button>
+        <sc-if value="{{ bankOpen }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Pick a wall to move a work, or set its center height in inches (blank = default). On the wall elevations you can also drag a work up/down to change its height, or sideways to slide it. Labels show X / Y to the work’s top-left corner, measured from the wall’s left edge and down from the ceiling.</span></sc-if>
+      </div>
+      <sc-if value="{{ bankOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;">
+          <sc-for list="{{ bank }}" as="b" hint-placeholder-count="15">
+            <div style="display:flex;flex-direction:column;gap:8px;background:#16150f;border:1px solid {{ b.border }};padding:10px;">
+              <div style="height:120px;display:flex;align-items:center;justify-content:center;background:#0d0c0b;"><img src="{{ b.src }}" alt="{{ b.title }}" loading="lazy" style="max-width:100%;max-height:120px;object-fit:contain;display:block;"></div>
+              <div style="display:flex;gap:8px;align-items:baseline;"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">{{ b.num }}</span><span style="font-family:'EB Garamond',serif;font-size:14px;line-height:1.25;color:#f0eadd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ b.artist }} — <i>{{ b.title }}</i></span></div>
+              <div style="font-family:'Space Mono',monospace;font-size:9.5px;color:#8f887c;">{{ b.dims }}</div>
+              <label style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">Center height (in)<span style="display:flex;align-items:center;gap:6px;"><input value="{{ b.cl }}" onChange="{{ b.setCl }}" placeholder="{{ b.clDefault }}" inputMode="decimal" style="width:64px;font-family:'Space Mono',monospace;font-size:11px;padding:4px 6px;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;text-align:right;"><sc-if value="{{ b.clSet }}" hint-placeholder-val="{{ false }}"><button onClick="{{ b.resetCl }}" title="Back to default" style="background:transparent;border:none;color:#c9a24a;cursor:pointer;font-size:12px;padding:0;">↺</button></sc-if></span></label>
+              <select value="{{ b.wall }}" onChange="{{ b.move }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;padding:6px 8px;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;cursor:pointer;">
+                <sc-for list="{{ wallOpts }}" as="o" hint-placeholder-count="6"><option value="{{ o.id }}">{{ o.label }}</option></sc-for>
+              </select>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
   </section>
 
   <section data-screen-label="Plan" style="display:flex;flex-direction:column;gap:18px;">
@@ -162,12 +184,14 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
         <div data-wall="" style="position:relative;width:100%;aspect-ratio:{{ wall.aspect }};background:#f1efea;box-shadow:inset 0 -6px 0 #d9d4ca;overflow:hidden;">
           <div style="position:absolute;left:0;right:0;top:{{ wall.cTop }};border-top:1px dashed rgba(43,106,96,0.55);"></div>
           <div style="position:absolute;right:6px;top:{{ wall.cTop }};transform:translateY(-120%);font-family:'Space Mono',monospace;font-size:9px;color:#2b6a60;">{{ wall.cLabel }}</div>
+          <div data-xy-key="" style="position:absolute;left:6px;top:4px;font-family:'Space Mono',monospace;font-size:8.5px;color:#5c574c;pointer-events:none;">0,0 ↘  X → from left edge · Y ↓ from ceiling (to top-left of each work)</div>
           <sc-for list="{{ wall.items }}" as="it" hint-placeholder-count="3">
             <div style="position:absolute;left:{{ it.plLeft }};width:{{ it.plW }};top:{{ it.plTop }};bottom:0;background:#e2ded6;border:1px solid #cfc9be;box-sizing:border-box;"></div>
             <div style="position:absolute;top:0;left:{{ it.wireLeft }};height:{{ it.wireH }};border-left:1px solid #7a746a;"></div>
-            <div onPointerDown="{{ it.onDown }}" title="{{ it.tip }}" style="position:absolute;left:{{ it.left }};top:{{ it.top }};width:{{ it.w }};height:{{ it.h }};cursor:grab;touch-action:none;box-shadow:0 2px 6px rgba(0,0,0,0.28);background:#222;">
+            <div onPointerDown="{{ it.onDown }}" title="{{ it.tip }}" style="position:absolute;left:{{ it.left }};top:{{ it.top }};width:{{ it.w }};height:{{ it.h }};cursor:grab;touch-action:none;box-shadow:{{ it.snapRing }};background:#222;">
               <img src="{{ it.src }}" alt="{{ it.title }}" draggable="false" style="display:block;width:100%;height:100%;object-fit:{{ it.fit }};pointer-events:none;">
-              <div style="position:absolute;left:50%;bottom:100%;transform:translate(-50%,-4px);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#2b6a60;white-space:nowrap;pointer-events:none;">{{ it.num }}</div>
+              <div style="position:absolute;left:{{ it.nl }};top:{{ it.nt }};transform:{{ it.ntf }};font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#2b6a60;white-space:nowrap;pointer-events:none;">{{ it.num }}</div>
+              <div style="position:absolute;left:{{ it.dl }};top:{{ it.dt }};transform:{{ it.dtf }};text-align:{{ it.da }};z-index:4;font-family:'Space Mono',monospace;font-size:8.5px;line-height:1.35;letter-spacing:0.02em;color:#5c574c;white-space:nowrap;text-align:center;pointer-events:none;background:rgba(241,239,234,0.85);padding:1px 4px;">{{ it.dimLabel }}<br>{{ it.hLabel }}</div>
             </div>
           </sc-for>
           <sc-for list="{{ wall.ghosts }}" as="gh" hint-placeholder-count="0">
@@ -241,7 +265,7 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
   </section>
 
 
-  <footer style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.8;color:#8f887c;border-top:1px solid rgba(233,227,214,0.18);padding-top:20px;">Assumptions — The Isle of the Dead 2026 shown 24 in high at the video's native ratio (16½ in wide). Spell for blue light = 222D alignment (16 × 42 in) and New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog) (18 × 42 in) on pedestals in the center of the room; shown side by side, floor position not plotted. The World of Symbol… suspended from the ceiling on a wire, center at the center line. Elevations are drawn as seen facing each wall. Room views are perspective approximations from the gallery photos, calibrated from the 113 in wall height and the installed works in the Systems of Gesture photos; they follow the elevations live as works are dragged. Pedestal, hanging and desk positions in the room are estimated; desk shown as a 60 × 30 × 29 in glass desk freestanding in the front of the room, about 3 ft off the left back wall, long side running front to back.</footer>
+  <footer style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.8;color:#8f887c;border-top:1px solid rgba(233,227,214,0.18);padding-top:20px;">Assumptions — The Isle of the Dead 2026 shown 24 in high at the video's native ratio (16½ in wide). Spell for blue light = 222D alignment (16 × 48 in) and New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog) (18 × 48 in) on pedestals in the center of the room; shown side by side, floor position not plotted. The World of Symbol… suspended from the ceiling on a wire, center at the center line. Elevations are drawn as seen facing each wall. Room views are perspective approximations from the gallery photos, calibrated from the 113 in wall height and the installed works in the Systems of Gesture photos; they follow the elevations live as works are dragged. Pedestal, hanging and desk positions in the room are estimated; desk shown as a 60 × 30 × 29 in glass desk freestanding in the front of the room, about 3 ft off the left back wall, long side running front to back.</footer>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;centerline&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:60,&quot;min&quot;:54,&quot;max&quot;:66,&quot;step&quot;:1,&quot;unit&quot;:&quot;in&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;scale&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Fit each wall&quot;,&quot;options&quot;:[&quot;Fit each wall&quot;,&quot;Same scale&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;showDims&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
@@ -261,16 +285,23 @@ const WORKS = [
   { id: 'empty-e', wall: 'entry', num: 'V', artist: 'Meredith Sellers', title: 'Empty (After Holbein)', file: 'meredith-sellers-empty-after-holbein.jpg', w: 29, h: 14.5, dims: '14½ × 29 × 1¾ in' },
   { id: 'swanson', wall: 'right', num: 'VI', artist: 'Henry Swanson', title: 'Mask from Dallas', file: 'henry-swanson-mask-from-dallas-v3.jpg', w: 8, h: 10, dims: '10 × 8 in' },
   { id: 'gutierrez', wall: 'right', num: 'VII', artist: 'Aramis Gutierrez', title: 'Bletting Bananas and Mangos', file: 'aramis-gutierrez-the-turning-v2.jpg', w: 48, h: 54, dims: '54 × 48 in' },
-  { id: 'lazaros', wall: 'floor', num: 'VIII', artist: 'L', title: 'Spell for blue light = 222D alignment', file: 'l-spell-for-blue-light-222d-alignment.jpg', w: 5, h: 10.75, dims: '5 × 5 × 10.75 in · on pedestal', plinth: { w: 16, h: 42 } },
+  { id: 'lazaros', wall: 'floor', num: 'VIII', artist: 'L', title: 'Spell for blue light = 222D alignment', file: 'l-spell-for-blue-light-222d-alignment.jpg', w: 5, h: 10.75, dims: '5 × 5 × 10.75 in · on pedestal', plinth: { w: 16, h: 48 } },
   { id: 'obscura', wall: 'right', num: 'IX', artist: 'Charlie Goering', title: 'Three-Tiered Camera Obscura', file: 'charlie-goering-three-tiered-camera-obscura.jpg', w: 10, h: 8, dims: '8 × 10 in' },
   { id: 'delaney', wall: 'right', num: 'X', artist: 'Tom DeLaney', title: 'Rage and Eternal', file: 'tom-delaney-rage-and-eternal-v2.jpg', w: 24, h: 18, dims: '18 × 24 in' },
   { id: 'desire-e', wall: 'entry', num: 'XI', artist: 'Meredith Sellers', title: 'Desire (After Dieric Bouts)', file: 'meredith-sellers-desire-after-dieric-bouts.jpg', w: 21, h: 14.5, dims: '14½ × 21 × 1¾ in' },
   { id: 'hanson-r', wall: 'right', num: 'III', artist: 'Ellen R Hanson', title: 'Funeral Flowers', file: 'ellen-r-hanson-funeral-flowers-v3.jpg', w: 59, h: 22, dims: '22 × 59 in' },
   { id: 'radu', wall: 'back', num: 'XII', artist: 'Pandele Radu', title: 'Down the River', file: 'pandele-radu-down-the-river-v2.jpg', w: 39.37, h: 39.37, dims: '39.37 × 39.37 in' },
-  { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)', file: 'megan-lindeman-new-enlightened-era-coming-soon-2.jpg', w: 8.5, h: 18.25, dims: '18.25 × 8.5 × 5.5 in · on pedestal', plinth: { w: 18, h: 42 } },
+  { id: 'lindeman', wall: 'floor', num: 'XIII', artist: 'Megan Lindeman', title: 'New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)', file: 'megan-lindeman-new-enlightened-era-coming-soon-2.jpg', w: 8.5, h: 18.25, dims: '18.25 × 8.5 × 5.5 in · on pedestal', plinth: { w: 18, h: 48 } },
   { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Curwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', file3d: 'kenny-durwood-install.png', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling, 72 in center', hang: true, cl: 72 },
   { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' }
 ];
+const OCT11 = {"pos":{"empty-e":64.75,"desire-e":118.5,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5},"walls":{},"hts":{"desire-e":60,"empty-e":60}};
+const OCT24 = {"pos":{"empty-e":51.5,"desire-e":55.5,"srijon":113.5,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":73,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5},"walls":{"srijon":"entry"},"hts":{"desire-e":69,"empty-e":49.5}};
+const WALL_KEY = 'didad-install-walls';
+try { const ov = JSON.parse(localStorage.getItem(WALL_KEY) || '{}'); WORKS.forEach(w => { if (ov[w.id]) w.wall = ov[w.id]; }); } catch (e) {}
+const HT_KEY = 'didad-install-heights';
+WORKS.forEach(w => { w.__cl0 = w.cl; });
+try { const hv = JSON.parse(localStorage.getItem(HT_KEY) || '{}'); WORKS.forEach(w => { if (hv[w.id] != null && hv[w.id] !== '') w.cl = +hv[w.id]; }); } catch (e) {}
 const KEY = 'didad-install-pos-v12';
 const BAKED = {"empty-e":65,"desire-e":118.25,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5};
 const VIEWS = [
@@ -280,6 +311,7 @@ const VIEWS = [
   { id: 'f13', flat: true, src: 'install/view-13.jpg', W: 1600, H: 980, wall: 'center', s: 9.4, floor: 928, u0: 160, caption: 'Center back wall (B), straight on.' },
   { id: 'f9', flat: true, src: 'install/view-9.jpg', W: 1600, H: 900, wall: 'right', s: 8.35, floor: 835, u0: -890, caption: 'Right wall (C), back section, straight on.' },
   { id: 'f15', flat: true, src: 'install/view-15.jpg', W: 2320, H: 900, wall: 'back', s: 6.55, floor: 660, u0: 59, caption: 'Left back wall (D), full length from the pillar end, straight on.' },
+  { id: 'fA', flat: true, src: 'install/view-a-model.jpg?v=4', W: 1749, H: 984, wall: 'entry', s: 8, floor: 913, u0: 40, caption: 'Left entry wall (A), straight on — mock-up using the right wall’s photo, at wall A’s true size.' },
   { id: 'f19', flat: true, src: 'install/view-19.jpg', W: 1257, H: 900, wall: 'right', s: 8.6, floor: 845, u0: -2072, caption: 'Right wall (C), middle, straight on.' },
   { id: 'f5', flat: true, src: 'install/view-5.jpg', W: 1600, H: 900, wall: 'right', s: 10.5, floor: 992, u0: -3872, caption: 'Right wall (C), toward the entry, close up.' },
   { id: 'entry', src: 'install/gallery-entry.png', W: 1938, H: 1320, f: 1410, cx: 587, cy: 638, cam: 53.7,
@@ -319,7 +351,7 @@ function evenPositions() {
   return pos;
 }
 class Component extends DCLogic {
-  state = { pos: (() => { try { return { ...evenPositions(), ...BAKED, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch (e) { return { ...evenPositions(), ...BAKED }; } })() };
+  state = { bankOpen: (() => { try { const v = sessionStorage.getItem('didad-install-bank-open'); sessionStorage.removeItem('didad-install-bank-open'); return !!v; } catch (e) { return false; } })(), pos: (() => { try { return { ...evenPositions(), ...BAKED, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch (e) { return { ...evenPositions(), ...BAKED }; } })() };
   startPos() { try { const sv = JSON.parse(localStorage.getItem(KEY + '-saved') || 'null'); if (sv) return { ...evenPositions(), ...BAKED, ...sv }; } catch (e) {} return { ...evenPositions(), ...BAKED }; }
   save() { try { localStorage.setItem(KEY, JSON.stringify(this.state.pos)); } catch (e) {} }
   componentWillUnmount() { this.end && this.end(); this.ro && this.ro.disconnect(); const t = this.t3; if (t && t.R) { cancelAnimationFrame(t.raf); t.ro.disconnect(); t.io.disconnect(); t.video && t.video.pause(); t.R.dispose(); } this.t3 = null; }
@@ -509,17 +541,33 @@ class Component extends DCLogic {
   down(e, work, len) {
     e.preventDefault();
     const rect = e.currentTarget.parentElement.getBoundingClientRect();
-    const sx = e.clientX, s0 = this.state.pos[work.id];
+    const sx = e.clientX, sy = e.clientY, s0 = this.state.pos[work.id];
+    const canY = !work.plinth && !work.floorMount && !work.stackOn && !WORKS.some(o => o.stackOn === work.id);
+    const c0 = work.cl ?? (this.props.centerline ?? 60); let axis = null, moved = false;
     const move = ev => {
-      let x = s0 + (ev.clientX - sx) / rect.width * len;
-      x = Math.max(0, Math.min(len - work.w, Math.round(x * 4) / 4));
-      this.setState(s => ({ pos: { ...s.pos, [work.id]: x } }));
+      const dx = ev.clientX - sx, dy = ev.clientY - sy;
+      if (!axis) { if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return; axis = (canY && Math.abs(dy) > Math.abs(dx)) ? 'y' : 'x'; }
+      if (axis === 'x') { let x = s0 + dx / rect.width * len; x = Math.max(0, Math.min(len - work.w, Math.round(x * 4) / 4)); const cx = (len - work.w) / 2; if (!ev.altKey && Math.abs(x - cx) < 2.5) x = cx; this.snapId = x === cx ? work.id : null; this.setState(s => ({ pos: { ...s.pos, [work.id]: x } })); }
+      else { const ppi = rect.width / len; let cl = c0 - dy / ppi; cl = Math.max(work.h / 2 + 2, Math.min(H - work.h / 2 - 2, Math.round(cl * 2) / 2)); const cd = this.props.centerline ?? 60; if (!ev.altKey && Math.abs(cl - cd) < 2.5) cl = cd; this.snapId = cl === cd ? work.id : null; work.cl = cl; moved = true; this.forceUpdate(); }
     };
-    const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); this.end = null; this.save(); };
+    const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); this.end = null; this.snapId = null; this.save(); this.forceUpdate();
+      if (moved) { let hv = {}; try { hv = JSON.parse(localStorage.getItem(HT_KEY) || '{}'); } catch (er) {} hv[work.id] = work.cl; try { localStorage.setItem(HT_KEY, JSON.stringify(hv)); } catch (er) {} } };
     this.end = up;
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   }
   renderVals() {
+    const _bankVals = {
+      bankOpen: !!this.state.bankOpen, bankLabel: this.state.bankOpen ? 'Close art bank ×' : 'Art bank — move works between walls',
+      bankBg: this.state.bankOpen ? '#e9e3d6' : 'transparent', bankFg: this.state.bankOpen ? '#0d0c0b' : '#e9e3d6',
+      toggleBank: () => this.setState({ bankOpen: !this.state.bankOpen }),
+      wallOpts: WALLS.map(x => ({ id: x.id, label: x.letter + ' · ' + x.name })).concat([{ id: 'bank', label: '— Unplaced —' }]),
+      bank: WORKS.map(w => ({ cl: (() => { try { const v = JSON.parse(localStorage.getItem(HT_KEY) || '{}')[w.id]; return v == null ? '' : String(v); } catch (e) { return ''; } })(), clDefault: String(w.__cl0 ?? this.props.centerline ?? 60), clSet: (() => { try { return JSON.parse(localStorage.getItem(HT_KEY) || '{}')[w.id] != null; } catch (e) { return false; } })(),
+        setCl: e => { const v = parseFloat(e.target.value); let hv = {}; try { hv = JSON.parse(localStorage.getItem(HT_KEY) || '{}'); } catch (er) {} if (isNaN(v)) { delete hv[w.id]; w.cl = w.__cl0; } else { const cv = Math.max(4, Math.min(H - 4, v)); hv[w.id] = cv; w.cl = cv; } try { localStorage.setItem(HT_KEY, JSON.stringify(hv)); } catch (er) {} this.forceUpdate(); },
+        resetCl: () => { let hv = {}; try { hv = JSON.parse(localStorage.getItem(HT_KEY) || '{}'); } catch (er) {} delete hv[w.id]; w.cl = w.__cl0; try { localStorage.setItem(HT_KEY, JSON.stringify(hv)); } catch (er) {} this.forceUpdate(); },
+        num: w.num, artist: w.artist, title: w.title, dims: w.dims, src: 'art/' + w.file, wall: w.wall, border: w.wall === 'bank' ? '#c9a24a' : '#2a2722',
+        move: e => { const nw = e.target.value; let ov = {}; try { ov = JSON.parse(localStorage.getItem(WALL_KEY) || '{}'); } catch (er) {} ov[w.id] = nw; try { localStorage.setItem(WALL_KEY, JSON.stringify(ov)); } catch (er) {}
+          const wl = WALLS.find(x => x.id === nw); const pos = { ...this.state.pos }; if (wl) pos[w.id] = Math.max(0, (wl.len - (w.w || 0)) / 2); this.setState({ pos }, () => { this.save(); try { sessionStorage.setItem('didad-install-bank-open', '1'); } catch (er) {} location.reload(); }); } }))
+    };
     const c = this.props.centerline ?? 60;
     const same = (this.props.scale ?? 'Fit each wall') === 'Same scale';
     const maxLen = Math.max(...WALLS.map(w => w.len));
@@ -539,15 +587,28 @@ class Component extends DCLogic {
         const bottom = w.plinth ? w.plinth.h : w.floorMount ? 0 : base ? c - (base.h + w.stackGap + w.h) / 2 + base.h + w.stackGap : above ? c - stackH / 2 : (w.cl ?? c) - w.h / 2;
         const px = x + w.w / 2 - (w.plinth ? w.plinth.w / 2 : 0);
         return {
+          dimLabel: (w.dims || '').split(' · ').filter(t => /×|x\s*\d|in\b|cm\b/.test(t)).slice(-1)[0] || w.dims || '', hLabel: 'X ' + (Math.round(x * 2) / 2) + '″ · Y ' + (Math.round((H - bottom - w.h) * 2) / 2) + '″',
           ...w, x, bottom,
           src: 'art/' + w.file, fit: w.fit || 'cover',
           left: pct(x, L), w: pct(w.w, L), h: pct(w.h, H), top: pct(H - bottom - w.h, H),
           plLeft: w.plinth ? pct(px, L) : '0%', plW: w.plinth ? pct(w.plinth.w, L) : '0%', plTop: w.plinth ? pct(H - w.plinth.h, H) : '100%',
           tip: w.num + ' · ' + w.title, wireLeft: pct(x + w.w / 2, L), wireH: w.hang ? pct(H - bottom - w.h, H) : '0%',
           posLabel: wl.floor ? (w.hang ? 'Suspended from ceiling · center ' + (w.cl ?? c) + '" AFF' : 'Pedestal ' + w.plinth.w + '" wide × ' + w.plinth.h + '" high · center of room') : 'Left edge ' + fmt(x) + ' from wall start · ' + (base ? 'stacked ' + w.stackGap + '" above ' + base.num + ' · bottom ' + fmt(bottom) + ' AFF' : above ? 'bottom of stack · bottom ' + fmt(bottom) + ' AFF' : w.plinth ? 'plinth ' + w.plinth.h + '" high' : w.floorMount ? 'starts at floor · top 95" AFF' : 'center ' + c + '" AFF'),
+          snapRing: this.snapId && (this.snapId === w.id || (base && this.snapId === base.id)) ? '0 0 0 3px #3ddc84, 0 2px 6px rgba(0,0,0,0.28)' : '0 2px 6px rgba(0,0,0,0.28)',
           onDown: e => this.down(e, base || WORKS.find(k => k.id === w.id), L)
         };
       });
+      { const lh = L * 0.032, lw = L * 0.14, nh = L * 0.016, nw = L * 0.03;
+        const R = items.map(it => ({ it, x0: it.x, x1: it.x + WORKS.find(k => k.id === it.id).w, y0: it.bottom, y1: it.bottom + WORKS.find(k => k.id === it.id).h }));
+        const hit = (a, x0, x1, y0, y1) => R.some(b => b !== a && x0 < b.x1 && x1 > b.x0 && y0 < b.y1 && y1 > b.y0);
+        R.forEach(a => { const cx = (a.x0 + a.x1) / 2;
+          let dl = '50%', dt = '100%', dtf = 'translate(-50%,4px)', da = 'center';
+          if (hit(a, cx - lw / 2, cx + lw / 2, a.y0 - lh, a.y0) || a.y0 - lh < 0) {
+            const right = a.x1 + lw <= L && !hit(a, a.x1, a.x1 + lw, (a.y0 + a.y1) / 2 - lh / 2, (a.y0 + a.y1) / 2 + lh / 2);
+            if (right) { dl = '100%'; dt = '50%'; dtf = 'translate(6px,-50%)'; da = 'left'; } else { dl = '0%'; dt = '50%'; dtf = 'translate(calc(-100% - 6px),-50%)'; da = 'right'; } }
+          let nl = '50%', nt = '0%', ntf = 'translate(-50%,calc(-100% - 4px))';
+          if (hit(a, cx - nw / 2, cx + nw / 2, a.y1, a.y1 + nh) || a.y1 + nh > H) { nl = '0%'; nt = '0%'; ntf = 'translate(calc(-100% - 5px),0)'; if (a.x0 - nw < 0 || hit(a, a.x0 - nw, a.x0, a.y1 - nh, a.y1)) { nl = '100%'; ntf = 'translate(5px,0)'; } }
+          Object.assign(a.it, { dl, dt, dtf, da, nl, nt, ntf }); }); }
       const sorted = items.filter(it => !it.stackOn).sort((a, b) => a.x - b.x);
       const gaps = []; let prev = 0;
       sorted.forEach(it => { const g = it.x - prev; if (g > 0.5) gaps.push({ left: pct(prev, L), w: pct(g, L), label: fmt(g) }); prev = Math.max(prev, it.x + WORKS.find(k => k.id === it.id).w); });
@@ -660,13 +721,14 @@ class Component extends DCLogic {
     });
     this.s3 = { placed, desk: { ...DESK }, free: WORKS.filter(w => FREE[w.id]).map(w => ({ id: w.id, w: w.w, h: w.h, plinth: w.plinth, src: 'art/' + (w.file3d || w.file), X: FREE[w.id].X, Z: FREE[w.id].Z, bottom: w.plinth ? w.plinth.h : (w.cl ?? c) - w.h / 2 })) };
     this.walkRef = this.walkRef || (el => { this.walkEl = el; if (el) this.init3d(); });
-    return {
+    return { ..._bankVals,
       walkRef: this.walkRef, walkSel: this.state.walkSel || null, walkSelPhone: !!this.state.walkSel && this.isPhone(), walkSelDesk: !!this.state.walkSel && !this.isPhone(), walkClose: () => this.setState({ walkSel: null }), walkEntry: () => this.walkTo(30, -95, 0), walkBack: () => this.walkTo(10, 420, Math.PI), walkRight: () => this.walkTo(-10, 170, -Math.PI / 2),
       views, walls, planWorks, planFree, planDesk, centerline: c, showDims: this.props.showDims ?? true,
       saveLabel: this.state.justSaved ? 'Saved ✓' : 'Save as starting point',
       saveStart: () => { try { localStorage.setItem(KEY + '-saved', JSON.stringify(this.state.pos)); } catch (e) {} this.save(); this.setState({ justSaved: true }); clearTimeout(this.st); this.st = setTimeout(() => this.setState({ justSaved: false }), 1600); },
-      reset: () => { this.setState({ pos: this.startPos() }, () => this.save()); },
-      toDefault: () => { this.setState({ pos: { ...evenPositions(), ...BAKED } }, () => this.save()); },
+      oct24: () => { try { localStorage.setItem(WALL_KEY, JSON.stringify(OCT24.walls)); localStorage.setItem(HT_KEY, JSON.stringify(OCT24.hts)); localStorage.setItem(KEY, JSON.stringify(OCT24.pos)); } catch (e) {} location.reload(); },
+      reset: () => { try { const ov = JSON.parse(localStorage.getItem(WALL_KEY) || '{}'); delete ov.srijon; localStorage.setItem(WALL_KEY, JSON.stringify(ov)); } catch (e) {} this.setState({ pos: this.startPos() }, () => { this.save(); location.reload(); }); },
+      toDefault: () => { try { localStorage.setItem(WALL_KEY, JSON.stringify(OCT11.walls)); localStorage.setItem(HT_KEY, JSON.stringify(OCT11.hts)); localStorage.setItem(KEY, JSON.stringify({ ...evenPositions(), ...BAKED, ...OCT11.pos })); } catch (e) {} location.reload(); },
       even: () => { this.setState({ pos: evenPositions() }, () => this.save()); }
     };
   }
