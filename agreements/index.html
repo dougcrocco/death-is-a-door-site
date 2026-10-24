@@ -31,7 +31,7 @@
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
     <a href="../press.html?tab=instagram&amp;sub=0" data-root="press.html?tab=instagram&amp;sub=0" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Book</a>
     <a href="checklist.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
-    <a href="tracker.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
+    <a href="index.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
     <a href="../offer-sheets.html" data-root="offer-sheets.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Offers</a>
     <a href="../press.html" data-root="press.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press kit</a>
@@ -45,7 +45,7 @@
   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
     <div style="display:flex;flex-wrap:wrap;gap:8px;">
-      <button onClick="{{ toggleView }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ viewBtn }}</button>
+      <a href="tracker.html" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;white-space:nowrap;text-decoration:none;background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">Consignment Tracker →</a>
     </div>
   </div>
   <div style="display:flex;flex-direction:column;gap:8px;">
@@ -53,20 +53,23 @@
     <div style="display:flex;height:4px;gap:2px;background:#2a2722;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
   </div>
   <sc-if value="{{ isAgreements }}" hint-placeholder-val="{{ true }}">
-  <div data-lanes="" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:14px 0;margin:0 -16px;">
-    <sc-for list="{{ lanes }}" as="g" hint-placeholder-count="3">
-      <div style="display:flex;flex-direction:column;gap:6px;padding:0 16px;border-left:1px solid {{ g.sep }};min-width:0;">
-        <div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:{{ g.c }};border-bottom:1px solid {{ g.line }};padding-bottom:6px;"><span>{{ g.label }}</span><span>{{ g.n }}</span></div>
-        <div style="display:grid;grid-template-columns:{{ g.cols }};gap:0 16px;">
-          <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="4">
-            <div style="display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:3px 8px;padding:4px 6px;margin:0 -6px;background:{{ t.bg }};border-bottom:1px solid {{ t.rule }};">
-              <button onClick="{{ t.pick }}" style="flex:1 0 100%;max-width:100%;text-align:left;background:transparent;border:none;cursor:pointer;padding:0;font-family:'EB Garamond',serif;font-size:14.5px;color:{{ t.fg }};line-height:1.25;" style-hover="text-decoration:underline;">{{ t.name }}</button>
-              <sc-if value="{{ t.hasAct }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.act }}" title="{{ t.actTitle }}" style="flex:0 0 auto;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:{{ t.actC }};background:transparent;border:1px solid {{ t.actB }};padding:1px 5px;cursor:pointer;white-space:nowrap;" style-hover="border-color:{{ t.actH }};color:{{ t.actH }};">{{ t.actLabel }}</button></sc-if>
-              <sc-if value="{{ t.done }}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;font-size:13px;color:#5fa08f;">✓</span></sc-if>
-            </div>
-          </sc-for>
-        </div>
-      </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border-top:1px solid #2a2722;padding-top:14px;">
+    <span style="font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Sort</span>
+    <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+      <sc-for list="{{ aSorts }}" as="s" hint-placeholder-count="2">
+        <button onClick="{{ s.pick }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:none;cursor:pointer;background:{{ s.bg }};color:{{ s.fg }};">{{ s.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:14px;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8f887c;"><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#6d675c;"></span>To send</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#c9a24a;"></span>Sent</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#5fa08f;"></span>Signed</span></div>
+    <span style="font-size:10.5px;color:#8f887c;margin-left:auto;">{{ aCounter }}</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:4px 10px;">
+    <sc-for list="{{ aItems }}" as="t" hint-placeholder-count="14">
+      <button onClick="{{ t.pick }}" style="display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center;text-align:left;padding:7px 10px;margin:0;border:none;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};">
+        <span style="width:7px;height:7px;border-radius:50%;background:{{ t.dot }};"></span>
+        <span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.name }}</span>
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;color:{{ t.sc }};">{{ t.status }}</span>
+      </button>
     </sc-for>
   </div>
   <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 32px;border-top:1px solid #2a2722;padding-top:16px;">
@@ -90,6 +93,22 @@
   </sc-if>
 </div>
 
+<sc-if value="{{ signOpen }}" hint-placeholder-val="{{ false }}">
+<div data-noprint="" style="position:fixed;inset:0;z-index:200;background:rgba(13,12,11,0.72);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#f7f4ee;color:#16150f;width:min(560px,100%);padding:22px;display:flex;flex-direction:column;gap:12px;font-family:'Space Mono',monospace;">
+    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#2b6a60;">{{ signTitle }}</div>
+    <div style="font-size:11px;line-height:1.5;color:#5c574c;">Draw your signature below with a mouse, trackpad or finger — or type your name.</div>
+    <canvas ref="{{ sigCanvas }}" width="1000" height="300" style="width:100%;height:auto;aspect-ratio:10/3;background:#ffffff;border:1px solid #b9b2a4;touch-action:none;cursor:crosshair;"></canvas>
+    <input value="{{ signTyped }}" onChange="{{ onSignType }}" placeholder="Or type your full name" style="font-family:'EB Garamond',serif;font-size:16px;padding:6px 0;border:none;border-bottom:1px solid #6d675c;background:transparent;outline:none;">
+    <label style="display:flex;gap:8px;align-items:flex-start;font-size:10px;line-height:1.5;color:#5c574c;"><input type="checkbox" checked="{{ signAgree }}" onChange="{{ onSignAgree }}" style="margin-top:2px;">I agree this is my legal signature on this agreement.</label>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;">
+      <button onClick="{{ signClear }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#16150f;border:1px solid #b9b2a4;">Clear</button>
+      <button onClick="{{ signCancel }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#16150f;border:1px solid #b9b2a4;">Cancel</button>
+      <button onClick="{{ signAdopt }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#2b6a60;color:#ffffff;border:1px solid #2b6a60;">Sign</button>
+    </div>
+  </div>
+</div>
+</sc-if>
 <sc-if value="{{ isAgreements }}" hint-placeholder-val="{{ true }}">
 <doc-page margin="0.8in" style="zoom:{{ docZoom }};">
 
@@ -168,8 +187,11 @@
     <div style="break-inside:avoid;margin-top:18pt;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24pt;">
       <div style="display:flex;flex-direction:column;gap:14pt;">
         <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Gallery (CC Jasper)</div>
-        <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
-        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
+        <div style="position:relative;border-bottom:0.75pt solid #16150f;height:34pt;">
+          <sc-if value="{{ sig.g.has }}" hint-placeholder-val="{{ false }}"><img src="{{ sig.g.src }}" alt="Signature" style="position:absolute;left:0;bottom:1pt;height:33pt;max-width:100%;object-fit:contain;object-position:left bottom;"></sc-if>
+          <button data-noprint="" onClick="{{ sig.g.open }}" style="position:absolute;right:0;bottom:3pt;font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;text-transform:uppercase;padding:3pt 7pt;cursor:pointer;background:#ffffff;color:#2b6a60;border:0.75pt solid #2b6a60;">{{ sig.g.label }}</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8pt;font-size:10pt;color:#5c574c;margin-top:-10pt;"><span>Signature</span><span>{{ sig.g.date }}</span></div>
         <input value="{{ gSigner }}" onChange="{{ onGSigner }}" placeholder="Printed name" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
         <input value="{{ gTitle }}" onChange="{{ onGTitle }}" placeholder="Title" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
@@ -179,8 +201,11 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:14pt;">
         <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">{{ sigHead }}</div>
-        <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
-        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
+        <div style="position:relative;border-bottom:0.75pt solid #16150f;height:34pt;">
+          <sc-if value="{{ sig.a.has }}" hint-placeholder-val="{{ false }}"><img src="{{ sig.a.src }}" alt="Signature" style="position:absolute;left:0;bottom:1pt;height:33pt;max-width:100%;object-fit:contain;object-position:left bottom;"></sc-if>
+          <button data-noprint="" onClick="{{ sig.a.open }}" style="position:absolute;right:0;bottom:3pt;font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;text-transform:uppercase;padding:3pt 7pt;cursor:pointer;background:#ffffff;color:#2b6a60;border:0.75pt solid #2b6a60;">{{ sig.a.label }}</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8pt;font-size:10pt;color:#5c574c;margin-top:-10pt;"><span>Signature</span><span>{{ sig.a.date }}</span></div>
         <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;min-height:1.3em;">{{ f.legal }}</div>
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
         <div style="font-size:11pt;color:#16150f;border-bottom:0.75pt solid #16150f;padding:6pt 0 2pt;">{{ sigTitle }}</div>
@@ -195,8 +220,11 @@
         <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Acknowledged by Artist’s Representing Gallery</div>
         <input value="{{ repName }}" onChange="{{ onRep }}" placeholder="Gallery name" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Representing gallery</div>
-        <div style="border-bottom:0.75pt solid #16150f;height:26pt;"></div>
-        <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</div>
+        <div style="position:relative;border-bottom:0.75pt solid #16150f;height:34pt;">
+          <sc-if value="{{ sig.r.has }}" hint-placeholder-val="{{ false }}"><img src="{{ sig.r.src }}" alt="Signature" style="position:absolute;left:0;bottom:1pt;height:33pt;max-width:100%;object-fit:contain;object-position:left bottom;"></sc-if>
+          <button data-noprint="" onClick="{{ sig.r.open }}" style="position:absolute;right:0;bottom:3pt;font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;text-transform:uppercase;padding:3pt 7pt;cursor:pointer;background:#ffffff;color:#2b6a60;border:0.75pt solid #2b6a60;">{{ sig.r.label }}</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8pt;font-size:10pt;color:#5c574c;margin-top:-10pt;"><span>Signature</span><span>{{ sig.r.date }}</span></div>
         <input value="{{ repSigner }}" onChange="{{ onRepSigner }}" placeholder="Printed name" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
         <div style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</div>
         <input value="{{ repTitle }}" onChange="{{ onRepTitle }}" placeholder="Title" style="font:inherit;font-size:11pt;color:#16150f;border:none;border-bottom:0.75pt solid #16150f;background:transparent;padding:6pt 0 2pt;width:100%;box-sizing:border-box;">
@@ -361,11 +389,19 @@ class Component extends DCLogic {
     if (Math.abs(z - (this.state.docZoom || 1)) > 0.005) this.setState({ docZoom: +z.toFixed(3) });
   }
   componentWillUnmount() { window.removeEventListener('resize', this._fit); }
-  componentDidMount() {
+  componentDidMount() { this.loadSigs(); window.addEventListener('storage', () => this.loadSigs()); setInterval(() => this.loadSigs(), 15000);
     this._fit = () => this.fitDoc(); window.addEventListener('resize', this._fit); this.fitDoc();
     try { const s = JSON.parse(localStorage.getItem(KEY) || '{}'); const q = new URLSearchParams(location.search).get('artist'); const hit = q && ARTISTS.find(x => x.name.toLowerCase() === q.toLowerCase() || x.id === q); this.setState({ data: s.data || {}, sel: hit ? hit.id : (s.sel || 'cowan'), view: hit ? 'agreements' : (s.view || 'agreements') }); } catch (e) {}
   }
   save(next) { this.setState(next, () => { try { localStorage.setItem(KEY, JSON.stringify({ data: this.state.data, sel: this.state.sel, view: this.state.view })); } catch (e) {} }); }
+  sigCanvas = React.createRef();
+  loadSigs() { const o = {}; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.indexOf('didad-sig-') === 0) { try { o[k] = JSON.parse(localStorage.getItem(k)); } catch (e) {} } } } catch (e) {} this.setState({ sigs: o }); }
+  componentDidUpdate(pp, ps) { if (this.state.signFor && !ps.signFor) setTimeout(() => this.initPad(), 30); }
+  initPad() { const c = this.sigCanvas.current; if (!c || c.__pad) return; c.__pad = 1; const g = c.getContext('2d'); g.lineWidth = 4; g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = '#16150f'; let down = false, lx = 0, ly = 0; const pt = e => { const r = c.getBoundingClientRect(); return [(e.clientX - r.left) * c.width / r.width, (e.clientY - r.top) * c.height / r.height]; };
+    c.addEventListener('pointerdown', e => { down = true; c.setPointerCapture(e.pointerId); [lx, ly] = pt(e); c.__ink = true; });
+    c.addEventListener('pointermove', e => { if (!down) return; const [x, y] = pt(e); g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); lx = x; ly = y; });
+    c.addEventListener('pointerup', () => { down = false; }); }
+  drawTyped(t) { const c = this.sigCanvas.current; if (!c) return; const g = c.getContext('2d'); g.clearRect(0, 0, c.width, c.height); c.__ink = !!t.trim(); if (!t.trim()) return; g.fillStyle = '#16150f'; let fs = 150; g.font = 'italic ' + fs + 'px "Cormorant Garamond", "Brush Script MT", cursive'; while (g.measureText(t).width > c.width - 60 && fs > 40) { fs -= 8; g.font = 'italic ' + fs + 'px "Cormorant Garamond", "Brush Script MT", cursive'; } g.textBaseline = 'middle'; g.fillText(t, 30, c.height / 2); }
   status(x) { const d = this.state.data[x.id] || {}; return { sent: d.sent !== undefined ? !!d.sent : !!x.sent, signed: d.signed !== undefined ? !!d.signed : !!x.signed }; }
   setField(k, v) { const a = this.state.sel; const d = { ...this.state.data }; d[a] = { ...(d[a] || {}), [k]: v }; this.save({ data: d }); }
   renderVals() {
@@ -488,6 +524,17 @@ class Component extends DCLogic {
       onGSigner: ev => { const d = { ...this.state.data, _gallery: { ...(this.state.data._gallery || {}), name: ev.target.value } }; this.save({ data: d }); },
       onGTitle: ev => { const d = { ...this.state.data, _gallery: { ...(this.state.data._gallery || {}), title: ev.target.value } }; this.save({ data: d }); },
       tabs: ARTISTS.map(x => { const on2 = x.id === A.id; const st = this.status(x); return { name: x.name, pick: () => this.save({ sel: x.id }), bg: on2 ? '#e9e3d6' : 'transparent', fg: on2 ? '#0d0c0b' : '#c4bcae', stLabel: st.signed ? 'SIGNED' : st.sent ? 'SENT' : '', stC: on2 ? '#2b6a60' : st.signed ? '#5fa08f' : '#c9a24a' }; }),
+      sig: (() => { const cur = {}; for (const kk of ['g', 'a', 'r']) { const v = (this.state.sigs || {})['didad-sig-' + A.id + '-' + kk]; if (v) cur[kk] = v; } const T = { g: 'Gallery (CC Jasper)', a: 'Artist — ' + A.name, r: 'Representing gallery' }; const o = {}; for (const k of ['g', 'a', 'r']) { const v = cur[k]; o[k] = { has: !!(v && v.src), src: v ? v.src : '', date: v && v.date ? 'Signed ' + v.date : '', label: v && v.src ? 'Re-sign' : 'Sign digitally', open: () => this.setState({ signFor: k, signTitle: 'Sign — ' + T[k], signTyped: '', signAgree: false }) }; } return o; })(),
+      signOpen: !!this.state.signFor, signTitle: this.state.signTitle || '', signTyped: this.state.signTyped || '', signAgree: !!this.state.signAgree,
+      onSignType: e => { const t = e.target.value; this.setState({ signTyped: t }); this.drawTyped(t); },
+      onSignAgree: e => this.setState({ signAgree: e.target.checked }),
+      signClear: () => { const c = this.sigCanvas.current; if (c) { c.getContext('2d').clearRect(0, 0, c.width, c.height); c.__ink = false; } this.setState({ signTyped: '' }); },
+      signCancel: () => this.setState({ signFor: null }),
+      signAdopt: () => { const c = this.sigCanvas.current; if (!c || !c.__ink) { alert('Please draw or type a signature first.'); return; } if (!this.state.signAgree) { alert('Please tick the box to confirm this is your signature.'); return; } const k = this.state.signFor; const date = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); const d = { ...this.state.data }; const cur = { ...(d[A.id] || {}) }; const sm = document.createElement('canvas'); sm.width = 400; sm.height = 120; const sg = sm.getContext('2d'); sg.fillStyle = '#ffffff'; sg.fillRect(0, 0, 400, 120); sg.drawImage(c, 0, 0, 400, 120); let src = sm.toDataURL('image/jpeg', 0.6); if (src.length > 12000) src = sm.toDataURL('image/jpeg', 0.4); if (src.length > 20000) { alert('That signature is too detailed to save — please clear and sign again more simply.'); return; } const sigKey = 'didad-sig-' + A.id + '-' + k; try { localStorage.setItem(sigKey, JSON.stringify({ src, date })); } catch (e) {} this.setState(st => ({ sigs: { ...(st.sigs || {}), [sigKey]: { src, date } } })); if (k === 'a') { cur.signed = true; cur.sent = true; } d[A.id] = cur; this.save({ data: d, signFor: null }); },
+      sigCanvas: this.sigCanvas,
+      aSorts: [['artist', 'Artist'], ['status', 'Status']].map(([k, label]) => { const cur = this.state.asort || 'artist'; return { label, bg: cur === k ? '#e9e3d6' : '#0d0c0b', fg: cur === k ? '#0d0c0b' : '#c4bcae', pick: () => this.save({ asort: k }) }; }),
+      aCounter: (ARTISTS.findIndex(x => x.id === A.id) + 1) + ' of ' + ARTISTS.length + ' · ' + ARTISTS.filter(x => this.status(x).signed).length + ' signed',
+      aItems: (() => { const rank = z => z.signed ? 2 : z.sent ? 1 : 0; let L = ARTISTS.slice(); if ((this.state.asort || 'artist') === 'status') L.sort((p, q) => rank(this.status(p)) - rank(this.status(q))); return L.map(x => { const z = this.status(x), on2 = x.id === A.id, r = rank(z); return { name: x.name, pick: () => this.save({ sel: x.id }), bg: on2 ? ['rgba(143,136,124,0.38)', 'rgba(201,162,74,0.36)', 'rgba(95,160,143,0.38)'][r] : ['rgba(143,136,124,0.10)', 'rgba(201,162,74,0.13)', 'rgba(95,160,143,0.14)'][r], fg: on2 ? '#ffffff' : '#e9e3d6', dot: ['#6d675c', '#c9a24a', '#5fa08f'][r], status: ['To send', 'Sent', 'Signed'][r], sc: ['#8f887c', '#c9a24a', '#5fa08f'][r] }; }); })(),
       lanes: (() => {
         const mk = (x, k) => () => { const d = { ...this.state.data }; d[x.id] = { ...(d[x.id] || {}), [k]: true }; if (k === 'signed') d[x.id].sent = true; this.save({ data: d }); };
         const G = [['To send', '#8f887c', '#6d675c', z => !z.sent && !z.signed, 'sent'], ['Sent', '#c9a24a', '#c9a24a', z => z.sent && !z.signed, 'signed'], ['Signed', '#5fa08f', '#5fa08f', z => z.signed, null]];
