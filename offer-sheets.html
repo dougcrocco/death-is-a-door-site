@@ -108,7 +108,7 @@
     </div>
     </sc-if>
     <sc-if value="{{ a.horiz }}" hint-placeholder-val="{{ true }}">
-    <div data-photo="" style="margin-top:18pt;position:relative;width:100%;height:3.6in;background:#ffffff;">
+    <div data-photo="" style="margin-top:18pt;position:relative;width:100%;height:3.3in;background:#ffffff;">
       <image-slot id="{{ a.slotId }}" shape="rect" src="{{ a.phSrc }}" placeholder="Drop artist or studio photo"></image-slot>
     </div>
     <sc-if value="{{ a.hasPh }}" hint-placeholder-val="{{ false }}">
@@ -198,7 +198,7 @@ class Component extends DCLogic {
     const w = WORKS[sel] || WORKS[0];
     const ad = ARTISTS[w.artist] || { line: '', bio: '', cv: [], slug: 'artist' };
     const ph = PH[w.artist];
-    const cvSorted = ad.cv.filter(c => c.h !== 'Education').concat(ad.cv.filter(c => c.h === 'Education')).map(c => ({ h: c.h, rows: c.rows.slice(0, 5) }));
+    const cvSorted = (() => { const rank = h => /^Solo/i.test(h) ? 0 : /group/i.test(h) ? 1 : /^Education/i.test(h) ? 3 : 2; const secs = ad.cv.slice().sort((x, y) => rank(x.h) - rank(y.h)); const out = []; let budget = 12, chars = 0; for (const c of secs) { if (out.length >= 4 || budget < 2) break; const per = rank(c.h) < 2 ? 4 : 3; const rows = []; for (const r of c.rows) { const len = (r.y + ' ' + r.t).length; if (rows.length >= per || budget <= 0 || chars + len > 720) break; rows.push(r); budget--; chars += len; } if (rows.length) out.push({ h: c.h, rows }); } return out; })();
     const a = { line: ad.line, bio: ad.bio, cv: cvSorted, slotId: 'artist-photo-' + ad.slug, phSrc: ph ? ph.src : '', phFrom: ph ? ph.from : '', hasPh: !!ph && !ph.own, credit: ph && ph.credit || '', hasCredit: !!(ph && ph.credit) };
     const ori = a.phSrc ? this.state.ori && this.state.ori[a.phSrc] : null;
     if (a.phSrc && ori === undefined) { this.state.ori = this.state.ori || {}; this.state.ori[a.phSrc] = null; const im = new Image(); im.onload = () => this.setState(st => ({ ori: Object.assign({}, st.ori, { [a.phSrc]: (im.naturalHeight >= im.naturalWidth * 0.95 || im.naturalWidth < 800) ? 'v' : 'h' }) })); im.src = a.phSrc; }
