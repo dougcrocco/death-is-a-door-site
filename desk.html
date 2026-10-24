@@ -267,7 +267,7 @@ const OPEN = new Date(2026, 10, 12), INSTALL = new Date(2026, 10, 6);
 const TASKS = [
   { src: 'Install', who: 'Pedestals', what: ' — pick up pedestals', u: 1 },
   { src: 'Press', who: 'All artists', what: ' — ask for studio images and an artist photo for PR', u: 1, href: 'press.html' },
-  { src: 'Install', who: 'Doug Crocco', what: ' — Death Is a Door wall vinyl delivered and installed Mon, Nov 9 at noon', u: 2 },
+  { src: 'Install', who: 'Doug Crocco', what: ' — Death Is a Door wall vinyl delivered and installed Mon, Nov 9 at noon · graphics contact: All In 1 Graphics, info@allin1graphics.com · (516) 629-6952', u: 2, href: 'mailto:info@allin1graphics.com' },
   { src: 'Install', who: 'Show wall vinyl', what: ' — show title vinyl for the front door and entry' },
   { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the 80 / 20 split on L’s work (80% to Casey) and the $8,000 insurance value', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
 ];
@@ -474,12 +474,12 @@ class Component extends DCLogic {
 
         { title: 'Checklist', href: 'agreements/checklist.html', span: 'auto' },
         { title: 'Consignments', href: 'agreements/tracker.html', span: 'auto' },
-        { title: 'Press materials', href: 'press.html', span: 'auto' },
+        { title: 'Press kit', href: 'press.html', span: 'auto' },
         { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
         { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' },
         { title: 'Offer sheets', href: 'offer-sheets.html', span: 'auto' },
         { title: 'Events', href: 'events.html', span: 'auto' },
-        { title: 'Press zip', href: 'press-kit.html', span: 'auto' },
+        { title: 'Catalog book', href: 'press.html?tab=instagram&sub=0', span: 'auto' },
         { title: 'Public site', href: 'index.html', span: 'auto', alt: true }
       ].map(c => ({ ...c, href: c.mail ? mailAll : c.copy ? '#' : fixC(c.href), title: c.copy ? copyLabel : c.title, onClick: c.copy ? e => { e.preventDefault(); copyEmails(); } : undefined, bg: c.alt ? 'rgba(127,163,155,0.22)' : '#0d0c0b', fg: c.alt ? '#f0eadd' : '#e9e3d6', ac: '#7fa39b', arrow: c.alt || c.mail ? '↗' : c.copy ? '⧉' : '→' }))
     };
