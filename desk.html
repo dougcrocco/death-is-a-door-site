@@ -26,9 +26,9 @@
       </div>
       <div ref="{{ rowRef }}" style="display:flex;flex-direction:{{ rowDir }};justify-content:flex-start;align-items:stretch;gap:clamp(16px,3vw,36px);margin-top:8px;">
         <h1 style="margin:0;flex:0 1 auto;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6vw,76px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1>
-      <div ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+      <div ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
         <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
-          <a href="{{ c.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:#0d0c0b;color:#e9e3d6;text-decoration:none;" style-hover="background:#16150f;color:#7fa39b;">
+          <a href="{{ c.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:#0d0c0b;color:#e9e3d6;text-decoration:none;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;" style-hover="background:#16150f;color:#7fa39b;">
             <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">{{ c.title }}</span>
             <span style="font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">→</span>
           </a>
@@ -247,6 +247,7 @@
 const parseCSV = t => { const rows = []; let row = [], f = '', q = false; for (let i = 0; i < t.length; i++) { const c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; } else if (c === '"') q = true; else if (c === ',') { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; } else f += c; } if (f || row.length) { row.push(f); rows.push(row); } return rows; };
 const OPEN = new Date(2026, 10, 12), INSTALL = new Date(2026, 10, 6);
 const TASKS = [
+  { src: 'Press', who: 'All artists', what: ' — ask for studio images and an artist photo for PR', u: 1, href: 'press.html' },
   { src: 'Install', who: 'Doug Crocco', what: ' — Death Is a Door wall vinyl delivered and installed Mon, Nov 9 at noon', u: 2 },
   { src: 'Install', who: 'Show wall vinyl', what: ' — show title vinyl for the front door and entry' },
   { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the new 80 / 20 split on L’s work (80% to Casey)', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
@@ -450,7 +451,10 @@ class Component extends DCLogic {
         { title: 'Press materials', href: 'press.html', span: 'auto' },
         { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
         { title: 'Site', href: 'index.html', span: 'auto' },
-        { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' }
+        { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' },
+        { title: 'Offer sheets', href: 'offer-sheets.html', span: 'auto' },
+        { title: 'Events', href: 'events.html', span: 'auto' },
+        { title: 'Press zip', href: 'press-kit.html', span: 'auto' }
       ].map(c => ({ ...c, href: fixC(c.href) }))
     };
   }

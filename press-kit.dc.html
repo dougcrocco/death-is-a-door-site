@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Press Kit Builder — Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Space+Mono&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0d0c0b} a{color:#7fa39b;text-decoration:none} a:hover{color:#a9c6bf}</style>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</helmet>
+<div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:28px;">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+    <a href="desk.html" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1;color:#f0eadd;">Press Kit</h1>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;">
+      <label style="display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#e9e3d6;cursor:pointer;"><input type="checkbox" checked="{{ allAll }}" onChange="{{ toggleAll }}" style="accent-color:#7fa39b;width:16px;height:16px;cursor:pointer;margin:0;">All</label>
+      <span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">{{ summary }}</span>
+      <button onClick="{{ build }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:11px 20px;cursor:pointer;background:#7fa39b;color:#0d0c0b;border:none;" style-hover="background:#e9e3d6;">{{ buildLabel }}</button>
+    </div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#6d675c;">Documents export as plain text, ready to paste. For designed PDFs, use Save as PDF on each Press Materials tab.</div>
+    </div>
+    
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;gap:12px;border-bottom:1px solid #3a3630;padding-bottom:8px;">
+      <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">Documents · text files</span>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:0 24px;">
+      <sc-for list="{{ docs }}" as="d" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;border-bottom:1px solid #2a2722;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label style="flex:1;display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;font-size:16px;color:{{ d.fg }};"><input type="checkbox" checked="{{ d.on }}" onChange="{{ d.toggle }}" style="accent-color:#7fa39b;width:16px;height:16px;cursor:pointer;">{{ d.label }}</label>
+            <sc-if value="{{ d.hasPick }}" hint-placeholder-val="{{ false }}"><button onClick="{{ d.openPick }}" title="Pick artists" style="background:transparent;border:1px solid #3a3630;color:#7fa39b;cursor:pointer;width:24px;height:24px;padding:0;font-family:'Space Mono',monospace;font-size:14px;line-height:1;" style-hover="border-color:#7fa39b;">{{ d.pickSign }}</button></sc-if>
+          </div>
+          <sc-if value="{{ d.pickOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;padding:0 0 8px 26px;">
+              <sc-for list="{{ d.picks }}" as="a" hint-placeholder-count="6">
+                <label style="display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;font-size:14.5px;color:{{ a.fg }};"><input type="checkbox" checked="{{ a.on }}" onChange="{{ a.toggle }}" style="accent-color:#7fa39b;width:14px;height:14px;cursor:pointer;">{{ a.name }}</label>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #2a2722;cursor:pointer;font-size:16px;color:{{ allImgsFg }};"><input type="checkbox" checked="{{ allImgs }}" onChange="{{ toggleImgs }}" style="accent-color:#7fa39b;width:16px;height:16px;cursor:pointer;">All images</label>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;gap:12px;border-bottom:1px solid #3a3630;padding-bottom:8px;">
+      <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">Images · full size</span>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:32px 22px;margin-top:6px;">
+      <sc-for list="{{ imgs }}" as="im" hint-placeholder-count="12">
+        <label style="display:flex;flex-direction:column;gap:10px;cursor:pointer;opacity:{{ im.op }};transition:opacity .15s;">
+          <div style="position:relative;aspect-ratio:4/5;background:{{ im.bg }};outline:{{ im.ring }};outline-offset:0;display:flex;align-items:flex-end;justify-content:center;padding:16px;box-sizing:border-box;">
+            <img src="{{ im.src }}" alt="{{ im.alt }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;display:block;">
+            <input type="checkbox" checked="{{ im.on }}" onChange="{{ im.toggle }}" style="position:absolute;top:10px;left:10px;accent-color:#7fa39b;width:16px;height:16px;cursor:pointer;margin:0;">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <span style="font-size:15px;line-height:1.25;color:#f0eadd;">{{ im.artist }}</span>
+            <span style="font-size:14px;line-height:1.3;font-style:italic;color:#8f887c;text-wrap:pretty;">{{ im.title }}</span>
+          </div>
+        </label>
+      </sc-for>
+    </div>
+  </div>
+  <label style="display:flex;align-items:center;gap:10px;font-size:15px;color:#c4bcae;cursor:pointer;"><input type="checkbox" checked="{{ capsOn }}" onChange="{{ toggleCaps }}" style="accent-color:#7fa39b;width:16px;height:16px;cursor:pointer;">Include captions &amp; credits sheet for the selected images</label>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const IMAGES = [{"artist":"Doug Crocco","title":"Death Is a Door, 2026 — installation","file":"doug-crocco-death-is-a-door-pr.jpg"},{"artist":"Doug Crocco","title":"Death Is a Door, 2026 — detail","file":"doug-crocco-death-is-a-door-detail.jpg"},{"artist":"unitedfutures","title":"The Isle of the Dead 2026, 2026 — still","file":"unitedfutures-the-ferry-still.jpg"},{"artist":"Ellen R Hanson","title":"Funeral Flowers, 2024","file":"ellen-r-hanson-funeral-flowers-v3.jpg"},{"artist":"Benjamin Cowan","title":"Pigeon Feather, Stone, Giotto Crying Angels, 2024","file":"benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg"},{"artist":"Meredith Sellers","title":"Empty (After Holbein), 2026","file":"meredith-sellers-empty-after-holbein.jpg"},{"artist":"Meredith Sellers","title":"Desire (After Dieric Bouts), 2026","file":"meredith-sellers-desire-after-dieric-bouts.jpg"},{"artist":"Henry Swanson","title":"Mask from Dallas","file":"henry-swanson-mask-from-dallas-v3.jpg"},{"artist":"Aramis Gutierrez","title":"Bletting Bananas and Mangos, 2026","file":"aramis-gutierrez-the-turning-v2.jpg"},{"artist":"L","title":"Spell for blue light = 222D alignment, 2020","file":"l-spell-for-blue-light-222d-alignment.jpg"},{"artist":"Charlie Goering","title":"Three-Tiered Camera Obscura, 2024","file":"charlie-goering-three-tiered-camera-obscura.jpg"},{"artist":"Charlie Goering","title":"Metamorphosis, or The Dark Night of the Soul, 2025","file":"charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg"},{"artist":"Tom DeLaney","title":"Rage and Eternal, 2024","file":"tom-delaney-rage-and-eternal-v2.jpg"},{"artist":"Kenny Curwood","title":"The World of Symbol Vanishes in the World as God, 2021","file":"kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg"},{"artist":"Pandele Radu","title":"Down the River, 2026","file":"pandele-radu-down-the-river-v2.jpg"},{"artist":"Megan Lindeman","title":"New eNightened Era, Coming Soon, 2026","file":"megan-lindeman-new-enlightened-era-coming-soon.jpg"},{"artist":"CC Jasper","title":"Logo — black","file":"ccj-logo-black.png"},{"artist":"CC Jasper","title":"Logo — light","file":"ccj-logo-light.png"}];
+const DOCS = [
+  { k: 'release', label: 'Press release', src: 'press-release.html', file: 'Press-Release.txt' },
+  { k: 'statement', label: 'Curatorial statement', src: 'curatorial-statement.html', file: 'Curatorial-Statement.txt' },
+  { k: 'bios', label: 'All artist bios', src: 'bios.html', file: 'Artist-Bios.txt' },
+  { k: 'cvs', label: 'All artist CVs', src: 'cvs.html', file: 'Artist-CVs.txt' },
+  { k: 'social', label: 'Social kit', src: 'social-kit.html', file: 'Social-Kit.txt' },
+  { k: 'events', label: 'Events', src: 'events.html', file: 'Events.txt' }
+];
+const CV_ARTISTS = ["Doug Crocco","unitedfutures (Michael “Caco” Peguero)","Ellen R Hanson","Benjamin Cowan","Meredith Sellers","Henry Swanson","Aramis Gutierrez","L","Charlie Goering","Tom DeLaney","Pandele Radu","Megan Lindeman","Kenny Curwood"];
+const KEY = 'didad-presskit-v1';
+const grab = (src, only) => new Promise(res => {
+  const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;left:-9999px;top:0;width:900px;height:1200px;border:0;';
+  let done = false; const fin = t => { if (done) return; done = true; f.remove(); res(t); };
+  f.onload = () => setTimeout(() => { try { const d = f.contentDocument; d.querySelectorAll('[data-noprint],input,button,script,style').forEach(n => n.remove()); if (only) d.querySelectorAll('section').forEach(sec => { const h = sec.querySelector('h2'); if (h && only.indexOf(h.textContent.trim()) < 0) sec.remove(); }); fin((d.body.innerText || '').replace(/\n{3,}/g, '\n\n').trim()); } catch (e) { fin(''); } }, 2200);
+  setTimeout(() => fin(''), 9000);
+  f.src = src; document.body.appendChild(f);
+});
+class Component extends DCLogic {
+  state = { docs: DOCS.map(d => d.k), imgs: IMAGES.map(i => i.file), caps: true, busy: false, step: '' };
+  componentDidMount() { try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s) this.setState({ docs: s.docs || this.state.docs, imgs: (s.imgs || this.state.imgs).filter(f => IMAGES.some(i => i.file === f)), caps: s.caps !== false, cvSel: s.cvSel ? s.cvSel.filter(n => CV_ARTISTS.indexOf(n) >= 0) : undefined, bioSel: s.bioSel ? s.bioSel.filter(n => CV_ARTISTS.indexOf(n) >= 0) : undefined }); } catch (e) {} }
+  put(p) { this.setState(p, () => { try { localStorage.setItem(KEY, JSON.stringify({ docs: this.state.docs, imgs: this.state.imgs, caps: this.state.caps, cvSel: this.state.cvSel, bioSel: this.state.bioSel })); } catch (e) {} }); }
+  renderVals() {
+    const { docs, imgs, caps, busy, step } = this.state;
+    const cvSel = this.state.cvSel || CV_ARTISTS;
+    const bioSel = this.state.bioSel || CV_ARTISTS;
+    const SEL = { cvs: ['cvSel', cvSel, 'cvOpen', 'Artist CVs'], bios: ['bioSel', bioSel, 'bioOpen', 'Artist bios'] };
+    const picksFor = k => { const [key, cur] = SEL[k]; return CV_ARTISTS.map(n => { const on = cur.indexOf(n) >= 0; return { name: n, on, fg: on ? '#f0eadd' : '#8f887c', toggle: () => { const next = tog(cur, n); this.put({ [key]: next, docs: next.length ? (docs.indexOf(k) >= 0 ? docs : docs.concat([k])) : docs.filter(x => x !== k) }); } }; }); };
+    const tog = (arr, v) => arr.indexOf(v) >= 0 ? arr.filter(x => x !== v) : arr.concat([v]);
+    const n = docs.length + imgs.length;
+    return {
+      summary: docs.length + ' documents · ' + imgs.length + ' images',
+      buildLabel: busy ? step : (n ? 'Export press kit (.zip) ↓' : 'Select items to export'),
+      allAll: imgs.length === IMAGES.length && docs.length === DOCS.length,
+      toggleAll: () => { const full = imgs.length === IMAGES.length && docs.length === DOCS.length; this.put(full ? { docs: [], imgs: [] } : { docs: DOCS.map(d => d.k), imgs: IMAGES.map(i => i.file) }); },
+      allImgs: imgs.length === IMAGES.length, allImgsFg: imgs.length === IMAGES.length ? '#f0eadd' : '#8f887c', allDocs: docs.length === DOCS.length,
+      docsAll: docs.length === DOCS.length ? 'Clear all' : 'Select all',
+      imgsAll: imgs.length === IMAGES.length ? 'Clear all' : 'Select all',
+      toggleDocs: () => this.put({ docs: docs.length === DOCS.length ? [] : DOCS.map(d => d.k) }),
+      toggleImgs: () => this.put({ imgs: imgs.length === IMAGES.length ? [] : IMAGES.map(i => i.file) }),
+      capsOn: caps, toggleCaps: () => this.put({ caps: !caps }),
+            docs: DOCS.map(d => { const on = docs.indexOf(d.k) >= 0; const sp = SEL[d.k]; const isCv = !!sp; const lab = sp && sp[1].length < CV_ARTISTS.length ? sp[3] + ' (' + sp[1].length + ' of ' + CV_ARTISTS.length + ')' : d.label; const open = sp ? !!this.state[sp[2]] : false; return { label: lab, hasPick: isCv, picks: sp ? picksFor(d.k) : [], pickOpen: open, pickSign: open ? '−' : '+', openPick: () => sp && this.setState({ [sp[2]]: !open }), on, fg: on ? '#f0eadd' : '#8f887c', toggle: () => this.put(isCv && !on ? { docs: tog(docs, d.k), [sp[0]]: CV_ARTISTS } : { docs: tog(docs, d.k) }) }; }),
+      imgs: IMAGES.map(im => { const on = imgs.indexOf(im.file) >= 0; return { artist: im.artist, title: im.title, src: 'art/' + im.file, alt: im.artist + ', ' + im.title, on, op: on ? '1' : '0.4', ring: on ? '1px solid #7fa39b' : '1px solid #2a2722', bg: /logo-black/.test(im.file) ? '#e9e3d6' : '#16150f', toggle: () => this.put({ imgs: tog(imgs, im.file) }) }; }),
+      build: async () => {
+        if (busy || !n || !window.JSZip) return;
+        const zip = new JSZip(); const root = zip.folder('Death-Is-a-Door_CC-Jasper_Press-Kit');
+        const sel = DOCS.filter(d => docs.indexOf(d.k) >= 0);
+        for (let i = 0; i < sel.length; i++) { this.setState({ busy: true, step: 'Documents ' + (i + 1) + ' / ' + sel.length + '…' }); const pk = sel[i].k === 'cvs' ? cvSel : sel[i].k === 'bios' ? bioSel : null; const t = await grab(sel[i].src, pk && pk.length < CV_ARTISTS.length ? pk : null); if (t) root.file('Documents/' + sel[i].file, t); }
+        const pics = IMAGES.filter(im => imgs.indexOf(im.file) >= 0); const lines = ['Death Is a Door — CC Jasper, 131 Chrystie Street, New York', 'Press images · captions and credits', 'Credit line: Courtesy the artist and CC Jasper', ''];
+        for (let i = 0; i < pics.length; i++) { const im = pics[i]; this.setState({ busy: true, step: 'Images ' + (i + 1) + ' / ' + pics.length + '…' }); const name = 'CC-Jasper_Death-Is-a-Door_' + im.file; try { const r = await fetch('art/' + im.file); if (r.ok) root.file('Images/' + name, await r.blob()); } catch (e) {} lines.push(name, '  ' + im.artist + ', ' + im.title, '  Courtesy the artist and CC Jasper', ''); }
+        if (caps && pics.length) root.file('Images/Captions-and-credits.txt', lines.join('\n'));
+        this.setState({ step: 'Zipping…' });
+        const blob = await zip.generateAsync({ type: 'blob' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Death-Is-a-Door_CC-Jasper_Press-Kit.zip'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+        this.setState({ busy: false, step: '' });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

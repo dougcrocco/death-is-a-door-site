@@ -78,7 +78,7 @@
     <nav style="display:flex;gap:clamp(14px,3vw,32px);">
       <a href="#4" onClick="{{ goWorks }}">Works</a>
       <a href="artists.html">Artists</a>
-      <a href="#20" onClick="{{ goVisit }}">Visit</a>
+      <a href="#21" onClick="{{ goVisit }}">Visit</a>
     </nav>
   </header>
 
@@ -585,7 +585,7 @@ class Component extends DCLogic {
       prev: e => this.step(-1, e),
       goHome: e => this.go(0, e),
       goWorks: e => this.go(3, e),
-      goArtists: e => this.go(20, e),
+      goArtists: e => this.go(19, e),
       goVisit: e => this.go(20, e),
       worksIndex: [["I","Death Is a Door","Doug Crocco","doug-crocco-death-is-a-door-pr.jpg"],["II","The Isle of the Dead 2026","unitedfutures","unitedfutures-the-ferry-still.jpg"],["III","Funeral Flowers","Ellen R Hanson","ellen-r-hanson-funeral-flowers-v3.jpg"],["IV","Pigeon Feather, Stone, Giotto Crying Angels","Benjamin Cowan","benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg"],["V","Empty (After Holbein)","Meredith Sellers","meredith-sellers-empty-after-holbein.jpg"],["VI","Mask from Dallas","Henry Swanson","henry-swanson-mask-from-dallas-v3.jpg"],["VII","Bletting Bananas and Mangos","Aramis Gutierrez","aramis-gutierrez-the-turning-v2.jpg"],["VIII","Spell for blue light = 222D alignment","L","l-spell-for-blue-light-222d-alignment.jpg"],["IX","Three-Tiered Camera Obscura","Charlie Goering","charlie-goering-three-tiered-camera-obscura.jpg"],["X","Rage and Eternal","Tom DeLaney","tom-delaney-rage-and-eternal-v2.jpg"],["XI","Desire (After Dieric Bouts)","Meredith Sellers","meredith-sellers-desire-after-dieric-bouts.jpg"],["XII","Down the River","Pandele Radu","pandele-radu-down-the-river-v2.jpg"],["XIII","New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","Megan Lindeman","megan-lindeman-new-enlightened-era-coming-soon.jpg"],["XIV","The World of Symbol Vanishes in the World as God","Kenny Curwood","kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg"],["XV","Metamorphosis, or The Dark Night of the Soul","Charlie Goering","charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg"]].map(([num, title, artist, f], k) => ({ num, title, artist, img: 'art/' + f, go: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.go(4 + k, e); } })),
     };

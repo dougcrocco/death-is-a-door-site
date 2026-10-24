@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Events — Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Space+Mono&amp;display=swap" rel="stylesheet">
+<style>doc-page:not(:defined){visibility:hidden} body{margin:0;background:#e9e6df} a{color:#2b6a60} a:hover{color:#16150f} input::placeholder{color:#6d675c} @media print{[data-noprint]{display:none !important}}</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<div>
+<div data-noprint="" style="background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Events · Death Is a Door</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <a href="desk.html" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;text-decoration:none;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
+      <button onClick="{{ add }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add event</button>
+      <button onClick="{{ print }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#7fa39b;color:#0d0c0b;border:none;" style-hover="background:#e9e3d6;">Save as PDF ↓</button>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #2a2722;">
+    <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr) minmax(0,1.4fr) 28px;gap:12px;padding:10px 0 4px;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;"><span>Date</span><span>Time</span><span>Event</span><span>Description</span><span></span></div>
+    <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+      <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr) minmax(0,1.4fr) 28px;gap:12px;align-items:end;padding:6px 0;border-bottom:1px solid #2a2722;">
+        <input value="{{ r.date }}" onChange="{{ r.setDate }}" placeholder="Date" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
+        <input value="{{ r.time }}" onChange="{{ r.setTime }}" placeholder="Time" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
+        <input value="{{ r.title }}" onChange="{{ r.setTitle }}" placeholder="Event" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
+        <input value="{{ r.desc }}" onChange="{{ r.setDesc }}" placeholder="One line" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#c4bcae;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
+        <button onClick="{{ r.del }}" title="Remove" style="background:transparent;border:none;color:#6d675c;cursor:pointer;font-size:16px;padding:0;" style-hover="color:#c96442;">×</button>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font-size:10px;color:#6d675c;">Saved in this browser. Leave a field blank to hide it on the PDF.</div>
+</div>
+<doc-page>
+  <div style="font-family:'EB Garamond',serif;color:#16150f;font-size:12pt;line-height:1.6;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16pt;padding-bottom:14pt;border-bottom:0.75pt solid #16150f;">
+      <img src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:20pt;width:auto;">
+      <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;text-align:right;">Events</div>
+    </div>
+    <h1 style="margin:28pt 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40pt;line-height:1;">Death Is a Door</h1>
+    <div style="margin-top:8pt;font-family:'Space Mono',monospace;font-size:9pt;letter-spacing:0.16em;text-transform:uppercase;color:#6d675c;">CC Jasper · 131 Chrystie Street, New York · Thursday–Sunday, 12–6 pm</div>
+    <div style="margin-top:20pt;border-top:0.5pt solid #b9b2a4;">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+        <section style="break-inside:avoid;display:grid;grid-template-columns:120pt minmax(0,1fr);gap:16pt;padding:14pt 0;border-bottom:0.5pt solid #b9b2a4;">
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:9pt;letter-spacing:0.1em;text-transform:uppercase;color:#2b6a60;">{{ r.date }}</div>
+            <div style="margin-top:3pt;font-family:'Space Mono',monospace;font-size:8.5pt;color:#6d675c;">{{ r.time }}</div>
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20pt;line-height:1.15;">{{ r.title }}</div>
+            <div style="margin-top:4pt;font-size:11pt;line-height:1.5;text-wrap:pretty;">{{ r.desc }}</div>
+          </div>
+        </section>
+      </sc-for>
+    </div>
+  </div>
+</doc-page>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KEY = 'didad-events-v1';
+const DEF = [
+  { id: 1, date: 'Week of Nov 9', time: '', title: 'Install', desc: 'Works arrive and are installed. Gallery closed to the public.' },
+  { id: 2, date: 'Thu, Nov 12, 2026', time: '', title: 'Opening reception', desc: 'The exhibition opens to the public. Free and open to all.' },
+  { id: 3, date: '', time: '', title: 'Megan Lindeman', desc: '' },
+  { id: 4, date: '', time: '12–6 pm', title: 'Closing day', desc: 'Last day to see the exhibition.' }
+];
+class Component extends DCLogic {
+  state = { ev: DEF };
+  componentDidMount() { try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.length) this.setState({ ev: s }); } catch (e) {} }
+  put(ev) { this.setState({ ev }); try { localStorage.setItem(KEY, JSON.stringify(ev)); } catch (e) {} }
+  renderVals() {
+    const ev = this.state.ev;
+    const set = (id, k) => e => this.put(ev.map(x => x.id === id ? { ...x, [k]: e.target.value } : x));
+    return {
+      rows: ev.map(x => ({ ...x, setDate: set(x.id, 'date'), setTime: set(x.id, 'time'), setTitle: set(x.id, 'title'), setDesc: set(x.id, 'desc'), del: () => this.put(ev.filter(y => y.id !== x.id)) })),
+      add: () => this.put(ev.concat([{ id: Date.now(), date: '', time: '', title: '', desc: '' }])),
+      print: () => window.print()
+    };
+  }
+}
+</script>
+</body>
+</html>
