@@ -27,19 +27,21 @@
 <script>(function(){var b='../';fetch('../desk.html',{method:'HEAD'}).then(function(r){if(!r.ok)b='../site/';}).catch(function(){b='../site/';});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-root]');if(a)a.href=b+a.getAttribute('data-root');},true);})();</script>
 <script src="sync.js"></script>
 </helmet>
-
-<div>
-<div data-noprint="" style="position:relative;z-index:10;background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
-  <div style="display:flex;justify-content:flex-end;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
+<div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
     <a href="checklist.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
     <a href="tracker.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="../press.html" data-root="press.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">Press materials</a>
     <a href="shipping.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">Shipping</a>
-    <a href="../index.html" data-root="index.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">Site</a>
-    <a href="../install-plan.html#walkthrough" data-root="install-plan.html#walkthrough" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">3D Walkthrough</a></nav></div>
+    <a href="../install-plan.html#walkthrough" data-root="install-plan.html#walkthrough" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#0d0c0b;color:#c4bcae;" style-hover="background:#16150f;color:#7fa39b;">3D Walkthrough</a></nav>
+  <a href="../index.html" data-root="index.html" style="background:rgba(127,163,155,0.22);color:#f0eadd;border:1px solid #3a3630;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:rgba(127,163,155,0.4);">Public site <span style="color:#7fa39b;">↗</span></a></div>
+
+
+<div>
+<div data-noprint="" style="position:relative;z-index:10;background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
+  <div style="display:flex;justify-content:flex-end;"></div>
   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
     <div style="display:flex;flex-wrap:wrap;gap:8px;">
       <button onClick="{{ toggleView }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ viewBtn }}</button>
     </div>
@@ -217,6 +219,12 @@
             <span style="letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">Retail price</span>
             <input value="{{ w.price }}" onChange="{{ w.onPrice }}" placeholder="$ —" style="font-family:'Space Mono',monospace;font-size:10.5pt;color:#16150f;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:9em;">
           </div>
+          <sc-if value="{{ w.hasIns }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:baseline;gap:8pt;font-family:'Space Mono',monospace;font-size:9.5pt;">
+              <span style="letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">Insurance value</span>
+              <span style="font-size:10.5pt;color:#16150f;">{{ w.ins }}</span>
+            </div>
+          </sc-if>
           <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.split }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10pt;color:#5c574c;outline:none;border-radius:2px;">{{ tx.split }}</div>
         </div>
       </div>
@@ -284,7 +292,7 @@ const ARTISTS = [
     { t: 'Three-Tiered Camera Obscura', d: '2024\nOil on canvas · 8 × 10 in', i: 'art/charlie-goering-three-tiered-camera-obscura.jpg', p: '$1,500' }] },
   { id: 'gutierrez', name: 'Aramis Gutierrez', email: 'aramisg@gmail.com', phone: '786-760-2574', works: [{ t: 'Bletting Bananas and Mangos', d: '2026\nOil on canvas · 48 × 54 in', p: '$20,000', i: 'art/aramis-gutierrez-the-turning-v2.jpg' }] },
   { id: 'hanson', name: 'Ellen R Hanson', email: 'ellenrhanson@gmail.com', rep: 'RUBY/DAKOTA', works: [{ t: 'Funeral Flowers', d: '2024\nOil and acrylic primer on lycra · 22 × 59 in', p: '$6,000', i: 'art/ellen-r-hanson-funeral-flowers-v3.jpg' }] },
-  { id: 'lazaros', name: 'L', legal: 'Casey Gleghorn', owner: true, email: 'info@nononogallery.com', phone: '570-447-5778', gPct: 20, works: [{ t: 'Spell for blue light = 222D alignment', d: '2020\nGlass, oil, mixed materials · 5 × 5 × 10.75 in', i: 'art/l-spell-for-blue-light-222d-alignment.jpg' }] },
+  { id: 'lazaros', name: 'L', legal: 'Casey Gleghorn', owner: true, email: 'info@nononogallery.com', phone: '570-447-5778', gPct: 20, works: [{ t: 'Spell for blue light = 222D alignment', d: '2020\nGlass, oil, mixed materials · 5 × 5 × 10.75 in', ins: '$8,000', i: 'art/l-spell-for-blue-light-222d-alignment.jpg' }] },
   { id: 'lindeman', name: 'Megan Lindeman', email: 'megan@meganlindeman.com', phone: '213-210-3801', works: [{ t: 'New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)', d: '2026\nPlaster, pigment, fragrance · 18.25 × 8.5 × 5.5 in', p: '$2,400', i: 'art/megan-lindeman-new-enlightened-era-coming-soon-2.jpg' }] },
   { id: 'radu', name: 'Pandele Radu', email: 'pandeleradu123@gmail.com', works: [{ t: 'Down the River', d: '2026\nAcrylic on linen · 39.37 × 39.37 in', i: 'art/pandele-radu-down-the-river-v2.jpg' }] },
   { id: 'sellers', name: 'Meredith Sellers', email: 'meredithmsellers@gmail.com', works: [
@@ -519,7 +527,7 @@ class Component extends DCLogic {
       f: { date: val('date', 'October 14, 2026'), legal: val('legal', A.legal || A.name), address: val('address', A.address || ''), email: val('email', A.email), phone: val('phone', A.phone || '') },
       on,
       clauses,
-      works: A.works.map((w, i) => ({ title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wt' + i, w.t)) this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wd' + i, w.d)) this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
+      works: A.works.map((w, i) => ({ ins: w.ins || '', hasIns: !!w.ins, title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wt' + i, w.t)) this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wd' + i, w.d)) this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
     };
     this._m = vals;
     return vals;

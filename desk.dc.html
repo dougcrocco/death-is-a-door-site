@@ -21,18 +21,34 @@
 
     <header style="display:flex;flex-direction:column;gap:14px;">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;">
-        <img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:clamp(18px,2.2vw,24px);width:auto;">
+        <a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:clamp(18px,2.2vw,24px);width:auto;"></a>
         <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Death Is a Door <span style="color:#8f887c;">· 131 Chrystie St</span></div>
       </div>
       <div ref="{{ rowRef }}" style="display:flex;flex-direction:{{ rowDir }};justify-content:flex-start;align-items:stretch;gap:clamp(16px,3vw,36px);margin-top:8px;">
         <h1 style="margin:0;flex:0 1 auto;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6vw,76px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1>
-      <div ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
+      <div style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:10px;"><div ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
         <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
-          <a href="{{ c.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:#0d0c0b;color:#e9e3d6;text-decoration:none;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;" style-hover="background:#16150f;color:#7fa39b;">
+          <a href="{{ c.href }}" onClick="{{ c.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:{{ c.bg }};color:{{ c.fg }};text-decoration:none;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;" style-hover="background:#16150f;color:#7fa39b;">
             <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">{{ c.title }}</span>
-            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;">→</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:{{ c.ac }};">{{ c.arrow }}</span>
           </a>
         </sc-for>
+      </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button onClick="{{ toggleContacts }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;background:{{ ctBg }};color:{{ ctFg }};border:1px solid #3a3630;" style-hover="border-color:#7fa39b;">Artist contacts {{ ctSign }}</button>
+          <button onClick="{{ copyEmails }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #3a3630;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ copyLabel }} ⧉</button>
+        </div>
+        <sc-if value="{{ ctOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;border-top:1px solid #3a3630;">
+            <sc-for list="{{ contacts }}" as="p" hint-placeholder-count="12">
+              <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) minmax(0,0.8fr);gap:4px 16px;align-items:baseline;padding:7px 0;border-bottom:1px solid #2a2722;">
+                <span style="font-family:'EB Garamond',serif;font-size:15px;color:#f0eadd;">{{ p.name }}<span style="color:#8f887c;font-size:13px;">{{ p.note }}</span></span>
+                <a href="{{ p.mailto }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" style-hover="color:#e9e3d6;">{{ p.email }}</a>
+                <a href="{{ p.tel }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;white-space:nowrap;" style-hover="color:#7fa39b;">{{ p.phone }}</a>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
       </div>
       </div>
     </header>
@@ -41,11 +57,11 @@
       <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">{{ instLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ instBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Fri, Nov 6</span></div>
       <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">{{ countLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ countBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Thu, Nov 12</span></div>
       <div style="display:flex;flex-direction:column;gap:14px;font-family:'Space Mono',monospace;">
-        <a href="{{ agTracker }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
+        <a href="{{ agTracker }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
           <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
           <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
         </a>
-        <a href="{{ agShipping }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
+        <a href="{{ agShipping }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
           <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
           <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#7fa39b;"></div></div>
         </a>
@@ -70,7 +86,7 @@
           <div onDragOver="{{ col.over }}" onDrop="{{ col.drop }}" style="display:flex;flex-direction:column;gap:6px;min-width:0;min-height:140px;">
             <div style="display:flex;align-items:center;gap:7px;padding-bottom:6px;border-bottom:2px solid {{ col.c }};"><span style="width:7px;height:7px;flex:none;border-radius:50%;background:{{ col.c }};"></span><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ col.c }};">{{ col.name }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ col.count }}</span></div>
             <sc-for list="{{ col.items }}" as="t" hint-placeholder-count="2">
-              <a href="{{ t.href }}" target="_blank" rel="noopener" draggable="true" onDragStart="{{ t.drag }}" onDragOver="{{ t.over }}" onDrop="{{ t.drop }}" onDragEnd="{{ t.end }}" style="cursor:grab;opacity:{{ t.op }};background:#16150f;padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:{{ t.tc }};" style-hover="background:#201e18;">
+              <a href="{{ t.href }}" draggable="true" onDragStart="{{ t.drag }}" onDragOver="{{ t.over }}" onDrop="{{ t.drop }}" onDragEnd="{{ t.end }}" style="cursor:grab;opacity:{{ t.op }};background:#16150f;padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:{{ t.tc }};" style-hover="background:#201e18;">
                 <span style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ t.src }}</span><button onClick="{{ t.remove }}" title="Delete" style="margin-left:auto;background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;padding:0 6px;cursor:pointer;" style-hover="border-color:#e0614f;color:#e0614f;">✕</button></span>
                 <span style="font-size:14.5px;line-height:1.35;text-wrap:pretty;"><span style="color:#ffffff;">{{ t.who }}</span><span style="text-decoration:{{ t.td }};text-underline-offset:3px;">{{ t.what }}</span>{{ t.arrow }}</span>
               </a>
@@ -245,12 +261,15 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const parseCSV = t => { const rows = []; let row = [], f = '', q = false; for (let i = 0; i < t.length; i++) { const c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; } else if (c === '"') q = true; else if (c === ',') { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; } else f += c; } if (f || row.length) { row.push(f); rows.push(row); } return rows; };
+const CONTACTS = [{"name":"Benjamin Cowan","legal":"","email":"cowan.benjamin@gmail.com","phone":"","rep":"Deanna Evans Projects"},{"name":"Doug Crocco","legal":"","email":"doug@allart.la","phone":"213-768-6354","rep":""},{"name":"Tom DeLaney","legal":"","email":"zuervos@gmail.com","phone":"678-755-0075","rep":""},{"name":"Kenny Curwood","legal":"","email":"Kenneth.curwood@gmail.com","phone":"","rep":""},{"name":"Charlie Goering","legal":"","email":"goering.charlie@gmail.com","phone":"513-310-4874","rep":""},{"name":"Aramis Gutierrez","legal":"","email":"aramisg@gmail.com","phone":"786-760-2574","rep":""},{"name":"Ellen R Hanson","legal":"","email":"ellenrhanson@gmail.com","phone":"","rep":"RUBY/DAKOTA"},{"name":"L","legal":"Casey Gleghorn","email":"info@nononogallery.com","phone":"570-447-5778","rep":""},{"name":"Megan Lindeman","legal":"","email":"megan@meganlindeman.com","phone":"213-210-3801","rep":""},{"name":"Pandele Radu","legal":"","email":"pandeleradu123@gmail.com","phone":"","rep":""},{"name":"Meredith Sellers","legal":"","email":"meredithmsellers@gmail.com","phone":"","rep":""},{"name":"Henry Swanson","legal":"","email":"henryswanson@icloud.com","phone":"","rep":""},{"name":"unitedfutures","legal":"","email":"caco@unitedfutur.es","phone":"617-401-5678","rep":""}];
+const ARTIST_EMAILS = ["cowan.benjamin@gmail.com","zuervos@gmail.com","Kenneth.curwood@gmail.com","goering.charlie@gmail.com","aramisg@gmail.com","ellenrhanson@gmail.com","info@nononogallery.com","megan@meganlindeman.com","pandeleradu123@gmail.com","meredithmsellers@gmail.com","henryswanson@icloud.com","caco@unitedfutur.es"];
 const OPEN = new Date(2026, 10, 12), INSTALL = new Date(2026, 10, 6);
 const TASKS = [
+  { src: 'Install', who: 'Pedestals', what: ' — pick up pedestals', u: 1 },
   { src: 'Press', who: 'All artists', what: ' — ask for studio images and an artist photo for PR', u: 1, href: 'press.html' },
   { src: 'Install', who: 'Doug Crocco', what: ' — Death Is a Door wall vinyl delivered and installed Mon, Nov 9 at noon', u: 2 },
   { src: 'Install', who: 'Show wall vinyl', what: ' — show title vinyl for the front door and entry' },
-  { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the new 80 / 20 split on L’s work (80% to Casey)', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
+  { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the 80 / 20 split on L’s work (80% to Casey) and the $8,000 insurance value', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
 ];
 const FLAG = /(talk|confirm|ask|need|tbd|tbc|waiting|awaiting|arrange)/i;
 class Component extends DCLogic {
@@ -379,6 +398,9 @@ class Component extends DCLogic {
     const big = d => d > 1 ? d + ' days' : d === 1 ? '1 day' : d === 0 ? 'Today' : Math.abs(d) + ' days ago';
     const span = Math.max(1, days);
     const ag = this.state.ag || 'agreements/';
+    const copyLabel = this.state.copied ? '✓ Copied ' + ARTIST_EMAILS.length + ' emails' : 'Copy artist emails';
+    const copyEmails = () => { const t = ARTIST_EMAILS.join(', '); const done = () => { this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2500); }; if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, () => { window.prompt('Copy these emails:', t); }); else window.prompt('Copy these emails:', t); };
+    const mailAll = 'mailto:doug@allart.la?bcc=' + encodeURIComponent(ARTIST_EMAILS.join(',')) + '&subject=' + encodeURIComponent('Death Is a Door — CC Jasper');
     const fixC = h => h.indexOf('agreements/') === 0 ? ag + h.slice(11) : h;
     return {
       rowRef: this.rowRef, gridRef: this.gridRef, deskCols: String(this.state.cols || 3), rowDir: this.state.stack ? 'column' : 'row',
@@ -443,6 +465,10 @@ class Component extends DCLogic {
           saveItem: e => { e.preventDefault(); if (!F || !F.who.trim()) return; saveCu([{ id: Date.now(), text: F.who.trim(), what: F.what.trim(), src: F.src, u: F.u }].concat(this.state.custom || [])); logIt('Added', F.src + ' · ' + F.who.trim() + (F.what.trim() ? ' — ' + F.what.trim() : '') + ' (' + UN[F.u] + ')'); this.setState({ form: null }); }
         };
       })(),
+      copyLabel, copyEmails, mailAll,
+      ctOpen: !!this.state.ctOpen, ctSign: this.state.ctOpen ? '−' : '+', ctBg: this.state.ctOpen ? '#e9e3d6' : 'transparent', ctFg: this.state.ctOpen ? '#0d0c0b' : '#e9e3d6',
+      toggleContacts: () => this.setState({ ctOpen: !this.state.ctOpen }),
+      contacts: CONTACTS.map(c => ({ name: c.name, note: c.legal ? ' · via ' + c.legal : (c.rep ? ' · ' + c.rep : ''), email: c.email, mailto: 'mailto:' + c.email, phone: c.phone || '—', tel: c.phone ? 'tel:' + c.phone.replace(/[^0-9+]/g, '') : '#' })),
       todos: this.state.todos, todoEmpty: !!s && this.state.todos.length + (this.state.custom || []).length === 0,
       cards: [
 
@@ -450,12 +476,12 @@ class Component extends DCLogic {
         { title: 'Consignments', href: 'agreements/tracker.html', span: 'auto' },
         { title: 'Press materials', href: 'press.html', span: 'auto' },
         { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
-        { title: 'Site', href: 'index.html', span: 'auto' },
         { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' },
         { title: 'Offer sheets', href: 'offer-sheets.html', span: 'auto' },
         { title: 'Events', href: 'events.html', span: 'auto' },
-        { title: 'Press zip', href: 'press-kit.html', span: 'auto' }
-      ].map(c => ({ ...c, href: fixC(c.href) }))
+        { title: 'Press zip', href: 'press-kit.html', span: 'auto' },
+        { title: 'Public site', href: 'index.html', span: 'auto', alt: true }
+      ].map(c => ({ ...c, href: c.mail ? mailAll : c.copy ? '#' : fixC(c.href), title: c.copy ? copyLabel : c.title, onClick: c.copy ? e => { e.preventDefault(); copyEmails(); } : undefined, bg: c.alt ? 'rgba(127,163,155,0.22)' : '#0d0c0b', fg: c.alt ? '#f0eadd' : '#e9e3d6', ac: '#7fa39b', arrow: c.alt || c.mail ? '↗' : c.copy ? '⧉' : '→' }))
     };
   }
 }
