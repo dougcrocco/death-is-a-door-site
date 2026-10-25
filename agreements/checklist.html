@@ -54,7 +54,7 @@
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
-    <a href="../press.html?tab=instagram&amp;sub=0" data-root="press.html?tab=instagram&amp;sub=0" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Book</a>
+    <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
     <a href="checklist.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
     <a href="index.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
@@ -65,28 +65,37 @@
 
 <div data-sheet="" style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;">
-    <div style="flex:1 0 100%;display:flex;align-items:center;gap:16px;margin-bottom:12px;"><a href="../desk.html" data-root="desk.html" data-noprint="" title="Exhibition Desk" style="display:block;line-height:0;"><img data-logo-screen="" src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><img data-logo-print="" src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+    <div style="flex:1 0 100%;display:flex;align-items:baseline;gap:16px;margin-bottom:12px;"><a href="../desk.html" data-root="desk.html" data-noprint="" title="Exhibition Desk" style="display:block;line-height:0;"><img data-logo-screen="" src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><img data-logo-print="" src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
     <div>
       <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Exhibition Checklist</h1>
     </div>
     <div data-muted="" data-pnone="" style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ count }} works</div>
+    <div data-noprint="" style="flex:1 0 100%;margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px 48px;align-items:end;border-top:1px solid #2a2722;padding-top:18px;">
+      <p style="margin:0;max-width:640px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,24px);line-height:1.35;color:#e9e3d6;text-wrap:pretty;">The definitive list of works in <i>Death Is a Door</i> — prepared for press, collectors and installation, and exportable in the format each needs.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #2a2722;padding-bottom:8px;">Export with</div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 24px;">
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">Shown or hidden</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Images</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">Shown or hidden</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Formats</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">PDF · DOC</span></div>
+      </div>
+      </div>
+    </div>
   </div>
-  <div data-noprint="" style="max-width:1100px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 32px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;">
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:baseline;gap:10px;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Edits</div><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:{{ statusC }};">{{ status }}</span></div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">Save version</button></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ showOnSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ showOffSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Hide</button></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Images</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ imgsOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ imgsOnSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Images</button><button onClick="{{ imgsOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;{{ imgsOffSt }}border:1px solid #6d675c;" style-hover="border-color:#7fa39b;">Text only</button></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-left:auto;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">PDF</button><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Word / Pages</button></div>
+  <div data-noprint="" style="max-width:1100px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:center;gap:14px 32px;padding:16px 18px;background:#16150f;border:1px solid #2a2722;">
+    <div style="flex-basis:100%;display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;">
+      <div style="display:flex;align-items:center;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Order</span><div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;"><sc-for list="{{ ordOpts }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.pick }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ o.st }}" style-hover="color:#7fa39b;">{{ o.label }}</button></sc-for></div></div>
+      <div style="display:flex;align-items:center;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Prices</span><div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;"><button onClick="{{ showPricesOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ showOnSt }}border:none;" style-hover="color:#7fa39b;">Show</button><button onClick="{{ showPricesOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ showOffSt }}border:none;" style-hover="color:#7fa39b;">Hide</button></div></div>
+      <div style="display:flex;align-items:center;gap:12px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Images</span><div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;"><button onClick="{{ imgsOn }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ imgsOnSt }}border:none;" style-hover="color:#7fa39b;">On</button><button onClick="{{ imgsOff }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ imgsOffSt }}border:none;" style-hover="color:#7fa39b;">Text only</button></div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid #2a2722;padding-top:14px;">
+        <button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;background:transparent;color:#7fa39b;border:1px solid #2b6a60;" style-hover="background:#1d4a43;color:#fff;">Save version</button>
+        <span style="width:1px;height:22px;background:#3a3630;margin:0 6px;"></span>
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;margin-right:2px;">Export</span>
+        <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;">PDF</button>
+        <button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">DOC</button>
+      </div>
     </div>
     <sc-if value="{{ hasVersions }}" hint-placeholder-val="{{ false }}">
       <div style="flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border-top:1px solid #2a2722;padding-top:10px;font-family:'Space Mono',monospace;font-size:11px;">
@@ -100,7 +109,7 @@
     </sc-if>
     <div style="flex-basis:100%;border-top:1px solid #2a2722;padding-top:10px;font-family:'Space Mono',monospace;font-size:11px;">
       <button onClick="{{ toggleLog }}" aria-expanded="{{ logOpen }}" style="display:flex;align-items:center;gap:10px;width:100%;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:2px 0;cursor:pointer;text-align:left;" style-hover="color:#7fa39b;">
-        <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-size:13px;line-height:1;">{{ logIcon }}</span>Updates<span style="color:#8f887c;">{{ logCount }}</span>
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-size:13px;line-height:1;">{{ logIcon }}</span>Updates<span style="color:#8f887c;">{{ logCount }}</span><span style="margin-left:auto;font-size:10px;letter-spacing:0.04em;text-transform:none;color:{{ statusC }};">{{ status }}</span>
       </button>
       <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
         <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;">
@@ -158,8 +167,13 @@ class Component extends DCLogic {
   renderVals() {
     const show = this.state.show;
     const rows = ROWS.map((r0, i) => { const o = this.state.ed[i] || {}; const r = { ...r0, ...o, on: {} }; ['artist', 'title', 'line', 'price'].forEach(k => { r.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== r[k]) this.setEd(i, k, v); }; }); return r; });
+    const RV = s => { const m = { I: 1, V: 5, X: 10, L: 50 }; let n = 0, p = 0; String(s || '').toUpperCase().split('').reverse().forEach(c => { const v = m[c] || 0; n += v < p ? -v : v; p = Math.max(p, v); }); return n || 999; };
+    const sur = a => { const w = String(a || '').trim().split(/\s+/); return (w.length > 1 ? w[w.length - 1] : w[0]).toLowerCase(); };
+    const ordBy = this.state.ord || 'install';
+    rows.sort((a, b) => ordBy === 'az' ? (sur(a.artist).localeCompare(sur(b.artist)) || String(a.title).localeCompare(String(b.title))) : (RV(a.num) - RV(b.num)));
     return {
       rows,
+      ordOpts: [['install', 'Install order'], ['az', 'A–Z']].map(([k, label]) => ({ label, st: (this.state.ord || 'install') === k ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:#0d0c0b;color:#e9e3d6;', pick: () => this.setState({ ord: k }) })),
       ...(() => {
         const vs = this.state.versions, curV = vs.find(v => v.id === this.state.cur), base = curV ? curV.ed : {};
         const dirty = JSON.stringify(this.state.ed) !== JSON.stringify(base), last = vs[vs.length - 1];
@@ -182,11 +196,11 @@ class Component extends DCLogic {
       imgs: this.state.imgs, noImgAttr: this.state.imgs ? undefined : '',
       cols: (this.state.imgs ? '3.4em 72px ' : '3.4em ') + (show ? 'minmax(0,1fr) auto' : 'minmax(0,1fr)'),
       imgsOn: () => this.setState({ imgs: true }), imgsOff: () => this.setState({ imgs: false }),
-      imgsOnSt: this.state.imgs ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;', imgsOffSt: this.state.imgs ? 'background:transparent;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;',
+      imgsOnSt: this.state.imgs ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:#0d0c0b;color:#e9e3d6;', imgsOffSt: this.state.imgs ? 'background:#0d0c0b;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;',
       priceBtn: show ? 'Hide prices' : 'Show prices',
       footnote: show ? 'Listed in installation order, clockwise from the entrance. Prices exclusive of sales tax. Dimensions height × width (× depth).' : 'Listed in installation order, clockwise from the entrance. Dimensions height × width (× depth).',
-      showOnSt: show ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:transparent;color:#e9e3d6;',
-      showOffSt: show ? 'background:transparent;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;',
+      showOnSt: show ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:#0d0c0b;color:#e9e3d6;',
+      showOffSt: show ? 'background:#0d0c0b;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;',
       showPricesOn: () => { this.setState({ show: true }); try { localStorage.setItem('didad-checklist-prices', '1'); } catch (e) {} },
       showPricesOff: () => { this.setState({ show: false }); try { localStorage.setItem('didad-checklist-prices', '0'); } catch (e) {} },
       togglePrices: () => { const v = !show; this.setState({ show: v }); try { localStorage.setItem('didad-checklist-prices', v ? '1' : '0'); } catch (e) {} },

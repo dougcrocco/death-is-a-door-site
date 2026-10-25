@@ -29,7 +29,7 @@
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
-    <a href="../press.html?tab=instagram&amp;sub=0" data-root="press.html?tab=instagram&amp;sub=0" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Book</a>
+    <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
     <a href="checklist.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
     <a href="index.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
@@ -42,10 +42,18 @@
 <div>
 <div data-noprint="" style="position:relative;z-index:10;background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
   <div style="display:flex;justify-content:flex-end;"></div>
-  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;">
-      <a href="tracker.html" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;white-space:nowrap;text-decoration:none;background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">Consignment Tracker →</a>
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;">
+    <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;align-items:baseline;gap:16px;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div><h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Consignments</h1></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px 48px;align-items:end;border-top:1px solid #2a2722;padding-top:18px;">
+    <p style="margin:0;max-width:640px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,24px);line-height:1.35;color:#e9e3d6;text-wrap:pretty;">Consignment agreements for every artist in <i>Death Is a Door</i> — issue the full document, or Schedule A on its own for artwork details and signatures.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #2a2722;padding-bottom:8px;">Export as</div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 24px;">
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Document</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">Full terms or Schedule A</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Formats</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">PDF · DOC</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Batch</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">All consignments (.zip)</span></div>
+      </div>
     </div>
   </div>
   <div style="display:flex;flex-direction:column;gap:8px;">
@@ -54,41 +62,54 @@
   </div>
   <sc-if value="{{ isAgreements }}" hint-placeholder-val="{{ true }}">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border-top:1px solid #2a2722;padding-top:14px;">
-    <span style="font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Sort</span>
     <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
       <sc-for list="{{ aSorts }}" as="s" hint-placeholder-count="2">
         <button onClick="{{ s.pick }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:none;cursor:pointer;background:{{ s.bg }};color:{{ s.fg }};">{{ s.label }}</button>
       </sc-for>
     </div>
     <div style="display:flex;gap:14px;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8f887c;"><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#6d675c;"></span>To send</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#c9a24a;"></span>Sent</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#5fa08f;"></span>Signed</span></div>
+    <a href="tracker.html" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;white-space:nowrap;text-decoration:none;background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">Consignment Tracker →</a>
+    <button onClick="{{ downloadAll }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;white-space:nowrap;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ allLabel }}</button>
     <span style="font-size:10.5px;color:#8f887c;margin-left:auto;">{{ aCounter }}</span>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:4px 10px;">
-    <sc-for list="{{ aItems }}" as="t" hint-placeholder-count="14">
-      <button onClick="{{ t.pick }}" style="display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center;text-align:left;padding:7px 10px;margin:0;border:none;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};">
+  <div style="column-width:240px;column-gap:10px;">
+    <sc-for list="{{ aOpen }}" as="t" hint-placeholder-count="10">
+      <button onClick="{{ t.pick }}" style="display:grid;width:100%;box-sizing:border-box;break-inside:avoid;margin:0 0 4px;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center;text-align:left;padding:7px 10px;border:none;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};">
         <span style="width:7px;height:7px;border-radius:50%;background:{{ t.dot }};"></span>
         <span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.name }}</span>
-        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;color:{{ t.sc }};">{{ t.status }}</span>
+        <span role="button" onClick="{{ t.act }}" title="{{ t.actTitle }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;color:{{ t.sc }};border:1px solid {{ t.sc }};padding:2px 6px;cursor:pointer;" style-hover="background:{{ t.sc }};color:#0d0c0b;">{{ t.status }}</span>
       </button>
     </sc-for>
+    <sc-if value="{{ aSplit }}" hint-placeholder-val="{{ false }}">
+      <div style="break-inside:avoid;break-after:avoid;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#5fa08f;border-bottom:1px solid #5fa08f;padding:8px 0 6px;margin:0 0 6px;"><span>Signed</span><span>{{ aSignedN }}</span></div>
+      <sc-for list="{{ aSigned }}" as="t" hint-placeholder-count="3">
+        <button onClick="{{ t.pick }}" style="display:grid;width:100%;box-sizing:border-box;break-inside:avoid;margin:0 0 4px;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center;text-align:left;padding:7px 10px;border:none;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};">
+        <span style="width:7px;height:7px;border-radius:50%;background:{{ t.dot }};"></span>
+        <span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.name }}</span>
+        <span role="button" onClick="{{ t.act }}" title="{{ t.actTitle }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;color:{{ t.sc }};border:1px solid {{ t.sc }};padding:2px 6px;cursor:pointer;" style-hover="background:{{ t.sc }};color:#0d0c0b;">{{ t.status }}</span>
+      </button>
+      </sc-for>
+    </sc-if>
   </div>
-  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 32px;border-top:1px solid #2a2722;padding-top:16px;">
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Selected artist</div>
-      <div style="font-family:'EB Garamond',serif;font-size:22px;line-height:1.1;color:#f0eadd;">{{ artistName }}</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Status</div>
-      <div style="display:flex;gap:16px;align-items:center;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#c4bcae;height:33px;">
-        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" checked="{{ isSent }}" onChange="{{ toggleSent }}" style="accent-color:#c9a24a;width:15px;height:15px;cursor:pointer;">Sent</label>
-        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" checked="{{ isSigned }}" onChange="{{ toggleSigned }}" style="accent-color:#5fa08f;width:15px;height:15px;cursor:pointer;">Signed</label>
+  <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #2a2722;padding-top:16px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;background:#16150f;border:1px solid #2a2722;padding:12px 16px;">
+      <div style="display:flex;align-items:baseline;gap:12px;min-width:0;">
+        <span style="font-family:'EB Garamond',serif;font-size:22px;line-height:1.1;color:#f0eadd;white-space:nowrap;">{{ artistName }}</span>
+        <span style="font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ selStatusC }};">{{ selStatus }}</span>
+      </div>
+      <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+        <a href="{{ curFull }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:{{ fullBg }};color:{{ fullFg }};" style-hover="color:#7fa39b;">Full terms</a>
+        <a href="{{ curDetail }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:{{ detBg }};color:{{ detFg }};" style-hover="color:#7fa39b;">Schedule A</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+        <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF</button>
+        <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+          <button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#0d0c0b;color:#e9e3d6;" style-hover="color:#7fa39b;">DOC</button>
+          <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#0d0c0b;color:#e9e3d6;" style-hover="color:#7fa39b;">Print</button>
+        </div>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-left:auto;">
-      <div style="font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">PDF</button><button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Word / Pages</button><button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Print</button><button onClick="{{ downloadAll }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ allLabel }}</button></div>
-    </div>
-    <div style="font-size:10.5px;line-height:1.6;color:#8f887c;flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;"><span>{{ actionHint }}</span><sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c9a24a;border:none;border-bottom:1px solid #c9a24a;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Reset wording to original</button></sc-if></div>
+    <div style="font-size:10px;line-height:1.6;color:#6d675c;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;"><span>{{ actionHint }}</span><sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c9a24a;border:none;border-bottom:1px solid #c9a24a;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Reset wording to original</button></sc-if></div>
   </div>
   </sc-if>
 </div>
@@ -425,7 +446,8 @@ class Component extends DCLogic {
     this._fit = () => this.fitDoc(); window.addEventListener('resize', this._fit); this.fitDoc();
     try { const s = JSON.parse(localStorage.getItem(KEY) || '{}'); const q = new URLSearchParams(location.search).get('artist'); const hit = q && ARTISTS.find(x => x.name.toLowerCase() === q.toLowerCase() || x.id === q); this.setState({ data: s.data || {}, sel: hit ? hit.id : (s.sel || 'cowan'), view: hit ? 'agreements' : (s.view || 'agreements') }); } catch (e) {}
   }
-  save(next) { this.setState(next, () => { try { localStorage.setItem(KEY, JSON.stringify({ data: this.state.data, sel: this.state.sel, view: this.state.view })); } catch (e) {} }); }
+  save(next) { const prev = this.state.data || {}; this.setState(next, () => {
+    try { const T = this.trk(); if (T && next.data) { let ch = false; ARTISTS.forEach(x => { const a = prev[x.id] || {}, b = this.state.data[x.id] || {}; ['sent', 'signed'].forEach(k => { if (b[k] !== undefined && a[k] !== b[k]) { const c = k === 'sent' ? 9 : 10; T.rows.forEach(r => { if (r[2] === x.name) { r[c] = b[k] ? 'TRUE' : 'FALSE'; if (k === 'signed' && b[k]) r[9] = 'TRUE'; if (k === 'sent' && !b[k]) r[10] = 'FALSE'; ch = true; } }); } }); }); if (ch) localStorage.setItem('didad-tracker-v1', JSON.stringify(T)); } } catch (e) {} try { localStorage.setItem(KEY, JSON.stringify({ data: this.state.data, sel: this.state.sel, view: this.state.view })); } catch (e) {} }); }
   sigCanvas = React.createRef();
   loadSigs() { const o = {}; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.indexOf('didad-sig-') === 0) { try { o[k] = JSON.parse(localStorage.getItem(k)); } catch (e) {} } } } catch (e) {} this.setState({ sigs: o }); }
   componentDidUpdate(pp, ps) { if (this.state.signFor && !ps.signFor) setTimeout(() => this.initPad(), 30); }
@@ -434,7 +456,9 @@ class Component extends DCLogic {
     c.addEventListener('pointermove', e => { if (!down) return; const [x, y] = pt(e); g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); lx = x; ly = y; });
     c.addEventListener('pointerup', () => { down = false; }); }
   drawTyped(t) { const c = this.sigCanvas.current; if (!c) return; const g = c.getContext('2d'); g.clearRect(0, 0, c.width, c.height); c.__ink = !!t.trim(); if (!t.trim()) return; g.fillStyle = '#16150f'; let fs = 150; g.font = 'italic ' + fs + 'px "Cormorant Garamond", "Brush Script MT", cursive'; while (g.measureText(t).width > c.width - 60 && fs > 40) { fs -= 8; g.font = 'italic ' + fs + 'px "Cormorant Garamond", "Brush Script MT", cursive'; } g.textBaseline = 'middle'; g.fillText(t, 30, c.height / 2); }
-  status(x) { const d = this.state.data[x.id] || {}; return { sent: d.sent !== undefined ? !!d.sent : !!x.sent, signed: d.signed !== undefined ? !!d.signed : !!x.signed }; }
+  trk() { try { const o = JSON.parse(localStorage.getItem('didad-tracker-v1') || 'null'); return o && Array.isArray(o.rows) ? o : null; } catch (e) { return null; } }
+  status(x) { const T = this.trk(); if (T) { const rs = T.rows.filter(r => r[2] === x.name); if (rs.length) { const on = v => String(v).toUpperCase() === 'TRUE' || v === '✓'; return { signed: rs.every(r => on(r[10])), sent: rs.every(r => on(r[9]) || on(r[10])) }; } }
+    const d = this.state.data[x.id] || {}; return { sent: d.sent !== undefined ? !!d.sent : !!x.sent, signed: d.signed !== undefined ? !!d.signed : !!x.signed }; }
   setField(k, v) { const a = this.state.sel; const d = { ...this.state.data }; d[a] = { ...(d[a] || {}), [k]: v }; this.save({ data: d }); }
   renderVals() {
     const opening = this.props.openingDate ?? '2026-11-12';
@@ -517,6 +541,13 @@ class Component extends DCLogic {
       isEdited: edited,
       resetText: () => { const cur = { ...(this.state.data[A.id] || {}) }; delete cur.cl; delete cur.gf; delete cur.tx; Object.keys(cur).filter(k => /^w[td]\d+$/.test(k)).forEach(k => delete cur[k]); this.save({ data: { ...this.state.data, [A.id]: cur } }); },
       isAgreements: view === 'agreements',
+      curFull: 'index.html?artist=' + encodeURIComponent(A.name), curDetail: 'index.html?view=detail&artist=' + encodeURIComponent(A.name),
+      selStatus: (z => z.signed ? 'Signed' : z.sent ? 'Sent' : 'To send')(this.status(A)), selStatusC: (z => z.signed ? '#5fa08f' : z.sent ? '#c9a24a' : '#8f887c')(this.status(A)),
+      fullBg: /[?&]view=detail/.test(location.search) ? '#0d0c0b' : '#e9e3d6', fullFg: /[?&]view=detail/.test(location.search) ? '#e9e3d6' : '#0d0c0b',
+      detBg: /[?&]view=detail/.test(location.search) ? '#e9e3d6' : '#0d0c0b', detFg: /[?&]view=detail/.test(location.search) ? '#0d0c0b' : '#e9e3d6',
+      menuFull: this.state.menu === 'full', menuDetail: this.state.menu === 'detail',
+      openFull: () => this.setState({ menu: 'full' }), openDetail: () => this.setState({ menu: 'detail' }), closeMenu: () => this.setState({ menu: null }),
+      artistLinks: ARTISTS.map(x => ({ name: x.name, full: 'index.html?artist=' + encodeURIComponent(x.name), detail: 'index.html?view=detail&artist=' + encodeURIComponent(x.name) })),
       isDetail: /[?&]view=detail/.test(location.search), showTerms: !/[?&]view=detail/.test(location.search),
       isChecklist: view === 'checklist',
       viewBtn: view === 'checklist' ? '← Back to Agreements' : 'Consignment Status Checklist →',
@@ -525,7 +556,7 @@ class Component extends DCLogic {
       doPrint: () => window.print(),
       doPdf: () => { this.setState({ hint: 'In the print dialog, choose “Save as PDF” as the destination.' }); setTimeout(() => window.print(), 50); },
       actionHint: this.state.hint || 'Click any text in the agreement to edit it. Edits save per artist and carry into the Word, PDF and print versions.',
-      allLabel: this.state.zipping ? 'Building zip…' : 'All artists (.zip)',
+      allLabel: this.state.zipping ? 'Building zip…' : 'All consignments (.zip)',
       downloadAll: async () => {
         if (!window.JSZip) { this.setState({ hint: 'Still loading — try again in a moment.' }); return; }
         if (this.state.zipping) return;
@@ -564,9 +595,10 @@ class Component extends DCLogic {
       signCancel: () => this.setState({ signFor: null }),
       signAdopt: () => { const c = this.sigCanvas.current; if (!c || !c.__ink) { alert('Please draw or type a signature first.'); return; } if (!this.state.signAgree) { alert('Please tick the box to confirm this is your signature.'); return; } const k = this.state.signFor; const date = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); const d = { ...this.state.data }; const cur = { ...(d[A.id] || {}) }; const sm = document.createElement('canvas'); sm.width = 400; sm.height = 120; const sg = sm.getContext('2d'); sg.fillStyle = '#ffffff'; sg.fillRect(0, 0, 400, 120); sg.drawImage(c, 0, 0, 400, 120); let src = sm.toDataURL('image/jpeg', 0.6); if (src.length > 12000) src = sm.toDataURL('image/jpeg', 0.4); if (src.length > 20000) { alert('That signature is too detailed to save — please clear and sign again more simply.'); return; } const sigKey = 'didad-sig-' + A.id + '-' + k; try { localStorage.setItem(sigKey, JSON.stringify({ src, date })); } catch (e) {} this.setState(st => ({ sigs: { ...(st.sigs || {}), [sigKey]: { src, date } } })); if (k === 'a') { cur.signed = true; cur.sent = true; } d[A.id] = cur; this.save({ data: d, signFor: null }); },
       sigCanvas: this.sigCanvas,
-      aSorts: [['artist', 'Artist'], ['status', 'Status']].map(([k, label]) => { const cur = this.state.asort || 'artist'; return { label, bg: cur === k ? '#e9e3d6' : '#0d0c0b', fg: cur === k ? '#0d0c0b' : '#c4bcae', pick: () => this.save({ asort: k }) }; }),
-      aCounter: (ARTISTS.findIndex(x => x.id === A.id) + 1) + ' of ' + ARTISTS.length + ' · ' + ARTISTS.filter(x => this.status(x).signed).length + ' signed',
-      aItems: (() => { const rank = z => z.signed ? 2 : z.sent ? 1 : 0; let L = ARTISTS.slice(); if ((this.state.asort || 'artist') === 'status') L.sort((p, q) => rank(this.status(p)) - rank(this.status(q))); return L.map(x => { const z = this.status(x), on2 = x.id === A.id, r = rank(z); return { name: x.name, pick: () => this.save({ sel: x.id }), bg: on2 ? ['rgba(143,136,124,0.38)', 'rgba(201,162,74,0.36)', 'rgba(95,160,143,0.38)'][r] : ['rgba(143,136,124,0.10)', 'rgba(201,162,74,0.13)', 'rgba(95,160,143,0.14)'][r], fg: on2 ? '#ffffff' : '#e9e3d6', dot: ['#6d675c', '#c9a24a', '#5fa08f'][r], status: ['To send', 'Sent', 'Signed'][r], sc: ['#8f887c', '#c9a24a', '#5fa08f'][r] }; }); })(),
+      aSorts: [['artist', 'Artist'], ['status', 'Status']].map(([k, label]) => { const cur = this.state.asort || 'status'; return { label, bg: cur === k ? '#e9e3d6' : '#0d0c0b', fg: cur === k ? '#0d0c0b' : '#c4bcae', pick: () => this.save({ asort: k }) }; }),
+      aCounter: 'Viewing artist ' + (ARTISTS.findIndex(x => x.id === A.id) + 1) + ' of ' + ARTISTS.length,
+      aOpen: null, aSigned: null, aSignedN: '',
+      aItems: (() => { const rank = z => z.signed ? 2 : z.sent ? 1 : 0; let L = ARTISTS.slice(); if ((this.state.asort || 'status') === 'status') L.sort((p, q) => rank(this.status(p)) - rank(this.status(q))); return L.map(x => { const z = this.status(x), on2 = x.id === A.id, r = rank(z); return { name: x.name, pick: () => this.save({ sel: x.id }), bg: on2 ? ['rgba(143,136,124,0.38)', 'rgba(201,162,74,0.36)', 'rgba(95,160,143,0.38)'][r] : ['rgba(143,136,124,0.10)', 'rgba(201,162,74,0.13)', 'rgba(95,160,143,0.14)'][r], fg: on2 ? '#ffffff' : '#e9e3d6', dot: ['#6d675c', '#c9a24a', '#5fa08f'][r], status: ['To send', 'Sent', 'Signed'][r], sc: ['#8f887c', '#c9a24a', '#5fa08f'][r], r, actTitle: ['Click to mark Sent', 'Click to mark Signed', 'Click to undo Signed'][r], act: e => { e.stopPropagation(); const sent = true, signed = r === 1; const T = this.trk(); if (T) { T.rows.forEach(row => { if (row[2] === x.name) { row[9] = 'TRUE'; row[10] = signed ? 'TRUE' : 'FALSE'; } }); localStorage.setItem('didad-tracker-v1', JSON.stringify(T)); } const d = { ...this.state.data }; d[x.id] = { ...(d[x.id] || {}), sent, signed }; this.save({ data: d }); } }; }); })(),
       lanes: (() => {
         const mk = (x, k) => () => { const d = { ...this.state.data }; d[x.id] = { ...(d[x.id] || {}), [k]: true }; if (k === 'signed') d[x.id].sent = true; this.save({ data: d }); };
         const G = [['To send', '#8f887c', '#6d675c', z => !z.sent && !z.signed, 'sent'], ['Sent', '#c9a24a', '#c9a24a', z => z.sent && !z.signed, 'signed'], ['Signed', '#5fa08f', '#5fa08f', z => z.signed, null]];
@@ -611,6 +643,7 @@ class Component extends DCLogic {
       clauses,
       works: A.works.map((w, i) => ({ ins: w.ins || '', hasIns: !!w.ins, title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wt' + i, w.t)) this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wd' + i, w.d)) this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
     };
+    vals.aSplit = (this.state.asort || 'status') === 'status'; vals.aOpen = vals.aSplit ? vals.aItems.filter(x => x.r < 2) : vals.aItems; vals.aSigned = vals.aItems.filter(x => x.r === 2); vals.aSignedN = String(vals.aSigned.length);
     this._m = vals;
     return vals;
   }

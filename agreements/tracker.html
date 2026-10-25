@@ -24,7 +24,7 @@
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
-    <a href="../press.html?tab=instagram&amp;sub=0" data-root="press.html?tab=instagram&amp;sub=0" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Book</a>
+    <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
     <a href="checklist.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
     <a href="index.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
@@ -36,7 +36,7 @@
 
 <div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
   <div style="max-width:1400px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 24px;">
-  <div style="display:flex;align-items:center;gap:16px;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+  <div style="display:flex;align-items:baseline;gap:16px;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
   
   </div>
   <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;max-width:1400px;margin:0 auto;">
@@ -58,7 +58,7 @@
         </sc-if>
       </div>
       <div onMouseEnter="{{ openDetail }}" onMouseLeave="{{ closeMenu }}" style="position:relative;">
-        <a href="index.html?view=detail" style="display:block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 14px;white-space:nowrap;text-decoration:none;" style-hover="border-color:#7fa39b;color:#7fa39b;">Artwork detail agreements ▾</a>
+        <a href="index.html?view=detail" style="display:block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 14px;white-space:nowrap;text-decoration:none;" style-hover="border-color:#7fa39b;color:#7fa39b;">Schedule A ▾</a>
         <sc-if value="{{ menuDetail }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;left:0;top:100%;z-index:30;min-width:100%;padding-top:4px;">
             <div style="background:#16150f;border:1px solid #6d675c;box-shadow:0 8px 24px rgba(0,0,0,0.5);padding:6px 0;display:flex;flex-direction:column;max-height:60vh;overflow-y:auto;">
@@ -70,11 +70,12 @@
           </div>
         </sc-if>
       </div>
+      <a href="#tracker-table" style="display:block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;padding:8px 14px;white-space:nowrap;text-decoration:none;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">Consignment Tracker ↓</a>
       </div>
     </div>
   </div>
 
-  <div data-lanes="" style="max-width:1400px;margin:20px auto 0;box-sizing:border-box;background:#16150f;border:1px solid #2a2722;padding:18px 0;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:14px 0;font-family:'Space Mono',monospace;">
+  <div data-lanes="" style="max-width:1400px;margin:20px auto 0;box-sizing:border-box;background:#16150f;border:1px solid #2a2722;padding:18px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 0;font-family:'Space Mono',monospace;">
     <sc-for list="{{ lanes }}" as="g" hint-placeholder-count="3">
       <div style="display:flex;flex-direction:column;gap:6px;padding:0 16px;border-left:1px solid {{ g.sep }};min-width:0;">
         <div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:{{ g.c }};border-bottom:1px solid {{ g.c }};padding-bottom:6px;"><span>{{ g.label }}</span><span>{{ g.n }}</span></div>
@@ -132,7 +133,7 @@
     </div>
   </div>
 
-  <div style="max-width:1400px;margin:16px auto 0;overflow-x:auto;">
+  <div id="tracker-table" style="max-width:1400px;margin:16px auto 0;overflow-x:auto;scroll-margin-top:90px;">
     <div style="display:grid;grid-template-columns:2.2em 64px minmax(9em,1fr) 4.2em 4.2em minmax(12em,1.6fr) 6.5em minmax(12em,1.3fr);min-width:880px;font-size:14px;">
       <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px 0;border-bottom:1px solid #6d675c;">No.</div>
       <div style="border-bottom:1px solid #6d675c;"></div>
@@ -243,7 +244,7 @@ class Component extends DCLogic {
     const markAll = (g, k) => { const rs = this.state.rows.map((r, i) => g.idx.includes(i) ? r.map((x, j) => (j === COL[k] || (k === 'signed' && j === COL.sent)) ? 'TRUE' : x) : r); this.addLog({ who: g.name, what: (k === 'sent' ? 'Sent' : 'Signed') + ': no → yes' }); this.persist({ rows: rs, dirty: true, msg: '' }); };
     const stOf = g => ({ sent: g.idx.every(i => rows[i].sent === '✓'), signed: g.idx.every(i => rows[i].signed === '✓') });
     const LN = [['To send', '#8f887c', z => !z.sent && !z.signed, 'sent'], ['Sent', '#c9a24a', z => z.sent && !z.signed, 'signed'], ['Signed', '#5fa08f', z => z.signed, null]];
-    const lanes = LN.map(([lab, c, fn, next], gi) => { const items = byArtist.filter(g => fn(stOf(g))).map(g => ({ name: g.name, hasAct: !!next, done: !next, act: next ? () => markAll(g, next) : undefined, actLabel: next === 'sent' ? 'SENT ○' : 'SIGNED ○', actTitle: 'Mark as ' + next, actH: next === 'sent' ? '#c9a24a' : '#5fa08f' })); return { label: lab, c, n: items.length, items, sep: gi ? '#2a2722' : 'transparent', cols: gi === 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)' }; });
+    const lanes = LN.map(([lab, c, fn, next], gi) => { const items = byArtist.filter(g => fn(stOf(g))).map(g => ({ name: g.name, hasAct: !!next, done: !next, act: next ? () => markAll(g, next) : undefined, actLabel: next === 'sent' ? 'SENT ○' : 'SIGNED ○', actTitle: 'Mark as ' + next, actH: next === 'sent' ? '#c9a24a' : '#5fa08f' })); return { label: lab, c, n: items.length, items, sep: gi ? '#2a2722' : 'transparent', cols: 'repeat(2,minmax(0,1fr))' }; });
     const artistLinks = byArtist.map(g => ({ name: g.name, full: 'index.html?artist=' + encodeURIComponent(g.name), detail: 'index.html?view=detail&artist=' + encodeURIComponent(g.name) }));
     return {
       artistLinks, menuFull: this.state.menu === 'Full', menuDetail: this.state.menu === 'Detail',

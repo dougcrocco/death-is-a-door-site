@@ -24,7 +24,7 @@
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
-    <a href="../press.html?tab=instagram&amp;sub=0" data-root="press.html?tab=instagram&amp;sub=0" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Book</a>
+    <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
     <a href="checklist.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
     <a href="index.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
@@ -35,7 +35,7 @@
 
 <div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
   <div style="max-width:1400px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 24px;">
-  <div style="display:flex;align-items:center;gap:16px;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+  <div style="display:flex;align-items:baseline;gap:16px;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
   
   </div>
   <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;max-width:1400px;margin:0 auto;">
@@ -53,12 +53,12 @@
     <sc-for list="{{ lanes }}" as="g" hint-placeholder-count="3">
       <div style="display:flex;flex-direction:column;gap:6px;padding:0 16px;border-left:1px solid {{ g.sep }};min-width:0;">
         <div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:{{ g.c }};border-bottom:1px solid {{ g.c }};padding-bottom:6px;"><span>{{ g.label }}</span><span>{{ g.n }}</span></div>
-        <div style="display:grid;grid-template-columns:{{ g.cols }};gap:0 16px;">
+        <div style="display:grid;grid-template-columns:{{ g.cols }};gap:4px 6px;">
           <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="4">
-            <div style="display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:3px 8px;padding:4px 0;border-bottom:1px solid #1f1d19;">
-              <span style="flex:1 0 100%;max-width:100%;font-family:'EB Garamond',serif;font-size:14.5px;color:#c4bcae;line-height:1.25;">{{ t.name }}</span>
-              <sc-if value="{{ t.hasAct }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.act }}" title="{{ t.actTitle }}" style="flex:0 0 auto;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:#6d675c;background:transparent;border:1px solid #3a3630;padding:1px 5px;cursor:pointer;white-space:nowrap;" style-hover="border-color:{{ t.actH }};color:{{ t.actH }};">{{ t.actLabel }}</button></sc-if>
-              <sc-if value="{{ t.done }}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;font-size:13px;color:{{ g.c }};">✓</span></sc-if>
+            <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:8px 10px;background:{{ g.tint }};">
+              <span style="display:flex;align-items:center;gap:8px;max-width:100%;"><span style="flex:0 0 7px;width:7px;height:7px;border-radius:50%;background:{{ g.c }};"></span><span style="font-family:'EB Garamond',serif;font-size:14.5px;color:#e9e3d6;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.name }}</span></span>
+              <sc-if value="{{ t.hasAct }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.act }}" title="{{ t.actTitle }}" style="margin-left:15px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:{{ g.c }};background:transparent;border:1px solid {{ g.c }};padding:2px 6px;cursor:pointer;white-space:nowrap;" style-hover="border-color:{{ t.actH }};color:{{ t.actH }};">{{ t.actLabel }}</button></sc-if>
+              <sc-if value="{{ t.done }}" hint-placeholder-val="{{ false }}"><span style="margin-left:15px;font-size:13px;color:{{ g.c }};">✓</span></sc-if>
             </div>
           </sc-for>
         </div>
@@ -268,6 +268,8 @@ class Component extends DCLogic {
     const byArtist = []; rows.forEach(r => { let g = byArtist.find(x => x.name === r.artist); if (!g) byArtist.push(g = { name: r.artist, nos: [], sIdx: [] }); g.nos.push(r.no); g.sIdx.push(ST.findIndex(x => x[0] === r.status)); });
     const advance = (g, to) => { const data = { ...this.state.data }; g.nos.forEach(no => { data[no] = { ...(data[no] || {}), [P + 'status']: to }; }); this.addLog({ who: g.name, what: (ret ? 'Return ' : '') + 'Status → ' + ST[to][0] }); this.setAll({ data, dirty: true, msg: '' }); };
     const lanes = ST.map(([name, c], i) => { const last = i === ST.length - 1; const items = byArtist.filter(g => Math.min(...g.sIdx) === i).map(g => ({ name: g.name, hasAct: !last, done: last, act: last ? undefined : () => advance(g, i + 1), actLabel: last ? '' : ST[i + 1][0].toUpperCase() + ' ○', actTitle: last ? '' : 'Mark as ' + ST[i + 1][0].toLowerCase(), actH: last ? c : ST[i + 1][1] })); return { label: name, c: i === 0 ? '#8f887c' : c, n: items.length, items, sep: i ? '#2a2722' : 'transparent', cols: i === 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)' }; });
+    const hx = (c, a) => { const m = /^#?([0-9a-f]{6})$/i.exec(c || ''); if (!m) return 'rgba(143,136,124,' + a + ')'; const n = parseInt(m[1], 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; };
+    lanes.forEach(l => { l.tint = hx(l.c, 0.14); });
     const nSold = rows.filter(r => r.isSold).length, nDone = rows.filter(r => r.isDone).length;
     return {
       rows,

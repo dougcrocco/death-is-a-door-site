@@ -15,12 +15,13 @@
 <script src="./doc-page.js"></script>
 <script src="./image-slot.js"></script>
 <script>(function(){var b='agreements/';fetch('agreements/tracker.html',{method:'HEAD'}).then(function(r){if(!r.ok)b='../agreements/';}).catch(function(){b='../agreements/';});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-ag]');if(a)a.href=b+a.getAttribute('data-ag');},true);})();</script>
+<script src="./doc-fit.js?v=3"></script>
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
     <a href="desk.html" style="flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
-    <a href="press.html?tab=instagram&amp;sub=0" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Book</a>
+    <a href="book.html" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
     <a href="agreements/checklist.html" data-ag="checklist.html" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
-    <a href="agreements/index.html" data-ag="tracker.html" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
+    <a href="agreements/index.html" data-ag="index.html" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
     <a href="events.html" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
     <a href="offer-sheets.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Offers</a>
     <a href="press.html" style="background:#0d0c0b;color:#c4bcae;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press kit</a>
@@ -29,10 +30,21 @@
 
 <div>
 <div data-noprint="" style="background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
-  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Offer Sheets · Death Is a Door</span></div>
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;">
+    <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;align-items:baseline;gap:16px;"><a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div><h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Offer Sheets</h1></div>
     <div style="display:flex;flex-wrap:wrap;gap:8px;">
       <button onClick="{{ saveAll }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ zipLabel }}</button>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px 48px;align-items:end;border-top:1px solid #2a2722;padding-top:18px;">
+    <p style="margin:0;max-width:640px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,24px);line-height:1.35;color:#e9e3d6;text-wrap:pretty;">A one-page offer for each work in <i>Death Is a Door</i> — prepared for a named collector, with an optional discount and artist cover page.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #2a2722;padding-bottom:8px;">Export with</div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 24px;">
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Client</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">Named or blank</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Discount</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">None, 5%, 10% or custom</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Formats</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">PDF · DOC</span></div>
+      </div>
     </div>
   </div>
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border-top:1px solid #2a2722;padding-top:14px;">
@@ -44,12 +56,12 @@
     </div>
     <span style="font-size:10.5px;color:#8f887c;margin-left:auto;">{{ counter }}</span>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0 18px;">
+  <div style="column-width:240px;column-gap:10px;">
     <sc-for list="{{ items }}" as="t" hint-placeholder-count="15">
-      <button onClick="{{ t.pick }}" style="display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:8px;align-items:baseline;text-align:left;padding:6px;margin:0 -6px;border:none;border-bottom:1px solid #2a2722;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};">
+      <button onClick="{{ t.pick }}" style="display:grid;width:100%;box-sizing:border-box;break-inside:avoid;grid-template-columns:26px minmax(0,1fr) auto;gap:8px;align-items:center;text-align:left;padding:7px 10px;margin:0 0 4px;border:none;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};outline:1px solid {{ t.ol }};outline-offset:-1px;" onMouseEnter="{{ t.enter }}" onMouseLeave="{{ t.leave }}">
         <span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#7fa39b;">{{ t.num }}</span>
-        <span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.artist }} — <i>{{ t.title }}</i></span>
-        <span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#8f887c;">{{ t.price }}</span>
+        <span style="display:flex;flex-direction:column;min-width:0;"><span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.artist }}</span><i style="font-family:'EB Garamond',serif;font-size:13px;line-height:1.25;color:{{ t.tc }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.title }}</i></span>
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.08em;color:#c4bcae;">{{ t.price }}</span>
       </button>
     </sc-for>
   </div>
@@ -218,8 +230,8 @@ class Component extends DCLogic {
       setDisc: e => { const v = e.target.value.replace(/[^0-9.]/g, ''); this.setState({ disc: v, discText: v }); },
       client: this.state.client, date: this.state.date, hasClient: !!this.state.client.trim(),
       counter: (idx.indexOf(sel) + 1) + ' of ' + WORKS.length,
-      sorts: [['num', 'No.'], ['artist', 'Artist'], ['price', 'Price']].map(([k, label]) => ({ label, bg: sort === k ? '#e9e3d6' : '#0d0c0b', fg: sort === k ? '#0d0c0b' : '#c4bcae', pick: () => this.save({ sort: k }) })),
-      items: idx.map(i => { const x = WORKS[i], on = i === sel; return { num: x.num, artist: x.artist, title: x.title, price: x.price, bg: on ? '#2a2722' : 'transparent', fg: on ? '#f0eadd' : '#c4bcae', pick: () => this.save({ sel: i }) }; }),
+      sorts: [['num', 'Install order'], ['artist', 'A–Z'], ['price', 'Price']].map(([k, label]) => ({ label, bg: sort === k ? '#e9e3d6' : '#0d0c0b', fg: sort === k ? '#0d0c0b' : '#c4bcae', pick: () => this.save({ sort: k }) })),
+      items: idx.map(i => { const x = WORKS[i], on = i === sel; return { num: x.num, artist: x.artist, title: x.title, price: x.price, tc: on ? '#e3c77a' : '#5fa08f', ol: this.state.hov === i ? (on ? '#c9a24a' : '#5fa08f') : 'transparent', enter: () => this.setState({ hov: i }), leave: () => this.setState({ hov: null }), bg: on ? 'rgba(201,162,74,0.36)' : 'rgba(95,160,143,0.14)', fg: on ? '#ffffff' : '#e9e3d6', pick: () => this.save({ sel: i }) }; }),
       setClient: e => this.save({ client: e.target.value }),
       setDate: e => this.setState({ date: e.target.value }),
       saveWord: async () => {

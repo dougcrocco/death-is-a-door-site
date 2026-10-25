@@ -22,7 +22,7 @@
     <header style="display:flex;flex-direction:column;gap:14px;">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;">
         <a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:clamp(18px,2.2vw,24px);width:auto;"></a>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Death Is a Door <span style="color:#8f887c;">· 131 Chrystie St</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door <span style="color:#8f887c;">· 131 Chrystie St</span></div>
       </div>
       <div ref="{{ rowRef }}" style="display:flex;flex-direction:{{ rowDir }};justify-content:flex-start;align-items:stretch;gap:clamp(16px,3vw,36px);margin-top:8px;">
         <h1 style="margin:0;flex:0 1 auto;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6vw,76px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1>
@@ -473,13 +473,13 @@ class Component extends DCLogic {
       cards: [
 
         { title: 'Checklist', href: 'agreements/checklist.html', span: 'auto' },
-        { title: 'Consignments', href: 'agreements/tracker.html', span: 'auto' },
+        { title: 'Consignments', href: 'agreements/index.html', span: 'auto' },
         { title: 'Press kit', href: 'press.html', span: 'auto' },
         { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
         { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' },
         { title: 'Offer sheets', href: 'offer-sheets.html', span: 'auto' },
         { title: 'Events', href: 'events.html', span: 'auto' },
-        { title: 'Catalog book', href: 'press.html?tab=instagram&sub=0', span: 'auto' },
+        { title: 'Catalog', href: 'book.html', span: 'auto' },
         { title: 'Public site', href: 'index.html', span: 'auto', alt: true }
       ].map(c => ({ ...c, href: c.mail ? mailAll : c.copy ? '#' : fixC(c.href), title: c.copy ? copyLabel : c.title, onClick: c.copy ? e => { e.preventDefault(); copyEmails(); } : undefined, bg: c.alt ? 'rgba(127,163,155,0.22)' : '#0d0c0b', fg: c.alt ? '#f0eadd' : '#e9e3d6', ac: '#7fa39b', arrow: c.alt || c.mail ? '↗' : c.copy ? '⧉' : '→' }))
     };
