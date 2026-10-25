@@ -340,7 +340,8 @@ class Component extends DCLogic {
       { d: '2026-11-08', label: 'Doug arrives in NYC', c: '#7fa39b' },
       { d: '2026-11-09', label: 'Doug vinyl delivered + installed', time: 'noon', c: '#e08a3c' },
       { d: '2026-11-12', label: 'Opening — Death Is a Door', time: '6–9 pm', c: '#5fa08f' },
-      { d: '2026-11-13', label: 'Megan Lindeman event', time: 'evening', c: '#5fa08f' }
+      { d: '2026-11-14', label: 'Silverlake Scent Club — Megan Lindeman', time: 'afternoon', c: '#5fa08f' },
+      { d: '2026-11-15', label: 'Artist talk — unitedfutures', time: 'afternoon', c: '#5fa08f' }
     ];
     const log = (action, text) => { const lg = [{ ts: Date.now(), action, text }].concat(this.state.log || []).slice(0, 500); localStorage.setItem('didad-desk-log', JSON.stringify(lg)); return lg; };
     const saveEv = (ev, action, text) => { localStorage.setItem('didad-desk-events', JSON.stringify(ev)); this.setState({ events: ev, log: log(action, text) }); };

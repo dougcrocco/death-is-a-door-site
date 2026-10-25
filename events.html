@@ -31,26 +31,32 @@
 <div data-noprint="" style="background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
   <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;">
     <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;align-items:baseline;gap:16px;"><a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div><h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Events</h1></div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;">
-      <button onClick="{{ add }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add event</button>
-      <button onClick="{{ print }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#7fa39b;color:#0d0c0b;border:none;" style-hover="background:#e9e3d6;">Save as PDF ↓</button>
-    </div>
+    
   </div>
-  <div style="display:flex;flex-direction:column;border-top:1px solid #2a2722;">
-    <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr) minmax(0,1.4fr) 28px;gap:12px;padding:10px 0 4px;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;"><span>Date</span><span>Time</span><span>Event</span><span>Description</span><span></span></div>
+  <p style="margin:0;max-width:640px;border-top:1px solid #2a2722;padding-top:18px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,24px);line-height:1.35;color:#e9e3d6;text-wrap:pretty;">The public program for <i>Death Is a Door</i>. Edit dates and details below; select an event to load its press sheet, or save the full schedule as a PDF.</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;">
+      <button onClick="{{ add }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;white-space:nowrap;text-decoration:none;cursor:pointer;border:none;display:block;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add event</button>
+      
+      
+      <button onClick="{{ showSched }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;white-space:nowrap;cursor:pointer;display:block;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Full list</button>
+      <button onClick="{{ print }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;white-space:nowrap;text-decoration:none;cursor:pointer;border:none;display:block;background:#7fa39b;color:#0d0c0b;" style-hover="background:#e9e3d6;">Save as PDF ↓</button>
+    </div>
+  <div style="display:flex;flex-direction:column;gap:2px;border-top:1px solid #2a2722;">
+    <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr) minmax(0,1.4fr) 92px 28px;gap:12px;padding:12px 14px 6px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#8f887c;"><span>Date</span><span>Time</span><span>Event</span><span>Description</span><span>Press</span><span></span></div>
     <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
-      <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr) minmax(0,1.4fr) 28px;gap:12px;align-items:end;padding:6px 0;border-bottom:1px solid #2a2722;">
-        <input value="{{ r.date }}" onChange="{{ r.setDate }}" placeholder="Date" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
-        <input value="{{ r.time }}" onChange="{{ r.setTime }}" placeholder="Time" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
-        <input value="{{ r.title }}" onChange="{{ r.setTitle }}" placeholder="Event" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
-        <input value="{{ r.desc }}" onChange="{{ r.setDesc }}" placeholder="One line" style="font-family:'EB Garamond',serif;font-size:15px;background:transparent;color:#c4bcae;border:none;border-bottom:1px solid #3a3630;padding:4px 0;outline:none;min-width:0;">
+      <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr) minmax(0,1.4fr) 92px 28px;gap:12px;align-items:end;padding:12px 14px;background:{{ r.bg }};cursor:pointer;" style-hover="outline:1px solid {{ r.ol }};outline-offset:-1px;" onClick="{{ r.open }}">
+        <input value="{{ r.date }}" onChange="{{ r.setDate }}" placeholder="Date" style="font-family:'EB Garamond',serif;font-size:16px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid rgba(95,160,143,0.35);padding:4px 0;outline:none;min-width:0;">
+        <input value="{{ r.time }}" onChange="{{ r.setTime }}" placeholder="Time" style="font-family:'EB Garamond',serif;font-size:16px;background:transparent;color:#f0eadd;border:none;border-bottom:1px solid rgba(95,160,143,0.35);padding:4px 0;outline:none;min-width:0;">
+        <input value="{{ r.title }}" onChange="{{ r.setTitle }}" placeholder="Event" style="font-family:'EB Garamond',serif;font-style:italic;font-size:17px;background:transparent;color:#9fd0c2;border:none;border-bottom:1px solid rgba(95,160,143,0.35);padding:4px 0;outline:none;min-width:0;">
+        <input value="{{ r.desc }}" onChange="{{ r.setDesc }}" placeholder="One line" style="font-family:'EB Garamond',serif;font-size:16px;background:transparent;color:#e9e3d6;border:none;border-bottom:1px solid rgba(95,160,143,0.35);padding:4px 0;outline:none;min-width:0;">
+        <span style="align-self:center;"><sc-if value="{{ r.pr }}" hint-placeholder-val="{{ false }}"><button onClick="{{ r.pdf }}" title="Save this press sheet as PDF" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;color:#0d0c0b;background:#7fa39b;padding:6px 9px;white-space:nowrap;" style-hover="background:#e9e3d6;">PDF ↓</button></sc-if></span>
         <button onClick="{{ r.del }}" title="Remove" style="background:transparent;border:none;color:#6d675c;cursor:pointer;font-size:16px;padding:0;" style-hover="color:#c96442;">×</button>
       </div>
     </sc-for>
   </div>
   <div style="font-size:10px;color:#6d675c;">Saved in this browser. Leave a field blank to hide it on the PDF.</div>
 </div>
-<doc-page>
+<sc-if value="{{ vSched }}" hint-placeholder-val="{{ true }}"><doc-page>
   <div style="font-family:'EB Garamond',serif;color:#16150f;font-size:12pt;line-height:1.6;">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16pt;padding-bottom:14pt;border-bottom:0.75pt solid #16150f;">
       <img src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:20pt;width:auto;">
@@ -73,7 +79,81 @@
       </sc-for>
     </div>
   </div>
-</doc-page>
+</doc-page></sc-if>
+<sc-if value="{{ vScent }}" hint-placeholder-val="{{ false }}"><doc-page>
+  <div style="font-family:'EB Garamond',serif;color:#16150f;font-size:12pt;line-height:1.55;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16pt;padding-bottom:14pt;border-bottom:0.75pt solid #16150f;">
+      <img src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:20pt;width:auto;">
+      <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;text-align:right;">Death Is a Door · Event</div>
+    </div>
+
+    <h1 style="margin:28pt 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38pt;line-height:1.02;color:#16150f;">Silverlake Scent Club<br>with Megan Lindeman</h1>
+    <div style="margin-top:8pt;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17pt;color:#3d3a34;">A scent created for <i>Death Is a Door</i></div>
+
+    <div style="margin-top:18pt;display:grid;grid-template-columns:7em 1fr;gap:4pt 14pt;font-size:11pt;">
+      <span style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;padding-top:2pt;">Date</span><span>Saturday, November 14, 2026</span>
+      <span style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;padding-top:2pt;">Time</span><span>Afternoon · time to be announced</span>
+      <span style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;padding-top:2pt;">Location</span><span>CC Jasper, 131 Chrystie Street, New York, NY 10002</span>
+    </div>
+
+    <div style="margin-top:22pt;display:grid;grid-template-columns:minmax(0,1fr) 2.3in;gap:20pt;align-items:start;">
+      <div>
+        <p style="margin:0;font-size:13pt;line-height:1.55;text-wrap:pretty;"><b style="font-weight:500;">New York, NY</b> — On the first Saturday afternoon of <i>Death Is a Door</i>, artist Megan Lindeman brings her Silverlake Scent Club to CC Jasper to present a fragrance made in response to the exhibition.</p>
+        <p style="margin:12pt 0 0;text-wrap:pretty;">Founded by Lindeman in Los Angeles in 2025, the Silverlake Scent Club gathers monthly to explore fragrance as both material and memory — smelled, discussed and shared in common. For this edition, the club meets in the gallery, among the works, around a scent composed for the show’s threshold between this world and whatever lies past it.</p>
+        <p style="margin:12pt 0 0;text-wrap:pretty;">Lindeman’s practice links paint, pigment and the body’s chemistry of bonding and trust. Her painting in the exhibition, <i>New eNightened Era, Coming Soon</i> (2026), hangs alongside the evening’s scent.</p>
+      </div>
+      <img src="art/megan-lindeman-new-enlightened-era-coming-soon.jpg" alt="Megan Lindeman, New eNightened Era, Coming Soon, 2026" style="display:block;width:100%;height:auto;">
+    </div>
+
+    <div style="margin-top:24pt;padding-top:12pt;border-top:0.5pt solid #b9b4a8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16pt 28pt;font-size:11pt;">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;">About the artist</div>
+        <p style="margin:6pt 0 0;text-wrap:pretty;">Megan Lindeman is a Los Angeles–based artist and professor. She mixes paint and pigment with oxytocin, the hormone involved in bonding and trust, and works across painting, works on paper, books and scent.</p>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;">Press contact</div>
+        <p style="margin:6pt 0 0;">gallery@ccjasper.nyc<br>ccjasper.nyc<br>Exhibition: <a href="https://dougcrocco.github.io/death-is-a-door-site/">dougcrocco.github.io/death-is-a-door-site</a></p>
+      </div>
+    </div>
+  </div>
+</doc-page></sc-if>
+<sc-if value="{{ vTalk }}" hint-placeholder-val="{{ false }}"><doc-page>
+  <div style="font-family:'EB Garamond',serif;color:#16150f;font-size:12pt;line-height:1.55;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16pt;padding-bottom:14pt;border-bottom:0.75pt solid #16150f;">
+      <img src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:20pt;width:auto;">
+      <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;text-align:right;">Death Is a Door · Event</div>
+    </div>
+
+    <h1 style="margin:28pt 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38pt;line-height:1.02;color:#16150f;">Artist Talk:<br>unitedfutures</h1>
+    <div style="margin-top:8pt;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17pt;color:#3d3a34;">AI, art and technology</div>
+
+    <div style="margin-top:18pt;display:grid;grid-template-columns:7em 1fr;gap:4pt 14pt;font-size:11pt;">
+      <span style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;padding-top:2pt;">Date</span><span>Sunday, November 15, 2026</span>
+      <span style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;padding-top:2pt;">Time</span><span>Afternoon · time to be announced</span>
+      <span style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;padding-top:2pt;">Location</span><span>CC Jasper, 131 Chrystie Street, New York, NY 10002</span>
+    </div>
+
+    <div style="margin-top:22pt;display:grid;grid-template-columns:minmax(0,1fr) 2.3in;gap:20pt;align-items:start;">
+      <div>
+        <p style="margin:0;font-size:13pt;line-height:1.55;text-wrap:pretty;"><b style="font-weight:500;">New York, NY</b> — On the first Sunday afternoon of <i>Death Is a Door</i>, unitedfutures gives a talk on AI, art and technology — how machine tools are changing the way images are made, and what remains the artist’s hand. He will discuss <i>The Isle of the Dead 2026</i>, his moving-image work in the exhibition, as a case in point.</p>
+        <p style="margin:12pt 0 0;text-wrap:pretty;">Peguero comes to the subject from inside the tools. Trained as an architect at the Harvard Graduate School of Design, he works across generative systems, augmented and virtual reality and projection mapping, and has worked on projects by Pierre Huyghe, Hito Steyerl and Ian Cheng — artists central to how simulation and machine intelligence entered contemporary art. He lectures at UCLA Architecture and Urban Design, has taught at Woodbury University, and was a 2022–23 CultureHub resident in Los Angeles.</p>
+        <p style="margin:12pt 0 0;text-wrap:pretty;">The talk takes place in the gallery, among the works, and is followed by an informal conversation. Free and open to all.</p>
+      </div>
+      <img src="art/unitedfutures-the-ferry-still.jpg" alt="unitedfutures, The Isle of the Dead 2026, still" style="display:block;width:100%;height:auto;">
+    </div>
+
+    <div style="margin-top:24pt;padding-top:12pt;border-top:0.5pt solid #b9b4a8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16pt 28pt;font-size:11pt;">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;">About the artist</div>
+        <p style="margin:6pt 0 0;text-wrap:pretty;">unitedfutures is the Los Angeles studio of digital media artist and educator Michael “Caco” Peguero (M.Arch, Harvard GSD), working at the intersection of visual art, new media and immersive environments.</p>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;">Press contact</div>
+        <p style="margin:6pt 0 0;">gallery@ccjasper.nyc<br>ccjasper.nyc<br>Exhibition: <a href="https://dougcrocco.github.io/death-is-a-door-site/">dougcrocco.github.io/death-is-a-door-site</a></p>
+      </div>
+    </div>
+  </div>
+</doc-page></sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -81,20 +161,27 @@ const KEY = 'didad-events-v1';
 const DEF = [
   { id: 1, date: 'Week of Nov 9', time: '', title: 'Install', desc: 'Works arrive and are installed. Gallery closed to the public.' },
   { id: 2, date: 'Thu, Nov 12, 2026', time: '', title: 'Opening reception', desc: 'The exhibition opens to the public. Free and open to all.' },
-  { id: 3, date: '', time: '', title: 'Megan Lindeman', desc: '' },
+  { id: 3, date: 'Sat, Nov 14, 2026', time: 'Afternoon', title: 'Silverlake Scent Club with Megan Lindeman', desc: 'Megan Lindeman presents a scent created for Death Is a Door — an afternoon of the Silverlake Scent Club, her monthly gathering exploring fragrance as material and memory.' },
+  { id: 5, date: 'Sun, Nov 15, 2026', time: 'Afternoon', title: 'Artist talk: unitedfutures', desc: 'unitedfutures speaks on AI, art and technology, and on The Isle of the Dead 2026, his moving-image work in the exhibition.' },
   { id: 4, date: '', time: '12–6 pm', title: 'Closing day', desc: 'Last day to see the exhibition.' }
 ];
+const PR = { 3: 'scent', 5: 'talk' };
 class Component extends DCLogic {
   state = { ev: DEF };
   componentDidMount() { try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.length) this.setState({ ev: s }); } catch (e) {} }
+  show(v) { this.setState({ view: v }); const d = document.querySelector('doc-page'); if (d) window.scrollTo({ top: d.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth' }); }
   put(ev) { this.setState({ ev }); try { localStorage.setItem(KEY, JSON.stringify(ev)); } catch (e) {} }
   renderVals() {
-    const ev = this.state.ev;
+    const ev = this.state.ev; const v = this.state.view || 'sched';
+    const tab = k => v === k ? { bg: '#e9e3d6', fg: '#0d0c0b' } : { bg: 'transparent', fg: '#e9e3d6' };
     const set = (id, k) => e => this.put(ev.map(x => x.id === id ? { ...x, [k]: e.target.value } : x));
     return {
-      rows: ev.map(x => ({ ...x, setDate: set(x.id, 'date'), setTime: set(x.id, 'time'), setTitle: set(x.id, 'title'), setDesc: set(x.id, 'desc'), del: () => this.put(ev.filter(y => y.id !== x.id)) })),
+      rows: ev.map(x => { const k = PR[x.id] || (/scent club/i.test(x.title||'') ? 'scent' : /unitedfutures/i.test(x.title||'') ? 'talk' : 'sched'); const on = v === k && k !== 'sched'; return { ...x, bg: on ? 'rgba(201,162,74,0.30)' : 'rgba(95,160,143,0.10)', ol: on ? '#c9a24a' : '#5fa08f', open: ev2 => { const t = ev2.target.tagName; if (t === 'BUTTON') return; if (t === 'INPUT') { if (!on) this.setState({ view: k }); return; } this.show(on ? 'sched' : k); }, pdf: ev2 => { ev2.stopPropagation(); this.setState({ view: k }, () => setTimeout(() => window.print(), 300)); }, pr: PR[x.id] || (/scent club/i.test(x.title||'') ? 'scent' : /unitedfutures/i.test(x.title||'') ? 'talk' : ''), setDate: set(x.id, 'date'), setTime: set(x.id, 'time'), setTitle: set(x.id, 'title'), setDesc: set(x.id, 'desc'), del: () => this.put(ev.filter(y => y.id !== x.id)) }; }),
       add: () => this.put(ev.concat([{ id: Date.now(), date: '', time: '', title: '', desc: '' }])),
-      print: () => window.print()
+      print: () => window.print(),
+      vSched: v === 'sched', vScent: v === 'scent', vTalk: v === 'talk',
+      tSched: tab('sched'), tScent: tab('scent'), tTalk: tab('talk'),
+      showSched: () => this.show('sched'), showScent: () => this.show('scent'), showTalk: () => this.show('talk')
     };
   }
 }
