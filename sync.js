@@ -11,6 +11,20 @@
   var setTs = function (k, v) { var t = ts(); t[k] = v; rawSet('didad-sync-ts', JSON.stringify(t)); };
   var who = function () { return LS.getItem('didad-who') || ''; };
   var pending = {}, timer = null, state = 'idle';
+  var PRIV = /[?&]p=/.test(location.search);
+  var ro = function () { return !PRIV && !who(); };
+  var askName = function (why) { var n = prompt((why ? why + '\n\n' : '') + 'Enter your name to edit (so the team can see who made each change):', ''); if (n && n.trim()) { rawSet('didad-who', n.trim()); paintName(); paintRo(); return true; } return false; };
+  var lastToast = 0;
+  function blockEdit(e) {
+    if (!ro()) return;
+    var t = e.target; if (!t || !t.closest) return;
+    if (t.closest('[data-didad-ui]')) return;
+    var ed = t.closest('input, textarea, select, [contenteditable="true"], [contenteditable=""]');
+    if (!ed) return;
+    e.preventDefault(); e.stopPropagation(); if (ed.blur) ed.blur();
+    if (Date.now() - lastToast > 800) { lastToast = Date.now(); setTimeout(function () { askName('This page is view-only until you enter your name.'); }, 0); }
+  }
+  ['focusin', 'mousedown', 'beforeinput', 'keydown', 'paste', 'drop'].forEach(function (ev) { document.addEventListener(ev, blockEdit, true); });
 
   function label(k) { return ({ 'didad-tracker-v1': 'Consignment Tracker', 'didad-shipping-v1': 'Shipping Tracker', 'didad-consign-v1': 'Agreements', 'didad-desk-custom': 'Desk · items', 'didad-desk-hidden': 'Desk · deleted items', 'didad-desk-urg': 'Desk · urgency', 'didad-desk-order': 'Desk · order', 'didad-desk-events': 'Calendar · events', 'didad-desk-evo': 'Calendar · built-in dates', 'didad-desk-log': 'Desk · log' })[k] || k.replace('didad-', ''); }
 
@@ -34,8 +48,8 @@
     });
   }
   function schedule() { if (!timer) timer = setTimeout(flush, 1200); }
-  LS.setItem = function (k, v) { rawSet(k, v); if (synced(k)) { pending[k] = 1; schedule(); } };
-  LS.removeItem = function (k) { rawRemove(k); if (synced(k)) { pending[k] = 1; schedule(); } };
+  LS.setItem = function (k, v) { if (synced(k) && ro()) return; rawSet(k, v); if (synced(k)) { pending[k] = 1; schedule(); } };
+  LS.removeItem = function (k) { if (synced(k) && ro()) return; rawRemove(k); if (synced(k)) { pending[k] = 1; schedule(); } };
 
   function pull(auto) {
     return fetch(URL + '?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (all) {
@@ -66,19 +80,22 @@
   function ui() {
     if (box || !document.body) return;
     box = document.createElement('div');
-    box.setAttribute('data-noprint', '');
+    box.setAttribute('data-noprint', ''); box.setAttribute('data-didad-ui', '');
     box.style.cssText = 'position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;align-items:center;gap:10px;background:#16150f;border:1px solid #3a3630;padding:7px 12px;font:10px "Space Mono",monospace;letter-spacing:0.1em;text-transform:uppercase;color:#c4bcae;box-shadow:0 6px 18px rgba(0,0,0,0.4);';
     dot = document.createElement('span'); dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#6d675c;';
     txt = document.createElement('span');
     nameBtn = document.createElement('button');
     nameBtn.style.cssText = 'background:transparent;border:none;border-left:1px solid #3a3630;padding:0 0 0 10px;color:#7fa39b;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;';
-    nameBtn.onclick = function () { var n = prompt('Your name (shown in the change log):', who()); if (n != null) { rawSet('didad-who', n.trim()); paintName(); } };
+    nameBtn.onclick = function () { var n = prompt('Your name (shown in the change log):', who()); if (n != null) { rawSet('didad-who', n.trim()); paintName(); paintRo(); } };
     box.appendChild(dot); box.appendChild(txt); box.appendChild(nameBtn); document.body.appendChild(box);
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
-    if (!who() && !/[?&]p=/.test(location.search)) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; var n = prompt('Your name (so the team can see who made each change):', ''); if (n && n.trim()) { rawSet('didad-who', n.trim()); paintName(); } }, 1500);
+    paintRo();
+    if (ro()) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; askName('Welcome to the Death Is a Door desk.'); }, 1200);
   }
-  function paintName() { if (nameBtn) nameBtn.textContent = who() ? 'You: ' + who() : 'Set your name'; }
+  function paintName() { if (nameBtn) nameBtn.textContent = who() ? 'You: ' + who() : 'To edit, enter name'; }
+  var roStyle;
+  function paintRo() { if (!roStyle) { roStyle = document.createElement('style'); document.head.appendChild(roStyle); } roStyle.textContent = ro() ? '[contenteditable]{-webkit-user-modify:read-only !important;cursor:default !important}input,textarea,select{pointer-events:none !important;opacity:0.85}' : ''; if (nameBtn) nameBtn.style.color = ro() ? '#e0a24f' : '#7fa39b'; }
   function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; }
   function showBanner(changed) {
     if (banner) return; ui();
