@@ -451,6 +451,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;openingDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-11-12&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;termMonths&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:1,&quot;max&quot;:24,&quot;tsType&quot;:&quot;number&quot;}}">
 const IMG = 'https://dougcrocco.github.io/death-is-a-door-site/art/';
+const NRM = s => String(s == null ? '' : s).replace(/[\s\u00a0]+/g, ' ').trim();
 const PRIV_SALT = 'ccj-didad-2026-k7q';
 const privTok = id => { let h1 = 0x811c9dc5, h2 = 0x1b873593; const s = PRIV_SALT + ':' + id; for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); h1 = Math.imul(h1 ^ c, 16777619); h2 = Math.imul(h2 ^ c, 2246822519) + (h2 >>> 13); } return ((h1 >>> 0).toString(36) + (h2 >>> 0).toString(36)).slice(0, 12); };
 const PRIV_BASE = 'https://dougcrocco.github.io/death-is-a-door-site/agreements/index.html';
@@ -578,6 +579,7 @@ class Component extends DCLogic {
     if (!gone.length) return null; const old = this.state.data[id] || {}; if (!old.snap) { const f = {}; Object.keys(old).forEach(x => { if (/^(cl|gf|tx|w[td]\d+|artistEdited)$/.test(x)) f[x] = old[x]; }); const sg = {}; gone.forEach(x => { sg[x] = S['didad-sig-' + id + '-' + x]; }); this._snap = { fields: f, sigs: sg, at: Date.now() }; } else this._snap = null; this.setState(st => { const n = { ...(st.sigs || {}) }; gone.forEach(x => { delete n['didad-sig-' + id + '-' + x]; }); return { sigs: n }; });
     setTimeout(() => alert(ed === 'a' ? 'You changed the terms, so CC Jasper\'s signature has been removed. CC Jasper will review your changes and sign again.' : 'You changed the terms, so the artist\'s signature has been removed. They will need to review and sign again.'), 50);
     return gone; }
+  unsetField(k) { const a = this.priv || this.state.sel; const d = { ...this.state.data }; const cur = { ...(d[a] || {}) }; if (!(k in cur)) return; delete cur[k]; d[a] = cur; if (/^(cl|gf|tx|w[td]\d+)$/.test(k)) { const gone = this.voidSigs(a); if (gone && gone.includes('a')) cur.signed = false; if (gone && this._snap && !cur.snap) cur.snap = this._snap; } this.save({ data: d }); }
   setField(k, v) { const a = this.priv || this.state.sel; const d = { ...this.state.data }; const ex = this.priv ? { artistEdited: new Date().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) } : {}; d[a] = { ...(d[a] || {}), [k]: v, ...ex }; if (/^(cl|gf|tx|w[td]\d+)$/.test(k)) { const gone = this.voidSigs(a); if (gone && gone.includes('a')) d[a].signed = false; if (gone && this._snap) d[a].snap = this._snap; } this.save({ data: d }); }
   renderVals() {
     const opening = this.props.openingDate ?? '2026-11-12';
@@ -617,10 +619,10 @@ class Component extends DCLogic {
       (this._orig = this._orig || {})[title] = body;
       const ov = (d.cl || {})[title] || {};
       const name = ov.t ?? title, text = ov.b ?? body;
-      const setOv = (k, v) => { const cur = this.state.data[A.id] || {}; const cl = { ...(cur.cl || {}) }; cl[title] = { ...(cl[title] || {}), [k]: v }; this.setField('cl', cl); };
+      const setOv = (k, v) => { const cur = this.state.data[A.id] || {}; const cl = { ...(cur.cl || {}) }; const o = { ...(cl[title] || {}) }; if (NRM(v) === NRM(k === 't' ? title : body)) delete o[k]; else o[k] = v; if (Object.keys(o).length) cl[title] = o; else delete cl[title]; if (Object.keys(cl).length) this.setField('cl', cl); else this.unsetField('cl'); };
       return { num: (i + 1) + '.', name, body: text, title: (i + 1) + '. ' + name,
-        onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== name) setOv('t', v); },
-        onBody: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== text) setOv('b', v); } };
+        onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) !== NRM(name)) setOv('t', v); },
+        onBody: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) !== NRM(text)) setOv('b', v); } };
     });
     const view = this.state.view || 'agreements';
     const GF = 'Both parties agree to work together collaboratively and in good faith, and to address any unforeseen circumstances reasonably.';
@@ -651,13 +653,13 @@ class Component extends DCLogic {
     const TX = {}, ONTX = {};
     Object.keys(TXD).forEach(k => {
       TX[k] = (d.tx || {})[k] ?? TXD[k];
-      ONTX[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v === TX[k]) return; const cur = this.state.data[A.id] || {}; this.setField('tx', { ...(cur.tx || {}), [k]: v }); };
+      ONTX[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(TX[k])) return; const cur = this.state.data[A.id] || {}; const nt = { ...(cur.tx || {}) }; if (NRM(v) === NRM(TXD[k])) delete nt[k]; else nt[k] = v; if (Object.keys(nt).length) this.setField('tx', nt); else this.unsetField('tx'); };
     });
     const vals = {
       goodFaith: d.gf ?? GF,
       tx: TX,
       onTx: ONTX,
-      onGoodFaith: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== (d.gf ?? GF)) this.setField('gf', v); },
+      onGoodFaith: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(d.gf ?? GF)) return; if (NRM(v) === NRM(GF)) this.unsetField('gf'); else this.setField('gf', v); },
       saveVerLabel: this.state.verSaved ? 'Saved ✓' : 'Save terms version',
       saveVer: () => { const cur = { ...(this.state.data[A.id] || {}) }, f = {}; Object.keys(cur).forEach(x => { if (/^(cl|gf|tx|w[td]\d+)$/.test(x)) f[x] = cur[x]; }); const at = new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); cur.versions = [...(cur.versions || []), { at, by: this.priv ? A.name : 'CC Jasper', fields: f }].slice(-12); this.save({ data: { ...this.state.data, [A.id]: cur } }); this.setState({ verSaved: true }); setTimeout(() => this.setState({ verSaved: false }), 2000); },
       hasVers: !!(d.versions && d.versions.length), verOpen: !!this.state.verOpen, toggleVers: () => this.setState(s => ({ verOpen: !s.verOpen })),
@@ -779,7 +781,7 @@ class Component extends DCLogic {
       f: { date: val('date', 'October 14, 2026'), legal: val('legal', A.legal || A.name), address: val('address', A.address || ''), email: val('email', A.email), phone: val('phone', A.phone || '') },
       on,
       clauses,
-      works: A.works.map((w, i) => ({ ins: w.ins || '', hasIns: !!w.ins, title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wt' + i, w.t)) this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== val('wd' + i, w.d)) this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
+      works: A.works.map((w, i) => ({ ins: w.ins || '', hasIns: !!w.ins, title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(val('wt' + i, w.t))) return; if (NRM(v) === NRM(w.t)) this.unsetField('wt' + i); else this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(val('wd' + i, w.d))) return; if (NRM(v) === NRM(w.d)) this.unsetField('wd' + i); else this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
     };
     vals.aSplit = (this.state.asort || 'status') === 'status'; vals.aOpen = vals.aSplit ? vals.aItems.filter(x => x.r < 2) : vals.aItems; vals.aSigned = vals.aItems.filter(x => x.r === 2); vals.aSignedN = String(vals.aSigned.length);
     this._m = vals;
