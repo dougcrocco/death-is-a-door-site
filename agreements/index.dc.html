@@ -47,12 +47,32 @@
     <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
       <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Consignment agreement</h1>
       <span style="font-family:'EB Garamond',serif;font-size:19px;color:#e9e3d6;">{{ artistName }} · CC Jasper</span>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid {{ pvC }};padding:8px 12px;align-self:flex-start;max-width:100%;box-sizing:border-box;"><span style="width:8px;height:8px;flex:none;border-radius:50%;background:{{ pvC }};"></span><span style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:{{ pvC }};">{{ pvStatus }}</span><span style="font-size:10.5px;line-height:1.5;color:#c4bcae;">{{ pvDetail }}</span></div>
+      <div style="display:grid;grid-template-columns:8px minmax(0,1fr);column-gap:10px;row-gap:4px;align-items:center;border:1px solid {{ pvC }};padding:9px 12px;width:fit-content;max-width:100%;box-sizing:border-box;"><span style="width:8px;height:8px;border-radius:50%;background:{{ pvC }};"></span><span style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:{{ pvC }};">{{ pvStatus }}</span><span></span><span style="font-size:10.5px;line-height:1.5;color:#c4bcae;text-wrap:pretty;">{{ pvDetail }}</span></div>
       <span style="font-size:10px;line-height:1.6;letter-spacing:0.06em;color:#8f887c;max-width:560px;">Private link — shared only between you and CC Jasper. Please read the agreement carefully. You can click any text to make changes; CC Jasper will be notified of any edits and can talk through new amendments with you before countersigning. When you're ready, click <span style="color:#e9e3d6;">Sign digitally</span> on the Artist line.</span>
     </div>
-    <div style="display:flex;gap:8px;">
-      <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;border:none;cursor:pointer;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF</button>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;margin-left:auto;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
+        <button onClick="{{ saveVer }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ saveVerLabel }}</button>
+        <sc-if value="{{ hasVers }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleVers }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c4bcae;border:none;border-bottom:1px solid #6d675c;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Saved versions ▾</button></sc-if>
+        <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;border:none;cursor:pointer;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF</button>
       <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;cursor:pointer;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;" style-hover="color:#7fa39b;">Print</button>
+      </div>
+      <sc-if value="{{ verOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;border:1px solid #3a3630;background:#0d0c0b;max-width:420px;width:100%;">
+          <sc-for list="{{ vers }}" as="v" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;border-bottom:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:10px;color:#c4bcae;">
+              <span style="flex:1 1 auto;min-width:0;">{{ v.label }}</span>
+              <button onClick="{{ v.restore }}" style="font-family:inherit;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#5fa08f;border:1px solid #5fa08f;padding:3px 8px;cursor:pointer;">Restore</button>
+              <button onClick="{{ v.del }}" title="Delete" style="font-family:inherit;font-size:11px;background:transparent;color:#6d675c;border:none;cursor:pointer;padding:2px 4px;">×</button>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+
+      <sc-if value="{{ hasSnap }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;text-align:right;"><span style="font-size:10px;line-height:1.5;color:#c4bcae;">Changed your mind? Undo your edits and bring back the signed version.</span><button onClick="{{ restoreSigned }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#5fa08f;border:1px solid #5fa08f;padding:5px 10px;cursor:pointer;white-space:nowrap;" style-hover="background:#5fa08f;color:#0d0c0b;">Restore signed terms</button></div></sc-if>
+
     </div>
   </div>
 </div>
@@ -134,8 +154,25 @@
         </div>
       </div>
     </div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <button onClick="{{ saveVer }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:5px 10px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ saveVerLabel }}</button>
+        <sc-if value="{{ hasVers }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleVers }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c4bcae;border:none;border-bottom:1px solid #6d675c;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Saved versions ▾</button></sc-if>
+      </div>
+      <sc-if value="{{ verOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;border:1px solid #3a3630;background:#0d0c0b;max-width:420px;">
+          <sc-for list="{{ vers }}" as="v" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;border-bottom:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:10px;color:#c4bcae;">
+              <span style="flex:1 1 auto;min-width:0;">{{ v.label }}</span>
+              <button onClick="{{ v.restore }}" style="font-family:inherit;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#5fa08f;border:1px solid #5fa08f;padding:3px 8px;cursor:pointer;">Restore</button>
+              <button onClick="{{ v.del }}" title="Delete" style="font-family:inherit;font-size:11px;background:transparent;color:#6d675c;border:none;cursor:pointer;padding:2px 4px;">×</button>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
     <sc-if value="{{ hasArtistEdit }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid #c9a24a;padding:8px 12px;font-size:10.5px;line-height:1.5;color:#e9e3d6;"><span style="width:8px;height:8px;flex:none;border-radius:50%;background:#c9a24a;"></span><span style="letter-spacing:0.12em;text-transform:uppercase;color:#c9a24a;">Artist made changes</span><span>{{ artistEditNote }}</span></div></sc-if>
-    <div style="font-size:10px;line-height:1.6;color:#6d675c;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;"><span>{{ actionHint }}</span><sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c9a24a;border:none;border-bottom:1px solid #c9a24a;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Reset wording to original</button></sc-if></div>
+    <div style="font-size:10px;line-height:1.6;color:#6d675c;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;"><span>{{ actionHint }}</span><sc-if value="{{ hasSnap }}" hint-placeholder-val="{{ false }}"><button onClick="{{ restoreSigned }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#5fa08f;border:1px solid #5fa08f;padding:5px 10px;cursor:pointer;white-space:nowrap;" style-hover="background:#5fa08f;color:#0d0c0b;">Restore signed terms</button></sc-if><sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c9a24a;border:none;border-bottom:1px solid #c9a24a;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Reset wording to original</button></sc-if></div>
   </div>
   </sc-if>
 </div>
@@ -531,7 +568,12 @@ class Component extends DCLogic {
   trk() { try { const o = JSON.parse(localStorage.getItem('didad-tracker-v1') || 'null'); return o && Array.isArray(o.rows) ? o : null; } catch (e) { return null; } }
   status(x) { const T = this.trk(); if (T) { const rs = T.rows.filter(r => r[2] === x.name); if (rs.length) { const on = v => String(v).toUpperCase() === 'TRUE' || v === '✓'; return { signed: rs.every(r => on(r[10])), sent: rs.every(r => on(r[9]) || on(r[10])) }; } }
     const d = this.state.data[x.id] || {}; return { sent: d.sent !== undefined ? !!d.sent : !!x.sent, signed: d.signed !== undefined ? !!d.signed : !!x.signed }; }
-  setField(k, v) { const a = this.priv || this.state.sel; const d = { ...this.state.data }; const ex = this.priv ? { artistEdited: new Date().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) } : {}; d[a] = { ...(d[a] || {}), [k]: v, ...ex }; this.save({ data: d }); }
+  voidSigs(id) { const S = this.state.sigs || {}, ed = this.priv ? 'a' : 'g', drop = ed === 'a' ? ['g'] : ['a', 'r'], gone = [];
+    drop.forEach(x => { const key = 'didad-sig-' + id + '-' + x; if (S[key] && S[key].src) { gone.push(x); try { localStorage.removeItem(key); } catch (e) {} } });
+    if (!gone.length) return null; const old = this.state.data[id] || {}; if (!old.snap) { const f = {}; Object.keys(old).forEach(x => { if (/^(cl|gf|tx|w[td]\d+|artistEdited)$/.test(x)) f[x] = old[x]; }); const sg = {}; gone.forEach(x => { sg[x] = S['didad-sig-' + id + '-' + x]; }); this._snap = { fields: f, sigs: sg, at: Date.now() }; } else this._snap = null; this.setState(st => { const n = { ...(st.sigs || {}) }; gone.forEach(x => { delete n['didad-sig-' + id + '-' + x]; }); return { sigs: n }; });
+    setTimeout(() => alert(ed === 'a' ? 'You changed the terms, so CC Jasper\'s signature has been removed. CC Jasper will review your changes and sign again.' : 'You changed the terms, so the artist\'s signature has been removed. They will need to review and sign again.'), 50);
+    return gone; }
+  setField(k, v) { const a = this.priv || this.state.sel; const d = { ...this.state.data }; const ex = this.priv ? { artistEdited: new Date().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) } : {}; d[a] = { ...(d[a] || {}), [k]: v, ...ex }; if (/^(cl|gf|tx|w[td]\d+)$/.test(k)) { const gone = this.voidSigs(a); if (gone && gone.includes('a')) d[a].signed = false; if (gone && this._snap) d[a].snap = this._snap; } this.save({ data: d }); }
   renderVals() {
     const opening = this.props.openingDate ?? '2026-11-12';
     const months = this.props.termMonths ?? 6;
@@ -611,8 +653,16 @@ class Component extends DCLogic {
       tx: TX,
       onTx: ONTX,
       onGoodFaith: ev => { const v = ev.currentTarget.innerText.trim(); if (v !== (d.gf ?? GF)) this.setField('gf', v); },
+      saveVerLabel: this.state.verSaved ? 'Saved ✓' : 'Save terms version',
+      saveVer: () => { const cur = { ...(this.state.data[A.id] || {}) }, f = {}; Object.keys(cur).forEach(x => { if (/^(cl|gf|tx|w[td]\d+)$/.test(x)) f[x] = cur[x]; }); const at = new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); cur.versions = [...(cur.versions || []), { at, by: this.priv ? A.name : 'CC Jasper', fields: f }].slice(-12); this.save({ data: { ...this.state.data, [A.id]: cur } }); this.setState({ verSaved: true }); setTimeout(() => this.setState({ verSaved: false }), 2000); },
+      hasVers: !!(d.versions && d.versions.length), verOpen: !!this.state.verOpen, toggleVers: () => this.setState(s => ({ verOpen: !s.verOpen })),
+      vers: (d.versions || []).map((v, i) => ({ label: v.at + ' · ' + v.by, restore: () => { if (!confirm('Restore the terms saved ' + v.at + '? Any signature on the current terms will be removed.')) return; const cur = { ...(this.state.data[A.id] || {}) }; const same = JSON.stringify(Object.fromEntries(Object.keys(cur).filter(x => /^(cl|gf|tx|w[td]\d+)$/.test(x)).sort().map(x => [x, cur[x]]))) === JSON.stringify(Object.fromEntries(Object.keys(v.fields).sort().map(x => [x, v.fields[x]]))); if (!same) { const gone = this.voidSigs(A.id); if (gone && gone.includes('a')) cur.signed = false; if (gone && this._snap && !cur.snap) cur.snap = this._snap; } Object.keys(cur).filter(x => /^(cl|gf|tx|w[td]\d+)$/.test(x)).forEach(x => delete cur[x]); Object.assign(cur, v.fields); this.save({ data: { ...this.state.data, [A.id]: cur }, verOpen: false }); }, del: () => { const cur = { ...(this.state.data[A.id] || {}) }; cur.versions = (cur.versions || []).filter((_, j) => j !== i); this.save({ data: { ...this.state.data, [A.id]: cur } }); } })).reverse(),
+      hasSnap: !!d.snap, restoreSigned: () => { const cur = { ...(this.state.data[A.id] || {}) }, sn = cur.snap; if (!sn) return; if (!confirm('Restore the terms as they were when signed, and bring back the removed signature(s)?')) return;
+        Object.keys(cur).filter(x => /^(cl|gf|tx|w[td]\d+|artistEdited)$/.test(x)).forEach(x => delete cur[x]); Object.assign(cur, sn.fields || {});
+        const add = {}; Object.keys(sn.sigs || {}).forEach(x => { const v = sn.sigs[x]; if (v && v.src) { const key = 'didad-sig-' + A.id + '-' + x; add[key] = v; try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} } });
+        if (add['didad-sig-' + A.id + '-a']) { cur.signed = true; cur.sent = true; } delete cur.snap; this.setState(st => ({ sigs: { ...(st.sigs || {}), ...add } })); this.save({ data: { ...this.state.data, [A.id]: cur } }); },
       isEdited: edited, hasArtistEdit: !!d.artistEdited && edited, artistEditNote: 'Last edited by ' + A.name + ' on ' + (d.artistEdited || '') + '. Review the wording below before countersigning, and talk through any new amendments with the artist.',
-      resetText: () => { const cur = { ...(this.state.data[A.id] || {}) }; delete cur.cl; delete cur.gf; delete cur.tx; Object.keys(cur).filter(k => /^w[td]\d+$/.test(k)).forEach(k => delete cur[k]); this.save({ data: { ...this.state.data, [A.id]: cur } }); },
+      resetText: () => { const cur = { ...(this.state.data[A.id] || {}) }; const gone = this.voidSigs(A.id); if (gone && gone.includes('a')) cur.signed = false; if (gone && this._snap) cur.snap = this._snap; delete cur.artistEdited; delete cur.cl; delete cur.gf; delete cur.tx; Object.keys(cur).filter(k => /^w[td]\d+$/.test(k)).forEach(k => delete cur[k]); this.save({ data: { ...this.state.data, [A.id]: cur } }); },
       ...(() => { const S = this.state.sigs || {}, g = S['didad-sig-' + A.id + '-g'], ar = S['didad-sig-' + A.id + '-a'], gs = !!(g && g.src), as = !!(ar && ar.src);
         if (gs && as) return { pvStatus: 'Fully signed', pvC: '#5fa08f', pvDetail: 'You signed ' + ar.date + ' · CC Jasper signed ' + g.date + ' · a confirmation email has been sent to ' + (A.email || 'you') + ' and CC Jasper.' };
         if (as) return { pvStatus: 'Signed by you', pvC: '#c9a24a', pvDetail: ar.date + ' · awaiting CC Jasper’s signature. You’ll get a confirmation email once both have signed.' };
