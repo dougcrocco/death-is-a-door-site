@@ -34,6 +34,7 @@
     </div>
     <div style="display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px;margin-left:auto;max-width:100%;">
       <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><a href="index.html" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;text-decoration:none;white-space:nowrap;color:#e9e3d6;border:1px solid #3a3630;" style-hover="color:#7fa39b;">← Consignments</a></sc-if>
+      <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><a href="{{ siennaHref }}" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;text-decoration:none;white-space:nowrap;color:#e0685a;border:1px solid #c4483b;display:block;" style-hover="background:#c4483b;color:#fff;">Send to Sienna to countersign</a></sc-if>
       <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><a href="{{ resendHref }}" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;text-decoration:none;white-space:nowrap;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">Resend to curator</a></sc-if>
       <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><button onClick="{{ shareLink }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">{{ shareLabel }}</button></sc-if>
       <sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#e0685a;border:1px solid #c4483b;" style-hover="background:#c4483b;color:#fff;">Reset wording</button></sc-if>
@@ -133,7 +134,7 @@ const rd = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } 
 const SK = k => 'didad-sig-curator-' + k;
 
 class Component extends DCLogic {
-  priv = (() => { try { const p = new URLSearchParams(location.search).get('p'); if (!p) return null; const [id, k] = p.split('.'); return id === ID && k === privTok(ID) ? ID : ''; } catch (e) { return null; } })();
+  priv = (() => { try { const p = new URLSearchParams(location.search).get('p'); if (!p) return null; const [id, k] = p.split('.'); return id === ID && k === privTok(ID) ? ID : (id === 'cs' && k === privTok('curator-gallery') ? 'cs' : ''); } catch (e) { return null; } })();
   state = { d: rd(KEY) || {}, sg: {} };
   componentDidMount() { this.load(); window.addEventListener('storage', () => this.load()); this._iv = setInterval(() => this.load(), 15000); this.initPad(); }
   componentWillUnmount() { clearInterval(this._iv); }
@@ -188,7 +189,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props, d = this.state.d || {}, sg = this.state.sg || {};
     const fmt = x => x.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    const isPrivate = this.priv === ID, bad = this.priv === '';
+    const isPrivate = this.priv === ID, isSienna = this.priv === 'cs', bad = this.priv === '';
     const BASEC = this.base(p);
     const clauses = BASEC.map(([title, body]) => {
       const ov = (d.cl || {})[title] || {}, name = ov.t ?? title, text = ov.b ?? body;
@@ -198,8 +199,8 @@ class Component extends DCLogic {
     const g = sg.g && sg.g.src ? sg.g : null, a = sg.a && sg.a.src ? sg.a : null;
     const open = (k, title) => () => { const c = document.querySelector('canvas[data-sig]'); if (c) c.__ink = false; this.initPad(); this.setState({ signFor: k, signTitle: title, signTyped: '', signAgree: false }); };
     const sigs = [
-      { label: 'Gallery (CC Jasper)', has: !!g, src: g ? g.src : '', canSign: !isPrivate && !bad, open: open('g', 'Sign — Gallery (CC Jasper)'), btn: g ? 'Re-sign' : 'Sign digitally', name: 'Sienna Berritto, Gallery Director', when: g ? g.date : '' },
-      { label: 'Curator (' + CUR.name + ')', has: !!a, src: a ? a.src : '', canSign: !bad, open: open('a', 'Sign — Curator · ' + CUR.name), btn: a ? 'Re-sign' : 'Sign digitally', name: CUR.name, when: a ? a.date : '' }
+      { label: 'Gallery (CC Jasper)', has: !!g, src: g ? g.src : '', canSign: isSienna || (!isPrivate && !bad && /sienna/i.test(localStorage.getItem('didad-who') || '')), open: open('g', 'Sign — Gallery (CC Jasper)'), btn: g ? 'Re-sign' : 'Sign digitally', name: 'Sienna Berritto, Gallery Director', when: g ? g.date : '' },
+      { label: 'Curator (' + CUR.name + ')', has: !!a, src: a ? a.src : '', canSign: !bad && !isSienna, open: open('a', 'Sign — Curator · ' + CUR.name), btn: a ? 'Re-sign' : 'Sign digitally', name: CUR.name, when: a ? a.date : '' }
     ];
     const st = g && a ? ['Fully signed', '#5fa08f', 'Curator signed ' + a.date + ' · CC Jasper signed ' + g.date + ' · a confirmation email has been sent to both.']
       : a ? ['Signed by curator', '#c9a24a', a.date + ' · awaiting CC Jasper’s countersignature.']
@@ -210,7 +211,7 @@ class Component extends DCLogic {
     return {
       curator: p.curatorName || 'Douglas Crocco, 441 W. Branch St., Lantana, FL 33462 · doug@allart.la',
       opening: fmt(new Date((p.openingDate ?? '2026-11-12') + 'T12:00:00')), today: fmt(new Date()),
-      clauses, sigs, editable: !bad, isPrivate, notPrivate: !isPrivate && !bad,
+      clauses, sigs, editable: !bad, isPrivate, notPrivate: !isPrivate && !isSienna && !bad,
       pvStatus: bad ? 'Link not valid' : st[0], pvC: bad ? '#e0614f' : st[1], pvDetail: bad ? 'Please ask CC Jasper for a new link.' : st[2],
       isEdited: !bad && this.edited(d), showEditNote: !isPrivate && !!d.editedAt && this.edited(d), editNote: 'Last edited by the curator on ' + (d.editedAt || '') + '. Review before countersigning.',
       hasSnap: !!d.snap,
@@ -223,6 +224,7 @@ class Component extends DCLogic {
       vers: (d.versions || []).map((v, i) => ({ label: v.at + ' · ' + v.by, restore: () => { if (!confirm('Restore the terms saved ' + v.at + '?')) return; if (JSON.stringify(v.cl || {}) !== JSON.stringify(this.state.d.cl || {})) this.setCl({ ...(v.cl || {}) }); this.setState({ verOpen: false }); }, del: () => { const nd = { ...this.state.d, versions: (this.state.d.versions || []).filter((_, j) => j !== i) }; this.saveD(nd); } })).reverse(),
       shareLabel: this.state.shared ? 'Link copied ✓' : 'Private link',
       shareLink: () => { const done = () => { this.setState({ shared: true }); setTimeout(() => this.setState({ shared: false }), 2500); }; if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => prompt('Copy this private link:', url)); else prompt('Copy this private link:', url); },
+      siennaHref: 'mailto:s@ccjasper.nyc?subject=' + encodeURIComponent('Death Is a Door — curator agreement to countersign') + '&body=' + encodeURIComponent('Hi Sienna,\n\nThe curator agreement for Death Is a Door is ready for your countersignature as Gallery Director:\n\n' + BASE + '?p=cs.' + privTok('curator-gallery') + '\n\nPlease review it, then click "Sign digitally" on the Gallery (CC Jasper) line.\n\nThank you,\nDoug'),
       resendHref: 'mailto:' + CUR.email + '?subject=' + encodeURIComponent('Death Is a Door — curator agreement') + '&body=' + encodeURIComponent('Hi Doug,\n\nHere is your private link to review and sign the curator agreement for Death Is a Door:\n\n' + url + '\n\nYou can click any text to suggest a change. When ready, click "Sign digitally" on the Curator line.\n\nThank you,\nCC Jasper'),
       signOpen: !!this.state.signFor, signTitle: this.state.signTitle || '', signTyped: this.state.signTyped || '', signAgree: !!this.state.signAgree,
       hasSavedG: this.state.signFor === 'g' && !!(sg.file && sg.file.src), savedGSrc: sg.file ? sg.file.src : '',
@@ -234,7 +236,7 @@ class Component extends DCLogic {
       signAdopt: () => {
         const c = document.querySelector('canvas[data-sig]'); if (!c || !c.__ink) { alert('Please draw or type a signature first.'); return; } if (!this.state.signAgree) { alert('Please tick the box to confirm this is your signature.'); return; }
         const k = this.state.signFor, date = stamp(); const sm = document.createElement('canvas'); sm.width = 400; sm.height = 120; const x = sm.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, 400, 120); x.drawImage(c, 0, 0, 400, 120); let src = sm.toDataURL('image/jpeg', 0.6); if (src.length > 12000) src = sm.toDataURL('image/jpeg', 0.4);
-        const sv = { src, date, name: 'Curator agreement — ' + CUR.name, email: CUR.email, link: url, edited: k === 'a' ? (d.editedAt || '') : '', changes: k === 'a' && d.editedAt ? changes() : [] };
+        const sv = { src, date, kind: 'curator', name: CUR.name, email: CUR.email, link: url, csLink: BASE + '?p=cs.' + privTok('curator-gallery'), edited: k === 'a' ? (d.editedAt || '') : '', changes: k === 'a' && d.editedAt ? changes() : [] };
         try { localStorage.setItem(SK(k), JSON.stringify(sv)); if (k === 'g') localStorage.setItem('didad-sig-gallery', JSON.stringify({ src, date, from: 'curator' })); } catch (e) {}
         const nd = { ...this.state.d }; delete nd.snap; this.saveD(nd);
         this.setState(s => ({ sg: { ...s.sg, [k]: sv, ...(k === 'g' ? { file: { src, date } } : {}) }, signFor: null }));
