@@ -296,6 +296,22 @@
         </div>
       </div>
     </sc-if>
+    <sc-if value="{{ hasInstall }}" hint-placeholder-val="{{ false }}">
+      <div style="break-inside:avoid;margin-top:14pt;display:flex;flex-direction:column;gap:6pt;">
+        <div style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#2b6a60;">Wall vinyl · installation and reprint terms</div>
+        <sc-for list="{{ install }}" as="p" hint-placeholder-count="3">
+          <p style="margin:0;font-size:10.5pt;line-height:1.5;color:#16150f;text-wrap:pretty;">{{ p }}</p>
+        </sc-for>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12pt;margin-top:6pt;">
+          <sc-for list="{{ installImgs }}" as="im" hint-placeholder-count="2">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:4pt;">
+              <img src="{{ im.src }}" alt="{{ im.l }}" style="width:100%;height:2.4in;object-fit:contain;background:#f5f3ee;border:0.5pt solid #d6d1c6;"></img>
+              <figcaption style="font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.04em;color:#5c574c;">{{ im.l }}</figcaption>
+            </figure>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
     <div style="break-inside:avoid;margin-top:14pt;display:flex;flex-direction:column;gap:10pt;">
       <div contentEditable="true" suppressContentEditableWarning="{{ true }}" onBlur="{{ onTx.initials }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10pt;color:#5c574c;outline:none;border-radius:2px;">{{ tx.initials }}</div>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24pt;">
@@ -362,7 +378,7 @@
 const IMG = 'https://dougcrocco.github.io/death-is-a-door-site/art/';
 const ARTISTS = [
   { id: 'cowan', name: 'Benjamin Cowan', email: 'cowan.benjamin@gmail.com', sent: true, signed: true, rep: 'Deanna Evans Projects', works: [{ t: 'Pigeon Feather, Stone, Giotto Crying Angels', d: '2024\nOil and acrylic on canvas · 20 × 16 in · integrated wood frame', p: '$4,000', i: 'art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg' }] },
-  { id: 'crocco', name: 'Doug Crocco', email: 'doug@allart.la', address: '441 W. Branch St., Lantana, FL 33462', phone: '213-768-6354', prod: '$3,551.50', costs: [{ v: 'Laumont', d: 'Invoice 171222 · Sept 23, 2026 · pigment print + face mount to 1/4 in Plexi, aluminum back, strainer/cleat (incl. $180.78 tax)', a: '$2,217.78' }, { v: 'All in 1 Graphics', d: 'Invoice 1394 · Oct 20, 2026 · removable matte wall vinyl 103 × 95 in + install, shipping (incl. $108.72 tax)', a: '$1,333.72' }], costsTotal: '$3,551.50', receipts: [{ l: 'Laumont · Invoice 171222', i: 'receipts/laumont-invoice-171222-p1.png', pdf: 'receipts/laumont-invoice-171222.pdf' }, { l: 'All in 1 Graphics · Invoice 1394', i: 'receipts/allin1-invoice-1394-p1.png', pdf: 'receipts/allin1-invoice-1394.pdf' }], works: [{ t: 'Death Is a Door', d: '2026\nPrint on metallic photo paper face-mounted to acrylic · 80 × 40 in\nOver 95 × 104 in printed wall vinyl\nEdition 1/3 (edition of 3 + 1 AP)', i: 'art/doug-crocco-death-is-a-door-vinyl.jpg', p: '$10,000' }] },
+  { id: 'crocco', name: 'Doug Crocco', email: 'doug@allart.la', address: '441 W. Branch St., Lantana, FL 33462', phone: '213-768-6354', prod: '$3,796.47', costs: [{ v: 'Laumont', d: 'Invoice 171222 · Sept 23, 2026 · pigment print + face mount to 3/16 in Plexi, aluminum back, strainer/cleat; shipping + delivery to gallery $250 (incl. $200.75 tax)', a: '$2,462.75' }, { v: 'All in 1 Graphics', d: 'Invoice 1394 · Oct 20, 2026 · removable matte wall vinyl 103 × 95 in + install, shipping (incl. $108.72 tax)', a: '$1,333.72' }], costsTotal: '$3,796.47', install: ['The wall vinyl component of Death Is a Door is site-specific and single-use. It must be newly printed for each installation and is destroyed upon removal; it cannot be saved, moved, or reinstalled.', 'The Client (buyer) is responsible for the cost of all future vinyl reprints and installation, including any reprint required after the close of this exhibition. These costs are not included in the sale price.', 'Upon sale, the Artist will provide the Client with the print-ready vinyl file, the structural consent for the Death Is a Door photograph, and reference images of the full installation and the door print, so the wall vinyl can be fabricated and installed for each future showing.', 'The Artist will also provide contact details for the wall vinyl printer used for this work: All in 1 Graphics, 10 Cedar Swamp Rd., Glen Cove, NY 11542 · 516-629-6952 · info@allin1graphics.com · allin1graphics.com. Estimate based on this exhibition (All in 1 Graphics invoice 1394, Oct 20, 2026): print, removable matte Drytac vinyl, 2 panels, 103 × 95 in, $750.00; installation $450.00; shipping $25.00; tax $108.72; total $1,333.72. Treat this as an estimate only; future reprint costs will vary with printer, location and date.'], installImgs: [{ l: 'Full installation · photograph over wall vinyl', src: IMG + 'doug-crocco-death-is-a-door-vinyl.jpg' }, { l: 'Door print · 80 × 40 in face-mounted photograph', src: IMG + 'doug-crocco-death-is-a-door.jpg' }], receipts: [{ l: 'Laumont · Invoice 171222', i: 'receipts/laumont-invoice-171222-p1.png', pdf: 'receipts/laumont-invoice-171222.pdf' }, { l: 'All in 1 Graphics · Invoice 1394', i: 'receipts/allin1-invoice-1394-p1.png', pdf: 'receipts/allin1-invoice-1394.pdf' }], works: [{ t: 'Death Is a Door', d: '2026\nPrint on metallic photo paper face-mounted to acrylic · 80 × 40 in\nOver 95 × 104 in printed wall vinyl\nEdition 1/3 (edition of 3 + 1 AP)', i: 'art/doug-crocco-death-is-a-door-vinyl.jpg', p: '$10,000' }] },
   { id: 'delaney', name: 'Tom DeLaney', email: 'zuervos@gmail.com', phone: '678-755-0075', works: [{ t: 'Rage and Eternal', d: '2024\nOil on linen · 18 × 24 in', p: '$3,300', i: 'art/tom-delaney-rage-and-eternal-v2.jpg' }] },
   { id: 'durwood', name: 'Kenny Curwood', email: 'Kenneth.curwood@gmail.com', works: [{ t: 'The World of Symbol Vanishes in the World as God', d: '2021\nBrass and solder · 10 × 6 in', p: '$1,200', i: 'art/kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg' }] },
   { id: 'goering', name: 'Charlie Goering', email: 'goering.charlie@gmail.com', phone: '513-310-4874', works: [
@@ -422,6 +438,11 @@ async function buildDocx(m) {
     b.push(P(R('ARTIST COSTS · REIMBURSED BEFORE COMMISSION SPLIT', { b: true, c: '2B6A60', sz: 18 }), { before: 200, after: 80, keep: true }));
     m.costs.forEach(c => b.push(P([R(c.v + ' — ' + c.a, { b: true }), R('  ' + c.d, { c: '5C574C', sz: 20 })], { after: 40, keep: true })));
     b.push(P([R('Total artist costs: ', { b: true }), R(m.costsTotal, { b: true })], { before: 60, after: 120 }));
+  }
+  if (m.hasInstall) {
+    b.push(P(R('WALL VINYL · INSTALLATION AND REPRINT TERMS', { b: true, c: '2B6A60', sz: 18 }), { before: 200, after: 80, keep: true }));
+    m.install.forEach(p => b.push(P(R(p, { sz: 21 }), { after: 80 })));
+    b.push(P(R('Reference images: ' + m.installImgs.map(i => i.l).join('; '), { c: '5C574C', sz: 20 }), { after: 120 }));
   }
   b.push(P(R(m.tx.initials, { c: '5C574C', sz: 20 }), { before: 200, after: 240 }));
   b.push(P(R('Gallery initials: ______   Date: ______________          Artist initials: ______   Date: ______________')));
@@ -626,7 +647,7 @@ class Component extends DCLogic {
       sigTitle: A.owner ? 'Owner' : 'Artist',
       splitNote: TX.split,
       hasProd: !!A.prod,
-      hasCosts: !!A.costs, costs: A.costs || [], hasReceipts: !!A.receipts, receipts: A.receipts || [], costsTotal: A.costsTotal || '',
+      hasCosts: !!A.costs, costs: A.costs || [], hasInstall: !!A.install, install: A.install || [], installImgs: A.installImgs || [], hasReceipts: !!A.receipts, receipts: A.receipts || [], costsTotal: A.costsTotal || '',
       prodCost: val('prod', typeof A.prod === 'string' ? A.prod : ''),
       onProd: ev => this.setField('prod', ev.target.value),
       hasRep: !!val('rep', A.rep || ''),
