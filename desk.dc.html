@@ -89,7 +89,7 @@
             <div style="display:flex;align-items:center;gap:7px;padding-bottom:6px;border-bottom:2px solid {{ col.c }};"><span style="width:7px;height:7px;flex:none;border-radius:50%;background:{{ col.c }};"></span><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ col.c }};">{{ col.name }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ col.count }}</span></div>
             <sc-for list="{{ col.items }}" as="t" hint-placeholder-count="2">
               <a href="{{ t.href }}" draggable="true" onDragStart="{{ t.drag }}" onDragOver="{{ t.over }}" onDrop="{{ t.drop }}" onDragEnd="{{ t.end }}" style="cursor:grab;opacity:{{ t.op }};background:#16150f;padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:{{ t.tc }};" style-hover="background:#201e18;">
-                <span style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ t.src }}</span><button onClick="{{ t.remove }}" title="Delete" style="margin-left:auto;background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;padding:0 6px;cursor:pointer;" style-hover="border-color:#e0614f;color:#e0614f;">✕</button></span>
+                <span style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ t.src }}</span><span style="margin-left:auto;display:flex;gap:2px;"><button onClick="{{ t.up }}" title="Move up" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:9px;padding:0 5px;cursor:pointer;opacity:{{ t.upOp }};" style-hover="border-color:#7fa39b;color:#7fa39b;">▲</button><button onClick="{{ t.down }}" title="Move down" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:9px;padding:0 5px;cursor:pointer;opacity:{{ t.downOp }};" style-hover="border-color:#7fa39b;color:#7fa39b;">▼</button></span><button onClick="{{ t.remove }}" title="Delete" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;padding:0 6px;cursor:pointer;" style-hover="border-color:#e0614f;color:#e0614f;">✕</button></span>
                 <span style="font-size:14.5px;line-height:1.35;text-wrap:pretty;"><span style="color:#ffffff;">{{ t.who }}</span><span style="text-decoration:{{ t.td }};text-underline-offset:3px;">{{ t.what }}</span>{{ t.arrow }}</span>
               </a>
             </sc-for>
@@ -97,6 +97,16 @@
           </div>
         </sc-for>
       </div>
+      <div onDragOver="{{ upd.over }}" onDrop="{{ upd.drop }}" style="display:flex;flex-direction:column;gap:6px;min-width:0;min-height:80px;">
+            <div style="display:flex;align-items:center;gap:7px;padding-bottom:6px;border-bottom:2px solid {{ upd.c }};"><span style="width:7px;height:7px;flex:none;border-radius:50%;background:{{ upd.c }};"></span><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ upd.c }};">{{ upd.name }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ upd.count }}</span></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:6px;"><sc-for list="{{ upd.items }}" as="t" hint-placeholder-count="2">
+              <a href="{{ t.href }}" draggable="true" onDragStart="{{ t.drag }}" onDragOver="{{ t.over }}" onDrop="{{ t.drop }}" onDragEnd="{{ t.end }}" style="cursor:grab;opacity:{{ t.op }};background:#16150f;padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:{{ t.tc }};" style-hover="background:#201e18;">
+                <span style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ t.src }}</span><span style="margin-left:auto;display:flex;gap:2px;"><button onClick="{{ t.up }}" title="Move up" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:9px;padding:0 5px;cursor:pointer;opacity:{{ t.upOp }};" style-hover="border-color:#7fa39b;color:#7fa39b;">▲</button><button onClick="{{ t.down }}" title="Move down" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:9px;padding:0 5px;cursor:pointer;opacity:{{ t.downOp }};" style-hover="border-color:#7fa39b;color:#7fa39b;">▼</button></span><button onClick="{{ t.remove }}" title="Delete" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;padding:0 6px;cursor:pointer;" style-hover="border-color:#e0614f;color:#e0614f;">✕</button></span>
+                <span style="font-size:14.5px;line-height:1.35;text-wrap:pretty;"><span style="color:#ffffff;">{{ t.who }}</span><span style="text-decoration:{{ t.td }};text-underline-offset:3px;">{{ t.what }}</span>{{ t.arrow }}</span>
+              </a>
+            </sc-for></div>
+            <button type="button" onClick="{{ upd.add }}" style="background:transparent;border:1px dashed #3a3630;color:#6d675c;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 10px;cursor:pointer;text-align:left;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add</button>
+          </div>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
       <sc-if value="{{ hasHidden }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ restoreHidden }}" style="margin-top:10px;background:transparent;border:none;color:#8f887c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:8px 4px;cursor:pointer;" style-hover="color:#7fa39b;">Restore deleted ({{ hiddenCount }})</button>
@@ -267,10 +277,11 @@ const CONTACTS = [{"name":"Benjamin Cowan","legal":"","email":"cowan.benjamin@gm
 const ARTIST_EMAILS = ["cowan.benjamin@gmail.com","zuervos@gmail.com","Kenneth.curwood@gmail.com","goering.charlie@gmail.com","aramisg@gmail.com","ellenrhanson@gmail.com","info@nononogallery.com","megan@meganlindeman.com","pandeleradu123@gmail.com","meredithmsellers@gmail.com","henryswanson@icloud.com","caco@unitedfutur.es"];
 const OPEN = new Date(2026, 10, 12), INSTALL = new Date(2026, 10, 6);
 const TASKS = [
-  { src: 'Install', who: 'Pedestals', what: ' — pick up pedestals', u: 1 },
+  { src: 'Install', who: 'Pedestals', what: ' — pick up pedestals', u: 1, pin: 3 },
   { src: 'Press', who: 'All artists', what: ' — ask for studio images and an artist photo for PR', u: 1, href: 'press.html' },
   { src: 'Install', who: 'Doug Crocco', what: ' — Death Is a Door wall vinyl delivered and installed Mon, Nov 9 at noon · graphics contact: All In 1 Graphics, info@allin1graphics.com · (516) 629-6952', u: 2, href: 'mailto:info@allin1graphics.com' },
-  { src: 'Install', who: 'Show wall vinyl', what: ' — show title vinyl for the front door and entry' },
+  { src: 'Install', who: 'Entrance wall vinyl', what: ' — show title vinyl for the front door and entry', u: 1, pin: 2 },
+  { src: 'Agreements', who: 'Curator agreement', what: ' — CC Jasper (Sienna Berritto) and Douglas Crocco to review and sign', u: 1, link: true, pin: 1, href: 'agreements/curator.html' },
   { src: 'Agreements', who: 'Doug Crocco', what: ' — review his signed consignment agreement and countersign', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=Doug%20Crocco' },
   { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the 80 / 20 split on L’s work (80% to Casey) and the $8,000 insurance value', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
 ];
@@ -305,17 +316,17 @@ class Component extends DCLogic {
       const del = rows.filter(r => (st(r).status || 0) >= 3).length, moving = rows.filter(r => { const s = st(r).status || 0; return s === 1 || s === 2; }).length;
       const todos = TASKS.map(t => ({ u: 1, href: 'install-plan.html', ...t }));
       if (toSend) todos.push({ src: 'Agreements', u: 0, pin: 200, who: toSend + ' agreements', what: ' still to send', href: 'agreements/tracker.html' });
-      if (sent) todos.push({ src: 'Agreements', u: 1, who: sent + ' sent', what: ' — waiting on signatures', href: 'agreements/tracker.html' });
+      if (sent) todos.push({ src: 'Agreements', u: 1, who: toSend ? sent + ' sent' : 'All sent', what: ' — waiting on ' + sent + ' consignment signature' + (sent === 1 ? '' : 's') + ' from artists', href: 'agreements/index.html' });
       const seen = {};
       const sh = [];
-      rows.forEach(r => { const d = st(r); if (seen[r[2]] || d.done || (d.status || 0) >= 3 || !d.notes) return; seen[r[2]] = 1; sh.push({ src: 'Shipping', who: r[2], what: ' — ' + d.notes, href: 'agreements/shipping.html', open: FLAG.test(d.notes + ' ' + (d.carrier || '') + ' ' + (d.eta || '')) }); });
+      rows.forEach(r => { const d = st(r); if (seen[r[2]] || d.done || (d.status || 0) >= 3 || !d.notes) return; seen[r[2]] = 1; sh.push({ src: 'Shipping', who: r[2], what: ' — ' + d.notes, href: 'agreements/shipping.html?artist=' + encodeURIComponent(r[2]), open: FLAG.test(d.notes + ' ' + (d.carrier || '') + ' ' + (d.eta || '')) }); });
       const SET_U = { 'Benjamin Cowan': 1, 'Kenny Curwood': 2, 'Aramis Gutierrez': 2, 'Henry Swanson': 1, 'Pandele Radu': 1, 'Ellen R Hanson': 1 };
       const SPLIT = { 'Pandele Radu': [
         { src: 'Shipping', what: ' — friend is bringing it on a flight; may need pickup from a midtown hotel', href: 'agreements/shipping.html' },
         { src: 'Install', what: ' — arrives rolled in a tube with stretcher bars; find someone to stretch it', href: 'install-plan.html' }
       ] };
       sh.forEach(t => { const u = SET_U[t.who] ?? (t.open ? 0 : 2); if (SPLIT[t.who]) SPLIT[t.who].forEach(x => todos.push({ ...t, ...x, u })); else todos.push(t.who === 'L' ? { ...t, u: 0, pin: 2, what: ' — confirm if Casey would be able to deliver the work the week before the show opens' } : t.who === 'Meredith Sellers' ? { ...t, u: 0, pin: 3 } : { ...t, u }); });
-      const UC = ['#e0614f', '#e08a3c', '#d9c255'];
+      const UC = ['#e0614f', '#e08a3c', '#d9c255', '#7fa39b'];
       todos.sort((a, b) => a.u - b.u).forEach(t => { t.c = UC[t.u]; });
       const MO = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
       const pd = t => { t = (t || '').trim(); let m;
@@ -421,29 +432,30 @@ class Component extends DCLogic {
       ...(() => {
         const fix = h => h && h.indexOf('agreements/') === 0 ? (this.state.ag || 'agreements/') + h.slice(11) : h;
         const K = t => t.src + '|' + t.who, ord = this.state.order || [], urgO = this.state.urg || {};
-        const UCc = ['#e0614f', '#e08a3c', '#d9c255'], HREF = { Install: 'install-plan.html', Agreements: 'agreements/tracker.html', Shipping: 'agreements/shipping.html', Other: 'desk.html' };
+        const UCc = ['#e0614f', '#e08a3c', '#d9c255', '#7fa39b'], HREF = { Install: 'install-plan.html', Agreements: 'agreements/tracker.html', Shipping: 'agreements/shipping.html', Other: 'desk.html' };
         const logIt = (action, text) => { const lg = [{ ts: Date.now(), action, text }].concat(this.state.log || []).slice(0, 500); localStorage.setItem('didad-desk-log', JSON.stringify(lg)); this.setState({ log: lg }); };
-        const UN = ['Urgent', 'Soon', 'Follow up'], desc = t => t.src + ' · ' + t.who + (t.what || '');
+        const UN = ['Urgent', 'Soon', 'Follow up', 'Updates'], desc = t => t.src + ' · ' + t.who + (t.what || '');
         const saveCu = cu => { localStorage.setItem('didad-desk-custom', JSON.stringify(cu)); this.setState({ custom: cu }); };
         const cust = (this.state.custom || []).map(x => ({ id: x.id, src: x.src, who: x.text, what: x.what ? ' — ' + x.what : '', u: x.u, href: HREF[x.src] || 'desk.html', custom: true, remove: e => { e.preventDefault(); e.stopPropagation(); saveCu((this.state.custom || []).filter(y => y.id !== x.id)); logIt('Deleted', x.src + ' · ' + x.text + (x.what ? ' — ' + x.what : '')); } }));
         const hid = this.state.hidden || [];
         const hideK = (k, t) => e => { e.preventDefault(); e.stopPropagation(); logIt('Deleted', desc(t)); const h = hid.concat([k]); localStorage.setItem('didad-desk-hidden', JSON.stringify(h)); this.setState({ hidden: h }); };
         const auto = this.state.todos.filter(t => hid.indexOf(K(t)) < 0).map(t => ({ ...t, u: urgO[K(t)] ?? t.u, remove: hideK(K(t), t) }));
         const merged = cust.concat(auto);
-        const all = merged.map((t, i) => ({ t, i })).sort((a, b) => { const pa = a.t.pin || 99, pb = b.t.pin || 99; if (pa !== pb) return pa - pb; const x = ord.indexOf(K(a.t)), y = ord.indexOf(K(b.t)); if (x < 0 && y < 0) return a.i - b.i; if (x < 0) return 1; if (y < 0) return -1; return x - y; }).map(o => o.t);
+        const all = merged.map((t, i) => ({ t, i })).sort((a, b) => { const x = ord.indexOf(K(a.t)), y = ord.indexOf(K(b.t)); if (x >= 0 && y >= 0) return x - y; const pa = a.t.pin || 99, pb = b.t.pin || 99; if (pa !== pb) return pa - pb; if (x < 0 && y < 0) return a.i - b.i; if (x < 0) return 1; if (y < 0) return -1; return x - y; }).map(o => o.t);
         const tab = this.state.tab || 'All';
         const setU = (key, u) => { const it = all.find(t => K(t) === key); if (!it || it.u === u) return; logIt('Moved', desc(it) + ' → ' + UN[u]); if (it.custom) saveCu((this.state.custom || []).map(y => y.id === it.id ? { ...y, u } : y)); else { const m = { ...(this.state.urg || {}), [key]: u }; localStorage.setItem('didad-desk-urg', JSON.stringify(m)); this.setState({ urg: m }); } };
         const place = (from, before) => { const keys = all.map(K).filter(k => k !== from); const i = before ? keys.indexOf(before) : -1; if (i < 0) keys.push(from); else keys.splice(i, 0, from); localStorage.setItem('didad-desk-order', JSON.stringify(keys)); this.setState({ order: keys, dragKey: null }); };
-        const TC = ['#e8a497', '#e9b58a', '#e3d491'], WC = ['#f6c9c0', '#f6d3b3', '#f1e7b8'];
+        const TC = ['#e8a497', '#e9b58a', '#e3d491', '#b9d3cc'], WC = ['#f6c9c0', '#f6d3b3', '#f1e7b8', '#d9e8e4'];
         const deco = t => ({ ...t, td: t.link ? 'underline' : 'none', arrow: t.link ? ' ↗' : '', tc: TC[t.u], wc: WC[t.u], href: fix(t.href), op: this.state.dragKey === K(t) ? 0.4 : 1, drag: e => { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', K(t)); } catch (x) {} this.setState({ dragKey: K(t) }); }, over: e => e.preventDefault(), drop: e => { e.preventDefault(); e.stopPropagation(); const from = this.state.dragKey; if (!from || from === K(t)) return; setU(from, t.u); place(from, K(t)); }, end: () => this.setState({ dragKey: null }) });
         const list = tab === 'All' ? all : all.filter(t => t.src === tab);
         const openForm = u => this.setState({ form: { who: '', what: '', src: tab !== 'All' ? tab : 'Other', u } });
-        const cols = [['Urgent', 0], ['Soon', 1], ['Follow up', 2]].map(([name, u]) => { const items = list.filter(t => t.u === u); return { name, c: UCc[u], count: String(items.length), items: items.map(deco), add: () => openForm(u), over: e => e.preventDefault(), drop: e => { e.preventDefault(); const from = this.state.dragKey; if (!from) return; setU(from, u); place(from, null); } }; });
+        const mkCol = ([name, u]) => { const items = list.filter(t => t.u === u); return { name, c: UCc[u], count: String(items.length), items: items.map((it, j) => ({ ...deco(it), up: e => { e.preventDefault(); e.stopPropagation(); if (j > 0) place(K(it), K(items[j - 1])); }, down: e => { e.preventDefault(); e.stopPropagation(); if (j < items.length - 1) place(K(items[j + 1]), K(it)); }, upOp: j > 0 ? '1' : '0.25', downOp: j < items.length - 1 ? '1' : '0.25' })), add: () => openForm(u), over: e => e.preventDefault(), drop: e => { e.preventDefault(); const from = this.state.dragKey; if (!from) return; setU(from, u); place(from, null); } }; };
+        const cols = [['Urgent', 0], ['Soon', 1], ['Follow up', 2]].map(mkCol), upd = mkCol(['Updates', 3]);
         const tabs = ['All', 'Agreements', 'Shipping', 'Install', 'Other'].map(k => { const n = k === 'All' ? all.length : all.filter(t => t.src === k).length; const on = k === tab; return { label: k + ' ' + n, bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#0d0c0b' : '#c4bcae', pick: () => this.setState({ tab: k }) }; });
         const F = this.state.form, setF = p => this.setState(s => ({ form: { ...s.form, ...p } }));
         const seg = (on) => ({ bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#0d0c0b' : '#c4bcae' });
         return {
-          tabs, cols, todoCount: String(all.length),
+          tabs, cols, upd, todoCount: String(all.length),
           hiddenCount: hid.length, hasHidden: hid.length > 0, restoreHidden: () => { logIt('Restored', hid.length + ' deleted item' + (hid.length === 1 ? '' : 's')); localStorage.removeItem('didad-desk-hidden'); this.setState({ hidden: [] }); },
           hasOrder: ord.length > 0 || Object.keys(urgO).length > 0, resetOrder: () => { logIt('Reset', 'Order and urgency back to automatic'); localStorage.removeItem('didad-desk-order'); localStorage.removeItem('didad-desk-urg'); this.setState({ order: null, urg: {} }); },
           unsentCount: (() => { const n = (this.state.log || []).filter(l => l.ts > (this.state.lastSent || 0)).length; return n ? '(' + n + ')' : ''; })(),
@@ -465,7 +477,7 @@ class Component extends DCLogic {
           openAdd: () => openForm(1), formOpen: !!F, closeForm: () => this.setState({ form: null }), closeBg: e => { if (e.target === e.currentTarget) this.setState({ form: null }); },
           fWho: F ? F.who : '', fWhat: F ? F.what : '', setWho: e => setF({ who: e.target.value }), setWhat: e => setF({ what: e.target.value }),
           areaOpts: ['Agreements', 'Shipping', 'Install', 'Other'].map(k => ({ label: k, ...seg(F && F.src === k), pick: () => setF({ src: k }) })),
-          urgOpts: [['Urgent', 0], ['Soon', 1], ['Follow up', 2]].map(([label, u]) => ({ label, c: UCc[u], ...seg(F && F.u === u), pick: () => setF({ u }) })),
+          urgOpts: [['Urgent', 0], ['Soon', 1], ['Follow up', 2], ['Updates', 3]].map(([label, u]) => ({ label, c: UCc[u], ...seg(F && F.u === u), pick: () => setF({ u }) })),
           saveItem: e => { e.preventDefault(); if (!F || !F.who.trim()) return; saveCu([{ id: Date.now(), text: F.who.trim(), what: F.what.trim(), src: F.src, u: F.u }].concat(this.state.custom || [])); logIt('Added', F.src + ' · ' + F.who.trim() + (F.what.trim() ? ' — ' + F.what.trim() : '') + ' (' + UN[F.u] + ')'); this.setState({ form: null }); }
         };
       })(),
@@ -478,6 +490,7 @@ class Component extends DCLogic {
 
         { title: 'Checklist', href: 'agreements/checklist.html', span: 'auto' },
         { title: 'Consignments', href: 'agreements/index.html', span: 'auto' },
+        { title: 'Curator agreement', href: 'agreements/curator.html', span: 'auto' },
         { title: 'Press kit', href: 'press.html', span: 'auto' },
         { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
         { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' },

@@ -117,6 +117,7 @@
     </div>
     <div style="display:flex;gap:14px;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8f887c;"><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#6d675c;"></span>To send</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#c9a24a;"></span>Sent</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#5fa08f;"></span>Signed</span></div>
     <a href="tracker.html" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;white-space:nowrap;text-decoration:none;background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">Consignment Tracker →</a>
+    <a href="curator.html" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;white-space:nowrap;text-decoration:none;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Curator Agreement →</a>
     <button onClick="{{ downloadAll }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;white-space:nowrap;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ allLabel }}</button>
     <span style="font-size:10.5px;color:#8f887c;margin-left:auto;">{{ aCounter }}</span>
   </div>
@@ -729,8 +730,8 @@ class Component extends DCLogic {
         document.body.appendChild(a); a.click(); a.remove();
         setTimeout(() => URL.revokeObjectURL(a.href), 2000);
       },
-      gSigner: (this.state.data._gallery || {}).name ?? '',
-      gTitle: (this.state.data._gallery || {}).title ?? '',
+      gSigner: (this.state.data._gallery || {}).name || 'Sienna Berritto',
+      gTitle: (this.state.data._gallery || {}).title || 'Gallery Director',
       onGSigner: ev => { const d = { ...this.state.data, _gallery: { ...(this.state.data._gallery || {}), name: ev.target.value } }; this.save({ data: d }); },
       onGTitle: ev => { const d = { ...this.state.data, _gallery: { ...(this.state.data._gallery || {}), title: ev.target.value } }; this.save({ data: d }); },
       tabs: ARTISTS.map(x => { const on2 = x.id === A.id; const st = this.status(x); return { name: x.name, pick: () => this.save({ sel: x.id }), bg: on2 ? '#e9e3d6' : 'transparent', fg: on2 ? '#0d0c0b' : '#c4bcae', stLabel: st.signed ? 'SIGNED' : st.sent ? 'SENT' : '', stC: on2 ? '#2b6a60' : st.signed ? '#5fa08f' : '#c9a24a' }; }),

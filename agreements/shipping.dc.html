@@ -129,7 +129,7 @@
       <sc-for list="{{ rows }}" as="r" hint-placeholder-count="13">
         <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;padding:12px 8px 12px 0;border-bottom:1px solid #2a2722;">{{ r.no }}</div>
         <div style="padding:10px 0;border-bottom:1px solid #2a2722;"><img src="{{ r.img }}" alt="" loading="lazy" style="display:block;width:56px;height:56px;object-fit:contain;background:#16150f;"></div>
-        <div style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;">
+        <div data-ship-artist="{{ r.artist }}" style="padding:12px 8px;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:3px;background:{{ r.hl }};box-shadow:{{ r.hlSh }};">
           <div style="color:#f0eadd;">{{ r.artist }}</div>
           <div style="font-style:italic;font-size:13px;color:#8f887c;">{{ r.title }}</div>
           <div style="margin-top:4px;display:flex;flex-direction:column;gap:1px;font-size:12px;color:#c4bcae;word-break:break-word;">
@@ -216,7 +216,9 @@ function trackUrl(carrier, n) {
 }
 class Component extends DCLogic {
   state = { works: [], data: {}, ret: false, versions: [], cur: null, dirty: false, msg: '', log: [], logOpen: false };
+  focusA = (() => { try { return new URLSearchParams(location.search).get('artist') || ''; } catch (e) { return ''; } })();
   componentDidMount() {
+    if (this.focusA) setTimeout(() => { const el = [...document.querySelectorAll('[data-ship-artist]')].find(x => x.getAttribute('data-ship-artist') === this.focusA); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); }, 700);
     let data = {}, ret = false; try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); ret = localStorage.getItem(KEY + '-ret') === '1'; } catch (e) {}
     let meta = {}; try { meta = JSON.parse(localStorage.getItem(KEY + '-versions') || '{}'); } catch (e) {}
     let log = []; try { log = JSON.parse(localStorage.getItem(KEY + '-log') || '[]'); } catch (e) {}
@@ -226,7 +228,7 @@ class Component extends DCLogic {
       const works = all.slice(h + 1).filter(r => r.length > 5 && r[0]).map(r => {
         const url = ((r[1] || '').match(/"(https?:[^"]+)"/) || [])[1] || '';
         const file = url.split('/art/')[1] || '';
-        return { no: r[0], img: file ? 'art/' + file : '', artist: r[2], title: r[3], email: r[6] || '', mailto: r[6] ? 'mailto:' + r[6] : '', contact: r[7] || '', phone: r[8] || '' };
+        return { no: r[0], img: file ? 'art/' + file : '', artist: r[2], hl: this.focusA && this.focusA === r[2] ? 'rgba(201,162,74,0.16)' : 'transparent', hlSh: this.focusA && this.focusA === r[2] ? 'inset 3px 0 0 #c9a24a' : 'none', title: r[3], email: r[6] || '', mailto: r[6] ? 'mailto:' + r[6] : '', contact: r[7] || '', phone: r[8] || '' };
       });
       this.setState({ works });
     });

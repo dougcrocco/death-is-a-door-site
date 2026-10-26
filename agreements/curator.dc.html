@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Curator Agreement · Death Is a Door · CC Jasper</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  body{margin:0;background:#e9e6df}
+  a{color:#2b6a60} a:hover{color:#1d4a43}
+  [contenteditable="true"]:focus{outline:1px dashed #b9b2a4;outline-offset:2px}
+  @media print{[data-noprint]{display:none !important}}
+</style>
+<script src="./doc-page.js"></script>
+<script src="sync.js"></script>
+</helmet>
+
+<div data-noprint="" style="position:relative;z-index:10;background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:18px clamp(14px,3vw,32px) 22px;display:flex;flex-direction:column;gap:14px;">
+  <div style="display:flex;align-items:baseline;gap:16px;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;border-top:1px solid #2a2722;padding-top:14px;">
+    <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,44px);line-height:1.05;color:#f0eadd;">Curator Agreement</h1>
+      <div style="display:grid;grid-template-columns:8px minmax(0,1fr);column-gap:10px;row-gap:4px;align-items:center;border:1px solid {{ pvC }};padding:9px 12px;width:fit-content;max-width:100%;box-sizing:border-box;"><span style="width:8px;height:8px;border-radius:50%;background:{{ pvC }};"></span><span style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:{{ pvC }};">{{ pvStatus }}</span><span></span><span style="font-size:10.5px;line-height:1.5;color:#c4bcae;text-wrap:pretty;">{{ pvDetail }}</span></div>
+      <sc-if value="{{ isPrivate }}" hint-placeholder-val="{{ false }}"><span style="font-size:10px;line-height:1.6;color:#8f887c;max-width:560px;">Private link — shared only between you and CC Jasper. Please read carefully. You can click any text to make changes; CC Jasper will be notified and can talk through amendments before countersigning. When ready, click <span style="color:#e9e3d6;">Sign digitally</span> on the Curator line.</span></sc-if>
+      <sc-if value="{{ showEditNote }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid #c9a24a;padding:8px 12px;font-size:10.5px;line-height:1.5;color:#e9e3d6;"><span style="letter-spacing:0.12em;text-transform:uppercase;color:#c9a24a;">Curator made changes</span><span>{{ editNote }}</span></div></sc-if>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px;margin-left:auto;max-width:100%;">
+      <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><a href="index.html" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;text-decoration:none;white-space:nowrap;color:#e9e3d6;border:1px solid #3a3630;" style-hover="color:#7fa39b;">← Consignments</a></sc-if>
+      <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><a href="{{ resendHref }}" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;text-decoration:none;white-space:nowrap;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">Resend to curator</a></sc-if>
+      <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><button onClick="{{ shareLink }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">{{ shareLabel }}</button></sc-if>
+      <sc-if value="{{ isEdited }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetText }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#e0685a;border:1px solid #c4483b;" style-hover="background:#c4483b;color:#fff;">Reset wording</button></sc-if>
+      <sc-if value="{{ hasSnap }}" hint-placeholder-val="{{ false }}"><button onClick="{{ restoreSigned }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#5fa08f;border:1px solid #5fa08f;" style-hover="background:#5fa08f;color:#0d0c0b;">Restore signed terms</button></sc-if>
+      <button onClick="{{ saveVer }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#e0685a;border:1px solid #c4483b;" style-hover="background:#c4483b;color:#ffffff;">{{ saveVerLabel }}</button>
+      <sc-if value="{{ hasVers }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleVers }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;background:transparent;color:#c4bcae;border:1px solid #3a3630;" style-hover="color:#7fa39b;">Saved versions ▾</button></sc-if>
+      <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;border:none;cursor:pointer;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF / Print</button>
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{ verOpen }}" hint-placeholder-val="{{ false }}">
+<div data-noprint="" style="background:#16150f;padding:0 clamp(14px,3vw,32px) 16px;display:flex;justify-content:flex-end;">
+  <div style="display:flex;flex-direction:column;border:1px solid #3a3630;background:#0d0c0b;width:min(420px,100%);">
+    <sc-for list="{{ vers }}" as="v" hint-placeholder-count="2">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;border-bottom:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:10px;color:#c4bcae;">
+        <span style="flex:1 1 auto;min-width:0;">{{ v.label }}</span>
+        <button onClick="{{ v.restore }}" style="font-family:inherit;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#5fa08f;border:1px solid #5fa08f;padding:3px 8px;cursor:pointer;">Restore</button>
+        <button onClick="{{ v.del }}" title="Delete" style="font-family:inherit;font-size:11px;background:transparent;color:#6d675c;border:none;cursor:pointer;padding:2px 4px;">×</button>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ signOpen }}" hint-placeholder-val="{{ false }}">
+<div data-noprint="" style="position:fixed;inset:0;z-index:200;background:rgba(13,12,11,0.72);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#f7f4ee;color:#16150f;width:min(560px,100%);padding:22px;display:flex;flex-direction:column;gap:12px;font-family:'Space Mono',monospace;">
+    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#2b6a60;">{{ signTitle }}</div>
+    <div style="font-size:11px;line-height:1.5;color:#5c574c;">Draw your signature with a mouse, trackpad or finger — or type your name. Trackpad: tap once to start drawing, move, tap again to stop.</div>
+    <sc-if value="{{ hasSavedG }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#ffffff;border:1px solid #b9b2a4;padding:8px 10px;">
+        <img src="{{ savedGSrc }}" alt="Saved CC Jasper signature" style="height:40px;width:auto;max-width:50%;object-fit:contain;"></img>
+        <span style="font-size:10px;color:#5c574c;flex:1 1 140px;">CC Jasper signature on file</span>
+        <button onClick="{{ useSavedG }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#2b6a60;color:#ffffff;border:1px solid #2b6a60;">Use this signature</button>
+      </div>
+    </sc-if>
+    <canvas data-sig="" width="1000" height="300" style="width:100%;height:auto;aspect-ratio:10/3;background:#ffffff;border:1px solid #b9b2a4;touch-action:none;cursor:crosshair;"></canvas>
+    <input value="{{ signTyped }}" onChange="{{ onSignType }}" placeholder="Or type your full name" style="font-family:'EB Garamond',serif;font-size:16px;padding:6px 0;border:none;border-bottom:1px solid #6d675c;background:transparent;outline:none;">
+    <label style="display:flex;gap:8px;align-items:flex-start;font-size:10px;line-height:1.5;color:#5c574c;"><input type="checkbox" checked="{{ signAgree }}" onChange="{{ onSignAgree }}" style="margin-top:2px;">I agree this is my legal signature on this agreement.</label>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;">
+      <button onClick="{{ signClear }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#16150f;border:1px solid #b9b2a4;">Clear</button>
+      <button onClick="{{ signCancel }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#16150f;border:1px solid #b9b2a4;">Cancel</button>
+      <button onClick="{{ signAdopt }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#2b6a60;color:#ffffff;border:1px solid #2b6a60;">Sign</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<doc-page margin="0.8in">
+  <div style="font-family:'EB Garamond',serif;color:#16150f;font-size:11pt;line-height:1.5;display:flex;flex-direction:column;gap:12pt;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:0.75pt solid #16150f;padding-bottom:8pt;">
+      <img src="art/ccj-logo-black.png" alt="CC Jasper" style="height:14pt;width:auto;">
+      <span style="font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:#5c574c;">Death Is a Door</span>
+    </div>
+    <h2 style="margin:6pt 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26pt;line-height:1.1;">Curator Agreement</h2>
+    <p style="margin:0;text-wrap:pretty;">This Curator Agreement (“Agreement”) is made as of <b>{{ today }}</b> by and between:</p>
+    <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:4pt 18pt;">
+      <span style="font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.12em;text-transform:uppercase;color:#5c574c;padding-top:2pt;">Gallery</span><span>CC Jasper, 131 Chrystie Street, New York, NY 10002 (“Gallery”)</span>
+      <span style="font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.12em;text-transform:uppercase;color:#5c574c;padding-top:2pt;">Curator</span><span>{{ curator }} (“Curator”)</span>
+      <span style="font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.12em;text-transform:uppercase;color:#5c574c;padding-top:2pt;">Exhibition</span><span><i>Death Is a Door</i>, CC Jasper · opens {{ opening }} (“Exhibition”)</span>
+    </div>
+
+    <sc-for list="{{ clauses }}" as="c" hint-placeholder-count="12">
+      <div style="break-inside:avoid;display:flex;flex-direction:column;gap:3pt;">
+        <div contentEditable="{{ editable }}" suppressContentEditableWarning="{{ true }}" onBlur="{{ c.onTitle }}" style="font-family:'Space Mono',monospace;font-size:8.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#2b6a60;">{{ c.t }}</div>
+        <p contentEditable="{{ editable }}" suppressContentEditableWarning="{{ true }}" onBlur="{{ c.onBody }}" style="margin:0;text-wrap:pretty;">{{ c.b }}</p>
+      </div>
+    </sc-for>
+
+    <div style="break-inside:avoid;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24pt;margin-top:18pt;">
+      <sc-for list="{{ sigs }}" as="s" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;gap:14pt;">
+          <span style="font-family:'Space Mono',monospace;font-size:8pt;letter-spacing:0.12em;text-transform:uppercase;color:#5c574c;">{{ s.label }}</span>
+          <div style="position:relative;border-bottom:0.75pt solid #16150f;height:36pt;">
+            <sc-if value="{{ s.has }}" hint-placeholder-val="{{ false }}"><img src="{{ s.src }}" alt="Signature" style="position:absolute;left:0;bottom:1pt;height:33pt;max-width:100%;object-fit:contain;object-position:left bottom;"></img></sc-if>
+            <sc-if value="{{ s.canSign }}" hint-placeholder-val="{{ false }}"><button data-noprint="" onClick="{{ s.open }}" style="position:absolute;right:0;bottom:3pt;white-space:nowrap;font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;text-transform:uppercase;padding:3pt 7pt;cursor:pointer;background:#f7f4ee;color:#2b6a60;border:0.75pt solid #2b6a60;">{{ s.btn }}</button></sc-if>
+          </div>
+          <span style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Signature</span>
+          <div style="border-bottom:0.75pt solid #16150f;min-height:18pt;padding:4pt 0 2pt;box-sizing:border-box;">{{ s.name }}</div><span style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Printed name</span>
+          <div style="border-bottom:0.75pt solid #16150f;min-height:18pt;padding:4pt 0 2pt;box-sizing:border-box;">{{ s.when }}</div><span style="font-size:10pt;color:#5c574c;margin-top:-10pt;">Date</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;curatorName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Douglas Crocco, 441 W. Branch St., Lantana, FL 33462 · doug@allart.la&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Fee terms&quot;},&quot;feePct&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:10,&quot;min&quot;:0,&quot;max&quot;:30,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Fee terms&quot;},&quot;feeBasis&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Gallery commission&quot;,&quot;Gross sale price&quot;],&quot;default&quot;:&quot;Gallery commission&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Fee terms&quot;},&quot;termMonths&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:1,&quot;max&quot;:24,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Fee terms&quot;},&quot;payDays&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:30,&quot;min&quot;:0,&quot;max&quot;:120,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Fee terms&quot;},&quot;openingDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-11-12&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Fee terms&quot;}}">
+const KEY = 'didad-curator-v1', ID = 'curator';
+const SALT = 'ccj-didad-2026-k7q';
+const privTok = id => { let h1 = 0x811c9dc5, h2 = 0x1b873593; const s = SALT + ':' + id; for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); h1 = Math.imul(h1 ^ c, 16777619); h2 = Math.imul(h2 ^ c, 2246822519) + (h2 >>> 13); } return ((h1 >>> 0).toString(36) + (h2 >>> 0).toString(36)).slice(0, 12); };
+const BASE = 'https://dougcrocco.github.io/death-is-a-door-site/agreements/curator.html';
+const NRM = s => String(s == null ? '' : s).replace(/[\s\u00a0]+/g, ' ').trim();
+const CUR = { name: 'Douglas Crocco', email: 'doug@allart.la' };
+const stamp = () => { const n = new Date(); return n.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + ', ' + n.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }); };
+const rd = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+const SK = k => 'didad-sig-curator-' + k;
+
+class Component extends DCLogic {
+  priv = (() => { try { const p = new URLSearchParams(location.search).get('p'); if (!p) return null; const [id, k] = p.split('.'); return id === ID && k === privTok(ID) ? ID : ''; } catch (e) { return null; } })();
+  state = { d: rd(KEY) || {}, sg: {} };
+  componentDidMount() { this.load(); window.addEventListener('storage', () => this.load()); this._iv = setInterval(() => this.load(), 15000); this.initPad(); }
+  componentWillUnmount() { clearInterval(this._iv); }
+  load() { this.setState({ d: rd(KEY) || {}, sg: { g: rd(SK('g')), a: rd(SK('a')), file: rd('didad-sig-gallery') } }); }
+  saveD(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} this.setState({ d }); }
+  initPad() {
+    if (window.__curPad) { window.__curPad.self = this; return; }
+    const S = window.__curPad = { self: this, down: false, pen: false };
+    const cv = () => document.querySelector('canvas[data-sig]');
+    const xy = e => { const t = e.touches && e.touches[0] ? e.touches[0] : e; return [t.clientX, t.clientY]; };
+    const inside = (c, e) => { const r = c.getBoundingClientRect(), [X, Y] = xy(e); return X >= r.left && X <= r.right && Y >= r.top && Y <= r.bottom; };
+    const pt = (c, e) => { const r = c.getBoundingClientRect(), [X, Y] = xy(e); return [(X - r.left) * c.width / r.width, (Y - r.top) * c.height / r.height]; };
+    const pen = g => { g.lineWidth = 4; g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = '#16150f'; g.fillStyle = '#16150f'; };
+    const start = e => { const c = cv(); if (!c || !inside(c, e)) { S.pen = false; S.down = false; return; } e.preventDefault(); e.stopPropagation(); if (S.pen) { S.pen = false; S.down = false; return; } const me = S.self; if ((me.state.signTyped || '').trim()) { me.setState({ signTyped: '' }); c.getContext('2d').clearRect(0, 0, c.width, c.height); } const p = pt(c, e); const g = c.getContext('2d'); pen(g); g.beginPath(); g.arc(p[0], p[1], 2, 0, 7); g.fill(); S.l = p; c.__ink = true; const [X, Y] = xy(e); S.t0 = Date.now(); S.x0 = X; S.y0 = Y; S.down = true; };
+    const move = e => { if (!S.down) return; const c = cv(); if (!c) { S.down = false; S.pen = false; return; } e.preventDefault(); const p = pt(c, e); const g = c.getContext('2d'); pen(g); g.beginPath(); g.moveTo(S.l[0], S.l[1]); g.lineTo(p[0], p[1]); g.stroke(); S.l = p; };
+    const end = e => { if (!S.down) return; const [X, Y] = xy(e); if (!S.pen && Date.now() - S.t0 < 250 && Math.abs(X - S.x0) + Math.abs(Y - S.y0) < 4) { S.pen = true; return; } S.down = false; S.pen = false; };
+    const o = { capture: true, passive: false };
+    window.addEventListener('pointerdown', start, o); window.addEventListener('pointermove', move, o); window.addEventListener('pointerup', end, true); window.addEventListener('pointercancel', end, true);
+  }
+  drawTyped(t) { const c = document.querySelector('canvas[data-sig]'); if (!c) return; const g = c.getContext('2d'); g.clearRect(0, 0, c.width, c.height); c.__ink = !!t.trim(); if (!t.trim()) return; g.fillStyle = '#16150f'; let fs = 150; const f = () => 'italic ' + fs + 'px "Cormorant Garamond", cursive'; g.font = f(); while (g.measureText(t).width > c.width - 60 && fs > 40) { fs -= 8; g.font = f(); } g.textBaseline = 'middle'; g.fillText(t, 30, c.height / 2); }
+  edited(d) { return !!(d.cl && Object.keys(d.cl).length); }
+  voidSigs(d) {
+    const drop = this.priv ? ['g'] : ['a'], gone = [], sg = this.state.sg;
+    drop.forEach(k => { if (sg[k] && sg[k].src) { gone.push(k); try { localStorage.removeItem(SK(k)); } catch (e) {} } });
+    if (!gone.length) return d;
+    if (!d.snap) { const s = {}; gone.forEach(k => { s[k] = sg[k]; }); d = { ...d, snap: { cl: (this.state.d.cl || {}), sigs: s } }; }
+    this.setState(st => { const n = { ...st.sg }; gone.forEach(k => { n[k] = null; }); return { sg: n }; });
+    setTimeout(() => alert(this.priv ? 'You changed the terms, so CC Jasper’s signature has been removed. CC Jasper will review and sign again.' : 'You changed the terms, so the curator’s signature has been removed. They will need to review and sign again.'), 50);
+    return d;
+  }
+  setCl(cl) { let d = { ...this.state.d }; if (Object.keys(cl).length) d.cl = cl; else delete d.cl; if (this.priv) d.editedAt = stamp(); d = this.voidSigs(d); this.saveD(d); }
+  base(p) {
+    const pct = p.feePct ?? 10, basis = p.feeBasis ?? 'Gallery commission', months = p.termMonths ?? 6, pay = p.payDays ?? 30; const f = x => x.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); const o = new Date((p.openingDate ?? '2026-11-12') + 'T12:00:00'), e = new Date(o); e.setMonth(e.getMonth() + months); const span = months + ' months from the opening of the Exhibition (' + f(o) + ' – ' + f(e) + '), matching the consignment period';
+    const feeLine = basis === 'Gallery commission'
+      ? `The Curator will receive ${pct}% of the net sale price of each Covered Work. This fee is paid from the Gallery’s commission and does not reduce the artist’s share.`
+      : `The Curator will receive ${pct}% of the gross sale price of each Covered Work, before any split between the Gallery and the artist. The Gallery will confirm with each artist in writing how this fee is shared.`;
+    return [
+      ['1. Role', 'The Curator will select artists and artworks for the Exhibition, develop the curatorial statement, advise on installation and hanging, and support press and collector outreach in collaboration with the Gallery.'],
+      ['2. Covered Works', `“Covered Works” are artworks shown in the Exhibition that were selected by the Curator, and any other work by an Exhibition artist sold to a buyer introduced by the Curator. A Covered Work sold at any time during the term of this Agreement remains covered. Covered Works do not include works by the Curator, including the photograph Death Is a Door (2026); no curator fee is due on their sale.`],
+      ['3. Curator Fee', feeLine],
+      ['4. Net Sale Price', 'The net sale price is the price actually paid by the buyer, after any agreed discount, and excluding sales tax, shipping, crating, framing, installation and insurance charges passed to the buyer.'],
+      ['5. Payment', `The Gallery will pay the Curator within ${pay} days of receiving full, cleared payment from the buyer. Fees are due only on completed sales. If a sale is cancelled or refunded, no fee is due, and any fee already paid will be repaid or deducted from future fees.`],
+      ['6. Statements', 'With each payment, the Gallery will provide a statement listing the work, artist, buyer (or “private collection”), sale price, any discount, and the fee calculation.'],
+      ['7. Discounts', 'Discounts are at the Gallery’s discretion in consultation with the artist. Any discount reduces the net sale price on which the Curator’s fee is calculated.'],
+      ['8. Expenses', 'Each party pays its own expenses unless agreed in advance in writing. Pre-approved expenses will be reimbursed within 30 days of receipt.'],
+      ['9. Credit', 'The Curator will be credited as curator of the Exhibition in all press materials, wall text, the catalog and online listings.'],
+      ['10. Independent Contractor', 'The Curator is an independent contractor and is responsible for their own taxes. Nothing in this Agreement creates an employment relationship or partnership.'],
+      ['11. Term', `This Agreement runs for ${span}. Fees on sales agreed during this period remain payable after it ends. Once a Covered Work is returned to its artist, the Curator gives up any commission on later sales of that work. If the Gallery keeps a Covered Work beyond this period, the Curator keeps the right to a commission on its sale until the work is returned to the artist.`],
+      ['12. Governing Law', 'This Agreement is governed by the laws of the State of New York. It is the entire agreement between the parties on this subject and may be amended only in writing signed by both parties. Signatures delivered electronically are as valid as originals.']
+    ];
+  }
+  renderVals() {
+    const p = this.props, d = this.state.d || {}, sg = this.state.sg || {};
+    const fmt = x => x.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const isPrivate = this.priv === ID, bad = this.priv === '';
+    const BASEC = this.base(p);
+    const clauses = BASEC.map(([title, body]) => {
+      const ov = (d.cl || {})[title] || {}, name = ov.t ?? title, text = ov.b ?? body;
+      const setOv = (k, v) => { const cl = { ...(this.state.d.cl || {}) }; const o = { ...(cl[title] || {}) }; if (NRM(v) === NRM(k === 't' ? title : body)) delete o[k]; else o[k] = v; if (Object.keys(o).length) cl[title] = o; else delete cl[title]; this.setCl(cl); };
+      return { t: name, b: text, onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) !== NRM(name)) setOv('t', v); }, onBody: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) !== NRM(text)) setOv('b', v); } };
+    });
+    const g = sg.g && sg.g.src ? sg.g : null, a = sg.a && sg.a.src ? sg.a : null;
+    const open = (k, title) => () => { const c = document.querySelector('canvas[data-sig]'); if (c) c.__ink = false; this.initPad(); this.setState({ signFor: k, signTitle: title, signTyped: '', signAgree: false }); };
+    const sigs = [
+      { label: 'Gallery (CC Jasper)', has: !!g, src: g ? g.src : '', canSign: !isPrivate && !bad, open: open('g', 'Sign — Gallery (CC Jasper)'), btn: g ? 'Re-sign' : 'Sign digitally', name: 'Sienna Berritto, Gallery Director', when: g ? g.date : '' },
+      { label: 'Curator (' + CUR.name + ')', has: !!a, src: a ? a.src : '', canSign: !bad, open: open('a', 'Sign — Curator · ' + CUR.name), btn: a ? 'Re-sign' : 'Sign digitally', name: CUR.name, when: a ? a.date : '' }
+    ];
+    const st = g && a ? ['Fully signed', '#5fa08f', 'Curator signed ' + a.date + ' · CC Jasper signed ' + g.date + ' · a confirmation email has been sent to both.']
+      : a ? ['Signed by curator', '#c9a24a', a.date + ' · awaiting CC Jasper’s countersignature.']
+      : g ? ['Awaiting curator signature', '#c9a24a', 'CC Jasper signed ' + g.date + '.']
+      : ['Awaiting signatures', '#8f887c', 'Not yet signed by either party.'];
+    const url = BASE + '?p=' + ID + '.' + privTok(ID);
+    const changes = () => { const out = []; Object.keys(d.cl || {}).forEach(ti => { const ov = d.cl[ti], ob = (BASEC.find(x => x[0] === ti) || [])[1] || ''; if (ov.t !== undefined) out.push({ s: 'Section title: ' + ti, o: ti, n: ov.t }); if (ov.b !== undefined) out.push({ s: ov.t || ti, o: ob.slice(0, 1500), n: String(ov.b).slice(0, 1500) }); }); return out; };
+    return {
+      curator: p.curatorName || 'Douglas Crocco, 441 W. Branch St., Lantana, FL 33462 · doug@allart.la',
+      opening: fmt(new Date((p.openingDate ?? '2026-11-12') + 'T12:00:00')), today: fmt(new Date()),
+      clauses, sigs, editable: !bad, isPrivate, notPrivate: !isPrivate && !bad,
+      pvStatus: bad ? 'Link not valid' : st[0], pvC: bad ? '#e0614f' : st[1], pvDetail: bad ? 'Please ask CC Jasper for a new link.' : st[2],
+      isEdited: !bad && this.edited(d), showEditNote: !isPrivate && !!d.editedAt && this.edited(d), editNote: 'Last edited by the curator on ' + (d.editedAt || '') + '. Review before countersigning.',
+      hasSnap: !!d.snap,
+      restoreSigned: () => { const sn = this.state.d.snap; if (!sn || !confirm('Restore the terms as they were when signed, and bring back the removed signature?')) return; const nd = { ...this.state.d }; if (sn.cl && Object.keys(sn.cl).length) nd.cl = sn.cl; else delete nd.cl; delete nd.snap; delete nd.editedAt; const n = { ...this.state.sg }; Object.keys(sn.sigs || {}).forEach(k => { const v = sn.sigs[k]; if (v && v.src) { n[k] = v; try { localStorage.setItem(SK(k), JSON.stringify(v)); } catch (e) {} } }); this.setState({ sg: n }); this.saveD(nd); },
+      resetText: () => { if (!confirm('Reset all wording to the original?')) return; let nd = { ...this.state.d }; delete nd.cl; delete nd.editedAt; nd = this.voidSigs(nd); this.saveD(nd); },
+      doPrint: () => window.print(),
+      saveVerLabel: this.state.verSaved ? 'Saved ✓' : 'Save terms edits',
+      saveVer: () => { const at = new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); const nd = { ...this.state.d, versions: [...(this.state.d.versions || []), { at, by: isPrivate ? CUR.name : 'CC Jasper', cl: this.state.d.cl || {} }].slice(-12) }; this.saveD(nd); this.setState({ verSaved: true }); setTimeout(() => this.setState({ verSaved: false }), 2000); },
+      hasVers: !!(d.versions && d.versions.length), verOpen: !!this.state.verOpen && !!(d.versions && d.versions.length), toggleVers: () => this.setState(s => ({ verOpen: !s.verOpen })),
+      vers: (d.versions || []).map((v, i) => ({ label: v.at + ' · ' + v.by, restore: () => { if (!confirm('Restore the terms saved ' + v.at + '?')) return; if (JSON.stringify(v.cl || {}) !== JSON.stringify(this.state.d.cl || {})) this.setCl({ ...(v.cl || {}) }); this.setState({ verOpen: false }); }, del: () => { const nd = { ...this.state.d, versions: (this.state.d.versions || []).filter((_, j) => j !== i) }; this.saveD(nd); } })).reverse(),
+      shareLabel: this.state.shared ? 'Link copied ✓' : 'Private link',
+      shareLink: () => { const done = () => { this.setState({ shared: true }); setTimeout(() => this.setState({ shared: false }), 2500); }; if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => prompt('Copy this private link:', url)); else prompt('Copy this private link:', url); },
+      resendHref: 'mailto:' + CUR.email + '?subject=' + encodeURIComponent('Death Is a Door — curator agreement') + '&body=' + encodeURIComponent('Hi Doug,\n\nHere is your private link to review and sign the curator agreement for Death Is a Door:\n\n' + url + '\n\nYou can click any text to suggest a change. When ready, click "Sign digitally" on the Curator line.\n\nThank you,\nCC Jasper'),
+      signOpen: !!this.state.signFor, signTitle: this.state.signTitle || '', signTyped: this.state.signTyped || '', signAgree: !!this.state.signAgree,
+      hasSavedG: this.state.signFor === 'g' && !!(sg.file && sg.file.src), savedGSrc: sg.file ? sg.file.src : '',
+      useSavedG: () => { const im = new Image(); im.onload = () => { const c = document.querySelector('canvas[data-sig]'); if (c) { const x = c.getContext('2d'); x.clearRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height); c.__ink = true; } this.setState({ signTyped: '', signAgree: true }); }; im.src = sg.file.src; },
+      onSignType: e => { const t = e.target.value; this.setState({ signTyped: t }); this.drawTyped(t); },
+      onSignAgree: e => this.setState({ signAgree: e.target.checked }),
+      signClear: () => { const c = document.querySelector('canvas[data-sig]'); if (c) { c.getContext('2d').clearRect(0, 0, c.width, c.height); c.__ink = false; } this.setState({ signTyped: '' }); },
+      signCancel: () => this.setState({ signFor: null }),
+      signAdopt: () => {
+        const c = document.querySelector('canvas[data-sig]'); if (!c || !c.__ink) { alert('Please draw or type a signature first.'); return; } if (!this.state.signAgree) { alert('Please tick the box to confirm this is your signature.'); return; }
+        const k = this.state.signFor, date = stamp(); const sm = document.createElement('canvas'); sm.width = 400; sm.height = 120; const x = sm.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, 400, 120); x.drawImage(c, 0, 0, 400, 120); let src = sm.toDataURL('image/jpeg', 0.6); if (src.length > 12000) src = sm.toDataURL('image/jpeg', 0.4);
+        const sv = { src, date, name: 'Curator agreement — ' + CUR.name, email: CUR.email, link: url, edited: k === 'a' ? (d.editedAt || '') : '', changes: k === 'a' && d.editedAt ? changes() : [] };
+        try { localStorage.setItem(SK(k), JSON.stringify(sv)); if (k === 'g') localStorage.setItem('didad-sig-gallery', JSON.stringify({ src, date, from: 'curator' })); } catch (e) {}
+        const nd = { ...this.state.d }; delete nd.snap; this.saveD(nd);
+        this.setState(s => ({ sg: { ...s.sg, [k]: sv, ...(k === 'g' ? { file: { src, date } } : {}) }, signFor: null }));
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
