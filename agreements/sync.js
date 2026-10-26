@@ -51,7 +51,7 @@
       });
       Object.keys(localStorage).forEach(function (k) { if (synced(k) && !(k in (all || {})) && !t[k]) { pending[k] = 1; schedule(); } });
       if (!changed.length) { setStatus(state === 'idle' ? 'saved' : state); return; }
-      if (auto) { apply(changed); return; }
+      if (auto || /[?&]p=/.test(location.search)) { apply(changed); return; }
       showBanner(changed);
     }).catch(function () { setStatus('offline'); });
   }
@@ -76,7 +76,7 @@
     box.appendChild(dot); box.appendChild(txt); box.appendChild(nameBtn); document.body.appendChild(box);
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
-    if (!who()) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; var n = prompt('Your name (so the team can see who made each change):', ''); if (n && n.trim()) { rawSet('didad-who', n.trim()); paintName(); } }, 1500);
+    if (!who() && !/[?&]p=/.test(location.search)) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; var n = prompt('Your name (so the team can see who made each change):', ''); if (n && n.trim()) { rawSet('didad-who', n.trim()); paintName(); } }, 1500);
   }
   function paintName() { if (nameBtn) nameBtn.textContent = who() ? 'You: ' + who() : 'Set your name'; }
   function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; }
