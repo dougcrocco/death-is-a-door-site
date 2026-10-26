@@ -2,7 +2,7 @@
    Syncs every localStorage key starting with "didad-" across everyone using the pages. */
 (function () {
   if (window.__didadSync) return; window.__didadSync = true;
-  var URL = 'https://script.google.com/macros/s/AKfycbx1oGNDtZypqwhi-4FzUSwwPeCPrJ3oEUH_e_oRsCY2XJIMdTsh_9BsxpvRlKK2ylgrtg/exec';
+  var URL = 'https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec';
   var SKIP = { 'didad-sync-ts': 1, 'didad-who': 1, 'didad-desk-lastsent': 1, 'didad-sync-logts': 1 };
   var LS = window.localStorage, rawSet = LS.setItem.bind(LS), rawRemove = LS.removeItem.bind(LS);
   var page = (location.pathname.split('/').pop() || 'index.html').replace(/\.dc\.html$|\.html$/, '');
