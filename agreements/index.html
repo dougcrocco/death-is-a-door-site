@@ -22,6 +22,8 @@
   a:hover{color:#1d4a43}
   input::placeholder{color:#b3ad a1;color:#b3ada1}
 @media (max-width:700px){[data-lanes]{grid-template-columns:1fr !important}}
+  @media (max-width:980px){[data-abar]{grid-template-columns:repeat(3,minmax(0,1fr)) !important}[data-abar-name]{grid-column:1/-1;flex-direction:row !important;align-items:baseline;gap:12px !important}}
+  @media (max-width:560px){[data-abar]{grid-template-columns:1fr !important}}
   @media print{doc-page{zoom:1 !important} [data-sidepad]{margin-left:0 !important} [data-noprint]{display:none !important} input{border-bottom:0.75pt solid #16150f !important} input::placeholder{color:transparent !important}}
 </style>
 <script src="./doc-page.js"></script>
@@ -55,7 +57,7 @@
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;margin-left:auto;">
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
       <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
-        <button onClick="{{ saveVer }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 14px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ saveVerLabel }}</button>
+        <button onClick="{{ saveVer }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e0685a;border:1px solid #c4483b;padding:9px 16px;cursor:pointer;white-space:nowrap;" style-hover="background:#c4483b;color:#ffffff;">{{ saveVerLabel }}</button>
         <sc-if value="{{ hasVers }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleVers }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c4bcae;border:none;border-bottom:1px solid #6d675c;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Saved versions ▾</button></sc-if>
         <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;border:none;cursor:pointer;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF</button>
       <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;cursor:pointer;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;" style-hover="color:#7fa39b;">Print</button>
@@ -140,28 +142,32 @@
     </sc-if>
   </div>
   <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #2a2722;padding-top:16px;">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;background:#16150f;border:1px solid #2a2722;padding:12px 16px;">
-      <div style="display:flex;align-items:baseline;gap:12px;min-width:0;">
-        <span style="font-family:'EB Garamond',serif;font-size:22px;line-height:1.1;color:#f0eadd;white-space:nowrap;">{{ artistName }}</span>
+    <div data-abar="" style="display:grid;grid-template-columns:minmax(0,1fr) repeat(3,minmax(0,200px));align-items:center;gap:12px 14px;background:#16150f;border:1px solid #2a2722;padding:14px 16px;">
+      <div data-abar-name="" style="display:flex;flex-direction:column;gap:4px;min-width:0;">
+        <span style="font-family:'EB Garamond',serif;font-size:clamp(20px,2vw,24px);line-height:1.1;color:#f0eadd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ artistName }}</span>
         <span style="font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ selStatusC }};">{{ selStatus }}</span>
       </div>
-      <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
-        <a href="{{ curFull }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:{{ fullBg }};color:{{ fullFg }};" style-hover="color:#7fa39b;">Full terms</a>
-        <a href="{{ curDetail }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:{{ detBg }};color:{{ detFg }};" style-hover="color:#7fa39b;">Schedule A</a>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
-        <a href="{{ resendHref }}" title="Open an email with the private link" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;display:block;text-decoration:none;background:transparent;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">{{ resendLabel }}</a>
-        <button onClick="{{ shareLink }}" title="Copy a private link that shows only this artist's agreement" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;display:block;background:transparent;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">{{ shareLabel }}</button>
-        <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF</button>
-        <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
-          <button onClick="{{ downloadDocx }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#0d0c0b;color:#e9e3d6;" style-hover="color:#7fa39b;">DOC</button>
-          <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#0d0c0b;color:#e9e3d6;" style-hover="color:#7fa39b;">Print</button>
+      <div style="display:flex;flex-direction:column;align-items:stretch;gap:8px;">
+  <div style="display:flex;min-width:0;overflow:hidden;gap:1px;background:#3a3630;border:1px solid #3a3630;">
+          <a href="{{ curFull }}" style="flex:1 1 0;min-width:0;overflow:hidden;text-overflow:ellipsis;text-align:center;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 6px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:{{ fullBg }};color:{{ fullFg }};" style-hover="color:#7fa39b;">Full terms</a>
+          <a href="{{ curDetail }}" style="flex:1 1 0;min-width:0;overflow:hidden;text-overflow:ellipsis;text-align:center;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 6px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:{{ detBg }};color:{{ detFg }};" style-hover="color:#7fa39b;">Schedule A</a>
         </div>
+        <button onClick="{{ saveVer }}" title="Save the current wording as a version you can restore later" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;display:block;text-align:center;background:transparent;color:#e0685a;border:1px solid #c4483b;" style-hover="background:#c4483b;color:#ffffff;">{{ saveVerLabel }}</button>
       </div>
+        <div style="display:flex;flex-direction:column;align-items:stretch;gap:8px;">
+          <a href="{{ resendHref }}" title="Open an email with the private link" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;display:block;text-align:center;text-decoration:none;background:transparent;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">{{ resendLabel }}</a>
+          <button onClick="{{ shareLink }}" title="Copy a private link that shows only this artist's agreement" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;cursor:pointer;display:block;text-align:center;background:transparent;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">{{ shareLabel }}</button>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:stretch;gap:8px;">
+          <button onClick="{{ doPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;text-align:center;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF</button>
+          <div style="display:flex;gap:1px;justify-content:stretch;background:#3a3630;border:1px solid #3a3630;">
+          <button onClick="{{ downloadDocx }}" style="flex:1 1 0;text-align:center;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#0d0c0b;color:#e9e3d6;" style-hover="color:#7fa39b;">DOC</button>
+          <button onClick="{{ doPrint }}" style="flex:1 1 0;text-align:center;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;display:block;background:#0d0c0b;color:#e9e3d6;" style-hover="color:#7fa39b;">Print</button>
+        </div>
+        </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <button onClick="{{ saveVer }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:5px 10px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ saveVerLabel }}</button>
         <sc-if value="{{ hasVers }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleVers }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#c4bcae;border:none;border-bottom:1px solid #6d675c;padding:0 0 1px;cursor:pointer;white-space:nowrap;">Saved versions ▾</button></sc-if>
       </div>
       <sc-if value="{{ verOpen }}" hint-placeholder-val="{{ false }}">
@@ -662,7 +668,7 @@ class Component extends DCLogic {
       tx: TX,
       onTx: ONTX,
       onGoodFaith: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(d.gf ?? GF)) return; if (NRM(v) === NRM(GF)) this.unsetField('gf'); else this.setField('gf', v); },
-      saveVerLabel: this.state.verSaved ? 'Saved ✓' : 'Save terms version',
+      saveVerLabel: this.state.verSaved ? 'Saved ✓' : 'Save terms edits',
       saveVer: () => { const cur = { ...(this.state.data[A.id] || {}) }, f = {}; Object.keys(cur).forEach(x => { if (/^(cl|gf|tx|w[td]\d+)$/.test(x)) f[x] = cur[x]; }); const at = new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); cur.versions = [...(cur.versions || []), { at, by: this.priv ? A.name : 'CC Jasper', fields: f }].slice(-12); this.save({ data: { ...this.state.data, [A.id]: cur } }); this.setState({ verSaved: true }); setTimeout(() => this.setState({ verSaved: false }), 2000); },
       hasVers: !!(d.versions && d.versions.length), verOpen: !!this.state.verOpen, toggleVers: () => this.setState(s => ({ verOpen: !s.verOpen })),
       vers: (d.versions || []).map((v, i) => ({ label: v.at + ' · ' + v.by, restore: () => { if (!confirm('Restore the terms saved ' + v.at + '? Any signature on the current terms will be removed.')) return; const cur = { ...(this.state.data[A.id] || {}) }; const same = JSON.stringify(Object.fromEntries(Object.keys(cur).filter(x => /^(cl|gf|tx|w[td]\d+)$/.test(x)).sort().map(x => [x, cur[x]]))) === JSON.stringify(Object.fromEntries(Object.keys(v.fields).sort().map(x => [x, v.fields[x]]))); if (!same) { const gone = this.voidSigs(A.id); if (gone && gone.includes('a')) cur.signed = false; if (gone && this._snap && !cur.snap) cur.snap = this._snap; } Object.keys(cur).filter(x => /^(cl|gf|tx|w[td]\d+)$/.test(x)).forEach(x => delete cur[x]); Object.assign(cur, v.fields); this.save({ data: { ...this.state.data, [A.id]: cur }, verOpen: false }); }, del: () => { const cur = { ...(this.state.data[A.id] || {}) }; cur.versions = (cur.versions || []).filter((_, j) => j !== i); this.save({ data: { ...this.state.data, [A.id]: cur } }); } })).reverse(),
