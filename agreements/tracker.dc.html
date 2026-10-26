@@ -9,6 +9,8 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -185,9 +187,7 @@ function esc(v) { return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&
 function buildDoc(title, sub, head, body, imgCol) {
   const th = head.map(h => '<th style="text-align:left;font:600 8.5pt Arial,sans-serif;text-transform:uppercase;letter-spacing:0.06em;color:#555;border-bottom:1.5pt solid #222;padding:5pt 6pt;">' + esc(h) + '</th>').join('');
   const tr = body.map(r => '<tr>' + r.map((c, j) => '<td style="vertical-align:top;font:9.5pt Georgia,serif;color:#111;border-bottom:0.5pt solid #ccc;padding:6pt;">' + (j === imgCol && c ? '<img src="' + c + '" width="48" height="48" style="width:48px;height:48px;object-fit:contain;">' : esc(c)) + '</td>').join('') + '</tr>').join('');
-  return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + esc(title) + '</title>
-<link rel="icon" type="image/png" href="../favicon.png">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png"><style>@page{size:landscape;margin:0.5in}body{margin:0;padding:24px}tr{page-break-inside:avoid}</style></head><body>' +
+  return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + esc(title) + '</title><style>@page{size:landscape;margin:0.5in}body{margin:0;padding:24px}tr{page-break-inside:avoid}</style></head><body>' +
     '<img src="' + new URL('art/ccj-logo-black.png', location.href).href + '" alt="CC Jasper" style="height:16pt;width:auto;display:block;margin-bottom:8pt;"><div style="font:9pt Arial,sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#2b6a60;">Death Is a Door</div>' +
     '<h1 style="font:300 22pt Georgia,serif;margin:4pt 0 2pt;">' + esc(title) + '</h1>' +
     '<div style="font:9pt Arial,sans-serif;color:#666;margin-bottom:12pt;">' + esc(sub) + ' · ' + esc(new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })) + '</div>' +
