@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Death Is a Door — CC Jasper</title>
+<meta name="description" content="Death Is a Door — a group exhibition at CC Jasper, 131 Chrystie Street, New York. Opens Thursday, November 12, 2026.">
+<meta property="og:title" content="Death Is a Door — CC Jasper">
+<meta property="og:description" content="A group exhibition. Opens Thursday, November 12, 2026 · 131 Chrystie Street, New York.">
+<meta property="og:image" content="https://dougcrocco.github.io/death-is-a-door-site/art/doug-crocco-death-is-a-door-detail.jpg">
+<meta property="og:url" content="https://dougcrocco.github.io/death-is-a-door-site/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500;1,600;1,700&amp;family=Cormorant+SC:wght@300&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Space+Mono&amp;display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="art/doug-crocco-death-is-a-door-detail.jpg">
+<style>
+  html{scroll-behavior:smooth;background:#0d0c0b}
+  body{margin:0;overflow:hidden;overscroll-behavior:none;background:#0d0c0b;-webkit-font-smoothing:antialiased}
+  a{color:#7fa39b;text-decoration:none}
+  @media (max-width:760px){
+    article[data-wide]{display:grid !important;grid-template-columns:minmax(0,1fr) !important;row-gap:0 !important;align-content:center !important;padding:60px 20px 64px !important}
+    article[data-wide] > :first-child{grid-row:3 !important;width:100% !important;min-width:0 !important;max-width:100% !important;height:auto !important;max-height:40svh !important;object-fit:contain !important;margin:12px 0 14px !important}
+    article[data-wide] > :last-child{display:contents !important}
+    article[data-wide] > :last-child > *{min-width:0 !important;max-width:none !important}
+    article[data-wide] > :last-child > :nth-child(1){grid-row:1 !important}
+    article[data-wide] > :last-child > :nth-child(2){grid-row:2 !important}
+    article[data-wide] > :last-child > :nth-child(3){grid-row:4 !important;margin-top:0 !important}
+    article[data-wide] > :last-child > :nth-child(4){grid-row:5 !important}
+    article[data-stack]{display:grid !important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;column-gap:14px !important;row-gap:0 !important;align-content:center !important;align-items:start !important;padding:64px 20px 64px !important}
+    article[data-stack] > :first-child{grid-column:1 !important;grid-row:3 / span 4 !important;width:100% !important;min-width:0 !important;max-width:100% !important;display:flex !important;flex-direction:column !important;align-items:center !important}
+    article[data-stack] > :last-child{display:contents !important}
+    article[data-stack] > :last-child > *{grid-column:2 !important;min-width:0 !important}
+    article[data-stack] > :last-child > :nth-child(1){grid-column:1 / -1 !important;grid-row:1 !important}
+    article[data-stack] > :last-child > :nth-child(2){grid-column:1 / -1 !important;grid-row:2 !important;margin-bottom:14px !important}
+    article[data-stack] > :last-child > :nth-child(3){grid-row:3 !important;margin-top:0 !important}
+    article[data-stack] > :last-child > :nth-child(4){grid-row:4 !important}
+    article[data-stack] > :last-child > :nth-child(5){grid-row:5 !important}
+    article[data-mid]{display:grid !important;grid-template-columns:minmax(0,1fr) !important;row-gap:0 !important;align-content:center !important;padding:60px 20px 60px !important}
+    article[data-mid] > :first-child{grid-row:3 !important;width:100% !important;min-width:0 !important;max-width:100% !important;display:flex !important;flex-direction:column !important;align-items:center !important;margin:12px 0 14px !important}
+    article[data-mid] > :last-child{display:contents !important}
+    article[data-mid] > :last-child > *{min-width:0 !important;max-width:none !important}
+    article[data-mid] > :last-child > :nth-child(1){grid-row:1 !important}
+    article[data-mid] > :last-child > :nth-child(2){grid-row:2 !important}
+    article[data-mid] > :last-child > :nth-child(3){grid-row:4 !important;margin-top:0 !important}
+    article[data-mid] > :last-child > :nth-child(4){grid-row:5 !important}
+    article[data-mid] > :last-child > :nth-child(5){grid-row:6 !important}
+    article[data-mid] img, article[data-mid] video{width:auto !important;height:auto !important;max-height:36svh !important;max-width:100% !important}
+    article[data-stack] img, article[data-stack] video{width:100% !important;height:auto !important;max-height:62svh !important;max-width:100% !important}
+    [data-page]{overflow:hidden !important}
+    article p{font-size:14px !important;line-height:1.45 !important}
+    article h3{font-size:26px !important}
+    header{letter-spacing:0.12em !important;font-size:10px !important;padding:14px 16px !important}
+    [data-grid2]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;column-gap:16px !important}
+    [data-span]{grid-column:1 / -1 !important}
+    [data-names2]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;column-gap:16px !important}
+    [data-names2] > div, [data-grid2] [data-name]{font-size:20px !important}
+    [data-cur] p{font-size:15px !important;line-height:1.5 !important}
+    [data-cur]{padding-top:64px !important;padding-bottom:72px !important}
+    [data-cur] h2{margin-bottom:20px !important}
+  }
+  a:hover{color:#c98f7e}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="position:fixed;inset:0;overflow:hidden;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',Georgia,serif;">
+
+  <header style="position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(20px,5vw,64px);background:rgba(13,12,11,0.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(233,227,214,0.08);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;">
+    <a href="#1" onClick="{{ goHome }}" style="color:#f0eadd;">Death Is a Door</a>
+    <nav style="display:flex;gap:clamp(14px,3vw,32px);">
+      <a href="#4" onClick="{{ goWorks }}">Works</a>
+      <a href="artists.html">Artists</a>
+      <a href="#21" onClick="{{ goVisit }}">Visit</a>
+    </nav>
+  </header>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:1;visibility:visible;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section id="top" onClick="{{ next }}" style="cursor:pointer;position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;">
+    <img src="art/doug-crocco-death-is-a-door-detail.jpg" alt="Death Is a Door, detail" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:grayscale(0.25) brightness(0.7);">
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,12,11,0.95) 0%,rgba(13,12,11,0.35) 55%,rgba(13,12,11,0.5) 100%);"></div>
+    <div style="position:relative;padding:120px clamp(20px,5vw,64px) clamp(40px,7vw,80px);">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">A Group Exhibition — CC Jasper</div>
+      <h1 style="margin:18px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(64px,13vw,180px);line-height:0.9;color:#f0eadd;">Death<br>Is a Door</h1>
+      <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 32px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#b0a89b;">
+        <span>Opens Thursday, November 12, 2026</span>
+        <span>131 Chrystie Street, New York</span>
+      </div>
+      <a href="#2" onClick="{{ next }}" style="display:inline-block;margin-top:36px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#f0eadd;border:1px solid rgba(127,163,155,0.6);padding:12px 20px;">Enter →</a>
+    </div>
+  </section>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section id="premise" style="max-width:1100px;margin:0 auto;padding:clamp(80px,12vw,160px) clamp(20px,5vw,64px) clamp(40px,6vw,80px);">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">The Premise</div>
+    <p style="margin:28px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4.6vw,60px);line-height:1.15;color:#f0eadd;text-wrap:pretty;">A door is not an ending. It is the last architecture of the living — a frame we build around the one passage we cannot see through.</p>
+    <p style="margin:36px 0 0;font-size:clamp(19px,1.8vw,23px);line-height:1.6;color:#b7af9f;max-width:760px;text-wrap:pretty;">Death Is a Door gathers painting, sculpture, photography and moving image made at that threshold — art that lingers in the room between two worlds rather than choosing a side.</p>
+  </section>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section data-cur="" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">Curatorial Statement</div>
+    <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(28px,6vh,64px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,min(6vw,9vh),96px);line-height:1;color:#f0eadd;">The room between two worlds</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,48px);">
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(14px,2.4vh,24px);">
+        <p style="margin:0;font-size:clamp(16px,min(1.7vw,2.6vh),22px);line-height:1.55;color:#ded7c8;text-wrap:pretty;">Every culture builds a passage for the dead — a ferry, a gate, a veil, a flight of stairs into water. The passage is never the destination. It is the interval: the held breath between what was and what comes after.</p>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(14px,2.4vh,24px);">
+        <p style="margin:0;font-size:clamp(16px,min(1.7vw,2.6vh),22px);line-height:1.55;color:#b7af9f;text-wrap:pretty;">The works in this exhibition exist inside that interval. Their subjects are not death itself but its thresholds — a locked door, a boat mid-crossing, flowers already turning, fruit at the edge of rot. Beauty and decay share the same frame, because at the door they are the same event.</p>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(14px,2.4vh,24px);">
+        <p style="margin:0;font-size:clamp(16px,min(1.7vw,2.6vh),22px);line-height:1.55;color:#b7af9f;text-wrap:pretty;">To stand before these works is to stand at the threshold — <em style="color:#e9e3d6;">and to be asked, gently, to look through.</em></p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section id="works" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;overflow-y:auto;max-height:100svh;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">The Works</div>
+    <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(20px,4vh,44px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,min(5vw,7vh),64px);line-height:1.02;color:#f0eadd;">Every door in the room</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:clamp(14px,2.4vh,28px) clamp(14px,2vw,24px);">
+      <sc-for list="{{ worksIndex }}" as="wk" hint-placeholder-count="15">
+        <button data-noswipe="" onClick="{{ wk.go }}" style="display:flex;flex-direction:column;gap:8px;text-align:left;background:transparent;border:none;padding:0;cursor:pointer;color:inherit;font:inherit;" style-hover="opacity:0.82;">
+          <div style="aspect-ratio:1/1;width:100%;background:#16150f;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <img src="{{ wk.img }}" alt="{{ wk.title }}" loading="lazy" decoding="async" style="display:block;max-width:100%;max-height:100%;object-fit:contain;">
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#7fa39b;">{{ wk.num }}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,2.2vh,20px);line-height:1.15;color:#f0eadd;margin-top:-4px;">{{ wk.title }}</div>
+          <div style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;margin-top:-4px;">{{ wk.artist }}</div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/doug-crocco-death-is-a-door-pr.jpg" alt="Doug Crocco, Death Is a Door" loading="lazy" decoding="async" width="1080" height="996" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">I</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Death Is a Door</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Doug Crocco · 2026<br>Metallic photo paper face-mounted to acrylic · 80 × 40 in, over 95 × 104 in wall vinyl<br>Edition of 3 + 1 AP</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A door that cannot be opened and cannot be ignored. Crosses painted over corrosion; the chain that keeps the living out and the dead in. The exhibition's founding image and its plainest question — <em style="color:#e9e3d6;">what waits on the other side?</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <div style="flex:1.4 1 0;min-width:0;position:relative;display:flex;justify-content:center;align-items:center;">
+      <div style="position:relative;max-width:100%;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+      <video loop="{{ true }}" playsinline="{{ true }}" preload="none" data-src="art/unitedfutures-the-ferry.mp4" poster="art/unitedfutures-the-ferry-still.jpg" style="display:block;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    </video>
+      </div>
+    </div>
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">II</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">The Isle of the Dead 2026</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">unitedfutures · 2026 · AI-generated video, computer display, Arduino Uno Q, Rockite, foam, incense · 32 sec. · 18 × 24 in · edition 1/3</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A shrouded passenger is rowed toward a shore of cypress and stone. Every mythology keeps a boatman. Here the crossing is unhurried, almost tender — the transition as passage, not punishment.</p>
+      <p style="margin:clamp(10px,1.8vh,18px) 0 0;font-size:clamp(13px,1.9vh,16px);line-height:1.5;color:#8f887c;max-width:520px;text-wrap:pretty;">After Arnold Böcklin's <em>Isle of the Dead</em>, whose original and later versions have travelled through influence, the representation of death, and process.</p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/ellen-r-hanson-funeral-flowers-v3.jpg" alt="Ellen R Hanson, Funeral Flowers" loading="lazy" decoding="async" width="1403" height="515" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">III</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Funeral Flowers</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Ellen R Hanson · 2024<br>Oil and acrylic primer on lycra · 22 × 59 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">White flowers across a coffin, painted from a photograph and blurred until the moment slips its grip. Grief and memory work the same way — the harder we look, the softer the image becomes.</p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <div style="flex:1.4 1 0;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div data-noswipe="" onClick="{{ openCowan }}" style="position:relative;display:grid;max-width:100%;cursor:zoom-in;">
+        <img src="art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg" alt="Benjamin Cowan, Pigeon Feather, Stone, Giotto Crying Angels" loading="lazy" decoding="async" width="1009" height="1270" style="grid-area:1/1;display:block;max-width:100%;max-height:calc(100svh - 190px);width:auto;height:auto;object-fit:contain;justify-self:center;align-self:center;transition:opacity 400ms ease;opacity:{{ cowanMainOp }};">
+        <img src="art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-detail.jpg" alt="Detail" loading="lazy" decoding="async" width="960" height="1200" style="grid-area:1/1;display:block;max-width:100%;max-height:calc(100svh - 190px);width:auto;height:auto;object-fit:contain;justify-self:center;align-self:center;transition:opacity 400ms ease;opacity:{{ cowanDetailOp }};">
+      </div>
+      <button data-noswipe="" onClick="{{ toggleCowan }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;background:transparent;border:none;border-bottom:1px solid #3a3630;padding:6px 0;cursor:pointer;" style-hover="color:#7fa39b;border-bottom-color:#7fa39b;">{{ cowanLabel }}</button>
+    </div>
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">IV</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(24px,min(3.6vw,5vh),48px);line-height:1.06;color:#f0eadd;">Pigeon Feather, Stone, Giotto Crying Angels</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Benjamin Cowan · 2024<br>Oil and acrylic on canvas · 20 × 16 in · integrated wood frame</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">Giotto's mourning angels — the first figures in Western painting to grieve like people — reappear on a leaning wedge propped on a pigeon feather and a stone. Frame, wall and picture are painted the same turquoise, so the whole object becomes an aperture. <em style="color:#e9e3d6;">Grief balanced on the lightest possible thing.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/meredith-sellers-empty-after-holbein.jpg" alt="Meredith Sellers, Empty (After Holbein)" loading="lazy" decoding="async" width="1600" height="791" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">V</div>
+        <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Empty (After Holbein)</h3>
+        <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Meredith Sellers · 2026<br>Oil and latex paint on panel · 14½ × 29 × 1¾ in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">Holbein's entombed Christ, cropped down to the feet. Everything else is sealed under flat rose paint — the aperture holds only what the eye would reach last. <em style="color:#e9e3d6;">A door left ajar exactly wide enough to see that no one is behind it.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/henry-swanson-mask-from-dallas-v3.jpg" alt="Henry Swanson, Mask from Dallas" loading="lazy" decoding="async" width="576" height="723" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VI</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Mask from Dallas</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Henry Swanson · 2024<br>Oil on canvas · 10 × 8 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A skull worn as a face, tied on with string beneath a broad red hat, the living body still visible at its edges. On the Day of the Dead, families make a pilgrimage to tombs and final resting places to spend time with those they have lost. <em style="color:#e9e3d6;">The mask is a vibrant expression of ongoing communion between the living and the departed — family bonds carried across the threshold, not ended by it.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/aramis-gutierrez-the-turning-v2.jpg" alt="Aramis Gutierrez, Bletting Bananas and Mangos" loading="lazy" decoding="async" width="1410" height="1598" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VII</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Bletting Bananas and Mangos</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Aramis Gutierrez · 2026<br>Oil on canvas · 48 × 54 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">Blackened fruit nested in flowers at full bloom. The oldest painterly warning — <em style="color:#e9e3d6;">vanitas</em> — rendered without judgement. Ripeness and rot are not opposites; they are the same time on a clock, read at 12.</p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/l-spell-for-blue-light-222d-alignment.jpg" alt="L, Spell for blue light = 222D alignment" loading="lazy" decoding="async" width="1129" height="1600" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">VIII</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Spell for blue light = 222D alignment</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">L · 2020<br>Glass, oil, mixed materials · 5 × 5 × 10.75 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">Blue bulbs and blue lighters suspended in oil — light above, flame below. Across traditions, blue light marks the threshold of the spirit: the throat chakra’s voice of truth, the glow of protection and calm, the colour of heaven seen from below. Sealed in glass, it becomes a vessel for alignment. <em style="color:#e9e3d6;">Light held until the soul is ready to pass through.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/charlie-goering-three-tiered-camera-obscura.jpg" alt="Charlie Goering, Three-Tiered Camera Obscura" loading="lazy" decoding="async" width="800" height="641" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">IX</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Three-Tiered Camera Obscura</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Charlie Goering · 2024<br>Oil on canvas · 8 × 10 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A devil balances on a shaft of light thrown from a clock tower, three crosses and a half-read clock face below. The smallest work in the show, and the most schematic — less a scene than a diagram of a belief. <em style="color:#e9e3d6;">Time, judgement, and the trickster who works the hours.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/tom-delaney-rage-and-eternal-v2.jpg" alt="Tom DeLaney, Rage and Eternal" loading="lazy" decoding="async" width="1038" height="786" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">X</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Rage and Eternal</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Tom DeLaney · 2024<br>Oil on linen · 18 × 24 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A body twisting through fire, wings of shadow closing behind it, the flesh lit like hot metal. Not the calm crossing but the struggle at the door itself. <em style="color:#e9e3d6;">Rage against the passage, and the eternity waiting beyond it.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/meredith-sellers-desire-after-dieric-bouts.jpg" alt="Meredith Sellers, Desire (After Dieric Bouts)" loading="lazy" decoding="async" width="1600" height="1099" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XI</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Desire (After Dieric Bouts)</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Meredith Sellers · 2026<br>Oil and latex paint on panel · 14½ × 21 × 1¾ in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">Two windows cut into one teal field: the crucified hand, and the serpent. Bouts' pierced palm at one end, at the other the snake that death was supposed to settle — coiled, intact, still on its stone. <em style="color:#e9e3d6;">The victory and the thing it was won against, held in tension across a surface that will not let them meet.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-mid="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/pandele-radu-down-the-river-v2.jpg" alt="Pandele Radu, Down the River" loading="lazy" decoding="async" width="1134" height="1144" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XII</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Down the River</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Pandele Radu · 2026<br>Acrylic on linen · 39.37 × 39.37 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A coffin rides the red current, carried past the mountains toward a pale, open light. No oar, no mourners — the river does the work. What looks like an ending is a passage: the body adrift between one world and the next, already halfway into the glow. <em style="color:#e9e3d6;">The river does not come back.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/megan-lindeman-new-enlightened-era-coming-soon.jpg" alt="Megan Lindeman, New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)" loading="lazy" decoding="async" width="869" height="1146" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XIII</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Megan Lindeman · 2026<br>Plaster, pigment, fragrance · 18.25 × 8.5 × 5.5 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">An arched niche — part doorway, part headstone, part empty shrine — carries a promise in the grammar of a shopfront between tenants. The afterlife as forthcoming attraction. Faith and marketing speak the same tense: <em style="color:#e9e3d6;">coming soon.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-stack="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg" alt="Kenny Curwood, The World of Symbol Vanishes in the World as God" loading="lazy" decoding="async" width="1057" height="1192" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XIV</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(24px,min(3.6vw,5vh),48px);line-height:1.06;color:#f0eadd;">The World of Symbol Vanishes in the World as God</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Kenny Curwood · 2021<br>Brass and solder · 10 × 6 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A brass staircase climbs out of a scalloped cloud toward an eye whose pupil is an arched doorway. Held against the sky, the sculpture is mostly air — the ascent is something you look through. <em style="color:#e9e3d6;">The door is looking back.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row-reverse;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg" alt="Charlie Goering, Metamorphosis, or The Dark Night of the Soul" loading="lazy" decoding="async" width="1259" height="1285" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XV</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(24px,min(3.6vw,5vh),48px);line-height:1.06;color:#f0eadd;">Metamorphosis, or The Dark Night of the Soul</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Charlie Goering · 2025<br>Oil on canvas · 72 × 72 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">A skeleton sleeps curled against the rim of a star-scored globe, arms folded under its skull like any tired body. The night is not above it — it is the thing it lies on. <em style="color:#e9e3d6;">At seventy-two inches square, the door here is the size of a room.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <article data-wide="" style="max-width:1440px;margin:0 auto;height:100svh;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 76px;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:32px clamp(16px,5vw,96px);">
+    <img src="art/srijon-chowdhury-moth-xiii-c.jpg" alt="Srijon Chowdhury, Moth (XIII)" loading="lazy" decoding="async" width="1600" height="1065" style="cursor:zoom-in;display:block;flex:1.4 1 0;min-width:0;max-width:100%;max-height:calc(100svh - 160px);width:auto;height:auto;object-fit:contain;">
+    <div style="flex:1 1 0;min-width:0;max-width:540px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">XVI</div>
+      <h3 style="margin:clamp(8px,1.4vh,14px) 0 0;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,min(4vw,5.6vh),54px);line-height:1.02;color:#f0eadd;">Moth (XIII)</h3>
+      <div style="margin-top:clamp(8px,1.6vh,16px);font-family:'Space Mono',monospace;font-size:clamp(11px,1.5vh,13px);line-height:1.6;color:#8f887c;">Srijon Chowdhury · 2026<br>Oil on linen · 24 × 36 in</div>
+      <p style="margin:clamp(12px,2.4vh,24px) 0 0;font-size:clamp(14px,min(1.6vw,2.3vh),21px);line-height:1.5;color:#c4bcae;max-width:520px;text-wrap:pretty;">The moth has long been read as the soul leaving the body — the Greeks used one word, <em style="color:#e9e3d6;">psyche</em>, for both. It flies only at night and dies seeking the light. Here its wings hold the dead: skeletons riding bone horses, archers drawing bows, a heart at the center, all spread over a field of night flowers. <em style="color:#e9e3d6;">Death as metamorphosis — the body a cocoon, the soul the thing that leaves it.</em></p>
+    </div>
+  </article>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section id="artists" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">The Artists</div>
+    <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(24px,5vh,56px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,min(5vw,7vh),64px);line-height:1.02;color:#f0eadd;">Many practices, one threshold</h2>
+    <div data-grid2="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,40px);">
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);grid-column:span 2;">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Painting</div>
+        <div data-names2="" style="margin-top:clamp(8px,1.6vh,14px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));column-gap:clamp(20px,3vw,40px);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Aramis Gutierrez</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Ellen R Hanson</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Benjamin Cowan</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Meredith Sellers</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Charlie Goering</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Henry Swanson</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Tom DeLaney</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Pandele Radu</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Srijon Chowdhury</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Sculpture</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">L</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Megan Lindeman</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Kenny Curwood</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Photography</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Doug Crocco</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Moving Image</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">unitedfutures</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section id="visit" style="width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:76px clamp(20px,5vw,64px) 90px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:#7fa39b;">Visit</div>
+    <h2 style="margin:clamp(10px,1.8vh,20px) 0 clamp(24px,5vh,56px);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,min(5vw,7vh),64px);line-height:1.02;color:#f0eadd;">Opening November 12</h2>
+    <div data-grid2="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,3vh,40px) clamp(24px,3vw,40px);">
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Venue</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">CC Jasper</div>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Address</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">131 Chrystie Street<br>New York, NY 10002</div>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Opens</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">Thursday,<br>November 12, 2026</div>
+      </div>
+      <div style="border-top:1px solid rgba(233,227,214,0.2);padding-top:clamp(12px,2vh,22px);">
+        <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vh,11px);letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;">Reception</div>
+        <div style="margin-top:clamp(8px,1.6vh,14px);font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.2vh,32px);line-height:1.25;color:#f0eadd;">6–9 pm</div>
+      </div>
+    </div>
+    <div style="margin-top:clamp(28px,6vh,72px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px 40px;border-top:1px solid rgba(233,227,214,0.1);padding-top:clamp(14px,2.4vh,24px);">
+      <p style="margin:0;font-size:clamp(15px,2.2vh,19px);line-height:1.5;color:#9a9184;max-width:560px;text-wrap:pretty;">Press: high-resolution images, the full checklist and artist interviews are available now. Walkthroughs on request.</p>
+      <a href="mailto:gallery@ccjasper.nyc" style="font-family:'Space Mono',monospace;font-size:clamp(12px,1.7vh,15px);letter-spacing:0.06em;">gallery@ccjasper.nyc</a>
+    </div>
+  </section>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <footer style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,64px);text-align:center;border-top:1px solid rgba(233,227,214,0.1);">
+    <p style="margin:0 auto;max-width:900px;font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(24px,3vw,36px);line-height:1.5;color:#ded7c8;text-wrap:pretty;">The time: the minutes, days, and weeks after. The feeling one holds for what was. The echo of stillness that occupies the void. The darkness that leads to the next reality.</p>
+    <div style="margin-top:36px;font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);color:#f0eadd;">Death is a door.</div>
+  </footer>
+  </div>
+
+  <div data-page="" style="position:absolute;inset:0;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column;justify-content:safe center;opacity:0;visibility:hidden;transition:opacity 450ms ease,visibility 0s linear 450ms;">
+  <section id="look-through" style="position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-sizing:border-box;padding:clamp(72px,10vh,110px) clamp(20px,5vw,64px) clamp(80px,10vh,110px);">
+    <video loop="{{ true }}" muted="{{ true }}" playsinline="{{ true }}" preload="none" data-src="art/death-is-a-door-look-through.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#0d0c0b;"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,12,11,0.55) 0%,rgba(13,12,11,0.2) 40%,rgba(13,12,11,0.7) 100%);"></div>
+    <div data-fade="" style="position:absolute;inset:0;background:#0d0c0b;opacity:0;pointer-events:none;"></div>
+    <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.6vh,18px);text-align:center;">
+      <h2 style="margin:0;font-family:'Cormorant SC',serif;font-weight:300;font-size:clamp(40px,8vw,108px);line-height:1;letter-spacing:0.04em;color:#f0eadd;text-shadow:0 2px 3px rgba(0,0,0,0.6),0 8px 40px rgba(0,0,0,0.75);">DEATH IS A DOOR</h2>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px clamp(20px,5vw,64px);font-family:'Space Mono',monospace;font-size:clamp(10px,1.4vw,14px);letter-spacing:0.16em;text-transform:uppercase;color:#f0eadd;text-shadow:0 2px 3px rgba(0,0,0,0.6);"><span>CC Jasper</span><span>New York</span><span>11.12.26</span></div>
+    </div>
+    <div style="position:relative;width:100%;max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,48px);align-items:flex-end;">
+      <p style="margin:0;flex:0.8 1 240px;min-width:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(22px,2.8vw,42px);line-height:1.14;color:#f0eadd;text-shadow:0 2px 3px rgba(0,0,0,0.6),0 8px 40px rgba(0,0,0,0.75);text-wrap:pretty;">To stand before these works is to stand at the threshold —</p>
+      <p style="margin:0;flex:1.3 1 380px;min-width:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(48px,7vw,112px);line-height:0.92;color:#f0eadd;text-shadow:0 2px 3px rgba(0,0,0,0.6),0 8px 40px rgba(0,0,0,0.75);text-wrap:pretty;"><span style="font-weight:300;">and to be asked,</span> <span style="font-weight:300;">gently,</span> <span style="font-weight:500;">to</span> <span style="font-weight:600;">look</span> <span style="font-weight:700;">through.</span></p>
+    </div>
+  </section>
+  </div>
+
+  <div style="position:absolute;right:clamp(12px,4vw,48px);bottom:clamp(8px,1.5vw,16px);z-index:20;display:flex;flex-direction:row;flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:clamp(4px,1vw,10px);font-family:'Space Mono',monospace;">
+    <sc-if value="{{ showSound }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleMute }}" aria-label="Toggle sound" style="flex:0 0 auto;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#6d675c;background:transparent;border:none;padding:0;" style-hover="color:#7fa39b;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"></path><sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}"><path d="M16.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 6a8.5 8.5 0 0 1 0 12"></path></sc-if><sc-if value="{{ muted }}" hint-placeholder-val="{{ false }}"><path d="M16 9l5 6"></path><path d="M21 9l-5 6"></path></sc-if></svg>
+      </button></sc-if>
+    <span style="flex:0 0 auto;white-space:nowrap;font-size:12px;letter-spacing:0.14em;color:#8f887c;margin-right:8px;">{{ counter }}</span>
+    <button onClick="{{ prev }}" aria-label="Previous" style="flex:0 0 auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#e9e3d6;background:rgba(13,12,11,0.45);border:none;backdrop-filter:blur(4px);" style-hover="color:#7fa39b;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+    <button onClick="{{ next }}" aria-label="Next" style="flex:0 0 auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:#e9e3d6;background:rgba(13,12,11,0.45);border:none;backdrop-filter:blur(4px);" style-hover="color:#7fa39b;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+  </div>
+
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-noswipe="" onClick="{{ closeLb }}" style="position:fixed;inset:0;z-index:100;background:rgba(8,7,6,0.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:clamp(12px,3vw,40px);box-sizing:border-box;cursor:zoom-out;">
+      <img src="{{ lbSrc }}" alt="{{ lbAlt }}" style="display:block;max-width:100%;max-height:calc(100svh - 90px);object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,0.6);">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;text-align:center;">{{ lbAlt }}</div>
+      <sc-if value="{{ lbDual }}" hint-placeholder-val="{{ false }}"><button onClick="{{ lbSwap }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e9e3d6;background:transparent;border:none;border-bottom:1px solid #6d675c;padding:6px 0;cursor:pointer;" style-hover="color:#7fa39b;border-bottom-color:#7fa39b;">{{ cowanLabel }}</button></sc-if>
+      <button onClick="{{ closeLb }}" aria-label="Close" style="position:absolute;top:clamp(10px,2vw,24px);right:clamp(10px,2vw,24px);width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:#e9e3d6;cursor:pointer;" style-hover="color:#7fa39b;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { i: 0, n: 23, muted: false, cowanDetail: false };
+  rootRef = React.createRef();
+  pages() { return this.rootRef.current ? [...this.rootRef.current.querySelectorAll('[data-page]')] : []; }
+  step = (d, e) => { const W = 3; const n = this.pages().length || this.state.n; let j = this.state.i + d; if (j === W) j += d; if (j < 0 || j >= n) j = this.state.i; this.go(j, e); };
+  go = (i, e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const now = Date.now();
+    if (this.lastGo && now - this.lastGo < 300) return;
+    this.lastGo = now;
+    const n = this.pages().length || this.state.n;
+    const j = Math.max(0, Math.min(n - 1, i));
+    const tp = this.pages()[j];
+    if (tp) tp.querySelectorAll('video').forEach(v => { if (v.paused) this.playVid(v); });
+    this.setState({ i: j, n }, () => this.apply());
+  };
+  apply() {
+    const ps = this.pages();
+    ps.forEach((p, k) => {
+      const on = k === this.state.i;
+      p.style.opacity = on ? '1' : '0';
+      p.style.visibility = on ? 'visible' : 'hidden';
+      p.style.transition = on ? 'opacity 450ms ease 150ms,visibility 0s' : 'opacity 300ms ease,visibility 0s linear 300ms';
+      p.style.zIndex = on ? '1' : '0';
+      p.querySelectorAll('[data-fade]').forEach(f => {
+        if (on && f.__on) return;
+        if (f.__raf) cancelAnimationFrame(f.__raf);
+        f.style.transition = 'none'; f.style.opacity = '0';
+        if (!on) { f.__on = false; return; }
+        f.__on = true;
+        const v = f.parentNode.querySelector('video');
+        const tick = () => {
+          const D = v && v.duration ? v.duration : 18.4, F = Math.max(1, D - 2.5), lt = v ? v.currentTime : 0, k = F * 0.92;
+          f.style.opacity = lt < k ? 0.68 * Math.pow(lt / k, 1.25) : lt < F ? 0.68 + 0.32 * Math.pow((lt - k) / (F - k), 2) : 1;
+          f.__raf = requestAnimationFrame(tick);
+        };
+        if (v) { try { v.currentTime = 0; } catch (x) {} }
+        tick();
+      });
+      p.querySelectorAll('video').forEach(v => {
+        if (on) { if (v.paused) this.playVid(v); if (v.readyState < 3) v.addEventListener('canplay', () => { if (this.pages()[this.state.i] === p) this.playVid(v); }, { once: true }); }
+      });
+      if (Math.abs(k - this.state.i) <= 1) { p.querySelectorAll('img[loading="lazy"]').forEach(im => im.loading = 'eager'); p.querySelectorAll('video[data-src]').forEach(v => this.loadVid(v, p)); }
+      else if (p.querySelector('#look-through') && (this.state.i >= ps.length - 8 || this.lastReady)) p.querySelectorAll('video[data-src]').forEach(v => this.loadVid(v, p));
+    });
+    if (ps[this.state.i]) ps[this.state.i].scrollTop = 0;
+    try { history.replaceState(null, '', '#' + (this.state.i + 1)); } catch (e) {}
+  }
+  loadVid(v, p) {
+    if (v.__loading) return;
+    v.__loading = true;
+    const url = v.getAttribute('data-src');
+    v.loop = true;
+    v.addEventListener('ended', () => { try { v.currentTime = 0; } catch (x) {} v.play().catch(()=>{}); });
+    v.addEventListener('timeupdate', () => { if (v.duration && v.currentTime >= v.duration - 0.25 && !v.paused) { try { v.currentTime = 0; } catch (x) {} } });
+    fetch(url).then(r => r.blob()).then(b => {
+      v.src = URL.createObjectURL(b.type ? b : new Blob([b], { type: 'video/mp4' }));
+      v.load();
+      if (this.pages()[this.state.i] === p) this.playVid(v);
+    }).catch(() => { v.src = url; });
+  }
+  playVid(v) {
+    if (!v.src) return;
+    if (!this.state.started) this.setState({ started: true });
+    v.muted = !!this.state.muted; v.volume = 1;
+    const pr = v.play && v.play();
+    if (pr) pr.catch(() => { v.muted = true; this.setState({ muted: true }); v.play().catch(()=>{}); });
+  }
+  componentDidMount() {
+    this.lastTimer = setTimeout(() => { this.lastReady = true; const ps = this.pages(); const lp = ps.find(p => p.querySelector('#look-through')); if (lp) lp.querySelectorAll('video[data-src]').forEach(v => this.loadVid(v, lp)); }, 3500);
+    this.onFirst = () => {
+      const p = this.pages()[this.state.i];
+      if (p) p.querySelectorAll('video').forEach(v => { if (v.paused || (v.muted && !this.state.muted)) this.playVid(v); });
+    };
+    window.addEventListener('pointerdown', this.onFirst);
+    const h = parseInt((location.hash || '').slice(1), 10);
+    const n = this.pages().length || 23;
+    this.setState({ n, i: h >= 1 && h <= n ? h - 1 : 0 }, () => this.apply());
+    this.onKey = e => {
+      if (this.state.lb) { if (e.key === 'Escape' || e.key === ' ') { e.preventDefault(); this.setState({ lb: null }); } return; }
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); this.step(1); }
+      else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); this.step(-1); }
+    };
+    this.onTap = e => {
+      if (this.state.lb) return;
+      const im = e.target.closest && e.target.closest('article img');
+      if (im && !im.closest('[data-noswipe]')) { e.preventDefault(); e.stopPropagation(); this.setState({ lb: { src: im.currentSrc || im.src, alt: im.alt } }); return; }
+      if (!window.matchMedia('(hover: none), (max-width: 760px)').matches) return;
+      if (e.defaultPrevented) return;
+      const t = e.target;
+      if (t.closest && t.closest('a,button,video,input,[data-noswipe],header')) return;
+      e.preventDefault();
+      this.step(e.clientX < window.innerWidth / 2 ? -1 : 1);
+    };
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('click', this.onTap);
+  }
+  componentDidUpdate(pp, ps) { if (ps.i !== this.state.i || ps.n !== this.state.n) this.apply(); }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('pointerdown', this.onFirst);
+    window.removeEventListener('click', this.onTap);
+  }
+  cowanLb(d) { return d ? { cowan: true, src: 'art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-detail.jpg', alt: 'Benjamin Cowan, Pigeon Feather, Stone, Giotto Crying Angels — detail' } : { cowan: true, src: 'art/benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg', alt: 'Benjamin Cowan, Pigeon Feather, Stone, Giotto Crying Angels' }; }
+  renderVals() {
+    const { i, n } = this.state;
+    const pad = x => String(x).padStart(2, '0');
+    return {
+      rootRef: this.rootRef,
+      lbOpen: !!this.state.lb,
+      lbSrc: this.state.lb ? this.state.lb.src : '',
+      lbAlt: this.state.lb ? this.state.lb.alt : '',
+      lbDual: !!(this.state.lb && this.state.lb.cowan),
+      lbSwap: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.setState(s => { const d = !s.cowanDetail; return { cowanDetail: d, lb: this.cowanLb(d) }; }); },
+      closeLb: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.lastGo = Date.now(); this.setState({ lb: null }); },
+      cowanMainOp: this.state.cowanDetail ? 0 : 1,
+      cowanDetailOp: this.state.cowanDetail ? 1 : 0,
+      cowanLabel: this.state.cowanDetail ? 'View full work' : 'View detail',
+      openCowan: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.setState({ lb: this.cowanLb(this.state.cowanDetail) }); },
+      toggleCowan: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.lastGo = Date.now(); this.setState(s => ({ cowanDetail: !s.cowanDetail })); },
+      soundOn: !this.state.muted,
+      showSound: !!this.state.started,
+      muted: !!this.state.muted,
+      toggleMute: e => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const m = !this.state.muted;
+        this.setState({ muted: m });
+        this.pages().forEach(p => p.querySelectorAll('video').forEach(v => { v.muted = m; if (!m && v.paused && v.src) v.play().catch(()=>{}); }));
+      },
+      counter: i === 3 ? 'Works' : pad(i < 3 ? i + 1 : i) + ' / ' + pad(n - 1),
+      next: e => this.step(1, e),
+      prev: e => this.step(-1, e),
+      goHome: e => this.go(0, e),
+      goWorks: e => this.go(3, e),
+      goArtists: e => this.go(20, e),
+      goVisit: e => this.go(21, e),
+      worksIndex: [["I","Death Is a Door","Doug Crocco","doug-crocco-death-is-a-door-pr.jpg"],["II","The Isle of the Dead 2026","unitedfutures","unitedfutures-the-ferry-still.jpg"],["III","Funeral Flowers","Ellen R Hanson","ellen-r-hanson-funeral-flowers-v3.jpg"],["IV","Pigeon Feather, Stone, Giotto Crying Angels","Benjamin Cowan","benjamin-cowan-pigeon-feather-stone-giotto-crying-angels-ps.jpg"],["V","Empty (After Holbein)","Meredith Sellers","meredith-sellers-empty-after-holbein.jpg"],["VI","Mask from Dallas","Henry Swanson","henry-swanson-mask-from-dallas-v3.jpg"],["VII","Bletting Bananas and Mangos","Aramis Gutierrez","aramis-gutierrez-the-turning-v2.jpg"],["VIII","Spell for blue light = 222D alignment","L","l-spell-for-blue-light-222d-alignment.jpg"],["IX","Three-Tiered Camera Obscura","Charlie Goering","charlie-goering-three-tiered-camera-obscura.jpg"],["X","Rage and Eternal","Tom DeLaney","tom-delaney-rage-and-eternal-v2.jpg"],["XI","Desire (After Dieric Bouts)","Meredith Sellers","meredith-sellers-desire-after-dieric-bouts.jpg"],["XII","Down the River","Pandele Radu","pandele-radu-down-the-river-v2.jpg"],["XIII","New eNightened Era, Coming Soon (Color pallet: Bleached-out Divine Feminine + LA Smog)","Megan Lindeman","megan-lindeman-new-enlightened-era-coming-soon.jpg"],["XIV","The World of Symbol Vanishes in the World as God","Kenny Curwood","kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg"],["XV","Metamorphosis, or The Dark Night of the Soul","Charlie Goering","charlie-goering-metamorphosis-or-the-dark-night-of-the-soul.jpg"],["XVI","Moth (XIII)","Srijon Chowdhury","srijon-chowdhury-moth-xiii-c.jpg"]].map(([num, title, artist, f], k) => ({ num, title, artist, img: 'art/' + f, go: e => { if (e) { e.stopPropagation(); e.preventDefault(); } this.go(4 + k, e); } })),
+    };
+  }
+}
+</script>
+</body>
+</html>
