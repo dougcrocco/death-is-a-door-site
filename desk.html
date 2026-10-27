@@ -314,13 +314,13 @@ class Component extends DCLogic {
       const artists = {}; rows.forEach(r => { const a = artists[r[2]] || (artists[r[2]] = { sent: true, signed: true }); if (!/true/i.test(r[9])) a.sent = false; if (!/true/i.test(r[10])) a.signed = false; });
       const A = Object.values(artists), n = A.length, signed = A.filter(a => a.signed).length, sent = A.filter(a => a.sent && !a.signed).length, toSend = A.filter(a => !a.sent && !a.signed).length;
       const st = r => ({ ...(DEF[r[2]] || {}), ...(ship[r[0]] || {}) });
-      const del = rows.filter(r => (st(r).status || 0) >= 3).length, moving = rows.filter(r => { const s = st(r).status || 0; return s === 1 || s === 2; }).length;
+      const del = rows.filter(r => (st(r).status || 0) === 3).length, moving = rows.filter(r => { const s = st(r).status || 0; return s === 1 || s === 2; }).length;
       const todos = TASKS.map(t => ({ u: 1, href: 'install-plan.html', ...t }));
       if (toSend) todos.push({ src: 'Agreements', u: 0, pin: 200, who: toSend + ' agreements', what: ' still to send', href: 'agreements/tracker.html' });
       if (sent) todos.push({ src: 'Agreements', u: 1, who: toSend ? sent + ' sent' : 'All sent', what: ' — waiting on ' + sent + ' consignment signature' + (sent === 1 ? '' : 's') + ' from artists', href: 'agreements/index.html' });
       const seen = {};
       const sh = [];
-      rows.forEach(r => { const d = st(r); if (seen[r[2]] || d.done || (d.status || 0) >= 3 || !d.notes) return; seen[r[2]] = 1; sh.push({ src: 'Shipping', who: r[2], what: ' — ' + d.notes, href: 'agreements/shipping.html?artist=' + encodeURIComponent(r[2]), open: FLAG.test(d.notes + ' ' + (d.carrier || '') + ' ' + (d.eta || '')) }); });
+      rows.forEach(r => { const d = st(r); if (seen[r[2]] || d.done || (d.status || 0) === 3 || !d.notes) return; seen[r[2]] = 1; sh.push({ src: 'Shipping', who: r[2], what: ' — ' + d.notes, href: 'agreements/shipping.html?artist=' + encodeURIComponent(r[2]), open: FLAG.test(d.notes + ' ' + (d.carrier || '') + ' ' + (d.eta || '')) }); });
       const SET_U = { 'Benjamin Cowan': 1, 'Kenny Curwood': 2, 'Aramis Gutierrez': 2, 'Henry Swanson': 1, 'Pandele Radu': 1, 'Ellen R Hanson': 1 };
       const SPLIT = { 'Pandele Radu': [
         { src: 'Shipping', what: ' — friend is bringing it on a flight; may need pickup from a midtown hotel', href: 'agreements/shipping.html' },
