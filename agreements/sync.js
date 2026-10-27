@@ -26,7 +26,7 @@
   }
   ['focusin', 'mousedown', 'beforeinput', 'keydown', 'paste', 'drop'].forEach(function (ev) { document.addEventListener(ev, blockEdit, true); });
 
-  function label(k) { return ({ 'didad-tracker-v1': 'Consignment Tracker', 'didad-shipping-v1': 'Shipping Tracker', 'didad-consign-v1': 'Agreements', 'didad-desk-custom': 'Desk · items', 'didad-desk-hidden': 'Desk · deleted items', 'didad-desk-urg': 'Desk · urgency', 'didad-desk-order': 'Desk · order', 'didad-desk-events': 'Calendar · events', 'didad-desk-evo': 'Calendar · built-in dates', 'didad-desk-log': 'Desk · log' })[k] || k.replace('didad-', ''); }
+  function label(k) { return ({ 'didad-tracker-v1': 'Consignment Tracker', 'didad-shipping-v1': 'Shipping Tracker', 'didad-consign-v1': 'Agreements', 'didad-desk-custom': 'Desk · items', 'didad-desk-hidden': 'Desk · deleted items', 'didad-desk-urg': 'Desk · urgency', 'didad-desk-order': 'Desk · order', 'didad-desk-events': 'Calendar · events', 'didad-desk-evo': 'Calendar · built-in dates', 'didad-desk-log': 'Desk · log', 'didad-desk-eds': 'Desk · edited items' })[k] || k.replace('didad-', ''); }
 
   function flush() {
     timer = null; var keys = Object.keys(pending); if (!keys.length) return; pending = {};
