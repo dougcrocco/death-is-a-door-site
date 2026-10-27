@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Space+Mono&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#070706;} a{color:#7fa39b;} a:hover{color:#e9e3d6;}</style>
+</helmet>
+<section style="padding:48px;display:flex;flex-direction:column;gap:20px;font-family:'Space Mono',monospace;color:#e9e3d6;">
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#7fa39b;">Turn 1 · Tracker lanes + agreement picker, combined</div>
+    <div style="font-family:'EB Garamond',serif;font-size:17px;color:#c4bcae;max-width:900px;">Each option is clickable: pick an artist to select, use the status button to advance them.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
+
+    <div id="1a" style="width:1200px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;"><span style="background:#e9e3d6;color:#0d0c0b;font-size:11px;padding:3px 8px;letter-spacing:0.1em;">1a</span><span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Lanes as the picker — status columns, click a name to open</span></div>
+      <div style="background:#0d0c0b;border:1px solid #2a2722;padding:28px;display:flex;flex-direction:column;gap:18px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+          <div style="display:flex;align-items:center;gap:16px;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="height:18px;"><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
+          <div style="display:flex;gap:8px;">
+            <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #6d675c;padding:8px 14px;">Full terms ▾</span>
+            <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #6d675c;padding:8px 14px;">Detail agreements ▾</span>
+            <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:#7fa39b;color:#0d0c0b;padding:9px 14px;">Tracker table →</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:10.5px;color:#c4bcae;">{{ progress }}</div>
+          <div style="display:flex;height:4px;gap:2px;background:#2a2722;"><div style="width:{{ pSigned }};background:#5fa08f;"></div><div style="width:{{ pSent }};background:#c9a24a;"></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#16150f;border:1px solid #2a2722;padding:18px 0;">
+          <sc-for list="{{ lanes }}" as="g" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:0 16px;border-left:1px solid {{ g.sep }};min-width:0;">
+              <div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:{{ g.c }};border-bottom:1px solid {{ g.c }};padding-bottom:6px;margin-bottom:4px;"><span>{{ g.label }}</span><span>{{ g.n }}</span></div>
+              <sc-if value="{{ g.empty }}" hint-placeholder-val="{{ false }}"><div style="font-size:10px;color:#4a463e;padding:6px 0;letter-spacing:0.1em;">— none —</div></sc-if>
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;">
+                <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="4">
+                  <div onClick="{{ t.pick }}" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px;cursor:pointer;background:{{ t.bg }};outline:1px solid {{ t.ring }};" style-hover="background:#24211c;">
+                    <span style="font-family:'EB Garamond',serif;font-size:15px;color:{{ t.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ t.name }}</span>
+                    <sc-if value="{{ t.hasAct }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.act }}" title="{{ t.actTitle }}" style="flex:0 0 auto;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8f887c;background:transparent;border:1px solid #3a3630;padding:2px 5px;cursor:pointer;" style-hover="color:{{ t.nc }};border-color:{{ t.nc }};">{{ t.actLabel }}</button></sc-if>
+                    <sc-if value="{{ t.done }}" hint-placeholder-val="{{ false }}"><span style="color:#5fa08f;font-size:13px;">✓</span></sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:10px;color:#6d675c;letter-spacing:0.06em;">Selected: <span style="color:#e9e3d6;">{{ selName }}</span> · agreement opens below</div>
+      </div>
+    </div>
+
+    <div id="1b" style="width:1200px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;"><span style="background:#e9e3d6;color:#0d0c0b;font-size:11px;padding:3px 8px;letter-spacing:0.1em;">1b</span><span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Status tabs + one grid — counts become filters</span></div>
+      <div style="background:#0d0c0b;border:1px solid #2a2722;padding:28px;display:flex;flex-direction:column;gap:18px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+          <div style="display:flex;align-items:center;gap:16px;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="height:18px;"><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
+          <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:#7fa39b;color:#0d0c0b;padding:9px 14px;">Consignment Tracker →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;">
+          <sc-for list="{{ tabs }}" as="b" hint-placeholder-count="4">
+            <button onClick="{{ b.pick }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px 16px;border:none;cursor:pointer;text-align:left;background:{{ b.bg }};box-shadow:inset 0 -2px 0 {{ b.line }};">
+              <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:{{ b.c }};">{{ b.label }}</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;color:#f0eadd;">{{ b.n }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 10px;">
+          <sc-for list="{{ grid }}" as="t" hint-placeholder-count="13">
+            <div onClick="{{ t.pick }}" style="display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 12px;cursor:pointer;background:{{ t.bg }};outline:1px solid {{ t.ring }};" style-hover="background:#24211c;">
+              <span style="width:7px;height:7px;border-radius:50%;background:{{ t.c }};"></span>
+              <span style="font-family:'EB Garamond',serif;font-size:16px;color:{{ t.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ t.name }}</span>
+              <sc-if value="{{ t.hasAct }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.act }}" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:{{ t.c }};background:transparent;border:1px solid #3a3630;padding:3px 7px;cursor:pointer;" style-hover="border-color:{{ t.nc }};color:{{ t.nc }};">{{ t.stLabel }} → {{ t.nextLabel }}</button></sc-if>
+              <sc-if value="{{ t.done }}" hint-placeholder-val="{{ false }}"><span style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#5fa08f;">Signed ✓</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:8px;border-top:1px solid #2a2722;padding-top:14px;align-items:center;">
+          <span style="font-size:10px;color:#6d675c;letter-spacing:0.06em;margin-right:auto;">Selected: <span style="color:#e9e3d6;">{{ selName }}</span></span>
+          <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #6d675c;padding:8px 14px;">Full terms</span>
+          <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #6d675c;padding:8px 14px;">Detail agreement</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="1c" style="width:1200px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;"><span style="background:#e9e3d6;color:#0d0c0b;font-size:11px;padding:3px 8px;letter-spacing:0.1em;">1c</span><span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">Pipeline rows — each artist's progress as a 3-step track</span></div>
+      <div style="background:#0d0c0b;border:1px solid #2a2722;padding:28px;display:flex;flex-direction:column;gap:18px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+          <div style="display:flex;align-items:center;gap:16px;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="height:18px;"><span style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7fa39b;">Consignment Agreements · Death Is a Door</span></div>
+          <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;background:#7fa39b;color:#0d0c0b;padding:9px 14px;">Consignment Tracker →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;background:#16150f;border:1px solid #2a2722;padding:8px 20px 14px;">
+          <sc-for list="{{ cols2 }}" as="col" hint-placeholder-count="2">
+            <div style="display:flex;flex-direction:column;">
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 70px 70px 70px 96px;gap:8px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#6d675c;padding:10px 0 8px;border-bottom:1px solid #3a3630;">
+                <span>Artist</span><span style="text-align:center;">To send</span><span style="text-align:center;color:#c9a24a;">Sent</span><span style="text-align:center;color:#5fa08f;">Signed</span><span style="text-align:right;">Open</span>
+              </div>
+              <sc-for list="{{ col.rows }}" as="t" hint-placeholder-count="7">
+                <div onClick="{{ t.pick }}" style="display:grid;grid-template-columns:minmax(0,1fr) 70px 70px 70px 96px;gap:8px;align-items:center;padding:8px 6px;margin:0 -6px;border-bottom:1px solid #1f1d19;cursor:pointer;background:{{ t.bg }};" style-hover="background:#24211c;">
+                  <span style="font-family:'EB Garamond',serif;font-size:16px;color:{{ t.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ t.name }}</span>
+                  <sc-for list="{{ t.steps }}" as="s" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;justify-content:center;position:relative;">
+                      <div style="position:absolute;left:0;right:50%;top:50%;height:1px;background:{{ s.lineL }};"></div>
+                      <div style="position:absolute;left:50%;right:0;top:50%;height:1px;background:{{ s.lineR }};"></div>
+                      <button onClick="{{ s.set }}" title="{{ s.title }}" style="position:relative;width:13px;height:13px;border-radius:50%;padding:0;cursor:pointer;background:{{ s.fill }};border:1.5px solid {{ s.c }};" style-hover="transform:scale(1.25);"></button>
+                    </div>
+                  </sc-for>
+                  <span style="display:flex;gap:6px;justify-content:flex-end;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;"><span style="border:1px solid #3a3630;padding:2px 5px;color:#8f887c;">Full</span><span style="border:1px solid #3a3630;padding:2px 5px;color:#8f887c;">Detail</span></span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:10.5px;color:#c4bcae;">{{ progress }}</div>
+          <div style="display:flex;height:4px;gap:2px;background:#2a2722;"><div style="width:{{ pSigned }};background:#5fa08f;"></div><div style="width:{{ pSent }};background:#c9a24a;"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    sel: 'Doug Crocco', tab: 'all',
+    st: { 'Benjamin Cowan': 2, 'Doug Crocco': 1, 'Tom DeLaney': 1, 'Kenny Curwood': 1, 'Charlie Goering': 2, 'Aramis Gutierrez': 1, 'Ellen R Hanson': 2, 'L': 1, 'Megan Lindeman': 1, 'Pandele Radu': 1, 'Meredith Sellers': 1, 'Henry Swanson': 1, 'unitedfutures': 1 }
+  };
+  renderVals() {
+    const C = ['#8f887c', '#c9a24a', '#5fa08f'], L = ['To send', 'Sent', 'Signed'], NX = ['Sent', 'Signed'];
+    const st = this.state.st, names = Object.keys(st), sel = this.state.sel;
+    const setSt = (n, v) => e => { e && e.stopPropagation(); this.setState(s => ({ st: { ...s.st, [n]: v } })); };
+    const base = n => { const on = n === sel, s = st[n]; return { name: n, pick: () => this.setState({ sel: n }), bg: on ? '#3a3630' : '#1b1a15', fg: on ? '#f0eadd' : '#c4bcae', ring: on ? '#8f887c' : 'transparent', c: C[s], nc: C[Math.min(s + 1, 2)], hasAct: s < 2, done: s === 2, act: setSt(n, s + 1), actLabel: s < 2 ? NX[s] + ' ○' : '', actTitle: 'Mark ' + (NX[s] || ''), stLabel: L[s], nextLabel: NX[s] || '' }; };
+    const cnt = [0, 1, 2].map(i => names.filter(n => st[n] === i).length);
+    const tabsDef = [['all', 'All', '#e9e3d6', names.length]].concat([0, 1, 2].map(i => [String(i), L[i], C[i], cnt[i]]));
+    const tab = this.state.tab;
+    const gridNames = (tab === 'all' ? names.slice().sort((a, b) => st[a] - st[b]) : names.filter(n => String(st[n]) === tab));
+    const rows = names.map(n => ({ ...base(n), bg: n === sel ? '#2a2722' : 'transparent', steps: [0, 1, 2].map(i => ({ c: C[i], fill: st[n] >= i ? C[i] : 'transparent', lineL: i > 0 ? (st[n] >= i ? C[i] : '#3a3630') : 'transparent', lineR: i < 2 ? (st[n] > i ? C[i + 1] : '#3a3630') : 'transparent', set: setSt(n, i), title: 'Set to ' + L[i] })) }));
+    const half = Math.ceil(rows.length / 2);
+    return {
+      progress: cnt[2] + ' of ' + names.length + ' signed · ' + cnt[1] + ' sent · ' + cnt[0] + ' to send',
+      pSigned: (cnt[2] / names.length * 100) + '%', pSent: (cnt[1] / names.length * 100) + '%',
+      selName: sel,
+      lanes: [0, 1, 2].map(i => ({ label: L[i], c: C[i], n: String(cnt[i]), sep: i ? '#2a2722' : 'transparent', empty: cnt[i] === 0, items: names.filter(n => st[n] === i).map(base) })),
+      tabs: tabsDef.map(([k, label, c, n]) => ({ label, c, n: String(n), bg: tab === k ? '#1f1d19' : '#16150f', line: tab === k ? c : 'transparent', pick: () => this.setState({ tab: k }) })),
+      grid: gridNames.map(base),
+      cols2: [{ rows: rows.slice(0, half) }, { rows: rows.slice(half) }]
+    };
+  }
+}
+</script>
+</body>
+</html>
