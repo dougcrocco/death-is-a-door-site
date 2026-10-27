@@ -164,9 +164,16 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
           <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#7fa39b;">{{ wall.letter }}</span>
           <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#f0eadd;">{{ wall.name }}</h2>
         </div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ wall.lenLabel }} · {{ wall.used }}</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ wall.lenLabel }} · {{ wall.used }}</div>
+          <div style="display:flex;align-items:center;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;">
+            <button onClick="{{ wall.zoomOut }}" title="Zoom out" style="width:32px;height:28px;background:transparent;border:0;border-right:1px solid #3a3630;color:#f0eadd;font:inherit;font-size:15px;cursor:pointer;" style-hover="background:#2a2722;">−</button>
+            <button onClick="{{ wall.zoomReset }}" title="Fit wall" style="min-width:54px;height:28px;background:transparent;border:0;color:#c4bcae;font:inherit;cursor:pointer;" style-hover="background:#2a2722;">{{ wall.zoomLabel }}</button>
+            <button onClick="{{ wall.zoomIn }}" title="Zoom in" style="width:32px;height:28px;background:transparent;border:0;border-left:1px solid #3a3630;color:#f0eadd;font:inherit;font-size:15px;cursor:pointer;" style-hover="background:#2a2722;">+</button>
+          </div>
+        </div>
       </div>
-      <div style="width:{{ wall.boxW }};display:flex;flex-direction:column;">
+      <div data-zoomscroll="" style="width:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;"><div style="width:{{ wall.zoomW }};display:flex;flex-direction:column;">
         <sc-if value="{{ wall.hasGhosts }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative;height:58px;">
             <sc-for list="{{ wall.ghosts }}" as="gh" hint-placeholder-count="0">
@@ -220,7 +227,7 @@ a{color:#7fa39b}a:hover{color:#e9e3d6}
             </sc-for>
           </div>
         </sc-if>
-      </div>
+      </div></div>
       <sc-if value="{{ wall.hasGhosts }}" hint-placeholder-val="{{ false }}">
         <div style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;color:#8f887c;">Dashed: freestanding works (E) — {{ wall.ghostList }} — projected onto this wall at their depth in the room, standing in front of the wall works. Tags above show each piece's center from the wall start; drag a tag to move it.</div>
       </sc-if>
@@ -297,8 +304,9 @@ const WORKS = [
   { id: 'durwood', wall: 'floor', num: 'XIV', artist: 'Kenny Curwood', title: 'The World of Symbol Vanishes in the World as God', file: 'kenny-durwood-the-world-of-symbol-vanishes-in-the-world-as-god.jpg', file3d: 'kenny-durwood-install.png', w: 6, h: 10, dims: '10 × 6 in · suspended from ceiling, 72 in center', hang: true, cl: 72 },
   { id: 'metamorphosis', wall: 'back', num: 'XV', artist: 'Charlie Goering', title: 'Metamorphosis, or The Dark Night of the Soul', file: 'charlie-goering-metamorphosis-or-the-dark-night-of-the-soul-crop.jpg', w: 72, h: 72, dims: '72 × 72 in' },
   { id: 'srijon', out: true, wall: 'bank', num: 'XVI', artist: 'Srijon Chowdhury', title: 'Moth (XIII)', file: 'srijon-chowdhury-moth-xiii-c.jpg', w: 36, h: 24, dims: '24 × 36 in' },
+  { id: 'srijon-moth', wall: 'right', num: 'XVI', artist: 'Srijon Chowdhury', title: 'Moth', file: 'srijon-chowdhury-moth-2026-v2.jpg', w: 8, h: 6, dims: '6 × 8 in' },
 ].filter(w => !w.out);
-const OCT11 = {"pos":{"empty-e":64.75,"desire-e":118.5,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5},"walls":{},"hts":{"desire-e":60,"empty-e":60}};
+const OCT11 = {"pos":{"srijon-moth":256.4,"empty-e":64.75,"desire-e":118.5,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5},"walls":{},"hts":{"desire-e":60,"empty-e":60}};
 const OCT24 = {"pos":{"empty-e":51.5,"desire-e":55.5,"srijon":113.5,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":73,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5},"walls":{"srijon":"entry"},"hts":{"desire-e":69,"empty-e":49.5}};
 const WALL_KEY = 'didad-install-walls';
 try { const ov = JSON.parse(localStorage.getItem(WALL_KEY) || '{}'); WORKS.forEach(w => { if (ov[w.id]) w.wall = ov[w.id]; }); } catch (e) {}
@@ -306,7 +314,7 @@ const HT_KEY = 'didad-install-heights';
 WORKS.forEach(w => { w.__cl0 = w.cl; });
 try { const hv = JSON.parse(localStorage.getItem(HT_KEY) || '{}'); WORKS.forEach(w => { if (hv[w.id] != null && hv[w.id] !== '') w.cl = +hv[w.id]; }); } catch (e) {}
 const KEY = 'didad-install-pos-v12';
-const BAKED = {"empty-e":65,"desire-e":118.25,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5};
+const BAKED = {"srijon-moth":256.4,"empty-e":65,"desire-e":118.25,"crocco":16.12,"cowan":319.75,"swanson":149.75,"gutierrez":177,"obscura":295.75,"delaney":37.75,"hanson-r":413,"ferry":78.25,"radu":233.5,"metamorphosis":127.75,"lazaros":21.75,"lindeman":54,"durwood":85,"desk":0,"fz-lazaros":245.75,"fz-lindeman":105.75,"fz-durwood":85,"fx-lindeman":45.25,"fx-lazaros":52,"deskX":-43.75,"fx-durwood":-14.5};
 const VIEWS = [
   { id: 'back', src: 'install/gallery-back.png', W: 2250, H: 1266, f: 1200, cx: 1198, cy: 655, cam: 53,
     caption: 'Looking toward the back — left back wall (D), center back wall (B), right wall (C), freestanding works (E).',
@@ -541,6 +549,14 @@ class Component extends DCLogic {
     this.end = up;
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   }
+  zoomOf(id) { return (this.state.zoom || {})[id] || 1; }
+  zoomBy(e, id, dir) {
+    const Z = [1, 1.5, 2, 3, 4, 6, 8], cur = this.zoomOf(id), i = Z.indexOf(cur);
+    const nz = dir === 0 ? 1 : Z[Math.max(0, Math.min(Z.length - 1, (i < 0 ? 0 : i) + dir))];
+    const sc = e.currentTarget.closest('section').querySelector('[data-zoomscroll]');
+    const f = sc && sc.scrollWidth ? (sc.scrollLeft + sc.clientWidth / 2) / sc.scrollWidth : 0.5;
+    this.setState(s => ({ zoom: { ...(s.zoom || {}), [id]: nz } }), () => { if (sc) requestAnimationFrame(() => { sc.scrollLeft = f * sc.scrollWidth - sc.clientWidth / 2; }); });
+  }
   down(e, work, len) {
     e.preventDefault();
     const rect = e.currentTarget.parentElement.getBoundingClientRect();
@@ -633,7 +649,10 @@ class Component extends DCLogic {
         used: (wl.floor ? 'freestanding, viewed in the round' : items.length + (items.length === 1 ? ' work' : ' works') + ' · ' + fmt(occ) + ' of art'),
         aspect: (L / H).toFixed(4),
         boxW: same ? pct(L, maxLen) : 'min(100%, calc(64vh * ' + (L / H).toFixed(4) + '))',
-        cTop: pct(H - c, H), cLabel: c + '" CL'
+        cTop: pct(H - c, H), cLabel: c + '" CL',
+        zoomW: 'calc(' + (same ? pct(L, maxLen) : 'min(100%, calc(64vh * ' + (L / H).toFixed(4) + '))') + ' * ' + this.zoomOf(wl.id) + ')',
+        zoomLabel: this.zoomOf(wl.id) === 1 ? 'Fit' : Math.round(this.zoomOf(wl.id) * 100) + '%',
+        zoomIn: e => this.zoomBy(e, wl.id, 1), zoomOut: e => this.zoomBy(e, wl.id, -1), zoomReset: e => this.zoomBy(e, wl.id, 0)
       };
     });
     const PZ = -130.5, PWD = 583.5, PX = -108, PHT = 209;
