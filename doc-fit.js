@@ -17,6 +17,7 @@ if(window.__uz!==1)setTimeout(function(){window.dispatchEvent(new Event('resize'
   var st = document.createElement('style'); st.textContent = '@media print{doc-page{zoom:1 !important}}'; document.head.appendChild(st);
   function fit() {
     document.querySelectorAll('doc-page').forEach(function (dp) {
+      if (dp.closest('[data-viewport]')) return;
       var w = px(dp.getAttribute('width'), 8.5 * 96) + 48;
       var aw = (document.documentElement.clientWidth - ((document.documentElement.matches('.has-sidenav,.sn-pre') && window.innerWidth > 980) ? 162 : 0));
       var z = Math.min(1, Math.max(0.3, aw / w)) * (window.__uz || 1); dp.style.zoom = Math.abs(z - 1) < 0.002 ? '' : z.toFixed(3);
