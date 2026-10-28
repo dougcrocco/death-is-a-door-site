@@ -35,6 +35,9 @@
 <style data-livelink-css="">[data-livelink]{display:none !important}nav[data-tabs]>[data-livemenu]{display:flex;align-items:center;justify-content:center;padding:9px clamp(5px,0.8vw,14px);background:#0d0c0b;color:#7fa39b;text-decoration:none;white-space:nowrap}nav[data-tabs]>[data-livemenu]:hover{background:#16150f;color:#e9e3d6}@media (max-width:980px){html.navopen nav[data-tabs]>[data-livemenu]{justify-content:flex-start;padding:13px 14px !important;font-size:11px !important}}</style>
 <script src="nav.js?v=26"></script>
 <style>@media (max-width:640px){[data-today3]{grid-template-columns:minmax(0,1fr) !important}}</style>
+<style>[data-dshort]{display:none}@media (max-width:640px){[data-dlong]{display:none}[data-dshort]{display:inline}}</style>
+<style>@media (max-width:640px){[data-fwrap]{overflow-x:visible !important}[data-fcal]{grid-template-columns:minmax(0,1fr) !important;min-width:0 !important}[data-fcal]>[data-fh]{display:none !important}[data-fcal]>[data-fd]{flex-direction:row !important;align-items:flex-start;gap:12px !important;min-height:0 !important;padding:10px 12px !important}[data-fcal]>[data-fd]>[data-fn]{align-self:flex-start !important;width:4.2em;flex:none;text-align:left}[data-fcal]>[data-fd]>[data-fn]::after{content:attr(data-dow);display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;margin-top:4px}[data-fcal]>[data-fd]:not(:has([data-fe])){display:none !important}[data-fcal]>[data-fd] [data-fe]{flex:1 1 auto}[data-fcal]>[data-fd]>[data-fevs]{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}}</style>
+<style>@media (max-width:640px){[data-mcalwrap]{max-width:none !important;width:100%}[data-mcal]>*{min-width:0}}</style>
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav data-tabs="" data-deskmenu="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
     <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
@@ -48,7 +51,7 @@
     <a href="agreements/shipping.html" data-ag="shipping.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Shipping</a>
     <a href="install-plan.html#walkthrough" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Walkthrough</a></nav></div>
 <div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(28px,6vw,72px) clamp(20px,5vw,64px);box-sizing:border-box;">
-  <div style="max-width:1100px;margin:0 auto;min-height:calc(100vh - 2 * clamp(28px,6vw,72px));display:flex;flex-direction:column;gap:clamp(16px,2.4vw,26px);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,26px);">
 
     <header style="display:flex;flex-direction:column;gap:14px;">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;">
@@ -77,7 +80,7 @@
         </sc-if></div></div>
       <div data-rowref="" ref="{{ rowRef }}" style="display:flex;flex-direction:column;gap:22px;margin-top:0;">
       <div data-phead="" style="display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:20px clamp(20px,4vw,56px);align-items:end;padding-bottom:22px;border-bottom:1px solid #2a2722;">
-        <div style="align-self:start;display:flex;flex-direction:column;gap:22px;min-width:0;"><h1 style="margin:0;align-self:start;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,6vw,84px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1><p data-deskdesc="" style="margin:0;max-width:520px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">The team’s to-do list — everything that still needs doing, pulled from every workroom page and sorted by urgency. Below are this week’s tasks, the calendar and all contacts.</p></div>
+        <div style="align-self:start;display:flex;flex-direction:column;gap:22px;min-width:0;"><h1 style="margin:0;align-self:start;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,6vw,84px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1><p data-deskdesc="" style="margin:0;max-width:520px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;"><span data-dlong="">The team’s to-do list — everything that still needs doing, pulled from every workroom page and sorted by urgency. Below are this week’s tasks, the calendar and all contacts.</span><span data-dshort="">The team’s to-do list, sorted by urgency.</span></p></div>
         <div style="display:flex;flex-direction:column;gap:20px;min-width:0;"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;align-items:end;"><sc-for list="{{ msNext }}" as="n" hint-placeholder-count="2"><div style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:{{ n.c }};">{{ n.label }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4.6vw,76px);line-height:1.08;padding-bottom:0.12em;white-space:nowrap;color:#f0eadd;">{{ n.big }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;margin-top:4px;">{{ n.date }}</span></div></sc-for></div><div style="display:flex;flex-direction:column;gap:14px;margin-top:2px;font-family:'Space Mono',monospace;">
         <a href="{{ agTracker }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
           <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
@@ -173,7 +176,7 @@
 
       <sc-if value="{{ isMonth }}" hint-placeholder-val="{{ true }}">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px 36px;align-items:start;">
-          <div style="display:flex;flex-direction:column;gap:8px;max-width:320px;">
+          <div data-mcalwrap="" style="display:flex;flex-direction:column;gap:8px;max-width:320px;">
             <div style="display:flex;justify-content:space-between;align-items:baseline;">
               <span style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#f0eadd;">{{ monthName }}</span>
               <span style="display:flex;gap:4px;">
@@ -182,7 +185,7 @@
                 <button type="button" onClick="{{ calNext }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:2px 8px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">→</button>
               </span>
             </div>
-            <div data-mg="" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));">
+            <div data-mcal="" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));">
               <sc-for list="{{ calHead }}" as="h" hint-placeholder-count="7"><span style="text-align:center;font-family:'Space Mono',monospace;font-size:8.5px;color:#6d675c;padding-bottom:4px;">{{ h }}</span></sc-for>
               <sc-for list="{{ miniDays }}" as="d" hint-placeholder-count="35">
                 <button type="button" onClick="{{ d.add }}" title="{{ d.tip }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;background:{{ d.bg }};border:none;box-shadow:{{ d.sh }};cursor:pointer;" style-hover="background:#24211c;">
@@ -201,7 +204,7 @@
             <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;padding-bottom:4px;">Next up</span>
             <sc-if value="{{ nextEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;font-size:15px;color:#6d675c;">Nothing scheduled.</div></sc-if>
             <sc-for list="{{ nextUp }}" as="e" hint-placeholder-count="5">
-              <div onClick="{{ e.edit }}" title="Edit" style="cursor:pointer;display:grid;grid-template-columns:8px 7.5em minmax(0,1fr) auto auto;gap:10px;align-items:baseline;padding:9px 4px;border-bottom:1px solid #1f1d19;" style-hover="background:#16150f;">
+              <div onClick="{{ e.edit }}" title="Edit" style="cursor:pointer;display:grid;grid-template-columns:8px 7.5em minmax(0,1fr) auto auto;gap:10px;align-items:baseline;padding:9px 8px;margin-bottom:3px;background:{{ e.tb }};" style-hover="filter:brightness(1.25);">
                 <span style="width:7px;height:7px;border-radius:50%;background:{{ e.c }};align-self:center;"></span>
                 <span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#7fa39b;white-space:nowrap;">{{ e.when }}</span>
                 <span style="font-size:16px;line-height:1.3;color:#f0eadd;text-wrap:pretty;">{{ e.label }}</span>
@@ -223,15 +226,15 @@
               <button type="button" onClick="{{ calNext }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:3px 10px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">→</button>
             </span>
           </div>
-          <div style="overflow-x:auto;">
-            <div style="display:grid;grid-template-columns:repeat(7,minmax(96px,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;min-width:700px;">
-              <sc-for list="{{ fullHead }}" as="h" hint-placeholder-count="7"><div style="background:#0d0c0b;padding:6px 8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ h }}</div></sc-for>
+          <div data-fwrap="" style="overflow-x:auto;">
+            <div data-fcal="" style="display:grid;grid-template-columns:repeat(7,minmax(96px,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;min-width:700px;">
+              <sc-for list="{{ fullHead }}" as="h" hint-placeholder-count="7"><div data-fh="" style="background:#0d0c0b;padding:6px 8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;">{{ h }}</div></sc-for>
               <sc-for list="{{ fullDays }}" as="d" hint-placeholder-count="35">
-                <div onClick="{{ d.add }}" onDragOver="{{ d.over }}" onDrop="{{ d.drop }}" title="Add event" style="cursor:pointer;background:{{ d.bg }};min-height:clamp(84px,10vw,120px);padding:6px;display:flex;flex-direction:column;gap:4px;min-width:0;box-shadow:{{ d.sh }};opacity:{{ d.op }};" style-hover="filter:brightness(1.25);">
-                  <span style="align-self:flex-end;font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1;color:{{ d.nc }};">{{ d.n }}</span>
-                  <sc-for list="{{ d.ev }}" as="e" hint-placeholder-count="0">
-                    <div onClick="{{ e.edit }}" draggable="{{ e.dragOk }}" onDragStart="{{ e.dstart }}" onDragEnd="{{ e.dend }}" title="{{ e.label }}" style="cursor:{{ e.cur }};display:flex;align-items:flex-start;gap:5px;background:rgba(127,163,155,0.13);border-left:2px solid {{ e.c }};padding:3px 5px;font-size:12.5px;line-height:1.25;color:#f0eadd;overflow-wrap:anywhere;" style-hover="outline:1px solid #7fa39b;">{{ e.label }}</div>
-                  </sc-for>
+                <div data-fd="" onClick="{{ d.add }}" onDragOver="{{ d.over }}" onDrop="{{ d.drop }}" title="Add event" style="cursor:pointer;background:{{ d.bg }};min-height:clamp(84px,10vw,120px);padding:6px;display:flex;flex-direction:column;gap:4px;min-width:0;box-shadow:{{ d.sh }};opacity:{{ d.op }};" style-hover="filter:brightness(1.25);">
+                  <span data-fn="" data-dow="{{ d.dowS }}" style="align-self:flex-end;font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1;color:{{ d.nc }};">{{ d.n }}</span>
+                  <div data-fevs="" style="display:contents;"><sc-for list="{{ d.ev }}" as="e" hint-placeholder-count="0">
+                    <div data-fe="" onClick="{{ e.edit }}" draggable="{{ e.dragOk }}" onDragStart="{{ e.dstart }}" onDragEnd="{{ e.dend }}" title="{{ e.label }}" style="cursor:{{ e.cur }};display:flex;align-items:flex-start;gap:5px;background:{{ e.tb }};border-left:2px solid {{ e.c }};padding:3px 5px;font-size:12.5px;line-height:1.25;color:#f0eadd;overflow-wrap:anywhere;" style-hover="outline:1px solid #7fa39b;">{{ e.label }}</div>
+                  </sc-for></div>
                 </div>
               </sc-for>
             </div>
@@ -251,7 +254,7 @@
               <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="8">
                 <div onClick="{{ c.add }}" title="Add event" style="cursor:pointer;background:#0d0c0b;min-height:64px;padding:4px;display:flex;flex-direction:column;gap:4px;" style-hover="background:#16150f;">
                   <sc-for list="{{ c.ev }}" as="e" hint-placeholder-count="0">
-                    <div onClick="{{ e.edit }}" title="Edit" style="cursor:pointer;background:rgba(127,163,155,0.14);border-top:2px solid {{ e.c }};padding:4px 5px;font-size:12.5px;line-height:1.25;color:#f0eadd;overflow-wrap:anywhere;" style-hover="outline:1px solid #7fa39b;">{{ e.label }}</div>
+                    <div onClick="{{ e.edit }}" title="Edit" style="cursor:pointer;background:{{ e.tb }};border-top:2px solid {{ e.c }};padding:4px 5px;font-size:12.5px;line-height:1.25;color:#f0eadd;overflow-wrap:anywhere;" style-hover="outline:1px solid #7fa39b;">{{ e.label }}</div>
                   </sc-for>
                 </div>
               </sc-for>
@@ -437,10 +440,15 @@ class Component extends DCLogic {
     const saveO = (o, action, text) => { localStorage.setItem('didad-desk-evo', JSON.stringify(o)); this.setState({ evo: o, log: log(action, text) }); };
     const open = ev => this.setState({ evt: { id: ev.id, title: ev.title, d: ev.d, time: ev.time || '' } });
     const built = BUILT.map((e, i) => { const id = 'b' + i, o = ovr[id] || {}; return o.del ? null : { id, d: o.d || e.d, title: o.title ?? e.label, time: o.time ?? (e.time || ''), c: e.c }; }).filter(Boolean);
-    const custs = (this.state.events || []).map(e => ({ id: e.id, d: e.d, title: e.title, time: e.time, c: '#c4bcae', custom: true }));
+    const custs = (this.state.events || []).filter(e => !built.some(b => b.d === e.d && String(b.title).toLowerCase().indexOf(String(e.title || '').trim().toLowerCase()) === 0 && String(e.title || '').trim().length > 3)).map(e => ({ id: e.id, d: e.d, title: e.title, time: e.time, c: '#c4bcae', custom: true }));
     const delEv = ev => ev.custom ? saveEv((this.state.events || []).filter(x => x.id !== ev.id), 'Deleted', 'Event · ' + ev.title + ' (' + ev.d + ')') : saveO({ ...ovr, [ev.id]: { ...(ovr[ev.id] || {}), del: true } }, 'Deleted', 'Event · ' + ev.title + ' (' + ev.d + ')');
     const shipAg = this.state.ag || 'agreements/';
-    const all = built.concat(custs).concat(this.state.shipEv || []).map(ev => ({ ...ev, canDel: !ev.auto, label: (ev.time ? ev.time + ' · ' : '') + ev.title + (ev.tracking ? ' · #' + ev.tracking : ''), edit: e => { e.stopPropagation(); if (ev.auto) window.open(ev.url || shipAg + 'shipping.html', '_blank', 'noopener'); else open(ev); }, remove: e => { e.stopPropagation(); if (!ev.auto) delEv(ev); } })).sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
+    const EVPAL = [['#e07a9a', /open|reception|party|scent|talk|dinner|event/i], ['#c9a24a', /press|preview|release|listing|media|interview/i], ['#7fa39b', /install|hang|vinyl|wall|pedestal|light|deinstall/i], ['#e08a3c', /ship|deliver|pick ?up|drop|arriv|transit|return|eta|ups|fedex|courier/i], ['#e0614f', /deadline|due|sign|agreement|consign|close/i], ['#a99fc9', /print|laumont|catalog|book|frame/i]];
+    const EVX = ['#e07a9a', '#c9a24a', '#7fa39b', '#e08a3c', '#a99fc9', '#6fa8dc', '#b5c26a'];
+    const evCol = ev => { const s = (ev.title || '') + ' ' + (ev.auto ? 'ship' : ''); const m = EVPAL.find(([, re]) => re.test(s)); if (m) return m[0]; let h = 0; for (const ch of String(ev.title || '')) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return EVX[h % EVX.length]; };
+    const tint = c => { const n = parseInt(c.slice(1), 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',0.16)'; };
+    const UNQ = (() => { const L = built.concat(custs).concat(this.state.shipEv || []).slice().sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : String(a.title).localeCompare(String(b.title))); const n = Math.max(L.length, 1), M = {}; L.forEach((ev, i) => { const h = Math.round((i * 360 / n * 7) % 360), l = i % 2 ? 72 : 64; const c = 'hsl(' + h + ',' + (i % 3 === 2 ? 48 : 58) + '%,' + l + '%)'; M[ev.id || (ev.d + ev.title)] = { c, tb: 'hsla(' + h + ',58%,' + l + '%,0.16)' }; }); return M; })();
+    const all = built.concat(custs).concat(this.state.shipEv || []).map(ev => ({ ...ev, c: (UNQ[ev.id || (ev.d + ev.title)] || {}).c || evCol(ev), tb: (UNQ[ev.id || (ev.d + ev.title)] || {}).tb || tint(evCol(ev)), canDel: !ev.auto, label: (ev.time ? ev.time + ' · ' : '') + ev.title + (ev.tracking ? ' · #' + ev.tracking : ''), edit: e => { e.stopPropagation(); if (ev.auto) window.open(ev.url || shipAg + 'shipping.html', '_blank', 'noopener'); else open(ev); }, remove: e => { e.stopPropagation(); if (!ev.auto) delEv(ev); } })).sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
     const moveEv = (id, k) => { const ev = all.find(x => x.id === id); this.setState({ dragEv: null }); if (!ev || ev.auto || ev.d === k) return; const txt = 'Event · ' + ev.title + ' → ' + k;
       if (ev.custom) saveEv((this.state.events || []).map(x => x.id === id ? { ...x, d: k } : x), 'Moved', txt); else saveO({ ...ovr, [id]: { ...(ovr[id] || {}), title: ev.title, d: k, time: ev.time || '' } }, 'Moved', txt); };
     all.forEach(ev => { ev.dragOk = ev.auto ? 'false' : 'true'; ev.cur = ev.auto ? 'pointer' : 'grab'; ev.dstart = e => { e.stopPropagation(); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(ev.id)); } catch (x) {} this.setState({ dragEv: ev.id }); }; ev.dend = () => this.setState({ dragEv: null }); });
@@ -461,7 +469,7 @@ class Component extends DCLogic {
     const vb = on => ({ bg: on ? '#1f1d19' : '#0d0c0b', fg: on ? '#f0eadd' : '#c4bcae', sh: on ? 'inset 0 -2px 0 #7fa39b' : 'none' });
     return {
       calHead: ['M','T','W','T','F','S','S'], miniDays, monthName: MONL[m0.getMonth()] + (m0.getFullYear() !== today.getFullYear() ? ' ' + m0.getFullYear() : ''),
-      fullHead: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], fullDays: miniDays.map(d => ({ ...d, bg: d.bg === 'transparent' ? '#0d0c0b' : d.bg })),
+      fullHead: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], fullDays: miniDays.map((d, i) => ({ ...d, dowS: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i % 7], bg: d.bg === 'transparent' ? '#0d0c0b' : d.bg })),
       isFull: view === 'full',
       nextUp, nextEmpty: nextUp.length === 0, weekHead, weekRows,
       isMonth: view === 'month', isWeek: view === 'week',
