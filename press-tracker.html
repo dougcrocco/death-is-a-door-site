@@ -12,15 +12,28 @@
 <meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <style data-bottom-pad="">@media screen{body{padding-bottom:120px !important}}</style>
-<style>@media (max-width:640px){[data-phead]{grid-template-columns:1fr !important}[data-phead]>div:last-child{justify-self:start !important}}body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#a9c6bf}[contenteditable]:empty:before{content:attr(data-ph);color:#4a4640}input[type=date]::-webkit-calendar-picker-indicator{filter:invert(0.7)}@media (max-width:760px){[data-lanes]{grid-template-columns:1fr !important}}</style>
+<style>@media (max-width:640px){[data-phead]{grid-template-columns:1fr !important}[data-phead]>div:last-child{justify-self:start !important}}body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#a9c6bf}[contenteditable]:empty:before{content:attr(data-ph);color:#4a4640}input[type=date]::-webkit-calendar-picker-indicator{filter:invert(0.7)}</style>
 <script>(function(){var b='agreements/';fetch('agreements/tracker.html',{method:'HEAD'}).then(function(r){if(!r.ok)b='../agreements/';}).catch(function(){b='../agreements/';});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-ag]');if(a)a.href=b+a.getAttribute('data-ag');},true);})();</script>
 <script src="sync.js"></script>
 <style>@media (max-width:560px){[data-howto]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}</style>
 <style>details[data-howwrap]>summary::-webkit-details-marker{display:none}details[data-howwrap] [data-hx]::after{content:"+"}details[data-howwrap][open] [data-hx]::after{content:"\2212"}</style>
-<script>(function(){var K='didad-howto:'+location.pathname.split('/').pop();function ap(){var d=document.querySelector('details[data-howwrap]');if(!d){return false;}if(d.__hw)return true;d.__hw=1;var v=null;try{v=localStorage.getItem(K);}catch(e){}d.open=v!=='0';d.addEventListener('toggle',function(){try{localStorage.setItem(K,d.open?'1':'0');}catch(e){}});return true;}var n=0,iv=setInterval(function(){if(ap()||++n>80)clearInterval(iv);},100);})();</script>
+<script>(function(){var K='didad-howto';function ap(){var d=document.querySelector('details[data-howwrap]');if(!d){return false;}if(d.__hw)return true;d.__hw=1;var v=null;try{v=sessionStorage.getItem(K);}catch(e){}d.open=v!=='0';d.addEventListener('toggle',function(){try{sessionStorage.setItem(K,d.open?'1':'0');}catch(e){}});return true;}var n=0,iv=setInterval(function(){if(ap()||++n>80)clearInterval(iv);},100);})();</script>
 <style>@media (max-width:520px){[data-phead],[data-shiphead]{grid-template-columns:minmax(0,1fr) !important}}nav[data-tabs]{flex-wrap:nowrap !important;overflow-x:auto;scrollbar-width:none}nav[data-tabs]::-webkit-scrollbar{display:none}nav[data-tabs]>a{flex:0 0 auto !important}</style>
+<style data-mobile="">@media (max-width:760px){
+
+[data-m2]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+[data-m3]{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+[data-mrsvp]{grid-template-columns:minmax(0,1fr) auto !important}[data-mrsvp]>:nth-child(4n+2),[data-mrsvp]>:nth-child(4n+3){display:none}
+[data-mlog]{grid-template-columns:minmax(0,1fr) !important;gap:2px !important}
+[data-mtodo]{grid-template-columns:8px minmax(0,1fr) !important}[data-mtodo]>:nth-child(2){display:none}[data-mtodo]>:nth-child(4){grid-column:2}
+}
+@media (max-width:420px){[data-howto]{grid-template-columns:minmax(0,1fr) !important}}</style>
+<style data-mobile2="">@media (max-width:760px){[data-mg]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}img{max-width:100%;height:auto}}@media (max-width:440px){[data-mg]{grid-template-columns:minmax(0,1fr) !important}}</style>
+<style data-stack="">@media (max-width:520px){[data-board] [data-lanes]{grid-template-columns:minmax(0,1fr) !important;gap:14px 0 !important}[data-board]>[data-lanes]{display:none !important}[data-mlabel]{display:block !important}}</style>
+<style data-mnav="">[data-navbtn]{display:none}@media (max-width:640px){[data-navbtn]{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;box-sizing:border-box;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#e9e3d6;background:#16150f;border:1px solid #3a3630;padding:12px 14px;cursor:pointer}nav[data-tabs]{display:none !important}html.navopen nav[data-tabs]{display:flex !important;flex-direction:column !important;flex-wrap:nowrap !important;overflow:visible !important;width:100% !important;margin-top:6px}html.navopen nav[data-tabs]>a{flex:none !important;justify-content:flex-start !important;padding:13px 14px !important;font-size:11px !important;border-bottom:1px solid #2a2722}}</style>
+<script>(function(){function cur(n){var a=n.querySelectorAll('a'),p=location.pathname.split('/').pop()||'index.html';for(var i=0;i<a.length;i++){var h=(a[i].getAttribute('href')||'').split('#')[0].split('/').pop();if(h===p&&!/desk/i.test(a[i].textContent))return a[i].textContent.trim();}return 'Menu';}function ap(){var n=document.querySelector('nav[data-tabs]');if(!n)return false;if(n.previousElementSibling&&n.previousElementSibling.hasAttribute('data-navbtn'))return true;var b=document.createElement('button');b.setAttribute('data-navbtn','');b.setAttribute('data-noprint','');b.type='button';var l=document.createElement('span');l.textContent=cur(n);var i=document.createElement('span');i.textContent='☰ Menu';b.appendChild(l);b.appendChild(i);b.onclick=function(){var o=document.documentElement.classList.toggle('navopen');i.textContent=o?'✕ Close':'☰ Menu';};n.parentNode.insertBefore(b,n);n.addEventListener('click',function(e){if(e.target.closest('a'))document.documentElement.classList.remove('navopen');});return true;}var k=0,iv=setInterval(function(){ap();if(++k>100)clearInterval(iv);},150);})();</script>
 </helmet>
-<div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;box-sizing:border-box;">
+<div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav data-tabs="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;box-sizing:border-box;">
   <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
   <a href="book.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
   <a href="agreements/checklist.html" data-ag="checklist.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
@@ -64,7 +77,7 @@
     </sc-if>
 
     <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}">
-    <div style="background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:6px;">
+    <div data-board="" style="background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:6px;">
     <div data-lanes="" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 12px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;">
       <sc-for list="{{ laneHeads }}" as="lh" hint-placeholder-count="5"><div style="display:flex;justify-content:space-between;color:{{ lh.c }};border-bottom:1px solid {{ lh.c }};padding-bottom:8px;"><span>{{ lh.label }}</span><span>{{ lh.n }}</span></div></sc-for>
     </div>
@@ -74,7 +87,7 @@
         <sc-if value="{{ pg2.open }}" hint-placeholder-val="{{ false }}">
           <div data-lanes="" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 12px;padding:4px 0 10px;">
             <sc-for list="{{ pg2.lanes }}" as="ln" hint-placeholder-count="5">
-              <div onDragOver="{{ ln.over }}" onDrop="{{ ln.drop }}" style="display:flex;flex-direction:column;gap:5px;min-width:0;min-height:44px;padding:4px;background:{{ ln.hot }};border:1px dashed {{ ln.dash }};">
+              <div onDragOver="{{ ln.over }}" onDrop="{{ ln.drop }}" style="display:flex;flex-direction:column;gap:5px;min-width:0;min-height:44px;padding:4px;background:{{ ln.hot }};border:1px dashed {{ ln.dash }};"><span data-mlabel="" style="display:none;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:{{ ln.c }};border-bottom:1px solid {{ ln.c }};padding:6px 0 5px;margin-bottom:2px;">{{ ln.label }} · {{ ln.n }}</span>
                 <sc-for list="{{ ln.items }}" as="t" hint-placeholder-count="0">
                   <div draggable="true" onDragStart="{{ t.dstart }}" onDragEnd="{{ t.dend }}" onClick="{{ t.open }}" title="Drag to another column · click to open" style="display:flex;flex-direction:column;gap:3px;padding:8px;background:{{ ln.tint }};border-left:2px solid {{ ln.c }};cursor:grab;opacity:{{ t.op }};" style-hover="background:{{ ln.tintH }};">
                     <span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.2;color:#f0eadd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.name }}</span>
@@ -128,7 +141,7 @@
       <div style="background:#16150f;border:1px solid #2a2722;border-top:2px solid #e0614f;padding:16px clamp(14px,2vw,24px);display:flex;flex-direction:column;">
       <sc-if value="{{ todayEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-size:15.5px;color:#8f887c;padding:6px 0;">Nothing due today. Open the pipeline and pitch someone new.</span></sc-if>
       <sc-for list="{{ todayItems }}" as="td" hint-placeholder-count="5">
-        <div style="display:grid;grid-template-columns:8px 92px minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:10px 0;border-bottom:1px solid #2a2722;opacity:{{ td.op }};">
+        <div data-mtodo="" style="display:grid;grid-template-columns:8px 92px minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:10px 0;border-bottom:1px solid #2a2722;opacity:{{ td.op }};">
           <span style="width:7px;height:7px;border-radius:50%;background:{{ td.c }};"></span>
           <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:{{ td.c }};">{{ td.kind }}</span>
           <span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:16px;line-height:1.3;color:#f0eadd;text-decoration:{{ td.td }};">{{ td.text }}</span><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#8f887c;">{{ td.sub }}</span></span>
@@ -150,18 +163,18 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;">
       <div style="background:#16150f;border:1px solid #2a2722;border-top:2px solid #7fa39b;padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
         <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #3a3630;padding-bottom:8px;">What’s gone out</span>
-        <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;">
+        <div data-m3="" data-mg="" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;">
           <sc-for list="{{ assetTotals }}" as="a" hint-placeholder-count="5"><div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1;color:#7fa39b;">{{ a.n }}</span><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">{{ a.label }}</span></div></sc-for>
         </div>
         <span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">{{ toPitchLine }}</span>
       </div>
     <div id="preview" style="scroll-margin-top:130px;background:#16150f;border:1px solid #2a2722;border-top:2px solid #5fa08f;padding:16px 18px;display:flex;flex-direction:column;gap:12px;">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5fa08f;">Press preview · Wed Nov 11</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#8f887c;">5–7 pm · 131 Chrystie · walkthroughs with Doug</span></div>
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;">
+      <div data-m2="" data-mg="" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;">
         <sc-for list="{{ rsvpTotals }}" as="t" hint-placeholder-count="4"><div style="background:#0d0c0b;padding:10px 12px;display:flex;flex-direction:column;"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;color:{{ t.c }};">{{ t.n }}</span><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">{{ t.label }}</span></div></sc-for>
       </div>
       <sc-if value="{{ rsvpEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-size:14.5px;color:#6d675c;">No one invited yet — open a contact with ✍ and set RSVP to Invited.</span></sc-if>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 110px 120px 60px;font-size:14.5px;align-items:center;">
+      <div data-mrsvp="" style="display:grid;grid-template-columns:minmax(0,1fr) 110px 120px 60px;font-size:14.5px;align-items:center;">
         <sc-for list="{{ rsvpRows }}" as="r" hint-placeholder-count="0">
           <span style="padding:7px 0;border-bottom:1px solid #2a2722;color:#f0eadd;">{{ r.writer }} <span style="color:#8f887c;">· {{ r.outlet }}</span></span>
           <span style="padding:5px 6px 5px 0;border-bottom:1px solid #2a2722;"><select value="{{ r.rsvp }}" onChange="{{ r.setRsvp }}" style="width:100%;font-family:'Space Mono',monospace;font-size:10px;background:#0d0c0b;color:{{ r.rc }};border:1px solid #3a3630;padding:3px;"><sc-for list="{{ rsvpOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o }}">{{ o }}</option></sc-for></select></span>
@@ -270,7 +283,7 @@
         <div style="flex-basis:100%;max-height:360px;overflow-y:auto;border-top:1px solid #2a2722;">
           <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;color:#6d675c;">Nothing sent yet.</div></sc-if>
           <sc-for list="{{ log }}" as="e" hint-placeholder-count="0">
-            <div style="display:grid;grid-template-columns:9.5em 7em minmax(0,1fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;"><span style="color:#8f887c;">{{ e.when }}</span><span style="color:#c4bcae;">{{ e.who }}</span><span style="font-family:'EB Garamond',serif;font-size:14px;color:#e9e3d6;">{{ e.what }}</span></div>
+            <div data-mlog="" style="display:grid;grid-template-columns:9.5em 7em minmax(0,1fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;"><span style="color:#8f887c;">{{ e.when }}</span><span style="color:#c4bcae;">{{ e.who }}</span><span style="font-family:'EB Garamond',serif;font-size:14px;color:#e9e3d6;">{{ e.what }}</span></div>
           </sc-for>
         </div>
       </sc-if>
@@ -519,7 +532,7 @@ class Component extends DCLogic {
       pipeGroups: CATS.map(([cl, cc, note]) => { const gi = view.filter(x => catOf(x) === cl && x.s < 5); if (!gi.length) return null; const po = this.state.pipeOpen || {}, op = po[cl] !== undefined ? po[cl] : false;
         return { label: cl, c: cc, note, n: String(gi.length), open: op, icon: op ? '−' : '+', sentLine: gi.filter(x => x.s > 0).length + ' / ' + gi.length + ' pitched', toggle: () => this.setState(s => ({ pipeOpen: { ...(s.pipeOpen || {}), [cl]: !op } })),
           lanes: ST.slice(0, 5).map(([label, c], si) => { const hx = parseInt(c.slice(1), 16), rgb = (hx >> 16 & 255) + ',' + (hx >> 8 & 255) + ',' + (hx & 255), key = cl + '|' + si, hot = this.state.hotLane === key;
-            return { c, tint: 'rgba(' + rgb + ',0.13)', tintH: 'rgba(' + rgb + ',0.24)', hot: hot ? 'rgba(233,227,214,0.06)' : 'transparent', dash: hot ? c : (this.state.dragId ? '#2a2722' : 'transparent'),
+            return { c, label, n: String(gi.filter(x => x.s === si).length), tint: 'rgba(' + rgb + ',0.13)', tintH: 'rgba(' + rgb + ',0.24)', hot: hot ? 'rgba(233,227,214,0.06)' : 'transparent', dash: hot ? c : (this.state.dragId ? '#2a2722' : 'transparent'),
               over: e => { e.preventDefault(); if (this.state.hotLane !== key) this.setState({ hotLane: key }); }, drop: e => { e.preventDefault(); let id = this.state.dragId; if (!id) { try { id = e.dataTransfer.getData('text/plain'); } catch (er) {} } this.setState({ dragId: null, hotLane: null }); const x = L.find(y => y.id === id); if (x && x.s !== si) this.patch(id, { s: si }, (x.writer || x.outlet) + ' · status → ' + label); },
               items: gi.filter(x => x.s === si).map(x => ({ name: x.writer || x.outlet || '—', sub: x.writer ? x.outlet : '', op: this.state.dragId === x.id ? 0.4 : 1, dstart: ev => { try { ev.dataTransfer.setData('text/plain', x.id); } catch (er) {} this.setState({ dragId: x.id }); }, dend: () => this.setState({ dragId: null, hotLane: null }), open: () => this.openDr(x) })) }; }) }; }).filter(Boolean),
       passedLine: (() => { const p = view.filter(x => x.s === 5); return p.length ? 'Passed: ' + p.map(x => x.writer || x.outlet).join(', ') : ''; })(),

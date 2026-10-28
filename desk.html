@@ -18,18 +18,33 @@
 <style data-bottom-pad="">@media screen{body{padding-bottom:120px !important}}</style>
 <style>body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#a9c6bf}@keyframes didadPulse{0%,100%{opacity:1}50%{opacity:0.25}}@media (prefers-reduced-motion:reduce){[data-pulse]{animation:none !important}}</style>
 <script src="sync.js"></script>
+<style data-mobile2="">@media (max-width:760px){[data-mg]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}[data-board]{overflow-x:auto;-webkit-overflow-scrolling:touch}[data-board]>[data-lanes]{min-width:900px}img{max-width:100%;height:auto}}@media (max-width:440px){[data-mg]{grid-template-columns:minmax(0,1fr) !important}}</style>
+<style>@media (min-width:641px){nav[data-deskmenu]{display:none !important}}@media (max-width:640px){[data-deskgrid]{display:none !important}}</style>
+<style data-mnav="">[data-navbtn]{display:none}@media (max-width:640px){[data-navbtn]{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;box-sizing:border-box;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#e9e3d6;background:#16150f;border:1px solid #3a3630;padding:12px 14px;cursor:pointer}nav[data-tabs]{display:none !important}html.navopen nav[data-tabs]{display:flex !important;flex-direction:column !important;flex-wrap:nowrap !important;overflow:visible !important;width:100% !important;margin-top:6px}html.navopen nav[data-tabs]>a{flex:none !important;justify-content:flex-start !important;padding:13px 14px !important;font-size:11px !important;border-bottom:1px solid #2a2722}}</style>
+<script>(function(){function cur(n){var a=n.querySelectorAll('a'),p=location.pathname.split('/').pop()||'index.html';for(var i=0;i<a.length;i++){var h=(a[i].getAttribute('href')||'').split('#')[0].split('/').pop();if(h===p&&!/desk/i.test(a[i].textContent))return a[i].textContent.trim();}return /desk/.test(location.pathname)?'Exhibition Desk':'Menu';}function ap(){var n=document.querySelector('nav[data-tabs]');if(!n)return false;if(n.previousElementSibling&&n.previousElementSibling.hasAttribute('data-navbtn'))return true;var b=document.createElement('button');b.setAttribute('data-navbtn','');b.setAttribute('data-noprint','');b.type='button';var l=document.createElement('span');l.textContent=cur(n);var i=document.createElement('span');i.textContent='☰ Menu';b.appendChild(l);b.appendChild(i);b.onclick=function(){var o=document.documentElement.classList.toggle('navopen');i.textContent=o?'✕ Close':'☰ Menu';};n.parentNode.insertBefore(b,n);n.addEventListener('click',function(e){if(e.target.closest('a'))document.documentElement.classList.remove('navopen');});return true;}var k=0,iv=setInterval(function(){ap();if(++k>100)clearInterval(iv);},150);})();</script>
 </helmet>
 <div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(28px,6vw,72px) clamp(20px,5vw,64px);box-sizing:border-box;">
   <div style="max-width:1100px;margin:0 auto;min-height:calc(100vh - 2 * clamp(28px,6vw,72px));display:flex;flex-direction:column;gap:clamp(16px,2.4vw,26px);">
 
     <header style="display:flex;flex-direction:column;gap:14px;">
+      <div data-noprint=""><nav data-tabs="" data-deskmenu="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
+    <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
+    <a href="book.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
+    <a href="agreements/checklist.html" data-ag="checklist.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
+    <a href="agreements/index.html" data-ag="index.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
+    <a href="events.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
+    <a href="offer-sheets.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Offers</a>
+    <a href="press.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press kit</a>
+    <a href="press-tracker.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press tracker</a>
+    <a href="agreements/shipping.html" data-ag="shipping.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Shipping</a>
+    <a href="install-plan.html#walkthrough" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Walkthrough</a></nav></div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;">
         <a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:clamp(18px,2.2vw,24px);width:auto;"></a>
         <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door <span style="color:#8f887c;">· 131 Chrystie St</span></div>
       </div>
       <div ref="{{ rowRef }}" style="display:flex;flex-direction:{{ rowDir }};justify-content:flex-start;align-items:stretch;gap:clamp(16px,3vw,36px);margin-top:8px;">
         <h1 style="margin:0;flex:0 1 auto;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6vw,76px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1>
-      <div style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:10px;"><div ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
+      <div style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:10px;"><div data-deskgrid="" ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
         <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
           <a href="{{ c.href }}" onClick="{{ c.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:{{ c.bg }};color:{{ c.fg }};text-decoration:none;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;" style-hover="background:#16150f;color:#7fa39b;">
             <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">{{ c.title }}</span>
@@ -44,7 +59,7 @@
         <sc-if value="{{ ctOpen }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;border-top:1px solid #3a3630;">
             <sc-for list="{{ contacts }}" as="p" hint-placeholder-count="12">
-              <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) minmax(0,0.8fr);gap:4px 16px;align-items:baseline;padding:7px 0;border-bottom:1px solid #2a2722;">
+              <div data-mg="" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) minmax(0,0.8fr);gap:4px 16px;align-items:baseline;padding:7px 0;border-bottom:1px solid #2a2722;">
                 <span style="font-family:'EB Garamond',serif;font-size:15px;color:#f0eadd;">{{ p.name }}<span style="color:#8f887c;font-size:13px;">{{ p.note }}</span></span>
                 <a href="{{ p.mailto }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" style-hover="color:#e9e3d6;">{{ p.email }}</a>
                 <a href="{{ p.tel }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;white-space:nowrap;" style-hover="color:#7fa39b;">{{ p.phone }}</a>
@@ -56,7 +71,7 @@
       </div>
     </header>
 
-    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);align-items:end;border-top:1px solid #2a2722;padding-top:16px;">
+    <div data-mg="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);align-items:end;border-top:1px solid #2a2722;padding-top:16px;">
       <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">{{ instLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ instBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Fri, Nov 6</span></div>
       <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">{{ countLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ countBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Thu, Nov 12</span></div>
       <div style="display:flex;flex-direction:column;gap:14px;font-family:'Space Mono',monospace;">
@@ -84,7 +99,7 @@
           <button type="button" onClick="{{ emailChanges }}" title="Email the changes made in this browser" style="background:transparent;color:#c4bcae;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">Email changes {{ unsentCount }}</button>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,16px);align-items:start;">
+      <div data-mg="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,16px);align-items:start;">
         <sc-for list="{{ cols }}" as="col" hint-placeholder-count="3">
           <div onDragOver="{{ col.over }}" onDrop="{{ col.drop }}" style="display:flex;flex-direction:column;gap:6px;min-width:0;min-height:140px;">
             <div style="display:flex;align-items:center;gap:7px;padding-bottom:6px;border-bottom:2px solid {{ col.c }};"><span style="width:7px;height:7px;flex:none;border-radius:50%;background:{{ col.c }};"></span><span data-pulse="" style="animation:{{ col.anim }};font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ col.c }};">{{ col.name }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ col.count }}</span></div>
@@ -143,7 +158,7 @@
                 <button type="button" onClick="{{ calNext }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-family:'Space Mono',monospace;font-size:10px;padding:2px 8px;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">→</button>
               </span>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));">
+            <div data-mg="" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));">
               <sc-for list="{{ calHead }}" as="h" hint-placeholder-count="7"><span style="text-align:center;font-family:'Space Mono',monospace;font-size:8.5px;color:#6d675c;padding-bottom:4px;">{{ h }}</span></sc-for>
               <sc-for list="{{ miniDays }}" as="d" hint-placeholder-count="35">
                 <button type="button" onClick="{{ d.add }}" title="{{ d.tip }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;background:{{ d.bg }};border:none;box-shadow:{{ d.sh }};cursor:pointer;" style-hover="background:#24211c;">
