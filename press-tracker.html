@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style data-bottom-pad="">@media screen{body{padding-bottom:120px !important}}</style>
+<style>@media (max-width:800px){[data-phead]{grid-template-columns:1fr !important}[data-phead]>div:last-child{justify-self:start !important}}body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#a9c6bf}[contenteditable]:empty:before{content:attr(data-ph);color:#4a4640}input[type=date]::-webkit-calendar-picker-indicator{filter:invert(0.7)}@media (max-width:760px){[data-lanes]{grid-template-columns:1fr !important}}</style>
+<script>(function(){var b='agreements/';fetch('agreements/tracker.html',{method:'HEAD'}).then(function(r){if(!r.ok)b='../agreements/';}).catch(function(){b='../agreements/';});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-ag]');if(a)a.href=b+a.getAttribute('data-ag');},true);})();</script>
+<script src="sync.js"></script>
+</helmet>
+<div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;box-sizing:border-box;">
+  <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
+  <a href="book.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
+  <a href="agreements/checklist.html" data-ag="checklist.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
+  <a href="agreements/index.html" data-ag="index.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
+  <a href="events.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
+  <a href="offer-sheets.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Offers</a>
+  <a href="press.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press kit</a>
+  <a href="press-tracker.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press tracker</a>
+  <a href="agreements/shipping.html" data-ag="shipping.html" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Shipping</a>
+  <a href="install-plan.html#walkthrough" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:9px clamp(6px,0.9vw,14px);white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Walkthrough</a>
+</nav></div>
+
+<div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
+  <div style="max-width:1400px;margin:0 auto;display:flex;flex-direction:column;gap:22px;">
+    <div style="display:flex;align-items:baseline;gap:16px;"><a href="desk.html" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+    <div data-phead="" style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px 48px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0;">
+        <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Press Tracker</h1>
+        <div style="display:flex;flex-direction:column;gap:10px;max-width:620px;border-top:1px solid #2a2722;padding-top:14px;">
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">Every critic, curator, outlet and listing we’re pitching. Each contact is a card that moves left to right as you work with them.</p>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;"><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;border:1px solid #8f887c;padding:4px 8px;white-space:nowrap;">To pitch</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#c9a24a;border:1px solid #c9a24a;padding:4px 8px;white-space:nowrap;">Pitched</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#e08a3c;border:1px solid #e08a3c;padding:4px 8px;white-space:nowrap;">Follow up</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7fa39b;border:1px solid #7fa39b;padding:4px 8px;white-space:nowrap;">Replied</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5fa08f;border:1px solid #5fa08f;padding:4px 8px;white-space:nowrap;">Covering</span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;"><p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">Anyone who declines goes to</p><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;border:1px solid #6d675c;padding:4px 8px;white-space:nowrap;">Passed</span></div>
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;color:#c4bcae;">Click a card to open the contact, pick a template and write the pitch. The draft opens in your email — you send it yourself, then click <i>Confirm</i> to log it. Nothing goes out on its own. Check <i>Today</i> below the board for what’s due.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;justify-self:end;max-width:340px;width:100%;">
+        <div style="display:flex;flex-direction:column;gap:10px;border:1px solid #3a3630;background:#16150f;padding:14px 16px;">
+          <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5fa08f;">Press preview</span><span style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.3;color:#f0eadd;">Wednesday, Nov 11 · 5–7 pm</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">Opening</span><span style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.3;color:#f0eadd;">Thursday, Nov 12 · 6–9 pm</span></div>
+          <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#8f887c;">CC Jasper · 131 Chrystie Street</span>
+        </div>
+        <span style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;letter-spacing:0.06em;color:#8f887c;">{{ toPitchLine }}</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:'Space Mono',monospace;"><div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;"><sc-for list="{{ viewOpts }}" as="v" hint-placeholder-count="2"><button onClick="{{ v.pick }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:none;cursor:pointer;background:{{ v.bg }};color:{{ v.fg }};">{{ v.label }}</button></sc-for></div><button onClick="{{ toggleAll }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 11px;border:1px solid #3a3630;background:transparent;color:#8f887c;cursor:pointer;white-space:nowrap;" style-hover="color:#e9e3d6;border-color:#6d675c;">{{ allLabel }}</button>
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7"><button onClick="{{ f.pick }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 11px;border:1px solid #6d675c;background:{{ f.bg }};color:{{ f.fg }};cursor:pointer;white-space:nowrap;">{{ f.label }}</button></sc-for>
+      <button onClick="{{ addRow }}" style="margin-left:auto;font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 14px;background:#e9e3d6;color:#0d0c0b;border:1px solid #e9e3d6;cursor:pointer;" style-hover="background:#7fa39b;border-color:#7fa39b;">+ Add contact</button>
+    </div>
+
+    <div style="display:flex;height:4px;gap:2px;background:#2a2722;"><sc-for list="{{ pressBar }}" as="b" hint-placeholder-count="5"><div title="{{ b.tip }}" style="width:{{ b.w }};background:{{ b.c }};"></div></sc-for></div>
+
+    <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+      <div style="position:sticky;top:64px;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;background:#e9e3d6;color:#0d0c0b;padding:10px 14px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.08em;box-shadow:0 8px 24px rgba(0,0,0,0.45);">
+        <span style="text-transform:uppercase;letter-spacing:0.12em;">{{ selLabel }} · log send:</span>
+        <sc-for list="{{ sendOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 11px;background:#0d0c0b;color:#e9e3d6;border:none;cursor:pointer;" style-hover="background:#2b6a60;">{{ o.label }}</button></sc-for>
+        <button onClick="{{ clearSel }}" style="margin-left:auto;font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:#0d0c0b;border:1px solid #0d0c0b;padding:5px 10px;cursor:pointer;">Clear</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:6px;">
+    <div data-lanes="" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 12px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;">
+      <sc-for list="{{ laneHeads }}" as="lh" hint-placeholder-count="5"><div style="display:flex;justify-content:space-between;color:{{ lh.c }};border-bottom:1px solid {{ lh.c }};padding-bottom:8px;"><span>{{ lh.label }}</span><span>{{ lh.n }}</span></div></sc-for>
+    </div>
+    <sc-for list="{{ pipeGroups }}" as="pg2" hint-placeholder-count="5">
+      <div style="display:flex;flex-direction:column;">
+        <button onClick="{{ pg2.toggle }}" aria-expanded="{{ pg2.open }}" style="display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;background:transparent;border:none;border-bottom:1px solid {{ pg2.c }};padding:10px 0 8px;margin-bottom:4px;cursor:pointer;" style-hover="background:#1c1a16;"><span style="font-family:'Space Mono',monospace;font-size:13px;color:{{ pg2.c }};width:14px;">{{ pg2.icon }}</span><span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;color:#f0eadd;">{{ pg2.label }}</span><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ pg2.c }};">{{ pg2.n }}</span><span style="font-size:13.5px;color:#8f887c;font-style:italic;">{{ pg2.note }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;padding-right:4px;color:{{ pg2.c }};">{{ pg2.sentLine }}</span></button>
+        <sc-if value="{{ pg2.open }}" hint-placeholder-val="{{ false }}">
+          <div data-lanes="" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 12px;padding:4px 0 10px;">
+            <sc-for list="{{ pg2.lanes }}" as="ln" hint-placeholder-count="5">
+              <div onDragOver="{{ ln.over }}" onDrop="{{ ln.drop }}" style="display:flex;flex-direction:column;gap:5px;min-width:0;min-height:44px;padding:4px;background:{{ ln.hot }};border:1px dashed {{ ln.dash }};">
+                <sc-for list="{{ ln.items }}" as="t" hint-placeholder-count="0">
+                  <div draggable="true" onDragStart="{{ t.dstart }}" onDragEnd="{{ t.dend }}" onClick="{{ t.open }}" title="Drag to another column · click to open" style="display:flex;flex-direction:column;gap:3px;padding:8px;background:{{ ln.tint }};border-left:2px solid {{ ln.c }};cursor:grab;opacity:{{ t.op }};" style-hover="background:{{ ln.tintH }};">
+                    <span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.2;color:#f0eadd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.name }}</span>
+                    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:#8f887c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ t.sub }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;color:#6d675c;padding-top:6px;">{{ passedLine }}</div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isTable }}" hint-placeholder-val="{{ true }}">
+    <div style="overflow-x:auto;background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);">
+      <div style="display:grid;grid-template-columns:28px minmax(10em,1.1fr) minmax(10em,1.1fr) minmax(9em,1fr) minmax(8em,0.9fr) 5.5em 8.5em repeat(5,3.4em) 5.5em 8.6em 92px;min-width:1320px;font-size:14px;align-items:stretch;">
+        <button onClick="{{ selAll }}" title="Select all shown" style="background:transparent;border:none;border-bottom:1px solid #6d675c;color:#8f887c;cursor:pointer;padding:0 0 8px;font-size:12px;">{{ allMark }}</button>
+        <sc-for list="{{ head }}" as="h" hint-placeholder-count="14"><div title="{{ h.tip }}" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;padding:0 6px 8px;border-bottom:1px solid #6d675c;text-align:{{ h.al }};">{{ h.label }}</div></sc-for>
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+          <div role="button" onClick="{{ g.toggle }}" aria-expanded="{{ g.open }}" style="grid-column:1/-1;display:flex;align-items:baseline;gap:12px;padding:16px 0 8px;margin-bottom:4px;border-bottom:1px solid {{ g.c }};cursor:pointer;user-select:none;" style-hover="background:#1c1a16;"><span style="font-family:'Space Mono',monospace;font-size:13px;color:{{ g.c }};width:14px;">{{ g.icon }}</span><span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#f0eadd;">{{ g.label }}</span><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ g.c }};">{{ g.n }}</span><span style="font-size:13.5px;color:#8f887c;font-style:italic;">{{ g.note }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:{{ g.c }};padding-right:4px;">{{ g.sentLine }}</span></div>
+          <sc-for list="{{ g.shown }}" as="r" hint-placeholder-count="0">
+          <button onClick="{{ r.toggle }}" aria-label="Select" style="background:{{ r.hl }};border:none;border-bottom:1px solid #2a2722;color:{{ r.selC }};cursor:pointer;font-size:13px;">{{ r.selMark }}</button>
+          <div style="padding:10px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};display:flex;flex-direction:column;gap:3px;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="Name or desk" onBlur="{{ r.on.writer }}" style="outline:none;color:#f0eadd;font-size:15px;" style-focus="background:#24211c;">{{ r.writer }}</div><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="Publication" onBlur="{{ r.on.outlet }}" style="outline:none;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#8f887c;" style-focus="background:#24211c;">{{ r.outlet }}</div><sc-if value="{{ r.dup }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#e0614f;">{{ r.dup }}</span></sc-if></div>
+          <div style="padding:10px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};display:flex;flex-direction:column;gap:6px;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="email" onBlur="{{ r.on.email }}" style="outline:none;font-size:12.5px;color:#7fa39b;word-break:break-all;" style-focus="background:#24211c;">{{ r.email }}</div><select value="{{ r.cat }}" onChange="{{ r.setCat }}" title="Move to another group" style="font-family:'Space Mono',monospace;font-size:9.5px;background:#0d0c0b;color:#8f887c;border:1px solid #2a2722;padding:3px;"><sc-for list="{{ catOpts }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for></select></div>
+          <div style="padding:8px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};"><select value="{{ r.angle }}" onChange="{{ r.setAngle }}" style="width:100%;font-family:'EB Garamond',serif;font-size:14px;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;padding:5px 4px;"><sc-for list="{{ angles }}" as="a" hint-placeholder-count="6"><option value="{{ a }}">{{ a }}</option></sc-for></select></div>
+          <div style="padding:10px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="beat · notes" onBlur="{{ r.on.notes }}" style="outline:none;font-size:13px;color:#8f887c;font-style:italic;" style-focus="background:#24211c;">{{ r.notes }}</div></div>
+          <div style="padding:10px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="owner" onBlur="{{ r.on.owner }}" style="outline:none;font-family:'Space Mono',monospace;font-size:10.5px;color:#c4bcae;" style-focus="background:#24211c;">{{ r.owner }}</div></div>
+          <div style="padding:8px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};"><button onClick="{{ r.next }}" title="Click to change status" style="width:100%;text-align:left;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;background:transparent;color:{{ r.sc }};border:1px solid {{ r.sc }};padding:5px 6px;cursor:pointer;white-space:nowrap;">{{ r.status }}</button></div>
+          <sc-for list="{{ r.dots }}" as="d" hint-placeholder-count="5"><div style="border-bottom:1px solid #2a2722;background:{{ r.hl }};display:flex;justify-content:center;align-items:center;"><button onClick="{{ d.tog }}" title="{{ d.tip }}" style="width:30px;height:30px;background:transparent;border:none;cursor:pointer;color:{{ d.c }};font-size:14px;">{{ d.v }}</button></div></sc-for>
+          <div style="padding:12px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;white-space:nowrap;">{{ r.lastLabel }}</div>
+          <div style="padding:8px 6px;border-bottom:1px solid #2a2722;background:{{ r.hl }};"><input type="date" value="{{ r.nextDate }}" onChange="{{ r.setNext }}" style="width:100%;box-sizing:border-box;font-family:'Space Mono',monospace;font-size:10.5px;background:#0d0c0b;color:{{ r.nextC }};border:1px solid #3a3630;padding:4px;"></div>
+          <div style="padding:8px 4px;border-bottom:1px solid #2a2722;background:{{ r.hl }};display:flex;gap:4px;justify-content:flex-end;align-items:center;"><button onClick="{{ r.openDrawer }}" title="Profile · write a personal pitch" style="background:#e9e3d6;border:1px solid #e9e3d6;color:#0d0c0b;font-size:12px;padding:2px 6px;cursor:pointer;" style-hover="background:#7fa39b;border-color:#7fa39b;">✍</button><a href="{{ r.mailto }}" onClick="{{ r.mailed }}" title="Quick email · logs a send" style="font-size:13px;border:1px solid #3a3630;padding:2px 6px;">✉</a><button onClick="{{ r.remove }}" title="Delete" style="background:transparent;border:1px solid #3a3630;color:#8f887c;font-size:10px;padding:3px 6px;cursor:pointer;" style-hover="border-color:#e0614f;color:#e0614f;">✕</button></div>
+        </sc-for>
+        </sc-for>
+      </div>
+      <sc-if value="{{ rowsEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:18px 0;font-size:15px;color:#6d675c;">No contacts in this view.</div></sc-if>
+    </div>
+    </sc-if>
+
+    <div id="today" style="border-top:1px solid #3a3630;padding-top:18px;margin-top:6px;scroll-margin-top:130px;display:flex;flex-direction:column;gap:14px;">
+      <button onClick="{{ sec_today.toggle }}" aria-expanded="{{ sec_today.open }}" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;width:100%;background:transparent;border:none;padding:0;cursor:pointer;text-align:left;color:inherit;" style-hover="opacity:0.85;">
+        <span style="align-self:center;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:13px;line-height:1;color:#e9e3d6;">{{ sec_today.icon }}</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,2.6vw,32px);line-height:1;color:#f0eadd;">Today</span>
+        <span style="font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:#8f887c;">{{ todayNote }}</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ sec_today.c }};">{{ sec_today.n }}</span>
+      </button>
+      <sc-if value="{{ sec_today.open }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#16150f;border:1px solid #2a2722;border-top:2px solid #e0614f;padding:16px clamp(14px,2vw,24px);display:flex;flex-direction:column;">
+      <sc-if value="{{ todayEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-size:15.5px;color:#8f887c;padding:6px 0;">Nothing due today. Open the pipeline and pitch someone new.</span></sc-if>
+      <sc-for list="{{ todayItems }}" as="td" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:8px 92px minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:10px 0;border-bottom:1px solid #2a2722;opacity:{{ td.op }};">
+          <span style="width:7px;height:7px;border-radius:50%;background:{{ td.c }};"></span>
+          <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:{{ td.c }};">{{ td.kind }}</span>
+          <span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:16px;line-height:1.3;color:#f0eadd;text-decoration:{{ td.td }};">{{ td.text }}</span><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#8f887c;">{{ td.sub }}</span></span>
+          <span style="display:flex;gap:6px;"><sc-if value="{{ td.hasAct }}" hint-placeholder-val="{{ true }}"><button onClick="{{ td.act }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 11px;background:#e9e3d6;color:#0d0c0b;border:none;cursor:pointer;white-space:nowrap;" style-hover="background:#7fa39b;">{{ td.actLabel }}</button></sc-if><sc-if value="{{ td.hasDone }}" hint-placeholder-val="{{ false }}"><button onClick="{{ td.done }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 10px;background:transparent;color:#c4bcae;border:1px solid #3a3630;cursor:pointer;white-space:nowrap;" style-hover="border-color:#5fa08f;color:#5fa08f;">{{ td.doneLabel }}</button></sc-if></span>
+        </div>
+      </sc-for>
+    </div>
+      </sc-if>
+    </div>
+
+    <div id="week" style="border-top:1px solid #3a3630;padding-top:18px;margin-top:6px;scroll-margin-top:130px;display:flex;flex-direction:column;gap:14px;">
+      <button onClick="{{ sec_week.toggle }}" aria-expanded="{{ sec_week.open }}" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;width:100%;background:transparent;border:none;padding:0;cursor:pointer;text-align:left;color:inherit;" style-hover="opacity:0.85;">
+        <span style="align-self:center;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:13px;line-height:1;color:#e9e3d6;">{{ sec_week.icon }}</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,2.6vw,32px);line-height:1;color:#f0eadd;">Status</span>
+        <span style="font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:#8f887c;">what’s gone out · who’s coming</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ sec_week.c }};">{{ sec_week.n }}</span>
+      </button>
+      <sc-if value="{{ sec_week.open }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;">
+      <div style="background:#16150f;border:1px solid #2a2722;border-top:2px solid #7fa39b;padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #3a3630;padding-bottom:8px;">What’s gone out</span>
+        <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;">
+          <sc-for list="{{ assetTotals }}" as="a" hint-placeholder-count="5"><div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1;color:#7fa39b;">{{ a.n }}</span><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">{{ a.label }}</span></div></sc-for>
+        </div>
+        <span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">{{ toPitchLine }}</span>
+      </div>
+    <div id="preview" style="scroll-margin-top:130px;background:#16150f;border:1px solid #2a2722;border-top:2px solid #5fa08f;padding:16px 18px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#5fa08f;">Press preview · Wed Nov 11</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#8f887c;">5–7 pm · 131 Chrystie · walkthroughs with Doug</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#2a2722;border:1px solid #2a2722;">
+        <sc-for list="{{ rsvpTotals }}" as="t" hint-placeholder-count="4"><div style="background:#0d0c0b;padding:10px 12px;display:flex;flex-direction:column;"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;color:{{ t.c }};">{{ t.n }}</span><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">{{ t.label }}</span></div></sc-for>
+      </div>
+      <sc-if value="{{ rsvpEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-size:14.5px;color:#6d675c;">No one invited yet — open a contact with ✍ and set RSVP to Invited.</span></sc-if>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 110px 120px 60px;font-size:14.5px;align-items:center;">
+        <sc-for list="{{ rsvpRows }}" as="r" hint-placeholder-count="0">
+          <span style="padding:7px 0;border-bottom:1px solid #2a2722;color:#f0eadd;">{{ r.writer }} <span style="color:#8f887c;">· {{ r.outlet }}</span></span>
+          <span style="padding:5px 6px 5px 0;border-bottom:1px solid #2a2722;"><select value="{{ r.rsvp }}" onChange="{{ r.setRsvp }}" style="width:100%;font-family:'Space Mono',monospace;font-size:10px;background:#0d0c0b;color:{{ r.rc }};border:1px solid #3a3630;padding:3px;"><sc-for list="{{ rsvpOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o }}">{{ o }}</option></sc-for></select></span>
+          <span style="padding:7px 6px 7px 0;border-bottom:1px solid #2a2722;"><input value="{{ r.slot }}" onChange="{{ r.setSlot }}" placeholder="walk · 5:15" style="width:100%;box-sizing:border-box;font-family:'Space Mono',monospace;font-size:10.5px;background:#0d0c0b;color:#c4bcae;border:1px solid #3a3630;padding:4px;"></span>
+          <span style="padding:7px 0;border-bottom:1px solid #2a2722;text-align:right;"><button onClick="{{ r.open }}" style="background:transparent;border:1px solid #3a3630;color:#c4bcae;font-size:12px;padding:2px 7px;cursor:pointer;">✍</button></span>
+        </sc-for>
+      </div>
+    </div>
+    </div>
+      </sc-if>
+    </div>
+
+    <div id="plan" style="border-top:1px solid #3a3630;padding-top:18px;margin-top:6px;scroll-margin-top:130px;display:flex;flex-direction:column;gap:14px;">
+      <button onClick="{{ sec_plan.toggle }}" aria-expanded="{{ sec_plan.open }}" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;width:100%;background:transparent;border:none;padding:0;cursor:pointer;text-align:left;color:inherit;" style-hover="opacity:0.85;">
+        <span style="align-self:center;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:13px;line-height:1;color:#e9e3d6;">{{ sec_plan.icon }}</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,2.6vw,32px);line-height:1;color:#f0eadd;">Action plan</span>
+        <span style="font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:#8f887c;">what to do, in order, until the opening</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ sec_plan.c }};">{{ sec_plan.n }}</span>
+      </button>
+      <sc-if value="{{ sec_plan.open }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1;color:#c9a24a;">{{ planDays }}</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;">{{ planProgress }}</span>
+      </div>
+      <div style="height:3px;background:#2a2722;"><div style="height:3px;width:{{ planPct }};background:#5fa08f;"></div></div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <sc-for list="{{ planGroups }}" as="pg" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+            <button onClick="{{ pg.toggle }}" aria-expanded="{{ pg.open }}" style="display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;background:transparent;border:none;border-bottom:1px solid {{ pg.c }};padding:10px 0 8px;margin-bottom:4px;cursor:pointer;" style-hover="background:#1c1a16;"><span style="font-family:'Space Mono',monospace;font-size:13px;color:{{ pg.c }};width:14px;">{{ pg.icon }}</span><span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;color:#f0eadd;">{{ pg.title }}</span><span style="font-size:13.5px;font-style:italic;color:#8f887c;">{{ pg.dates }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ pg.c }};padding-right:4px;">{{ pg.prog }}</span></button>
+            <sc-for list="{{ pg.shown }}" as="it" hint-placeholder-count="0">
+              <div style="display:grid;grid-template-columns:22px 50px minmax(0,1fr);gap:4px 8px;align-items:start;padding:8px 0;border-bottom:1px solid #2a2722;opacity:{{ it.op }};">
+                <button onClick="{{ it.toggle }}" aria-label="Done" style="width:18px;height:18px;margin-top:2px;border:1px solid {{ it.bc }};background:{{ it.bg }};color:#0d0c0b;font-size:11px;line-height:16px;padding:0;cursor:pointer;">{{ it.mk }}</button>
+                <span style="font-family:'Space Mono',monospace;font-size:10px;color:{{ it.dc }};padding-top:3px;white-space:nowrap;">{{ it.dateLabel }}</span>
+                <span style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:15px;line-height:1.3;color:#f0eadd;text-decoration:{{ it.td }};">{{ it.text }}</span><span style="display:flex;flex-wrap:wrap;gap:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"><span style="color:#8f887c;">{{ it.owner }}</span><sc-if value="{{ it.hasCount }}" hint-placeholder-val="{{ false }}"><span style="color:{{ pg.c }};">{{ it.count }}</span></sc-if><sc-if value="{{ it.hasGo }}" hint-placeholder-val="{{ false }}"><button onClick="{{ it.go }}" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;background:transparent;border:none;border-bottom:1px solid #7fa39b;color:#7fa39b;padding:0;cursor:pointer;">{{ it.goLabel }}</button></sc-if></span></span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+      </sc-if>
+    </div>
+
+    <div id="ideas" style="border-top:1px solid #3a3630;padding-top:18px;margin-top:6px;scroll-margin-top:130px;display:flex;flex-direction:column;gap:14px;">
+      <button onClick="{{ sec_ideas.toggle }}" aria-expanded="{{ sec_ideas.open }}" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;width:100%;background:transparent;border:none;padding:0;cursor:pointer;text-align:left;color:inherit;" style-hover="opacity:0.85;">
+        <span style="align-self:center;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:13px;line-height:1;color:#e9e3d6;">{{ sec_ideas.icon }}</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,2.6vw,32px);line-height:1;color:#f0eadd;">Ideas</span>
+        <span style="font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:#8f887c;">new ways to get press — try one, assign it, mark it done</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ sec_ideas.c }};">{{ sec_ideas.n }}</span>
+      </button>
+      <sc-if value="{{ sec_ideas.open }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;"><sc-for list="{{ ideaFilters }}" as="f" hint-placeholder-count="4"><button onClick="{{ f.pick }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 11px;border:1px solid #6d675c;background:{{ f.bg }};color:{{ f.fg }};cursor:pointer;">{{ f.label }}</button></sc-for><button onClick="{{ addIdea }}" style="margin-left:auto;font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 14px;background:#e9e3d6;color:#0d0c0b;border:none;cursor:pointer;" style-hover="background:#7fa39b;">+ Add idea</button></div>
+      <div style="background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;">
+      <sc-for list="{{ ideas }}" as="i" hint-placeholder-count="6">
+        <div style="background:#0d0c0b;border:1px solid #2a2722;border-top:2px solid {{ i.c }};padding:14px 16px;display:flex;flex-direction:column;gap:8px;opacity:{{ i.op }};">
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:{{ i.c }};">{{ i.statusLabel }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">{{ i.tag }}</span></div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="Idea" onBlur="{{ i.on.title }}" style="outline:none;font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.1;color:#f0eadd;text-decoration:{{ i.td }};">{{ i.title }}</div>
+          <div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="How it would work" onBlur="{{ i.on.text }}" style="outline:none;font-size:14.5px;line-height:1.4;color:#c4bcae;">{{ i.text }}</div>
+          <div style="display:flex;align-items:center;gap:8px;border-top:1px solid #2a2722;padding-top:8px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#6d675c;">Owner</span><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="—" onBlur="{{ i.on.owner }}" style="outline:none;flex:1;font-family:'Space Mono',monospace;font-size:10.5px;color:#e9e3d6;">{{ i.owner }}</div></div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;"><sc-for list="{{ i.acts }}" as="a" hint-placeholder-count="3"><button onClick="{{ a.pick }}" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 8px;cursor:pointer;background:{{ a.bg }};color:{{ a.fg }};border:1px solid {{ a.bc }};">{{ a.label }}</button></sc-for><sc-if value="{{ i.custom }}" hint-placeholder-val="{{ false }}"><button onClick="{{ i.remove }}" style="margin-left:auto;background:transparent;border:none;color:#6d675c;cursor:pointer;" style-hover="color:#e0614f;">✕</button></sc-if></div>
+        </div>
+      </sc-for>
+    </div>
+      </sc-if>
+    </div>
+
+    <div id="coverage" style="border-top:1px solid #3a3630;padding-top:18px;margin-top:6px;scroll-margin-top:130px;display:flex;flex-direction:column;gap:14px;">
+      <button onClick="{{ sec_coverage.toggle }}" aria-expanded="{{ sec_coverage.open }}" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;width:100%;background:transparent;border:none;padding:0;cursor:pointer;text-align:left;color:inherit;" style-hover="opacity:0.85;">
+        <span style="align-self:center;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-family:'Space Mono',monospace;font-size:13px;line-height:1;color:#e9e3d6;">{{ sec_coverage.icon }}</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,2.6vw,32px);line-height:1;color:#f0eadd;">Coverage</span>
+        <span style="font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:#8f887c;">what ran, and where you’ve reused it</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ sec_coverage.c }};">{{ sec_coverage.n }}</span>
+      </button>
+      <sc-if value="{{ sec_coverage.open }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#16150f;border:1px solid #2a2722;padding:20px clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#a99fc9;">{{ covSummary }}</span><button onClick="{{ addCov }}" style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;background:#e9e3d6;color:#0d0c0b;border:none;cursor:pointer;" style-hover="background:#7fa39b;">+ Add clip</button></div>
+      <sc-if value="{{ covEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-size:14.5px;color:#6d675c;">Nothing yet. When a review, listing or post runs, add it here — then check off where you’ve reused it.</span></sc-if>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;">
+        <sc-for list="{{ cov }}" as="c" hint-placeholder-count="0">
+          <div style="background:#0d0c0b;border-top:2px solid {{ c.kc }};padding:12px 14px;display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;gap:8px;align-items:center;"><select value="{{ c.kind }}" onChange="{{ c.setKind }}" style="font-family:'Space Mono',monospace;font-size:9.5px;background:#0d0c0b;color:{{ c.kc }};border:1px solid #3a3630;padding:2px;"><sc-for list="{{ covKinds }}" as="k" hint-placeholder-count="4"><option value="{{ k }}">{{ k }}</option></sc-for></select><input type="date" value="{{ c.date }}" onChange="{{ c.setDate }}" style="font-family:'Space Mono',monospace;font-size:9.5px;background:#0d0c0b;color:#8f887c;border:1px solid #3a3630;padding:2px;"><button onClick="{{ c.remove }}" style="margin-left:auto;background:transparent;border:none;color:#6d675c;cursor:pointer;" style-hover="color:#e0614f;">✕</button></div>
+            <div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="Publication" onBlur="{{ c.on.outlet }}" style="outline:none;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#c4bcae;">{{ c.outlet }}</div>
+            <div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="Headline or pull-quote" onBlur="{{ c.on.title }}" style="outline:none;font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.2;color:#f0eadd;">{{ c.title }}</div>
+            <div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="Artists named" onBlur="{{ c.on.artists }}" style="outline:none;font-size:13.5px;color:#8f887c;">{{ c.artists }}</div>
+            <div style="display:flex;gap:8px;align-items:center;"><div contentEditable="true" suppressContentEditableWarning="{{ true }}" data-ph="https:// link" onBlur="{{ c.on.link }}" style="outline:none;flex:1;min-width:0;font-family:'Space Mono',monospace;font-size:10px;color:#7fa39b;word-break:break-all;">{{ c.link }}</div><sc-if value="{{ c.hasLink }}" hint-placeholder-val="{{ false }}"><a href="{{ c.link }}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:9.5px;">Open ↗</a></sc-if></div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid #2a2722;padding-top:8px;"><sc-for list="{{ c.reuse }}" as="u" hint-placeholder-count="4"><button onClick="{{ u.tog }}" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;padding:3px 7px;cursor:pointer;background:{{ u.bg }};color:{{ u.fg }};border:1px solid {{ u.bc }};">{{ u.label }}</button></sc-for></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+      </sc-if>
+    </div>
+
+    <div data-noprint="" style="margin-top:42px;border-top:1px solid #3a3630;padding-top:20px;display:flex;flex-direction:column;gap:16px;font-family:'Space Mono',monospace;font-size:11px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 24px;">
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:560px;">
+          <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">History</span>
+          <p style="margin:0;font-family:'EB Garamond',serif;font-size:15px;line-height:1.45;color:#c4bcae;text-wrap:pretty;">Every pitch you confirm and every status change is logged here automatically, and edits save to the shared desk. Export the contact list as a CSV to back up or share; Import loads one back in.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportCsv }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Export CSV</button><button onClick="{{ importCsv }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Import CSV</button></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;">
+        <button onClick="{{ toggleLog }}" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#c4bcae;border:none;padding:2px 0;cursor:pointer;" style-hover="color:#7fa39b;"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1px solid #6d675c;font-size:12px;line-height:1;">{{ logIcon }}</span>Send log<span style="color:#8f887c;">{{ logCount }}</span></button>
+        <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="flex-basis:100%;max-height:360px;overflow-y:auto;border-top:1px solid #2a2722;">
+          <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;color:#6d675c;">Nothing sent yet.</div></sc-if>
+          <sc-for list="{{ log }}" as="e" hint-placeholder-count="0">
+            <div style="display:grid;grid-template-columns:9.5em 7em minmax(0,1fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;"><span style="color:#8f887c;">{{ e.when }}</span><span style="color:#c4bcae;">{{ e.who }}</span><span style="font-family:'EB Garamond',serif;font-size:14px;color:#e9e3d6;">{{ e.what }}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+      </div>
+    </div>
+
+    <sc-if value="{{ pendBar }}" hint-placeholder-val="{{ false }}"><div style="position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:150;display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:#e9e3d6;color:#0d0c0b;padding:10px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;box-shadow:0 10px 30px rgba(0,0,0,0.55);max-width:calc(100vw - 32px);box-sizing:border-box;"><span>Did you send the {{ pendWhat }} to <b>{{ pendName }}</b>?</span><button onClick="{{ pendYes }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;background:#0d0c0b;color:#e9e3d6;border:none;cursor:pointer;">Yes, sent</button><button onClick="{{ pendNo }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 10px;background:transparent;color:#0d0c0b;border:1px solid #0d0c0b;cursor:pointer;">Not sent</button></div></sc-if>
+    <sc-if value="{{ drOpen }}" hint-placeholder-val="{{ false }}"><div onClick="{{ dr.bg }}" style="position:fixed;inset:0;z-index:200;background:rgba(8,7,6,0.75);display:flex;align-items:center;justify-content:center;padding:16px;">
+      <div style="width:min(1100px,100%);max-height:calc(100vh - 32px);overflow:auto;box-sizing:border-box;background:#16150f;border:1px solid #3a3630;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));box-shadow:0 30px 80px rgba(0,0,0,0.6);">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #2a2722;">
+          <div style="display:flex;justify-content:space-between;gap:10px;"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.05;color:#f0eadd;">{{ dr.writer }}</span><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8f887c;">{{ dr.outlet }} · {{ dr.cat }}</span><span style="font-size:13px;color:#7fa39b;word-break:break-all;">{{ dr.email }}</span></div><button onClick="{{ dr.close }}" aria-label="Close" style="width:34px;height:34px;flex:0 0 34px;background:transparent;border:1px solid #3a3630;color:#c4bcae;font-size:17px;cursor:pointer;">×</button></div>
+          <div style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Fit with the show</span><div style="display:flex;gap:4px;"><sc-for list="{{ dr.fitDots }}" as="d" hint-placeholder-count="5"><button onClick="{{ d.pick }}" style="width:26px;height:26px;border:1px solid {{ d.bc }};background:{{ d.bg }};cursor:pointer;padding:0;"></button></sc-for><span style="font-family:'Space Mono',monospace;font-size:10px;color:#c9a24a;padding:6px 0 0 6px;">{{ dr.fitLabel }}</span></div></div>
+          <label style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Why them · your hook</span><textarea value="{{ dr.why }}" onChange="{{ dr.setWhy }}" onBlur="{{ dr.saveWhy }}" rows="3" placeholder="What they’ve written that connects to this show…" style="font-family:'EB Garamond',serif;font-size:15px;line-height:1.4;background:#0d0c0b;color:#f0eadd;border:1px solid #3a3630;padding:8px 10px;resize:vertical;outline:none;" style-focus="border-color:#7fa39b;"></textarea></label>
+          <label style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Angle · artist to lead with</span><select value="{{ dr.angle }}" onChange="{{ dr.setAngle }}" style="font-family:'EB Garamond',serif;font-size:15px;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;padding:6px;"><sc-for list="{{ angles }}" as="a" hint-placeholder-count="6"><option value="{{ a }}">{{ a }}</option></sc-for></select><span style="font-size:13px;color:#8f887c;font-style:italic;">{{ dr.suggest }}</span></label>
+          <label style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Warm intro · who can introduce us</span><input value="{{ dr.intro }}" onChange="{{ dr.setIntro }}" onBlur="{{ dr.saveIntro }}" placeholder="e.g. Eden at P·P·O·W · Sienna knows her" style="font-family:'EB Garamond',serif;font-size:15px;background:#0d0c0b;color:#f0eadd;border:1px solid #3a3630;padding:7px 10px;outline:none;"></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><label style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Preview RSVP</span><select value="{{ dr.rsvp }}" onChange="{{ dr.setRsvp }}" style="font-family:'Space Mono',monospace;font-size:11px;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;padding:6px;"><sc-for list="{{ rsvpOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o }}">{{ o }}</option></sc-for></select></label><label style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Walkthrough slot</span><input value="{{ dr.slot }}" onChange="{{ dr.setSlot }}" placeholder="5:15" style="font-family:'Space Mono',monospace;font-size:11px;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;padding:6px;"></label></div>
+          <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Notes</span><span style="font-size:13.5px;color:#8f887c;line-height:1.4;">{{ dr.notes }}</span><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ dr.history }}</span></div>
+        </div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;background:#0d0c0b;">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Write a personal pitch</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><sc-for list="{{ dr.tpls }}" as="t" hint-placeholder-count="6"><button onClick="{{ t.pick }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;padding:6px 10px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};border:1px solid #6d675c;">{{ t.label }}</button></sc-for></div>
+          <label style="display:flex;flex-direction:column;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Subject</span><input value="{{ dr.subject }}" onChange="{{ dr.setSubject }}" style="font-family:'EB Garamond',serif;font-size:16px;background:#16150f;color:#f0eadd;border:1px solid #3a3630;padding:8px 10px;outline:none;" style-focus="border-color:#7fa39b;"></label>
+          <label style="display:flex;flex-direction:column;gap:5px;flex:1;"><span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;">Message · edit freely</span><textarea value="{{ dr.body }}" onChange="{{ dr.setBody }}" rows="16" style="flex:1;font-family:'EB Garamond',serif;font-size:15.5px;line-height:1.5;background:#16150f;color:#e9e3d6;border:1px solid #3a3630;padding:10px 12px;resize:vertical;outline:none;" style-focus="border-color:#7fa39b;"></textarea></label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;"><a href="{{ dr.mailto }}" onClick="{{ dr.opened }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 16px;background:#7fa39b;color:#0d0c0b;" style-hover="background:#e9e3d6;color:#0d0c0b;">Open draft in email</a><sc-if value="{{ dr.pending }}" hint-placeholder-val="{{ false }}"><button onClick="{{ dr.confirm }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 16px;background:#c9a24a;color:#0d0c0b;border:none;cursor:pointer;" style-hover="background:#e9e3d6;">Confirm sent · log {{ dr.logLabel }}</button><button onClick="{{ dr.unsent }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 10px;background:transparent;color:#8f887c;border:1px solid #3a3630;cursor:pointer;">Didn’t send</button></sc-if><sc-if value="{{ dr.notPending }}" hint-placeholder-val="{{ true }}"><button onClick="{{ dr.confirm }}" title="Already sent it another way (DM, form)? Log it here." style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 12px;background:transparent;color:#c9a24a;border:1px solid #c9a24a;cursor:pointer;">Mark as sent</button></sc-if><button onClick="{{ dr.copy }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 14px;background:transparent;color:#e9e3d6;border:1px solid #6d675c;cursor:pointer;">{{ dr.copyLabel }}</button><button onClick="{{ dr.regen }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 0;background:transparent;color:#8f887c;border:none;cursor:pointer;">Reset draft</button><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ dr.noEmail }}</span></div>
+        </div>
+      </div>
+    </div></sc-if>
+    
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KEY = 'didad-press-v1';
+const ST = [['To pitch', '#8f887c'], ['Pitched', '#c9a24a'], ['Follow up', '#e08a3c'], ['Replied', '#7fa39b'], ['Covering', '#5fa08f'], ['Passed', '#6d675c']];
+const ASSETS = [['rel', 'Release'], ['img', 'Images'], ['pre', 'Preview'], ['opn', 'Opening'], ['fu', 'Follow-up']];
+const ANGLES = ['Whole show', 'Doug Crocco', 'unitedfutures', 'Ellen R Hanson', 'Benjamin Cowan', 'Meredith Sellers', 'Henry Swanson', 'Aramis Gutierrez', 'L', 'Charlie Goering', 'Tom DeLaney', 'Pandele Radu', 'Megan Lindeman', 'Kenny Curwood', 'Srijon Chowdhury', 'Events · Nov 14 / 15'];
+const SEED = [
+  ['Hyperallergic', 'Editorial team', 'tips@hyperallergic.com', 'Tips & announcements — not hello@ (they ask for no press releases there)'],
+  ['Hyperallergic', 'Pitch desk', 'pitch@hyperallergic.com', 'For writer pitches · subject: PITCH: [Category] - [Subject]'],
+  ['The Brooklyn Rail', 'ArtSeen editor', 'artseen@brooklynrail.org', 'Reviews · send to the section editor'],
+  ['Artforum', 'News desk', 'newsdesk@artforum.com', 'News submissions & tips'],
+  ['Artforum · Artguide', 'Artguide listings', 'artguideinfo@artforum.com', 'Exhibition listings'],
+  ['ARTnews', 'Editorial', 'editorial@artnews.com', 'Tipline asks for no press releases — check their contact page first'],
+  ['Artnet News', 'Galleries editor', '', 'Masthead lists a Galleries Editor — find email'],
+  ['The Art Newspaper', 'New York office', 'info@theartnewspaper.com', '130 W 25th St · NY office'],
+  ['Time Out New York', 'Art section', 'art.ny@timeout.com', 'Listings · deadline Monday, 10 days before publication · send a photo with credit'],
+  ['Two Coats of Paint', 'Staff', 'staff@twocoatsofpaint.com', 'Announcements & press releases · painting focus'],
+  ['The New York Times', 'Listings desk', '', 'Find email'], ['The New York Times', '', '', 'Critic’s review'],
+  ['The New Yorker', 'Goings On', '', 'Find email'], ['Observer', 'Elisa Carollo · Arts Reporter', '', 'Covers NYC galleries & art market · no public email — reach via Instagram/LinkedIn or a mutual'], ['BOMB', 'General inbox', 'info@bombsite.com', 'Interviews · general address on their contact page'], ['Art Spiel', 'Etty Yaniv · founder & chief editor', 'etty@artspiel.org', 'Studio visits · underrecognized artists & alternative spaces'],
+   ['Frieze', 'On View section', '', 'Listings · email is on frieze.com/contact-us (general inbox not monitored regularly)'], ['Juxtapoz', '', '', 'Online features · contact form only (choose “Submit your work”)'], ['Whitehot Magazine', 'Editorial · submissions & news tips', 'whitehotpublisher@gmail.com', 'Reviews'], ['Whitehot Magazine', 'Liam Otero · New York Editor', 'lotero3@fordham.edu', 'NYC reviews · listed on their contacts page'], ['Whitehot Magazine', 'Paul Laster · Contributing Editor (NYC)', 'plasternyc@gmail.com', 'NYC · listed on their contacts page'],
+  ['Artillery', 'Editorial team', 'editorial@artillerymag.com', 'LA-based · reviews'], ['Cultured', '', '', 'Features · contact page lists customer service only'], ['Interview Magazine', 'General inbox', 'contact@crystalball.media', 'Art · publisher’s general address on their contact page'], ['ArtReview', 'Office', 'office@artreview.com', 'London · says it doesn’t take unsolicited submissions'], ['Gothamist', 'Tips form', '', 'Things to do · use the tips form at gothamist.com/contact']
+,
+  ['New York Magazine / Vulture', 'Jerry Saltz · senior art critic', 'Jerry.Saltz@gmail.com', 'Address he posted publicly himself · painting, big personalities'],
+  ['Artnet News', 'Annikka Olsen · Galleries Editor', '', 'Writes NY gallery round-ups (“5 shows worth seeing”) · no public email — reach via Bluesky @annikkaolsen'],
+  ['Hyperallergic', 'Lakshmi Rivera Amin · Associate Editor', '', 'Runs “A View From the Easel” & book picks · use tips@ with her name in the subject'],
+  ['The Brooklyn Rail', 'Ann McCoy · Editor-at-Large', '', 'Artist-critic · alchemy, Jungian psychology, mythology — strongest fit for the show · no public email; contact form at annmccoy.com, or artseen@ with her name'],
+  ['The Brooklyn Rail', 'Jason Rosenfeld · Senior Writer', '', 'Wrote “Symbolism in Europe: Burne-Jones, Khnopff, Mucha, Gauguin” — fits the Holbein/Bouts/Böcklin lineage · teaches at Northeastern NYC · send via artseen@ with his name'],
+  ['NY Art Critic (blog)', 'J.P. Voegele', 'jason@nyartconsultant.com', 'Independent reviewer · has reviewed P·P·O·W shows · listed on his site'],
+  ['exhibits in new york', 'Sarah · founder', 'sarah@exhibitsinnewyork.com', 'Independent · NYC show newsletter & app · listed on their About page'],
+  ['exhibits in new york', 'Alexandra · editor', 'alexandra@exhibitsinnewyork.com', 'Independent · edits the newsletter'],
+  ['exhibits in new york', 'Pitches', 'pitches@exhibitsinnewyork.com', 'Short reviews (100–300 words) · good for a friendly writer to pitch the show'],
+  ['The Manhattan Art Review', 'Sean Tatol · critic', 'hankjwimbleton@gmail.com', 'Independent · contact listed on the site · doesn’t accept unsolicited submissions — invite to see the show'],
+  ['artcritical', 'Editorial · David Cohen, editor', 'editorial@artcritical.com', 'Independent NYC review site'],
+  ['artcritical', 'Listings', 'listings@artcritical.com', 'Send exhibition & event info here'],
+  ['Cultbytes', 'Anna Mikaela Ekstrand · founder, curator', 'info@cultbytes.com', 'Independent · inquiries, tips & pitches'],
+  ['The Art Section', 'Deanna Sirlin · editor', 'theartsection@gmail.com', 'Independent online journal'],
+  ['Two Coats of Paint', 'NYC Gallery Guide', 'staff@twocoatsofpaint.com', 'Monthly painting-centric gallery guide · send show info for inclusion (already listed above — skip if sent)'],
+  ['Morbid Anatomy', 'Joanna Ebenstein · curator, author of Memento Mori', 'joanna@astropop.com', 'Death & art · listed on her own site · ideal fit — invite to opening / talk'],
+  ['Morbid Anatomy', 'General', 'hello@morbidanatomy.org', 'Organization inbox · events & community collaborations'],
+  ['Whitney Museum', 'Press Office', 'pressoffice@whitney.org', 'Museum press office · for invitations, not pitches'],
+  ['Whitney Museum', 'Ashley Reese · Director of Communications', 'Ashley_Reese@whitney.org', 'Listed on whitney.org/press · invite to opening']
+].map(([outlet, writer, email, notes], i) => ({ id: 's' + i, outlet, writer, email, notes, owner: '', angle: 'Whole show', s: 0, sent: {}, last: '', nextDate: '' }));
+const CATS = [
+  ['Critics & writers', '#c9a24a', 'Named people — the most personal pitches'],
+  ['Curators & museums', '#a99fc9', 'Invitations to the opening & talks'],
+  ['Independent & newsletters', '#7fa39b', 'Small NYC sites that actually review gallery shows'],
+  ['Art press', '#e08a3c', 'Editorial inboxes at art magazines'],
+  ['Listings', '#5fb075', 'Calendars & gallery guides — send early with dates and an image'],
+  ['General & lifestyle press', '#8f887c', 'Long shots — need a named writer']
+];
+const catOf = x => { if (x.cat && CATS.some(c => c[0] === x.cat)) return x.cat; const o = (x.outlet || '').toLowerCase(), w = (x.writer || '').toLowerCase(), n = (x.notes || '').toLowerCase();
+  if (/museum|morbid anatomy|curator/.test(o + ' ' + w)) return 'Curators & museums';
+  if (/listing|goings on|gallery guide|artguide/.test(w + ' ' + n) || /time out/.test(o)) return 'Listings';
+  if (/·/.test(x.writer || '') && !/editorial ·|general|office|pitches|tips|staff/.test(w)) return 'Critics & writers';
+  if (/two coats|exhibits in new york|manhattan art review|artcritical|cultbytes|art section|art spiel|ny art critic|whitehot/.test(o)) return 'Independent & newsletters';
+  if (/new york times|observer|cultured|interview|gothamist|vulture|new yorker/.test(o)) return 'General & lifestyle press';
+  return 'Art press'; };
+const ANGLE_LINE = {
+  'Doug Crocco': 'Doug Crocco’s Death Is a Door — a photograph face-mounted to acrylic over a 95 × 104 in wall vinyl, a door the size of a room — gives the show its title.',
+  'unitedfutures': 'unitedfutures’ The Isle of the Dead 2026 remakes Böcklin’s painting as a 32-second AI-generated video set into a sculptural object with incense — the boatman for a new century.',
+  'Ellen R Hanson': 'Ellen R Hanson’s Funeral Flowers takes the mourning bouquet as its subject.',
+  'Benjamin Cowan': 'Benjamin Cowan’s Pigeon Feather, Stone, Giotto Crying Angels draws on Giotto’s grieving angels.',
+  'Meredith Sellers': 'Meredith Sellers’ two new panels, Empty (After Holbein) and Desire (After Dieric Bouts), rework Northern Renaissance images of death and longing.',
+  'Henry Swanson': 'Henry Swanson’s Mask from Dallas, a small oil on canvas, holds the face at the edge of portrait and relic.',
+  'Aramis Gutierrez': 'Aramis Gutierrez’s Bletting Bananas and Mangos — fruit left to ripen past the point of rot — is a vanitas for now.',
+  'L': 'L’s Spell for blue light = 222D alignment (2020) treats the artwork as a working spell.',
+  'Charlie Goering': 'Charlie Goering’s Metamorphosis, or The Dark Night of the Soul and his Three-Tiered Camera Obscura take the soul’s passage as their subject.',
+  'Tom DeLaney': 'Tom DeLaney’s Rage and Eternal, oil on linen, sits between fury and stillness.',
+  'Pandele Radu': 'Pandele Radu’s Down the River: a coffin rides a red current toward a pale, open light.',
+  'Megan Lindeman': 'Megan Lindeman’s New eNightened Era, Coming Soon is sculpture in plaster, pigment and fragrance — and she hosts a Silverlake Scent Club in the gallery on Saturday, November 14.',
+  'Kenny Curwood': 'Kenny Curwood’s The World of Symbol Vanishes in the World as God, in brass and solder, sits at the center of the room.',
+  'Srijon Chowdhury': 'Srijon Chowdhury’s Moth takes up the old idea of the moth as the soul leaving the body — the Greeks used one word, psyche, for both.',
+  'Events · Nov 14 / 15': 'Two events follow the opening: a Silverlake Scent Club with Megan Lindeman on Saturday, November 14, and an artist talk with unitedfutures on Sunday, November 15.'
+};
+const ARTIST_LIST = ANGLES.slice(1, -1).join(', ');
+const KIT = 'https://dougcrocco.github.io/death-is-a-door-site/press.html';
+const FACTS = 'Death Is a Door is a group exhibition curated by Doug Crocco at CC Jasper, 131 Chrystie Street, New York. It opens Thursday, November 12, 6–9 pm, and gathers artists who treat death as a threshold rather than an ending.';
+const TPLS = [['critic', 'Critic pitch', 'rel'], ['exclusive', 'Exclusive offer', 'rel'], ['listing', 'Listing', 'rel'], ['invite', 'Curator / museum invite', 'pre'], ['preview', 'Preview invite', 'pre'], ['followup', 'Follow-up', 'fu']];
+const RSVP = ['', 'Invited', 'Yes', 'Maybe', 'No'];
+const RSVP_C = { '': '#6d675c', Invited: '#c4bcae', Yes: '#5fa08f', Maybe: '#c9a24a', No: '#6d675c' };
+const COV_KINDS = ['Review', 'Listing', 'Feature', 'Social', 'Mention'];
+const COV_C = { Review: '#5fa08f', Listing: '#7fa39b', Feature: '#c9a24a', Social: '#a99fc9', Mention: '#8f887c' };
+const REUSE = [['site', 'Site press'], ['artists', 'Sent to artists'], ['ig', 'Instagram'], ['offers', 'Offer sheets']];
+const PLAN = [
+  ['p1', '2026-10-28', 'Offer one exclusive walkthrough — Ann McCoy or Jerry Saltz — 48 h to answer', 'Doug', 'exclusive'],
+  ['p2', '2026-10-28', 'Send each artist a 2-line blurb + image to share with their own press and collectors', 'Sienna'],
+  ['p3', '2026-10-29', 'Ask P·P·O·W (Eden), Deanna Evans and RUBY/DAKOTA to forward to critics who cover their artists', 'Doug'],
+  ['p4', '2026-10-30', 'Personal pitches to every critic & writer — use ✍, lead with their angle', 'Doug', 'cat:Critics & writers'],
+  ['p5', '2026-11-01', 'DM the writers without public email (Olsen, Carollo, McCoy) on Instagram / Bluesky', 'Sienna', 'noemail'],
+  ['p6', '2026-11-02', 'Listings deadline — Time Out (Mon, 10 days out), Artguide, artcritical, Two Coats guide, Goings On', 'Sienna', 'cat:Listings'],
+  ['p7', '2026-11-02', 'General release to art press & independents (Day of the Dead timing)', 'Sienna', 'cat:Art press|Independent & newsletters'],
+  ['p8', '2026-11-03', 'Invite curators, museums and press to the Nov 11 preview', 'Doug', 'cat:Curators & museums'],
+  ['p9', '2026-11-04', 'Propose a memento mori talk / co-host with Morbid Anatomy (Joanna Ebenstein)', 'Doug'],
+  ['p10', '2026-11-06', 'Follow up non-replies; nudge preview RSVPs', 'Team', 'due'],
+  ['p11', '2026-11-09', 'Separate listings for the Nov 14 Scent Club and Nov 15 artist talk', 'Sienna', 'cat:Listings'],
+  ['p12', '2026-11-11', 'Press preview 5–7 pm — walkthroughs with Doug', 'Doug', 'rsvp'],
+  ['p13', '2026-11-13', 'Second wave: install shots to everyone who didn’t reply', 'Sienna', 'noreply'],
+  ['p14', '2026-11-16', 'Log coverage below, send clips to artists, add quotes to the site', 'Team', 'cov']
+];
+const PHASES = [['This week · Oct 27–30', '#e0614f', '2026-10-31'], ['Release week · Nov 1–4', '#e08a3c', '2026-11-05'], ['Install week · Nov 6–11', '#7fa39b', '2026-11-12'], ['After opening · Nov 13+', '#5fa08f', '2099-01-01']];
+const firstName = w => { const n = (w || '').split('·')[0].trim(); if (!n || /desk|editor|editorial|team|office|general|staff|pitches|tips|section|listings|inbox|form|guide/i.test(n)) return ''; return n.split(' ')[0]; };
+function compose(x, tpl, me) {
+  const fn = firstName(x.writer), hi = fn ? 'Dear ' + fn + ',' : 'Hello,', ang = ANGLE_LINE[x.angle] || '', why = (x.why || '').trim();
+  const sig = '\n\n' + (me || 'Doug Crocco') + '\nCC Jasper · 131 Chrystie Street, New York\nPress kit & images: ' + KIT;
+  const lastSent = x.last ? nice(x.last) : 'last week';
+  const B = {
+    critic: [hi, (why ? why + ' — which is why I’m writing to you about this one.\n\n' : '') + FACTS + (ang ? '\n\n' + ang : ''), 'Would you like to see it before the opening? I’d be glad to walk you through it — the press preview is Wednesday, November 11, 5–7 pm, or any time that week.'],
+    exclusive: [hi, (why ? why + '\n\n' : '') + 'Before the release goes out on November 2, I wanted to offer you first look at ' + 'Death Is a Door: a private walkthrough with me and some of the artists, and first use of the images.\n\n' + FACTS + (ang ? '\n\n' + ang : ''), 'If it’s of interest, could you let me know by Friday? Happy to work around your schedule.'],
+    listing: [hi, 'Please consider the following for your listings:\n\nDeath Is a Door — group exhibition, curated by Doug Crocco\nCC Jasper, 131 Chrystie Street (between Broome & Delancey), New York · nearest subway: Grand St (B, D)\nOpening reception: Thursday, November 12, 6–9 pm · free\nSat Nov 14: Silverlake Scent Club with Megan Lindeman\nSun Nov 15: Artist talk with unitedfutures\nArtists: ' + ARTIST_LIST + '\nWebsite: ' + KIT, 'Images with credit lines are in the press kit; I can send a photograph of the installation on request.'],
+    invite: [hi, (why ? why + '\n\n' : '') + 'I’d love for you to see Death Is a Door. ' + FACTS + (ang ? '\n\n' + ang : ''), 'You’re warmly invited to the press preview on Wednesday, November 11, 5–7 pm, or the opening on Thursday, November 12, 6–9 pm. I’d be glad to walk you through it myself.'],
+    preview: [hi, 'You’re invited to a press preview of Death Is a Door at CC Jasper, 131 Chrystie Street — Wednesday, November 11, 5–7 pm, the evening before the opening. Artists will be there, and I’m giving short walkthroughs.' + (ang ? '\n\n' + ang : ''), 'Could you let me know if you can make it, and whether you’d like a walkthrough slot?'],
+    followup: [hi, 'Following up on my note from ' + lastSent + ' about Death Is a Door at CC Jasper. The show is installed now' + (ang ? ' — ' + ang.charAt(0).toLowerCase() + ang.slice(1) : '.'), 'Installation photographs are in the press kit. Would you like to come by this week? I’m happy to meet you there.']
+  }[tpl];
+  const subj = { critic: 'Death Is a Door — a passage, not an ending · CC Jasper, Nov 12', exclusive: 'First look: Death Is a Door at CC Jasper (opens Nov 12)', listing: 'Listing: Death Is a Door · CC Jasper · opens Thu Nov 12, 6–9 pm', invite: 'Invitation: Death Is a Door · preview Nov 11, opening Nov 12', preview: 'Press preview · Death Is a Door · Wed Nov 11, 5–7 pm', followup: 'Following up — Death Is a Door at CC Jasper' }[tpl];
+  return { subject: subj, body: B[0] + '\n\n' + B[1] + '\n\n' + B[2] + sig };
+}
+const IDEAS = [
+  ['i1', 'Hometown & alumni press', 'Local papers in each artist’s city (Miami — Aramis, Philadelphia — Meredith, Bucharest — Pandele) and their MFA schools’ news desks. Ask each artist for two names.', 'Artists'],
+  ['i2', 'All Souls’ Day hook · Nov 2', 'The release already lands on Día de Muertos and All Souls’ Day — say so in the first line.', 'Timing'],
+  ['i3', 'Death-positive community', 'Order of the Good Death, Death Café NYC, death doulas, Green-Wood Cemetery programs — audiences who share and show up.', 'Community'],
+  ['i4', 'Spiritual & literary journals', 'IMAGE Journal, Tricycle, Commonweal — they cover art about the soul and rarely get gallery pitches.', 'Press'],
+  ['i5', 'Scent press for the Nov 14 Scent Club', 'Fragrance blogs and perfume newsletters for Megan Lindeman’s event.', 'Events'],
+  ['i6', 'AI & tech-culture writers', 'unitedfutures’ Böcklin remade with AI is a story for tech-culture writers, not just art critics.', 'Press'],
+  ['i7', 'Podcast or radio segment', 'Offer Doug + one artist for a 20-minute conversation on a culture podcast or WNYC show.', 'Press'],
+  ['i8', 'Install-shot sites', 'After Nov 12, submit photos to Contemporary Art Daily, Art Viewer and Tzvetnik — curators everywhere read them.', 'After'],
+  ['i9', 'Free listing platforms', 'Artsy, Ocula, See Saw and Substack NYC opening lists — 10 minutes each.', 'Listings'],
+  ['i10', 'MFA class walkthroughs', 'Invite SVA, Hunter and Columbia painting classes for a walkthrough with Doug — next year’s critics.', 'Community'],
+  ['i11', '30-second vertical video', 'One captioned walkthrough to send with every pitch and post on Instagram — editors reuse ready assets.', 'Assets'],
+  ['i12', 'One quotable line per artist', 'A pull-quote bank in the press kit makes listings and round-ups copy-paste easy.', 'Assets'],
+  ['i13', 'Co-host with Morbid Anatomy', 'A memento mori talk or class in the gallery with Joanna Ebenstein — her list is the exact audience.', 'Events'],
+  ['i14', 'Gallery warm intros', 'P·P·O·W, Deanna Evans and RUBY/DAKOTA forward the release to the critics who already cover their artists.', 'Press']
+].map(([id, title, text, tag]) => ({ id, title, text, tag, st: '', owner: '' }));
+const IDEA_ST = { '': ['New', '#8f887c'], try: ['Trying', '#c9a24a'], done: ['Done', '#5fa08f'], skip: ['Not for us', '#6d675c'] };
+const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const nice = s => { if (!s) return '—'; const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); };
+const plus = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+function parseCSV(t) { const rows = []; let row = [], f = '', q = false; for (let i = 0; i < t.length; i++) { const c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; } else if (c === '"') q = true; else if (c === ',') { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; } else f += c; } if (f || row.length) { row.push(f); rows.push(row); } return rows; }
+class Component extends DCLogic {
+  state = { list: SEED, log: [], filter: 'All', sel: {}, logOpen: false, plan: {}, cov: [], dr: null, ideas: IDEAS, view: (() => { try { return localStorage.getItem('didad-press-view') || 'board'; } catch (e) { return 'board'; } })(), ideaF: 'All' };
+  componentDidMount() { try { const o = JSON.parse(localStorage.getItem(KEY) || 'null'); if (o && Array.isArray(o.list)) { const pristine = o.list.every(x => /^s\d+$/.test(x.id) && !x.email && !x.s && !Object.keys(x.sent || {}).length); if (!pristine) { const list = o.list.slice(); SEED.forEach(sd => { if (!sd.email) return; const k = list.findIndex(x => (x.email || '').toLowerCase() === sd.email.toLowerCase()); if (k >= 0) return; const blank = list.findIndex(x => x.outlet === sd.outlet && !x.email && (!x.writer || x.writer === sd.writer)); if (blank >= 0) list[blank] = { ...list[blank], email: sd.email, writer: list[blank].writer || sd.writer, notes: list[blank].notes || sd.notes }; else list.push({ ...sd, id: 'm' + sd.id + Date.now() }); }); this.setState({ list, log: o.log || [] }); } } if (o) { const saved = o.ideas || []; const ideas = IDEAS.map(d => ({ ...d, ...(saved.find(s => s.id === d.id) || {}) })).concat(saved.filter(s => !IDEAS.some(d => d.id === s.id))); this.setState({ plan: o.plan || {}, cov: o.cov || [], ideas }); } } catch (e) {} }
+  persist(list, log, extra) { const nx = { list, log, plan: this.state.plan, cov: this.state.cov, ideas: this.state.ideas, ...(extra || {}) }; this.setState(nx); try { localStorage.setItem(KEY, JSON.stringify({ list: nx.list, log: nx.log, plan: nx.plan, cov: nx.cov, ideas: nx.ideas })); } catch (e) {} }
+  saveExtra(extra, logText) { const log = logText ? [{ t: Date.now(), who: this.who(), what: logText }, ...this.state.log].slice(0, 800) : this.state.log; this.persist(this.state.list, log, extra); }
+  confirmPend(p) { if (!p) return; this.logSend([p.id], p.key); if (p.invite) { setTimeout(() => { const x = this.state.list.find(y => y.id === p.id); if (x && !x.rsvp) this.patch(p.id, { rsvp: 'Invited' }); }, 0); } this.setState({ pend: null }); }
+  openDr(x, tpl) { const t = tpl || ({ 'Listings': 'listing', 'Curators & museums': 'invite' }[catOf(x)]) || (x.sent && x.sent.rel ? 'followup' : 'critic'); const d = compose(x, t, this.who()); this.setState({ dr: { id: x.id, tpl: t, subject: d.subject, body: d.body, why: x.why || '', intro: x.intro || '', copied: false } }); }
+  who() { try { return localStorage.getItem('didad-who') || ''; } catch (e) { return ''; } }
+  patch(id, p, logText) { const list = this.state.list.map(x => x.id === id ? { ...x, ...p } : x); const log = logText ? [{ t: Date.now(), who: this.who(), what: logText }, ...this.state.log].slice(0, 800) : this.state.log; this.persist(list, log); }
+  logSend(ids, key) {
+    const today = iso(new Date()), lab = ASSETS.find(a => a[0] === key)[1], names = [];
+    const list = this.state.list.map(x => { if (!ids.includes(x.id)) return x; names.push(x.outlet + (x.writer ? ' (' + x.writer + ')' : '')); return { ...x, sent: { ...x.sent, [key]: today }, last: today, s: x.s === 0 || (key === 'fu' && x.s === 2) ? 1 : x.s, nextDate: x.s < 3 ? plus(7) : x.nextDate }; });
+    this.persist(list, [{ t: Date.now(), who: this.who(), what: lab + ' → ' + names.join(', ') }, ...this.state.log].slice(0, 800));
+  }
+  renderVals() { const V = this._rv0(); const S = this.state.secs || { today: true }; const J = {}; (V.jump || []).forEach(j => { J[j.href.slice(1)] = j; });
+    const mk = (id, n) => ({ open: !!S[id], icon: S[id] ? '−' : '+', n: n, c: (J[id] || {}).c || '#8f887c', toggle: () => this.setState({ secs: { ...S, [id]: !S[id] } }) });
+    V.sec_today = mk('today', (V.todayItems || []).length + ' to do'); V.sec_week = mk('week', (J.week || {}).n || ''); V.sec_plan = mk('plan', ((J.plan || {}).n || '') + ' done'); V.sec_ideas = mk('ideas', (J.ideas || {}).n || ''); V.sec_coverage = mk('coverage', ((J.coverage || {}).n || '0') + ' items');
+    const LN = V.lanes || [], tot = LN.reduce((a, l) => a + (+l.n || 0), 0); V.pressBar = LN.filter(l => +l.n > 0).map(l => ({ c: l.c, w: (tot ? (+l.n / tot * 100) : 0) + '%', tip: l.label + ' · ' + l.n }));
+    return V; }
+  _rv0() {
+    const L = this.state.list, f = this.state.filter, sel = this.state.sel, today = iso(new Date()), me = this.who().toLowerCase();
+    const emails = {}; L.forEach(x => { const e = (x.email || '').trim().toLowerCase(); if (e) emails[e] = (emails[e] || 0) + 1; });
+    const nameKey = x => (x.writer || '').trim().toLowerCase(), names = {}; L.forEach(x => { const n = nameKey(x); if (n) names[n] = (names[n] || []).concat(x.outlet); });
+    const view = L.filter(x => f === 'All' ? true : f === 'Mine' ? me && (x.owner || '').toLowerCase().includes(me) : f === 'Due' ? x.nextDate && x.nextDate <= today && x.s > 0 && x.s < 3 : ST[x.s][0] === f);
+    const mail = x => 'mailto:' + encodeURIComponent(x.email || '') + '?subject=' + encodeURIComponent('Death Is a Door — CC Jasper, opening Nov 12') + '&body=' + encodeURIComponent((x.writer ? 'Hi ' + x.writer.split(' ')[0] + ',\n\n' : 'Hello,\n\n') + (x.angle && x.angle !== 'Whole show' ? 'I wanted to share ' + x.angle + '’s work in ' : 'I wanted to share ') + 'Death Is a Door, a group exhibition opening Thursday, November 12 at CC Jasper, 131 Chrystie Street.\n\nPress kit: https://dougcrocco.github.io/death-is-a-door-site/press.html\n\n');
+    const rows = view.map(x => {
+      const on = {}; ['outlet', 'writer', 'email', 'notes', 'owner'].forEach(k => { on[k] = e => { const v = e.currentTarget.innerText.trim(); if (v !== (x[k] || '')) this.patch(x.id, { [k]: v }); }; });
+      const e = (x.email || '').trim().toLowerCase(), n = nameKey(x), isSel = !!sel[x.id];
+      const dup = e && emails[e] > 1 ? 'Same email listed twice' : n && names[n].length > 1 ? 'Also at ' + names[n].filter(o => o !== x.outlet).join(', ') : '';
+      const due = x.nextDate && x.s > 0 && x.s < 3 && x.nextDate <= today;
+      return { ...x, on, dup, cat: catOf(x), setCat: ev => this.patch(x.id, { cat: ev.target.value }), angle: x.angle || 'Whole show', status: ST[x.s][0], sc: ST[x.s][1], hl: isSel ? 'rgba(127,163,155,0.12)' : 'transparent', selMark: isSel ? '■' : '□', selC: isSel ? '#7fa39b' : '#4a4640',
+        toggle: () => this.setState(s => { const n2 = { ...s.sel }; if (n2[x.id]) delete n2[x.id]; else n2[x.id] = 1; return { sel: n2 }; }),
+        setAngle: ev => this.patch(x.id, { angle: ev.target.value }),
+        next: () => { const s2 = (x.s + 1) % ST.length; this.patch(x.id, { s: s2 }, (x.outlet || 'Contact') + ' · status → ' + ST[s2][0]); },
+        dots: ASSETS.map(([k, lab]) => { const d = x.sent && x.sent[k]; return { v: d ? '●' : '○', c: d ? '#5fa08f' : '#3a3630', tip: lab + (d ? ' sent ' + nice(d) + ' — click to clear' : ' — click to mark sent today'), tog: () => { if (d) { const s2 = { ...x.sent }; delete s2[k]; this.patch(x.id, { sent: s2 }, lab + ' cleared · ' + x.outlet); } else this.logSend([x.id], k); } }; }),
+        lastLabel: nice(x.last), nextDate: x.nextDate || '', nextC: due ? '#e0614f' : '#c4bcae', setNext: ev => this.patch(x.id, { nextDate: ev.target.value }),
+        openDrawer: () => this.openDr(x), mailto: mail(x), mailed: () => this.setState({ pend: { id: x.id, key: x.sent && x.sent.rel ? 'fu' : 'rel' } }),
+        remove: () => { if (!window.confirm('Delete ' + (x.outlet || 'this contact') + (x.writer ? ' · ' + x.writer : '') + '?')) return; this.persist(L.filter(y => y.id !== x.id), [{ t: Date.now(), who: this.who(), what: 'Deleted ' + (x.outlet || 'contact') + (x.writer ? ' · ' + x.writer : '') }, ...this.state.log]); } };
+    });
+    const follow = L.filter(x => x.s > 0 && x.s < 3 && x.nextDate && x.nextDate <= plus(2)).sort((a, b) => a.nextDate < b.nextDate ? -1 : 1).map(x => { const late = x.nextDate < today; return { ...x, writer: x.writer || 'no name yet', dueLabel: x.nextDate === today ? 'Today' : late ? 'Overdue · ' + nice(x.nextDate) : nice(x.nextDate), dueC: late || x.nextDate === today ? '#e0614f' : '#e08a3c', lastLine: 'Last sent ' + nice(x.last) + ' · ' + (x.angle || 'Whole show'), mailto: mail(x), mailed: () => this.setState({ pend: { id: x.id, key: 'fu' } }) }; });
+    const selIds = Object.keys(sel).filter(id => L.some(x => x.id === id)), allOn = view.length > 0 && view.every(x => sel[x.id]);
+    const toPitch = L.filter(x => x.s === 0).length;
+    const cnt = { };
+    CATS.forEach(c => cnt[c[0]] = L.filter(x => catOf(x) === c[0]).length);
+    const plan = this.state.plan || {}, pitched = x => x.s > 0;
+    const countFor = k => { if (!k) return ''; if (k.startsWith('cat:')) { const cs = k.slice(4).split('|'), g = L.filter(x => cs.includes(catOf(x))); return g.filter(pitched).length + ' / ' + g.length + ' sent'; }
+      if (k === 'noemail') return L.filter(x => !x.email && /·/.test(x.writer || '')).length + ' to DM'; if (k === 'due') return L.filter(x => x.nextDate && x.nextDate <= today && x.s > 0 && x.s < 3).length + ' due now';
+      if (k === 'rsvp') return L.filter(x => x.rsvp === 'Yes').length + ' yes · ' + L.filter(x => x.rsvp === 'Invited' || x.rsvp === 'Maybe').length + ' pending'; if (k === 'noreply') return L.filter(x => x.s === 1 || x.s === 2).length + ' without reply';
+      if (k === 'cov') return (this.state.cov || []).length + ' clips logged'; return ''; };
+    const goFor = k => k && k.startsWith('cat:') ? () => this.setState(s => ({ filter: 'All', openCats: { ...(s.openCats || {}), ...Object.fromEntries(k.slice(4).split('|').map(c => [c, true])) } })) : k === 'exclusive' ? () => { const t = L.find(x => /McCoy/.test(x.writer || '')); if (t) this.openDr(t, 'exclusive'); } : null;
+    const planItems = PLAN.map(([id, d, text, owner, k]) => { const done = !!plan[id], late = !done && d < today, isToday = d === today; const go = goFor(k);
+      return { id, d, text, owner, done, dateLabel: nice(d), dc: late ? '#e0614f' : isToday ? '#c9a24a' : '#8f887c', mk: done ? '✓' : '', bc: done ? '#5fa08f' : late ? '#e0614f' : '#6d675c', bg: done ? '#5fa08f' : 'transparent', td: done ? 'line-through' : 'none', op: done ? 0.55 : 1,
+        count: countFor(k), hasCount: !!countFor(k), hasGo: !!go, go, goLabel: k === 'exclusive' ? 'Draft it →' : 'Show →', toggle: () => this.saveExtra({ plan: { ...plan, [id]: !done } }, (done ? 'Reopened: ' : 'Done: ') + text) }; });
+    const nDone = planItems.filter(p => p.done).length, days = Math.round((new Date(2026, 10, 12) - new Date(today + 'T00:00:00')) / 864e5);
+    const D = this.state.dr && L.find(x => x.id === this.state.dr.id), dr = this.state.dr;
+    const setD = p => this.setState(s => ({ dr: { ...s.dr, ...p } }));
+    const cov = this.state.cov || [], setCov = (id, p, lt) => this.saveExtra({ cov: cov.map(c => c.id === id ? { ...c, ...p } : c) }, lt);
+    const rsvpList = L.filter(x => x.rsvp);
+    return {
+      ...(() => { const items = [];
+        planItems.filter(p => !p.done && p.d <= today).forEach(p => items.push({ kind: p.d < today ? 'Overdue' : 'Plan', c: p.d < today ? '#e0614f' : '#c9a24a', text: p.text, sub: p.owner + (p.count ? ' · ' + p.count : ''), hasAct: !!p.go, act: p.go || (() => {}), actLabel: p.goLabel, hasDone: true, done: p.toggle, doneLabel: 'Done ✓', op: 1, td: 'none' }));
+        L.filter(x => x.s > 0 && x.s < 3 && x.nextDate && x.nextDate <= today).forEach(x => items.push({ kind: 'Follow up', c: '#e08a3c', text: (x.writer || x.outlet) + (x.writer ? ' · ' + x.outlet : ''), sub: 'Last sent ' + nice(x.last) + ' · ' + (x.angle || 'Whole show'), hasAct: true, act: () => this.openDr(x, 'followup'), actLabel: '✍ Follow up', hasDone: true, done: () => this.patch(x.id, { nextDate: plus(3) }, (x.writer || x.outlet) + ' · follow-up snoozed 3 days'), doneLabel: 'Snooze 3 d', op: 1, td: 'none' }));
+        if (today >= '2026-11-06') L.filter(x => x.rsvp === 'Invited' || x.rsvp === 'Maybe').forEach(x => items.push({ kind: 'RSVP', c: '#5fa08f', text: 'Nudge ' + (x.writer || x.outlet) + ' about the Nov 11 preview', sub: 'RSVP: ' + x.rsvp, hasAct: true, act: () => this.openDr(x, 'preview'), actLabel: '✍ Nudge', hasDone: false, op: 1, td: 'none' }));
+        const rank = x => (x.fit || 0) * 10 + (catOf(x) === 'Critics & writers' ? 5 : catOf(x) === 'Curators & museums' ? 4 : catOf(x) === 'Independent & newsletters' ? 3 : 1);
+        L.filter(x => x.s === 0 && (x.email || /·/.test(x.writer || ''))).sort((a, b) => rank(b) - rank(a)).slice(0, 3).forEach(x => items.push({ kind: 'Pitch', c: '#7fa39b', text: (x.writer || x.outlet) + (x.writer ? ' · ' + x.outlet : ''), sub: catOf(x) + (x.fit ? ' · fit ' + x.fit + '/5' : '') + (x.email ? '' : ' · no email — DM'), hasAct: true, act: () => this.openDr(x), actLabel: '✍ Write', hasDone: false, op: 1, td: 'none' }));
+        return { todayItems: items, todayEmpty: items.length === 0, todayNote: items.length ? items.length + ' things · ' + new Date(today + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) : 'all clear' }; })(),
+      jump: [['#today', 'Today', '', '#e0614f'], ['#week', 'Status', L.filter(x => x.rsvp === 'Yes').length + ' RSVP yes', '#e08a3c'], ['#plan', 'Plan', nDone + '/' + PLAN.length, '#c9a24a'], ['#contacts', 'Contacts', String(L.length), '#7fa39b'], ['#ideas', 'Ideas', String((this.state.ideas || IDEAS).filter(i => i.st === 'try').length) + ' trying', '#c9a24a'], ['#coverage', 'Coverage', String(cov.length), '#a99fc9'], ['#log', 'Log', String(this.state.log.length), '#8f887c']].map(([href, label, n, c]) => ({ href, label, n, c })),
+      ...(() => { const p = this.state.pend, x = p && L.find(y => y.id === p.id); return { pendBar: !!x && !this.state.dr, pendName: x ? (x.writer || x.outlet) : '', pendWhat: p ? ASSETS.find(a => a[0] === p.key)[1].toLowerCase() : '', pendYes: () => this.confirmPend(p), pendNo: () => this.setState({ pend: null }) }; })(),
+      viewOpts: [['board', 'Board'], ['table', 'List']].map(([k, label]) => ({ label, bg: (this.state.view || 'board') === k ? '#e9e3d6' : '#0d0c0b', fg: (this.state.view || 'board') === k ? '#0d0c0b' : '#c4bcae', pick: () => { try { localStorage.setItem('didad-press-view', k); } catch (e) {} this.setState({ view: k }); } })),
+      isBoard: this.state.view === 'board', isTable: this.state.view !== 'board',
+      lanes: ST.slice(0, 5).map(([label, c], si) => { const hx = parseInt(c.slice(1), 16), rgb = (hx >> 16 & 255) + ',' + (hx >> 8 & 255) + ',' + (hx & 255); const items = view.filter(x => x.s === si);
+        return { label, c, n: String(items.length), sep: si ? '#2a2722' : 'transparent', tint: 'rgba(' + rgb + ',0.13)', tintH: 'rgba(' + rgb + ',0.24)', hot: this.state.hotLane === si ? 'rgba(233,227,214,0.06)' : 'transparent',
+          over: e => { e.preventDefault(); if (this.state.hotLane !== si) this.setState({ hotLane: si }); }, drop: e => { e.preventDefault(); const id = this.state.dragId; this.setState({ dragId: null, hotLane: null }); const x = L.find(y => y.id === id); if (x && x.s !== si) this.patch(id, { s: si }, (x.writer || x.outlet) + ' · status → ' + label); },
+          groups: CATS.map(([cl, cc]) => { const gi = items.filter(x => catOf(x) === cl); const key = si + '|' + cl, lo = this.state.laneOpen || {}; const op = lo[key] !== undefined ? lo[key] : (si !== 0 || gi.length <= 3);
+            const hx2 = parseInt(cc.slice(1), 16), rgb2 = (hx2 >> 16 & 255) + ',' + (hx2 >> 8 & 255) + ',' + (hx2 & 255);
+            return { label: cl, c: cc, head: 'rgba(' + rgb2 + ',0.14)', headH: 'rgba(' + rgb2 + ',0.24)', n: String(gi.length), icon: op ? '−' : '+', toggle: () => this.setState(s => ({ laneOpen: { ...(s.laneOpen || {}), [key]: !op } })), items: op ? gi.map(x => ({ name: x.writer || x.outlet || '—', sub: x.writer ? x.outlet : catOf(x), op: this.state.dragId === x.id ? 0.4 : 1, dstart: e => { try { e.dataTransfer.setData('text/plain', x.id); } catch (er) {} this.setState({ dragId: x.id }); }, dend: () => this.setState({ dragId: null, hotLane: null }), open: () => this.openDr(x) })) : [] }; }).filter(g => g.n !== '0'),
+          itemsOld: items.map(x => ({ name: x.writer || x.outlet || '—', sub: x.writer ? x.outlet : catOf(x), op: this.state.dragId === x.id ? 0.4 : 1, dstart: e => { try { e.dataTransfer.setData('text/plain', x.id); } catch (er) {} this.setState({ dragId: x.id }); }, dend: () => this.setState({ dragId: null, hotLane: null }), open: () => this.openDr(x) })) }; }),
+      laneHeads: ST.slice(0, 5).map(([label, c], si) => ({ label, c, n: String(view.filter(x => x.s === si).length) })),
+      pipeGroups: CATS.map(([cl, cc, note]) => { const gi = view.filter(x => catOf(x) === cl && x.s < 5); if (!gi.length) return null; const po = this.state.pipeOpen || {}, op = po[cl] !== undefined ? po[cl] : false;
+        return { label: cl, c: cc, note, n: String(gi.length), open: op, icon: op ? '−' : '+', sentLine: gi.filter(x => x.s > 0).length + ' / ' + gi.length + ' pitched', toggle: () => this.setState(s => ({ pipeOpen: { ...(s.pipeOpen || {}), [cl]: !op } })),
+          lanes: ST.slice(0, 5).map(([label, c], si) => { const hx = parseInt(c.slice(1), 16), rgb = (hx >> 16 & 255) + ',' + (hx >> 8 & 255) + ',' + (hx & 255), key = cl + '|' + si, hot = this.state.hotLane === key;
+            return { c, tint: 'rgba(' + rgb + ',0.13)', tintH: 'rgba(' + rgb + ',0.24)', hot: hot ? 'rgba(233,227,214,0.06)' : 'transparent', dash: hot ? c : (this.state.dragId ? '#2a2722' : 'transparent'),
+              over: e => { e.preventDefault(); if (this.state.hotLane !== key) this.setState({ hotLane: key }); }, drop: e => { e.preventDefault(); const id = this.state.dragId; this.setState({ dragId: null, hotLane: null }); const x = L.find(y => y.id === id); if (x && x.s !== si) this.patch(id, { s: si }, (x.writer || x.outlet) + ' · status → ' + label); },
+              items: gi.filter(x => x.s === si).map(x => ({ name: x.writer || x.outlet || '—', sub: x.writer ? x.outlet : '', op: this.state.dragId === x.id ? 0.4 : 1, dstart: ev => { try { ev.dataTransfer.setData('text/plain', x.id); } catch (er) {} this.setState({ dragId: x.id }); }, dend: () => this.setState({ dragId: null, hotLane: null }), open: () => this.openDr(x) })) }; }) }; }).filter(Boolean),
+      passedLine: (() => { const p = view.filter(x => x.s === 5); return p.length ? 'Passed: ' + p.map(x => x.writer || x.outlet).join(', ') : ''; })(),
+      ...(() => { const ideas = this.state.ideas || IDEAS, F = this.state.ideaF || 'All', save = (list, lt) => this.saveExtra({ ideas: list }, lt), upd = (id, p, lt) => save(ideas.map(i => i.id === id ? { ...i, ...p } : i), lt);
+        const shown = ideas.filter(i => F === 'All' ? i.st !== 'skip' : F === 'New' ? !i.st : IDEA_ST[i.st][0] === F);
+        return { ideaFilters: ['All', 'New', 'Trying', 'Done', 'Not for us'].map(k => ({ label: k + ' ' + (k === 'All' ? ideas.filter(i => i.st !== 'skip').length : ideas.filter(i => (k === 'New' ? !i.st : IDEA_ST[i.st][0] === k)).length), bg: F === k ? '#e9e3d6' : 'transparent', fg: F === k ? '#0d0c0b' : '#c4bcae', pick: () => this.setState({ ideaF: k }) })),
+          addIdea: () => { this.setState({ ideaF: 'All' }); save([{ id: 'u' + Date.now(), title: '', text: '', tag: 'Team', st: '', owner: this.who(), custom: true }, ...ideas], 'Added an idea'); },
+          ideas: shown.map(i => { const [sl, c] = IDEA_ST[i.st || '']; const on = {}; ['title', 'text', 'owner'].forEach(k => { on[k] = e => { const v = e.currentTarget.innerText.trim(); if (v !== (i[k] || '')) upd(i.id, { [k]: v }); }; });
+            return { ...i, on, c, statusLabel: sl, op: i.st === 'skip' ? 0.5 : 1, td: i.st === 'done' ? 'line-through' : 'none', custom: !!i.custom,
+              acts: [['try', 'Try it'], ['done', 'Done'], ['skip', 'Not for us']].map(([k, label]) => { const onn = i.st === k; const kc = IDEA_ST[k][1]; return { label: onn ? '✓ ' + label : label, bg: onn ? kc : 'transparent', fg: onn ? '#0d0c0b' : '#c4bcae', bc: onn ? kc : '#3a3630', pick: () => upd(i.id, { st: onn ? '' : k, owner: k === 'try' && !i.owner ? this.who() : i.owner }, 'Idea “' + (i.title || 'untitled') + '” → ' + (onn ? 'New' : label)) }; }),
+              remove: () => { if (window.confirm('Delete this idea?')) save(ideas.filter(y => y.id !== i.id)); } }; }) }; })(),
+      planDays: days > 0 ? days + ' days to opening' : days === 0 ? 'Opening today' : 'Show is open', planProgress: nDone + ' / ' + PLAN.length + ' done', planPct: Math.round(nDone / PLAN.length * 100) + '%',
+      planGroups: (() => { const gs = PHASES.map(([label, c, until], i) => ({ label, c, items: planItems.filter(p => p.d < until && (i === 0 || p.d >= PHASES[i - 1][2])) })); const cur = Math.max(0, gs.findIndex(g => g.items.some(p => !p.done))); const po = this.state.planOpen || {};
+        return gs.map((g, i) => { const op = po[i] !== undefined ? po[i] : false; return { ...g, title: g.label.split(' · ')[0], dates: g.label.split(' · ')[1] || '', open: op, icon: op ? '−' : '+', shown: op ? g.items : [], prog: g.items.filter(p => p.done).length + ' / ' + g.items.length, toggle: () => this.setState(s => ({ planOpen: { ...(s.planOpen || {}), [i]: !op } })) }; }); })(),
+      rsvpOpts: RSVP, rsvpTotals: [['Invited', '#c4bcae', x => !!x.rsvp], ['Yes', '#5fa08f', x => x.rsvp === 'Yes'], ['Maybe', '#c9a24a', x => x.rsvp === 'Maybe'], ['No reply', '#6d675c', x => x.rsvp === 'Invited']].map(([label, c, fn]) => ({ label, c, n: String(L.filter(fn).length) })),
+      rsvpEmpty: rsvpList.length === 0, rsvpRows: rsvpList.map(x => ({ writer: x.writer || '—', outlet: x.outlet, rsvp: x.rsvp, rc: RSVP_C[x.rsvp], slot: x.slot || '', setRsvp: e => this.patch(x.id, { rsvp: e.target.value }, (x.writer || x.outlet) + ' · RSVP → ' + (e.target.value || 'removed')), setSlot: e => this.patch(x.id, { slot: e.target.value }), open: () => this.openDr(x, 'preview') })),
+      cov: cov.map(c => { const on = {}; ['outlet', 'title', 'artists', 'link'].forEach(k => { on[k] = e => { const v = e.currentTarget.innerText.trim(); if (v !== (c[k] || '')) setCov(c.id, { [k]: v }); }; }); return { ...c, on, kc: COV_C[c.kind] || '#8f887c', hasLink: /^https?:/.test(c.link || ''), setKind: e => setCov(c.id, { kind: e.target.value }), setDate: e => setCov(c.id, { date: e.target.value }), remove: () => { if (window.confirm('Remove this clip?')) this.saveExtra({ cov: cov.filter(y => y.id !== c.id) }); },
+        reuse: REUSE.map(([k, label]) => { const on2 = !!(c.done || {})[k]; return { label: (on2 ? '✓ ' : '') + label, bg: on2 ? '#5fa08f' : 'transparent', fg: on2 ? '#0d0c0b' : '#8f887c', bc: on2 ? '#5fa08f' : '#3a3630', tog: () => setCov(c.id, { done: { ...(c.done || {}), [k]: !on2 } }) }; }) }; }),
+      covEmpty: cov.length === 0, covKinds: COV_KINDS, covSummary: cov.length ? cov.length + ' clips · ' + cov.filter(c => c.kind === 'Review').length + ' reviews · ' + L.filter(x => x.s === 4).length + ' contacts covering' : 'Reviews, listings and posts once they run',
+      addCov: () => this.saveExtra({ cov: [{ id: 'v' + Date.now(), kind: 'Review', date: today, outlet: '', title: '', artists: '', link: '', done: {} }, ...cov] }, 'Added a coverage clip'),
+      drOpen: !!D, dr: D ? (() => { const dx = { ...D, angle: D.angle || 'Whole show' }, logKey = (TPLS.find(t => t[0] === dr.tpl) || [])[2] || 'rel';
+        const close = () => this.setState({ dr: null });
+        return { writer: D.writer || 'No name yet', outlet: D.outlet, cat: catOf(D), email: D.email || 'no email on file', notes: D.notes || '—', angle: dx.angle, why: dr.why, intro: dr.intro, rsvp: D.rsvp || '', slot: D.slot || '', subject: dr.subject, body: dr.body,
+          history: D.last ? 'Last sent ' + nice(D.last) + ' · status ' + ST[D.s][0] : 'Not contacted yet', fitLabel: D.fit ? ['', 'Long shot', 'Possible', 'Good', 'Strong', 'Perfect fit'][D.fit] : 'Rate fit',
+          fitDots: [1, 2, 3, 4, 5].map(n => ({ bg: (D.fit || 0) >= n ? '#c9a24a' : 'transparent', bc: (D.fit || 0) >= n ? '#c9a24a' : '#3a3630', pick: () => this.patch(D.id, { fit: D.fit === n ? 0 : n }) })),
+          suggest: ANGLE_LINE[dx.angle] ? 'Pitch line: ' + ANGLE_LINE[dx.angle] : 'Pick an artist to lead with — the draft updates.',
+          setWhy: e => setD({ why: e.target.value }), saveWhy: () => { if ((dr.why || '') !== (D.why || '')) this.patch(D.id, { why: dr.why }); },
+          setIntro: e => setD({ intro: e.target.value }), saveIntro: () => { if ((dr.intro || '') !== (D.intro || '')) this.patch(D.id, { intro: dr.intro }); },
+          setAngle: e => { const a = e.target.value; this.patch(D.id, { angle: a }); const c2 = compose({ ...D, angle: a, why: dr.why }, dr.tpl, this.who()); setD({ subject: c2.subject, body: c2.body }); },
+          setRsvp: e => this.patch(D.id, { rsvp: e.target.value }, (D.writer || D.outlet) + ' · RSVP → ' + (e.target.value || 'removed')), setSlot: e => this.patch(D.id, { slot: e.target.value }),
+          tpls: TPLS.map(([k, label]) => ({ label, bg: dr.tpl === k ? '#e9e3d6' : 'transparent', fg: dr.tpl === k ? '#0d0c0b' : '#c4bcae', pick: () => { const c2 = compose({ ...D, why: dr.why }, k, this.who()); setD({ tpl: k, subject: c2.subject, body: c2.body }); } })),
+          setSubject: e => setD({ subject: e.target.value }), setBody: e => setD({ body: e.target.value }),
+          regen: () => { const c2 = compose({ ...D, why: dr.why }, dr.tpl, this.who()); setD({ subject: c2.subject, body: c2.body }); },
+          mailto: 'mailto:' + encodeURIComponent(D.email || '') + '?subject=' + encodeURIComponent(dr.subject) + '&body=' + encodeURIComponent(dr.body),
+          logLabel: ASSETS.find(a => a[0] === logKey)[1].toLowerCase(), opened: () => this.setState({ pend: { id: D.id, key: logKey, invite: dr.tpl === 'preview' || dr.tpl === 'invite' } }), pending: !!(this.state.pend && this.state.pend.id === D.id), notPending: !(this.state.pend && this.state.pend.id === D.id),
+          confirm: () => this.confirmPend({ id: D.id, key: logKey, invite: dr.tpl === 'preview' || dr.tpl === 'invite' }), unsent: () => this.setState({ pend: null }),
+          copy: () => { try { navigator.clipboard.writeText('Subject: ' + dr.subject + '\n\n' + dr.body); } catch (e) {} setD({ copied: true }); setTimeout(() => setD({ copied: false }), 1800); }, copyLabel: dr.copied ? 'Copied ✓' : 'Copy text',
+          noEmail: D.email ? '' : 'No email — copy and send as a DM', close, bg: e => { if (e.target === e.currentTarget) close(); } }; })() : {},
+      rows, groups: CATS.map(([label, c, note]) => { const gr = rows.filter(r => r.cat === label); const op = !!(this.state.openCats || {})[label] || f !== 'All'; return { label, c, note, rows: gr, n: String(gr.length), open: op, icon: op ? '−' : '+', shown: op ? gr : [], sentLine: gr.filter(r => r.s > 0).length + ' / ' + gr.length + ' pitched', toggle: () => this.setState(s => ({ openCats: { ...(s.openCats || {}), [label]: !op } })) }; }).filter(g => g.rows.length), catOpts: CATS.map(c => c[0]), ...(() => { const oc = this.state.openCats || {}, any = CATS.some(c => oc[c[0]]); return { allLabel: any ? 'Collapse all' : 'Expand all', toggleAll: () => this.setState({ openCats: any ? {} : Object.fromEntries(CATS.map(c => [c[0], true])) }) }; })(), rowsEmpty: rows.length === 0, angles: ANGLES, follow, followN: String(follow.length), followEmpty: follow.length === 0,
+      summary: L.length + ' contacts · ' + new Set(L.map(x => x.outlet)).size + ' publications · ' + L.filter(x => x.s > 0 && x.s < 5).length + ' pitched · ' + L.filter(x => x.s === 4).length + ' covering',
+      assetTotals: ASSETS.map(([k, label]) => ({ label, n: String(L.filter(x => x.sent && x.sent[k]).length) })),
+      toPitchLine: toPitch ? toPitch + ' contact' + (toPitch === 1 ? '' : 's') + ' not pitched yet' : 'Everyone on the list has been pitched.',
+      filters: ['All', 'Due', 'Mine', ...ST.map(s => s[0])].map(k => ({ label: k, bg: k === f ? '#e9e3d6' : 'transparent', fg: k === f ? '#0d0c0b' : '#c4bcae', pick: () => this.setState({ filter: k }) })),
+      head: [['Contact · publication'], ['Email · group'], ['Angle', 'Which artist or work you’re pitching'], ['Beat · notes'], ['Owner'], ['Status'], ...ASSETS.map(a => [a[1], a[1] + ' sent', 'center']), ['Last sent'], ['Follow up'], ['']].map(([label, tip, al]) => ({ label, tip: tip || '', al: al || 'left' })),
+      allMark: allOn ? '■' : '□', selAll: () => this.setState(() => { if (allOn) return { sel: {} }; const n = {}; view.forEach(x => n[x.id] = 1); return { sel: n }; }),
+      hasSel: selIds.length > 0, selLabel: selIds.length + ' selected', clearSel: () => this.setState({ sel: {} }),
+      sendOpts: ASSETS.map(([k, label]) => ({ label: label + ' sent', pick: () => { this.logSend(selIds, k); this.setState({ sel: {} }); } })),
+      addRow: () => { const id = 'c' + Date.now(); this.persist([{ id, outlet: '', writer: '', email: '', notes: '', owner: this.who(), angle: 'Whole show', s: 0, sent: {}, last: '', nextDate: '' }, ...L], [{ t: Date.now(), who: this.who(), what: 'Added a contact' }, ...this.state.log]); this.setState(s => ({ filter: 'All', openCats: { ...(s.openCats || {}), 'Art press': true } })); setTimeout(() => { const el = document.querySelector('[data-ph="Publication"]'); if (el) el.focus(); }, 200); },
+      logOpen: this.state.logOpen, logIcon: this.state.logOpen ? '−' : '+', logCount: '(' + this.state.log.length + ')', logEmpty: this.state.log.length === 0, toggleLog: () => this.setState({ logOpen: !this.state.logOpen }),
+      log: this.state.log.map(e => ({ when: new Date(e.t).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + new Date(e.t).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }), who: e.who || '—', what: e.what })),
+      exportCsv: () => { const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"'; const head = ['Publication', 'Writer', 'Email', 'Angle', 'Beat / notes', 'Owner', 'Status', ...ASSETS.map(a => a[1] + ' sent'), 'Last sent', 'Follow up'];
+        const t = [head, ...L.map(x => [x.outlet, x.writer, x.email, x.angle, x.notes, x.owner, ST[x.s][0], ...ASSETS.map(a => (x.sent || {})[a[0]] || ''), x.last, x.nextDate])].map(r => r.map(q).join(',')).join('\n') + '\n';
+        const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([t], { type: 'text/csv' })); a.download = 'Death Is a Door - Press Tracker.csv'; document.body.appendChild(a); a.click(); a.remove(); },
+      importCsv: () => { const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.csv,text/csv'; inp.onchange = () => { const fl = inp.files && inp.files[0]; if (!fl) return; fl.text().then(t => { const all = parseCSV(t).filter(r => r.some(c => c.trim())); if (!all.length) return; const h = all[0].map(c => c.trim().toLowerCase()); const ix = ks => h.findIndex(c => ks.some(k => c.includes(k)));
+        const io = ix(['publication', 'outlet']), iw = ix(['writer', 'name', 'editor']), ie = ix(['email']), ia = ix(['angle']), inn = ix(['beat', 'note']), iow = ix(['owner']);
+        if (io < 0 && ie < 0) { alert('Need at least a Publication or Email column.'); return; }
+        const have = new Set(L.map(x => (x.email || '').toLowerCase()).filter(Boolean)); let added = 0, skipped = 0;
+        const nw = all.slice(1).map((r, k) => { const em = ie >= 0 ? (r[ie] || '').trim() : ''; if (em && have.has(em.toLowerCase())) { skipped++; return null; } added++; return { id: 'i' + Date.now() + k, outlet: io >= 0 ? (r[io] || '').trim() : '', writer: iw >= 0 ? (r[iw] || '').trim() : '', email: em, angle: ia >= 0 && ANGLES.includes((r[ia] || '').trim()) ? r[ia].trim() : 'Whole show', notes: inn >= 0 ? (r[inn] || '').trim() : '', owner: iow >= 0 ? (r[iow] || '').trim() : '', s: 0, sent: {}, last: '', nextDate: '' }; }).filter(Boolean);
+        this.persist([...nw, ...L], [{ t: Date.now(), who: this.who(), what: 'Imported ' + added + ' contacts from ' + fl.name + (skipped ? ' (' + skipped + ' duplicate emails skipped)' : '') }, ...this.state.log]); }); }; inp.click(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

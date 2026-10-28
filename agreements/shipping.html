@@ -14,8 +14,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style data-bottom-pad="">@media screen{body{padding-bottom:120px !important}}</style>
 <style>
   body{margin:0;background:#0d0c0b}
+  @media (max-width:800px){[data-shiphead]{grid-template-columns:1fr !important}[data-shiphead]>div:last-child{justify-self:start !important;text-align:left !important}}
   a{color:#7fa39b}
   a:hover{color:#a9c6bf}
   @media (max-width:700px){[data-lanes]{grid-template-columns:1fr !important}}
@@ -24,32 +26,46 @@
 <script>(function(){var b='../';fetch('../desk.html',{method:'HEAD'}).then(function(r){if(!r.ok)b='../site/';}).catch(function(){b='../site/';});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-root]');if(a)a.href=b+a.getAttribute('data-root');},true);})();</script>
 <script src="sync.js"></script>
 </helmet>
-<div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;box-sizing:border-box;">
-    <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
-    <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
-    <a href="checklist.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
-    <a href="index.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
-    <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
-    <a href="../offer-sheets.html" data-root="offer-sheets.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Offers</a>
-    <a href="../press.html" data-root="press.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press kit</a>
-    <a href="shipping.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Shipping</a>
-    <a href="../install-plan.html#walkthrough" data-root="install-plan.html#walkthrough" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Walkthrough</a></nav></div>
+<div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
+    <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
+    <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
+    <a href="checklist.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Checklist</a>
+    <a href="index.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Consignments</a>
+    <a href="../events.html" data-root="events.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Events</a>
+    <a href="../offer-sheets.html" data-root="offer-sheets.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Offers</a>
+    <a href="../press.html" data-root="press.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press kit</a>
+    <a href="../press-tracker.html" data-root="press-tracker.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Press tracker</a>
+    <a href="shipping.html" style="background:#1f1d19;color:#f0eadd;box-shadow:inset 0 -2px 0 #7fa39b;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Shipping</a>
+    <a href="../install-plan.html#walkthrough" data-root="install-plan.html#walkthrough" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Walkthrough</a></nav></div>
 
 <div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(20px,4vw,48px);box-sizing:border-box;">
   <div style="max-width:1400px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 24px;">
   <div style="display:flex;align-items:baseline;gap:16px;"><a href="../desk.html" data-root="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
   
   </div>
-  <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;max-width:1400px;margin:0 auto;">
-    <div>
+  <div data-shiphead="" style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px 48px;align-items:end;max-width:1400px;margin:0 auto;">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;">
       <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Shipping Tracker</h1>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:620px;border-top:1px solid #2a2722;padding-top:14px;">
+        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">Each artist is a card that moves left to right as their work travels to the gallery.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;"><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#e0614f;border:1px solid #e0614f;padding:4px 8px;white-space:nowrap;">Not booked</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7fa39b;border:1px solid #7fa39b;padding:4px 8px;white-space:nowrap;">Booked</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#a99fc9;border:1px solid #a99fc9;padding:4px 8px;white-space:nowrap;">In transit</span><span style="color:#6d675c;font-size:16px;">→</span><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5fb075;border:1px solid #5fb075;padding:4px 8px;white-space:nowrap;">Delivered</span></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;"><p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">Artists bringing work themselves go to</p><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#d9c255;border:1px solid #d9c255;padding:4px 8px;white-space:nowrap;">Local pick up</span></div>
+        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;color:#c4bcae;">Click a card’s button or drag it to move it. When a shipment is booked, add the carrier, tracking number and ETA. Use <i>List</i> to edit work by work, and <i>Return shipping</i> after the show.</p>
+      </div>
     </div>
-    <div style="font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;">{{ summary }}</div>
+    <div style="display:flex;flex-direction:column;gap:10px;justify-self:end;align-self:start;max-width:340px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border:1px solid #3a3630;background:#16150f;padding:14px 16px;">
+        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:{{ legC }};">{{ legHead }}</span>
+        <span style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.35;color:#f0eadd;">CC Jasper<br>131 Chrystie Street, New York</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#8f887c;">{{ legSub }}</span>
+      </div>
+      <span style="font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.6;letter-spacing:0.06em;color:#8f887c;">{{ summary }}</span>
+    </div>
   </div>
 
-  <div style="max-width:1400px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
-    <div style="font-family:'Space Mono',monospace;font-size:11px;color:{{ legC }};letter-spacing:0.08em;">{{ legLine }}</div>
-    <button onClick="{{ toggleRet }}" role="switch" aria-checked="{{ ret }}" style="display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:{{ retBg }};color:{{ retFg }};border:1px solid #6d675c;" style-hover="border-color:#7fa39b;"><span style="position:relative;display:inline-block;width:24px;height:12px;border-radius:6px;background:{{ trackBg }};"><span style="position:absolute;top:2px;left:{{ knobL }};width:8px;height:8px;border-radius:50%;background:{{ retFg }};"></span></span>Return shipping</button>
+  <div style="max-width:1400px;margin:28px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;">
+    <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;"><sc-for list="{{ viewOpts }}" as="v" hint-placeholder-count="2"><button onClick="{{ v.pick }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:none;cursor:pointer;background:{{ v.bg }};color:{{ v.fg }};">{{ v.label }}</button></sc-for></div>
+<button onClick="{{ toggleRet }}" title="Switches every field to the return leg" role="switch" aria-checked="{{ ret }}" style="margin-left:auto;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:{{ retBg }};color:{{ retFg }};border:1px solid #6d675c;" style-hover="border-color:#7fa39b;"><span style="position:relative;display:inline-block;width:24px;height:12px;border-radius:6px;background:{{ trackBg }};"><span style="position:absolute;top:2px;left:{{ knobL }};width:8px;height:8px;border-radius:50%;background:{{ retFg }};"></span></span>Return shipping</button>
   </div>
   <sc-if value="{{ sfOpen }}" hint-placeholder-val="{{ false }}"><div onClick="{{ sf.bg }}" style="position:fixed;inset:0;z-index:200;background:rgba(8,7,6,0.72);display:flex;align-items:center;justify-content:center;padding:20px;">
     <div style="width:min(640px,100%);max-height:calc(100vh - 40px);overflow:auto;box-sizing:border-box;background:#16150f;border:1px solid #3a3630;padding:28px clamp(18px,4vw,32px);display:flex;flex-direction:column;gap:18px;box-shadow:0 30px 80px rgba(0,0,0,0.6);">
@@ -88,7 +104,8 @@
       </div>
     </div>
   </div></sc-if>
-  <div data-lanes="" style="max-width:1400px;margin:10px auto 0;box-sizing:border-box;background:#16150f;border:1px solid #2a2722;padding:18px 0;display:grid;grid-template-columns:{{ laneCols }};gap:14px 0;font-family:'Space Mono',monospace;">
+  <div style="max-width:1400px;margin:14px auto 0;display:flex;height:4px;gap:2px;background:#2a2722;"><sc-for list="{{ shipBar }}" as="b" hint-placeholder-count="5"><div title="{{ b.tip }}" style="width:{{ b.w }};background:{{ b.c }};"></div></sc-for></div>
+  <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ true }}"><div data-lanes="" style="max-width:1400px;margin:10px auto 0;box-sizing:border-box;background:#16150f;border:1px solid #2a2722;padding:18px 0;display:grid;grid-template-columns:{{ laneCols }};gap:14px 0;font-family:'Space Mono',monospace;">
     <sc-for list="{{ lanes }}" as="g" hint-placeholder-count="3">
       <div onDragOver="{{ g.over }}" onDragLeave="{{ g.leave }}" onDrop="{{ g.drop }}" style="display:flex;flex-direction:column;gap:6px;padding:0 10px;border-left:1px solid {{ g.sep }};min-width:0;background:{{ g.hot }};transition:background 120ms;">
         <div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:{{ g.c }};border-bottom:1px solid {{ g.c }};padding-bottom:6px;"><span>{{ g.label }}</span><span>{{ g.n }}</span></div>
@@ -108,54 +125,9 @@
         </div>
       </div>
     </sc-for>
-  </div>
-  <div style="max-width:1400px;margin:20px auto 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 32px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:11px;">
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:baseline;gap:10px;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Edits</div><span style="font-family:'Space Mono',monospace;font-size:9.5px;color:{{ statusC }};">{{ status }}</span></div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">Save version</button></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Data file</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportFile }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Export file</button><button onClick="{{ importFile }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Import file</button></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-left:auto;">
-      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">PDF</button><button onClick="{{ exportDoc }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Word / Pages</button><button onClick="{{ downloadCsv }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">CSV</button></div>
-    </div>
-    <sc-if value="{{ hasVersions }}" hint-placeholder-val="{{ false }}">
-      <div style="flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border-top:1px solid #2a2722;padding-top:10px;">
-        <span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;margin-right:4px;">Versions</span>
-        <sc-for list="{{ versions }}" as="v" hint-placeholder-count="0">
-          <span style="display:flex;align-items:center;border:1px solid {{ v.border }};white-space:nowrap;">
-            <button onClick="{{ v.load }}" style="font-family:'Space Mono',monospace;font-size:10.5px;background:{{ v.bg }};color:{{ v.fg }};border:none;padding:5px 9px;cursor:pointer;" style-hover="color:#7fa39b;">{{ v.label }}</button>
-          </span>
-        </sc-for>
-      </div>
-    </sc-if>
-    <div style="flex-basis:100%;border-top:1px solid #2a2722;padding-top:10px;">
-      <button onClick="{{ toggleLog }}" aria-expanded="{{ logOpen }}" style="display:flex;align-items:center;gap:10px;width:100%;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:none;padding:2px 0;cursor:pointer;text-align:left;" style-hover="color:#7fa39b;">
-        <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #6d675c;font-size:13px;line-height:1;">{{ logIcon }}</span>Updates<span style="color:#8f887c;">{{ logCount }}</span>
-      </button>
-      <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
-        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;">
-          <button onClick="{{ revertLast }}" disabled="{{ noVersions }}" title="{{ revertTitle }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#c9a24a;color:#c9a24a;">Revert to last saved</button>
-          <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#e9e3d6;border:1px solid #6d675c;padding:8px 12px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#c9a24a;color:#c9a24a;">Return to original</button>
-        </div>
-        <div style="margin-top:10px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;border-top:1px solid #2a2722;">
-          <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;color:#6d675c;">No updates yet.</div></sc-if>
-          <sc-for list="{{ log }}" as="e" hint-placeholder-count="0">
-            <div style="display:grid;grid-template-columns:9.5em minmax(8em,0.8fr) minmax(0,2fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;">
-              <span style="color:#8f887c;white-space:nowrap;">{{ e.when }}</span>
-              <span style="color:{{ e.c }};">{{ e.who }}</span>
-              <span style="font-family:'EB Garamond',serif;font-size:13.5px;color:#c4bcae;word-break:break-word;">{{ e.what }}</span>
-            </div>
-          </sc-for>
-        </div>
-      </sc-if>
-    </div>
-  </div>
+  </div></sc-if>
 
-  <div style="max-width:1400px;margin:16px auto 0;overflow-x:auto;">
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}"><div style="max-width:1400px;margin:16px auto 0;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.04em;line-height:1.6;color:#8f887c;">Click any field to edit · click a status to advance it · a <span style="color:#7fa39b;">Track</span> link appears for UPS, FedEx, USPS and DHL numbers</div><div style="max-width:1400px;margin:10px auto 0;overflow-x:auto;">
     <div style="display:grid;grid-template-columns:{{ cols }};min-width:1380px;font-size:14px;">
       <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;padding:0 8px 8px 0;border-bottom:1px solid #6d675c;">No.</div>
       <div style="border-bottom:1px solid #6d675c;"></div>
@@ -202,8 +174,57 @@
         
       </sc-for>
     </div>
+  </div></sc-if>
+  <div style="max-width:1400px;margin:40px auto 0;display:flex;flex-wrap:wrap;align-items:flex-start;gap:18px 32px;padding:14px 16px;background:#16150f;border:1px solid #2a2722;font-family:'Space Mono',monospace;font-size:11px;">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Data file</div>
+      <p style="margin:0;max-width:340px;font-family:'EB Garamond',serif;font-size:14px;line-height:1.4;letter-spacing:0;color:#8f887c;text-wrap:pretty;"><i>Export file</i> to move your tracker to another computer or share it; <i>Import file</i> to load one.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportFile }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Export file</button><button onClick="{{ importFile }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Import file</button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-left:auto;">
+      <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Export</div>
+      <p style="margin:0;max-width:340px;font-family:'EB Garamond',serif;font-size:14px;line-height:1.4;letter-spacing:0;color:#8f887c;text-wrap:pretty;">The shipping table as a PDF, Word / Pages document, or CSV.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;"><button onClick="{{ exportPdf }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">PDF</button><button onClick="{{ exportDoc }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">Word / Pages</button><button onClick="{{ downloadCsv }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;background:transparent;color:#e9e3d6;border:1px solid #6d675c;" style-hover="border-color:#7fa39b;color:#7fa39b;">CSV</button></div>
+    </div>
+    
+    
   </div>
-  <div style="max-width:1400px;margin:14px auto 0;font-family:'Space Mono',monospace;font-size:10.5px;color:#6d675c;line-height:1.7;">Click any field to edit · click a status to advance it · a Track link appears for UPS, FedEx, USPS and DHL numbers · Return shipping switches every field to the return leg · edits autosave in this browser · Save version keeps a permanent snapshot you can return to · + Updates shows every change · Export file to move your tracker to another computer or share it, Import file to load one.</div>
+  <div data-noprint="" style="max-width:1400px;margin:48px auto 0;border-top:1px solid #3a3630;padding-top:20px;display:flex;flex-direction:column;gap:16px;font-family:'Space Mono',monospace;font-size:11px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 24px;">
+      <div style="display:flex;flex-direction:column;gap:6px;max-width:560px;">
+        <div style="display:flex;align-items:baseline;gap:12px;"><span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">History</span><span style="font-size:10px;color:{{ histC }};">{{ histStatus }}</span></div>
+        <p style="margin:0;font-family:'EB Garamond',serif;font-size:15px;line-height:1.45;color:#c4bcae;text-wrap:pretty;">Your edits save automatically — you don’t need to do anything. Before a big change, click <i>Save a copy</i> so you can go back to this version if you need to.</p>
+      </div>
+      <button onClick="{{ saveVersion }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;background:#2b6a60;color:#fff;border:1px solid #2b6a60;" style-hover="background:#1d4a43;border-color:#1d4a43;">Save a copy</button>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #2a2722;">
+      <sc-for list="{{ copies }}" as="v" hint-placeholder-count="0">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #1f1d19;">
+          <span style="color:#e9e3d6;">{{ v.label }}<span style="margin-left:10px;color:#7fa39b;">{{ v.tag }}</span></span>
+          <button onClick="{{ v.load }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;padding:5px 10px;background:transparent;color:#c4bcae;border:1px solid #3a3630;" style-hover="border-color:#c9a24a;color:#c9a24a;">Restore</button>
+        </div>
+      </sc-for>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #1f1d19;">
+        <span style="color:#8f887c;">Original shipping list<span style="margin-left:10px;color:#6d675c;">as published, before any edits</span></span>
+        <button onClick="{{ reset }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;padding:5px 10px;background:transparent;color:#c4bcae;border:1px solid #3a3630;" style-hover="border-color:#c9a24a;color:#c9a24a;">Restore</button>
+      </div>
+    </div>
+    <div>
+      <button onClick="{{ toggleLog }}" aria-expanded="{{ logOpen }}" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:#c4bcae;border:none;padding:2px 0;cursor:pointer;" style-hover="color:#7fa39b;"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1px solid #6d675c;font-size:12px;line-height:1;">{{ logIcon }}</span>Change log<span style="color:#8f887c;">{{ logCount }}</span></button>
+      <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:10px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;border-top:1px solid #2a2722;">
+          <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;color:#6d675c;">No changes yet.</div></sc-if>
+          <sc-for list="{{ log }}" as="e" hint-placeholder-count="0">
+            <div style="display:grid;grid-template-columns:9.5em minmax(8em,0.8fr) minmax(0,2fr);gap:4px 14px;padding:8px 0;border-bottom:1px solid #1f1d19;align-items:baseline;">
+              <span style="color:#8f887c;white-space:nowrap;">{{ e.when }}</span>
+              <span style="color:{{ e.c }};">{{ e.who }}</span>
+              <span style="font-family:'EB Garamond',serif;font-size:13.5px;color:#c4bcae;word-break:break-word;">{{ e.what }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -257,7 +278,7 @@ function trackUrl(carrier, n) {
   return '';
 }
 class Component extends DCLogic {
-  state = { works: [], data: {}, ret: false, versions: [], cur: null, dirty: false, msg: '', log: [], logOpen: false };
+  state = { view: 'board', works: [], data: {}, ret: false, versions: [], cur: null, dirty: false, msg: '', log: [], logOpen: false };
   focusA = (() => { try { return new URLSearchParams(location.search).get('artist') || ''; } catch (e) { return ''; } })();
   componentDidMount() {
     if (this.focusA) setTimeout(() => { const el = [...document.querySelectorAll('[data-ship-artist]')].find(x => x.getAttribute('data-ship-artist') === this.focusA); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); }, 700);
@@ -297,7 +318,8 @@ class Component extends DCLogic {
   setAll(patch) {
     this.setState(patch, () => { try { const { data, versions, cur, dirty } = this.state; localStorage.setItem(KEY, JSON.stringify(data)); localStorage.setItem(KEY + '-versions', JSON.stringify({ versions, cur, dirty })); } catch (e) {} });
   }
-  renderVals() {
+  renderVals() { const V = this._rv0(), cur = this.state.cur, dirty = this.state.dirty, VS = this.state.versions || []; V.copies = VS.slice().reverse().map(v => { const src = (V.versions || []).find(x => x.label === v.label) || {}; return { label: v.label.replace(/^v\d+ · /, 'Copy · '), tag: v.id === cur && !dirty ? '✓ current' : '', load: src.load }; }); const cv = VS.find(x => x.id === cur); V.histStatus = dirty ? 'Edited since your last copy' : cv ? 'Matches ' + cv.label.split(' · ')[0] : 'No edits yet'; V.histC = dirty ? '#c9a24a' : '#7fa39b'; return V; }
+  _rv0() {
     const ret = this.state.ret, P = ret ? 'r_' : '', ST = ret ? RET : OUT;
     const ORD = ret ? ST.map((x, k) => k) : [0, 4, 1, 2, 3], nextOf = s => ORD[(ORD.indexOf(s) + 1) % ORD.length];
     const rows = this.state.works.map(w => {
@@ -327,7 +349,9 @@ class Component extends DCLogic {
     const hx = (c, a) => { const m = /^#?([0-9a-f]{6})$/i.exec(c || ''); if (!m) return 'rgba(143,136,124,' + a + ')'; const n = parseInt(m[1], 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; };
     lanes.forEach(l => { l.tint = hx(l.c, 0.14); });
     const nSold = rows.filter(r => r.isSold).length, nDone = rows.filter(r => r.isDone).length;
-    return {
+    const VW = this.state.view || 'board', viewOpts = [['board', 'Board'], ['list', 'List']].map(([k, label]) => ({ label, bg: VW === k ? '#e9e3d6' : '#0d0c0b', fg: VW === k ? '#0d0c0b' : '#c4bcae', pick: () => { try { localStorage.setItem('didad-ship-view', k); } catch (e) {} this.setState({ view: k }); } }));
+    const shipBar = ORD.map((si, i) => { const n = byArtist.filter(g => Math.min(...g.sIdx.map(x => ORD.indexOf(x))) === i).length; return { c: ST[si][1], w: (byArtist.length ? n / byArtist.length * 100 : 0) + '%', tip: ST[si][0] + ' · ' + n }; }).filter(b => b.w !== '0%');
+    return { viewOpts, shipBar, isBoard: VW === 'board', isList: VW === 'list',
       rows,
       ...(() => { let it = null; lanes.forEach(l => l.items.forEach(x => { if (x.formOpen) it = x; })); return { sfOpen: !!it, sf: it ? { name: it.name, f_carrier: it.f_carrier, f_tracking: it.f_tracking, f_notes: it.f_notes, f_shipDate: it.f_shipDate, f_eta: it.f_eta, set_shipDate: it.set_shipDate, set_eta: it.set_eta, set_carrier: it.set_carrier, set_tracking: it.set_tracking, set_notes: it.set_notes, save: it.saveForm, saveTransit: it.saveTransit, close: it.closeMenu, bg: e => { if (e.target === e.currentTarget) this.setState({ shipForm: null }); } } : {} }; })(),
       ...(() => { const N = this.state.notesEdit, close = () => this.setState({ notesEdit: null }); return { neOpen: !!N, ne: N ? { name: N.name, title: N.title, text: N.text, label: (N.key.startsWith('r_') ? 'Return notes' : 'Notes'), set: e => { const v = e.target.value; this.setState(s => ({ notesEdit: { ...s.notesEdit, text: v } })); }, close, bg: e => { if (e.target === e.currentTarget) close(); }, save: () => { const v = N.text.trim(); if (v !== N.orig) this.save(N.no, { [N.key]: v }); close(); } } : {} }; })(),
@@ -337,7 +361,7 @@ class Component extends DCLogic {
       cols: '2.2em 64px minmax(12em,1.3fr) 9.5em 3.6em ' + (ret ? '3.6em ' : '') + 'minmax(16em,1.6fr) minmax(7em,0.8fr) minmax(7em,0.8fr) minmax(10em,1fr) 6.5em 6.5em',
       fromLabel: ret ? 'Ships to' : 'Ships from',
       legLine: ret ? 'Return leg · from CC Jasper, 131 Chrystie Street, New York · sold works ship to the collector' : 'Deliver to: CC Jasper · 131 Chrystie Street, New York · opens Nov 12',
-      legC: ret ? '#c9a24a' : '#8f887c',
+      legC: ret ? '#c9a24a' : '#7fa39b', legHead: ret ? 'Return leg · ships from' : 'Deliver to', legSub: ret ? 'Sold works ship to the collector' : 'Deadline: Tuesday, Nov 10',
       summary: rows.length ? `${rows.length} works · ${ret ? nSold + ' sold · ' : ''} ${ret ? '' : cnt(4) + ' local pick up · '}${cnt(1)} booked · ${cnt(2)} in transit · ${cnt(3)} ${ret ? 'returned' : 'delivered'} · ${nDone} done` : 'Loading…',
       reset: () => { if (this.state.dirty && !window.confirm('Discard your edits and return to the original tracker? Saved versions are kept.')) return; this.setAll({ data: {}, cur: null, dirty: false, msg: 'Returned to original' }); this.addLog({ who: 'Tracker', what: 'Returned to original', kind: 'v' }); },
       status: this.state.msg || (this.state.dirty ? 'Unsaved changes' : (vs => { const v = vs.find(x => x.id === this.state.cur); return v ? 'Viewing ' + v.label : ''; })(this.state.versions)),

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Srijon Chowdhury · Consignment · Death Is a Door · CC Jasper</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style data-bottom-pad="">@media screen{body{padding-bottom:120px !important}}</style>
+<style>doc-page:not(:defined){visibility:hidden}body{margin:0;background:#e9e6df}a{color:#2b6a60;text-decoration:none}a:hover{color:#1d4a43}@media print{[data-noprint]{display:none !important}}</style>
+<script src="./doc-page.js"></script>
+<script src="sync.js"></script>
+</helmet>
+
+<div data-noprint="" style="position:relative;z-index:10;background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:18px clamp(14px,3vw,32px) 22px;display:flex;flex-direction:column;gap:14px;">
+  <div style="display:flex;align-items:baseline;gap:16px;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div>
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;border-top:1px solid #2a2722;padding-top:14px;">
+    <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+      <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8f887c;">Consignment · from P·P·O·W</span>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,44px);line-height:1.05;color:#f0eadd;">Srijon Chowdhury</h1>
+      <div style="display:grid;grid-template-columns:8px minmax(0,1fr);column-gap:10px;row-gap:4px;align-items:center;border:1px solid {{ pvC }};padding:9px 12px;width:fit-content;max-width:100%;box-sizing:border-box;"><span style="width:8px;height:8px;border-radius:50%;background:{{ pvC }};"></span><span style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:{{ pvC }};">{{ pvStatus }}</span><span></span><span style="font-size:10.5px;line-height:1.5;color:#c4bcae;text-wrap:pretty;">{{ pvDetail }}</span></div>
+      <span style="font-size:10px;line-height:1.6;color:#8f887c;max-width:600px;">P·P·O·W contacts: Jennifer Brennan · <a href="mailto:jennifer@ppowgallery.com" style="color:#7fa39b;">jennifer@ppowgallery.com</a> · Eden Deering · <a href="mailto:eden@ppowgallery.com" style="color:#7fa39b;">eden@ppowgallery.com</a> · 212-647-1044. Both are emailed when Sienna signs.</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px;margin-left:auto;max-width:100%;">
+      <sc-if value="{{ notPrivate }}" hint-placeholder-val="{{ true }}"><a href="index.html" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;color:#e9e3d6;border:1px solid #3a3630;" style-hover="color:#7fa39b;">← Consignments</a></sc-if>
+      <sc-if value="{{ showSend }}" hint-placeholder-val="{{ true }}"><a href="{{ siennaHref }}" target="_blank" rel="noopener" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;color:#e0685a;border:1px solid #c4483b;" style-hover="background:#c4483b;color:#fff;">Send to Sienna to sign</a></sc-if>
+      <sc-if value="{{ isSigned }}" hint-placeholder-val="{{ false }}"><a href="{{ ppowHref }}" target="_blank" rel="noopener" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;color:#c9a24a;border:1px solid #c9a24a;" style-hover="background:#c9a24a;color:#0d0c0b;">Email P·P·O·W again</a></sc-if>
+      <a href="srijon-ppow-consignment.pdf" target="_blank" rel="noopener" style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;color:#c4bcae;border:1px solid #3a3630;" style-hover="color:#7fa39b;">P·P·O·W original PDF</a>
+      <button onClick="{{ doPrint }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;white-space:nowrap;border:none;cursor:pointer;background:#2b6a60;color:#fff;" style-hover="background:#1d4a43;">PDF / Print</button>
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{ signOpen }}" hint-placeholder-val="{{ false }}">
+<div data-noprint="" style="position:fixed;inset:0;z-index:200;background:rgba(13,12,11,0.72);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#f7f4ee;color:#16150f;width:min(560px,100%);padding:22px;display:flex;flex-direction:column;gap:12px;font-family:'Space Mono',monospace;">
+    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#2b6a60;">Sign — For Sienna Berritto (Consignee)</div>
+    <div style="font-size:11px;line-height:1.5;color:#5c574c;">Draw your signature with a mouse, trackpad or finger — or type your name. Trackpad: tap once to start drawing, move, tap again to stop.</div>
+    <sc-if value="{{ hasSavedG }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#ffffff;border:1px solid #b9b2a4;padding:8px 10px;">
+        <img src="{{ savedGSrc }}" alt="Saved signature" style="height:40px;width:auto;max-width:50%;object-fit:contain;"></img>
+        <span style="font-size:10px;color:#5c574c;flex:1 1 140px;">CC Jasper signature on file</span>
+        <button onClick="{{ useSavedG }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#2b6a60;color:#ffffff;border:1px solid #2b6a60;">Use this signature</button>
+      </div>
+    </sc-if>
+    <canvas data-sig="" width="1000" height="300" style="width:100%;height:auto;aspect-ratio:10/3;background:#ffffff;border:1px solid #b9b2a4;touch-action:none;cursor:crosshair;"></canvas>
+    <input value="{{ signTyped }}" onChange="{{ onSignType }}" placeholder="Or type your full name" style="font-family:'EB Garamond',serif;font-size:16px;padding:6px 0;border:none;border-bottom:1px solid #6d675c;background:transparent;outline:none;">
+    <label style="display:flex;gap:8px;align-items:flex-start;font-size:10px;line-height:1.5;color:#5c574c;"><input type="checkbox" checked="{{ signAgree }}" onChange="{{ onSignAgree }}" style="margin-top:2px;">I agree this is my legal signature on this agreement.</label>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;">
+      <button onClick="{{ signClear }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#16150f;border:1px solid #b9b2a4;">Clear</button>
+      <button onClick="{{ signCancel }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:transparent;color:#16150f;border:1px solid #b9b2a4;">Cancel</button>
+      <button onClick="{{ signAdopt }}" style="font-family:inherit;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer;background:#2b6a60;color:#ffffff;border:1px solid #2b6a60;">Sign</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<doc-page>
+  <section class="page" style="position:relative;background:#fff;"><img src="art/srijon-ppow-p1.png" alt="P·P·O·W consignment agreement, page 1" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></img></section>
+  <section class="page" style="position:relative;background:#fff;">
+    <img src="art/srijon-ppow-p2.png" alt="P·P·O·W consignment agreement, page 2" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></img>
+    <div style="position:absolute;left:48.3%;width:32.2%;top:20.6%;height:6.9%;">
+      <sc-if value="{{ isSigned }}" hint-placeholder-val="{{ false }}"><img src="{{ sigSrc }}" alt="Sienna Berritto signature" style="position:absolute;left:0;bottom:0;height:100%;max-width:100%;object-fit:contain;object-position:left bottom;"></img></sc-if>
+      <sc-if value="{{ canSign }}" hint-placeholder-val="{{ false }}"><button data-noprint="" onClick="{{ openSign }}" style="position:absolute;inset:0;width:100%;cursor:pointer;background:{{ signBg }};border:1.5px dashed #2b6a60;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#2b6a60;display:flex;align-items:center;justify-content:center;" style-hover="background:rgba(43,106,96,0.14);">{{ signBtn }}</button></sc-if>
+    </div>
+    <div style="position:absolute;left:48.5%;top:31.4%;font-family:'Times New Roman',Times,serif;font-size:10pt;color:#16150f;">{{ sigDateLine }}</div>
+  </section>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ID = 'srijon', SKEY = 'didad-sig-srijon-g';
+const SALT = 'ccj-didad-2026-k7q';
+const privTok = id => { let h1 = 0x811c9dc5, h2 = 0x1b873593; const s = SALT + ':' + id; for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); h1 = Math.imul(h1 ^ c, 16777619); h2 = Math.imul(h2 ^ c, 2246822519) + (h2 >>> 13); } return ((h1 >>> 0).toString(36) + (h2 >>> 0).toString(36)).slice(0, 12); };
+const BASE = 'https://dougcrocco.github.io/death-is-a-door-site/agreements/srijon.html';
+const PPOW = 'jennifer@ppowgallery.com,eden@ppowgallery.com';
+const stamp = () => { const n = new Date(); return n.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + ', ' + n.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }); };
+const rd = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+const gmail = (to, su, body) => 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + encodeURIComponent(su) + '&body=' + encodeURIComponent(body);
+
+class Component extends DCLogic {
+  priv = (() => { try { const p = new URLSearchParams(location.search).get('p'); if (!p) return null; const [id, k] = p.split('.'); return id === ID && k === privTok(ID) ? ID : ''; } catch (e) { return null; } })();
+  state = { sig: rd(SKEY), file: rd('didad-sig-gallery') };
+  componentDidMount() { this.load(); window.addEventListener('storage', () => this.load()); this._iv = setInterval(() => this.load(), 15000); this.initPad(); }
+  componentWillUnmount() { clearInterval(this._iv); }
+  load() { this.setState({ sig: rd(SKEY), file: rd('didad-sig-gallery') }); }
+  initPad() {
+    if (window.__sjPad) { window.__sjPad.self = this; return; }
+    const S = window.__sjPad = { self: this, down: false, pen: false };
+    const cv = () => document.querySelector('canvas[data-sig]');
+    const xy = e => { const t = e.touches && e.touches[0] ? e.touches[0] : e; return [t.clientX, t.clientY]; };
+    const inside = (c, e) => { const r = c.getBoundingClientRect(), [X, Y] = xy(e); return X >= r.left && X <= r.right && Y >= r.top && Y <= r.bottom; };
+    const pt = (c, e) => { const r = c.getBoundingClientRect(), [X, Y] = xy(e); return [(X - r.left) * c.width / r.width, (Y - r.top) * c.height / r.height]; };
+    const pen = g => { g.lineWidth = 4; g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = '#16150f'; g.fillStyle = '#16150f'; };
+    const start = e => { const c = cv(); if (!c || !inside(c, e)) { S.pen = false; S.down = false; return; } e.preventDefault(); e.stopPropagation(); if (S.pen) { S.pen = false; S.down = false; return; } const me = S.self; if ((me.state.signTyped || '').trim()) { me.setState({ signTyped: '' }); c.getContext('2d').clearRect(0, 0, c.width, c.height); } const p = pt(c, e); const g = c.getContext('2d'); pen(g); g.beginPath(); g.arc(p[0], p[1], 2, 0, 7); g.fill(); S.l = p; c.__ink = true; const [X, Y] = xy(e); S.t0 = Date.now(); S.x0 = X; S.y0 = Y; S.down = true; };
+    const move = e => { if (!S.down) return; const c = cv(); if (!c) { S.down = false; S.pen = false; return; } e.preventDefault(); const p = pt(c, e); const g = c.getContext('2d'); pen(g); g.beginPath(); g.moveTo(S.l[0], S.l[1]); g.lineTo(p[0], p[1]); g.stroke(); S.l = p; };
+    const end = e => { if (!S.down) return; const [X, Y] = xy(e); if (!S.pen && Date.now() - S.t0 < 250 && Math.abs(X - S.x0) + Math.abs(Y - S.y0) < 4) { S.pen = true; return; } S.down = false; S.pen = false; };
+    const o = { capture: true, passive: false };
+    window.addEventListener('pointerdown', start, o); window.addEventListener('pointermove', move, o); window.addEventListener('pointerup', end, true); window.addEventListener('pointercancel', end, true);
+  }
+  drawTyped(t) { const c = document.querySelector('canvas[data-sig]'); if (!c) return; const g = c.getContext('2d'); g.clearRect(0, 0, c.width, c.height); c.__ink = !!t.trim(); if (!t.trim()) return; g.fillStyle = '#16150f'; let fs = 150; const f = () => 'italic ' + fs + 'px "Cormorant Garamond", cursive'; g.font = f(); while (g.measureText(t).width > c.width - 60 && fs > 40) { fs -= 8; g.font = f(); } g.textBaseline = 'middle'; g.fillText(t, 30, c.height / 2); }
+  markComplete() {
+    try { const T = rd('didad-tracker-v1'); if (T && Array.isArray(T.rows)) { let hit = false; const rows = T.rows.map(r => { if (r[2] !== 'Srijon Chowdhury') return r; hit = true; const n = r.slice(); n[9] = 'TRUE'; n[10] = 'TRUE'; return n; }); if (hit) localStorage.setItem('didad-tracker-v1', JSON.stringify({ ...T, rows, dirty: true })); } } catch (e) {}
+    try { const C = rd('didad-consign-v1') || {}; const data = { ...(C.data || {}) }; data.chowdhury = { ...(data.chowdhury || {}), sent: true, signed: true, cs: true }; localStorage.setItem('didad-consign-v1', JSON.stringify({ ...C, data })); } catch (e) {}
+  }
+  renderVals() {
+    const s = this.state.sig && this.state.sig.src ? this.state.sig : null, bad = this.priv === '', isSienna = this.priv === ID;
+    const who = (() => { try { return localStorage.getItem('didad-who') || ''; } catch (e) { return ''; } })();
+    const siennaUrl = BASE + '?p=' + ID + '.' + privTok(ID);
+    const ppowBody = d => 'Hi Jennifer and Eden,\n\nSienna Berritto has signed the consignment agreement for Srijon Chowdhury’s Moth, 2026 (CHOWDHURY-080) for Death Is a Door at CC Jasper' + (d ? ' on ' + d : '') + '. It is now signed by both parties.\n\nView or download the fully signed agreement:\n' + BASE + '\n\nThank you,\nCC Jasper';
+    return {
+      notPrivate: !isSienna && !bad, showSend: !isSienna && !bad && !s, isSigned: !!s, sigSrc: s ? s.src : '', sigDate: s ? s.date : '',
+      canSign: !bad, signBtn: s ? '' : 'Sienna — click to sign', signBg: s ? 'transparent' : 'rgba(43,106,96,0.07)', sigDateLine: s ? 'Signed ' + s.date : '',
+      pvStatus: bad ? 'Link not valid' : s ? 'Complete · signed by Sienna' : 'Awaiting Sienna’s signature',
+      pvC: bad ? '#e0614f' : s ? '#5fa08f' : '#c9a24a',
+      pvDetail: bad ? 'Please ask CC Jasper for a new link.' : s ? 'Signed ' + s.date + ' · emailed to Jennifer Brennan and Eden Deering at P·P·O·W.' : isSienna ? 'Jennifer Brennan has signed for P·P·O·W. Review, then click the box above “For Sienna Berritto” to sign.' : 'Signed by P·P·O·W (Jennifer Brennan). Send Sienna her link — when she signs, P·P·O·W is emailed and this is marked complete.',
+      siennaHref: gmail('s@ccjasper.nyc', 'Death Is a Door — P·P·O·W consignment for Srijon Chowdhury to sign', 'Hi Sienna,\n\nP·P·O·W’s consignment agreement for Srijon Chowdhury’s Moth is ready for your signature:\n\n' + siennaUrl + '\n\nJennifer Brennan has already signed for P·P·O·W — just click the box above "For Sienna Berritto" to sign. Jennifer and Eden at P·P·O·W will be emailed a copy as soon as you sign.\n\nThank you,\nDoug'),
+      ppowHref: gmail(PPOW, 'Signed — consignment agreement · Srijon Chowdhury, Moth · Death Is a Door', ppowBody(s ? s.date : '')),
+      doPrint: () => window.print(),
+      openSign: () => { const c = document.querySelector('canvas[data-sig]'); if (c) c.__ink = false; this.initPad(); this.setState({ signOpen: true, signTyped: '', signAgree: false }); },
+      signOpen: !!this.state.signOpen, signTyped: this.state.signTyped || '', signAgree: !!this.state.signAgree,
+      hasSavedG: !!(this.state.file && this.state.file.src), savedGSrc: this.state.file ? this.state.file.src : '',
+      useSavedG: () => { const im = new Image(); im.onload = () => { const c = document.querySelector('canvas[data-sig]'); if (c) { const x = c.getContext('2d'); x.clearRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height); c.__ink = true; } this.setState({ signTyped: '', signAgree: true }); }; im.src = this.state.file.src; },
+      onSignType: e => { const t = e.target.value; this.setState({ signTyped: t }); this.drawTyped(t); },
+      onSignAgree: e => this.setState({ signAgree: e.target.checked }),
+      signClear: () => { const c = document.querySelector('canvas[data-sig]'); if (c) { c.getContext('2d').clearRect(0, 0, c.width, c.height); c.__ink = false; } this.setState({ signTyped: '' }); },
+      signCancel: () => this.setState({ signOpen: false }),
+      signAdopt: () => {
+        const c = document.querySelector('canvas[data-sig]'); if (!c || !c.__ink) { alert('Please draw or type a signature first.'); return; } if (!this.state.signAgree) { alert('Please tick the box to confirm this is your signature.'); return; }
+        const date = stamp(); const sm = document.createElement('canvas'); sm.width = 400; sm.height = 120; const x = sm.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, 400, 120); x.drawImage(c, 0, 0, 400, 120); let src = sm.toDataURL('image/jpeg', 0.6); if (src.length > 12000) src = sm.toDataURL('image/jpeg', 0.4);
+        const sv = { src, date, kind: 'ppow', solo: true, name: 'Sienna Berritto', email: 's@ccjasper.nyc', notify: PPOW, artist: 'Srijon Chowdhury', work: 'Moth, 2026 (CHOWDHURY-080)', link: BASE, body: ppowBody(date) };
+        try { localStorage.setItem(SKEY, JSON.stringify(sv)); localStorage.setItem('didad-sig-gallery', JSON.stringify({ src, date, from: 'srijon' })); } catch (e) {}
+        this.markComplete();
+        this.setState({ sig: sv, file: { src, date }, signOpen: false });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style data-bottom-pad="">@media screen{body{padding-bottom:120px !important}}</style>
 <style>body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#a9c6bf}@keyframes didadPulse{0%,100%{opacity:1}50%{opacity:0.25}}@media (prefers-reduced-motion:reduce){[data-pulse]{animation:none !important}}</style>
 <script src="sync.js"></script>
 </helmet>
@@ -273,8 +274,8 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const parseCSV = t => { const rows = []; let row = [], f = '', q = false; for (let i = 0; i < t.length; i++) { const c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; } else if (c === '"') q = true; else if (c === ',') { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; } else f += c; } if (f || row.length) { row.push(f); rows.push(row); } return rows; };
-const CONTACTS = [{"name":"Benjamin Cowan","legal":"","email":"cowan.benjamin@gmail.com","phone":"","rep":"Deanna Evans Projects"},{"name":"Doug Crocco","legal":"","email":"doug@allart.la","phone":"213-768-6354","rep":""},{"name":"Tom DeLaney","legal":"","email":"zuervos@gmail.com","phone":"678-755-0075","rep":""},{"name":"Kenny Curwood","legal":"","email":"Kenneth.curwood@gmail.com","phone":"","rep":""},{"name":"Charlie Goering","legal":"","email":"goering.charlie@gmail.com","phone":"513-310-4874","rep":""},{"name":"Aramis Gutierrez","legal":"","email":"aramisg@gmail.com","phone":"786-760-2574","rep":""},{"name":"Ellen R Hanson","legal":"","email":"ellenrhanson@gmail.com","phone":"","rep":"RUBY/DAKOTA"},{"name":"L","legal":"Casey Gleghorn","email":"info@nononogallery.com","phone":"570-447-5778","rep":""},{"name":"Megan Lindeman","legal":"","email":"megan@meganlindeman.com","phone":"213-210-3801","rep":""},{"name":"Pandele Radu","legal":"","email":"pandeleradu123@gmail.com","phone":"","rep":""},{"name":"Meredith Sellers","legal":"","email":"meredithmsellers@gmail.com","phone":"","rep":""},{"name":"Henry Swanson","legal":"","email":"henryswanson@icloud.com","phone":"","rep":""},{"name":"unitedfutures","legal":"","email":"caco@unitedfutur.es","phone":"617-401-5678","rep":""}];
-const ARTIST_EMAILS = ["cowan.benjamin@gmail.com","zuervos@gmail.com","Kenneth.curwood@gmail.com","goering.charlie@gmail.com","aramisg@gmail.com","ellenrhanson@gmail.com","info@nononogallery.com","megan@meganlindeman.com","pandeleradu123@gmail.com","meredithmsellers@gmail.com","henryswanson@icloud.com","caco@unitedfutur.es"];
+const CONTACTS = [{"name":"Benjamin Cowan","legal":"","email":"cowan.benjamin@gmail.com","phone":"","rep":"Deanna Evans Projects"},{"name":"Doug Crocco","legal":"","email":"doug@allart.la","phone":"213-768-6354","rep":""},{"name":"Tom DeLaney","legal":"","email":"zuervos@gmail.com","phone":"678-755-0075","rep":""},{"name":"Kenny Curwood","legal":"","email":"Kenneth.curwood@gmail.com","phone":"","rep":""},{"name":"Charlie Goering","legal":"","email":"goering.charlie@gmail.com","phone":"513-310-4874","rep":""},{"name":"Aramis Gutierrez","legal":"","email":"aramisg@gmail.com","phone":"786-760-2574","rep":""},{"name":"Ellen R Hanson","legal":"","email":"ellenrhanson@gmail.com","phone":"","rep":"RUBY/DAKOTA"},{"name":"L","legal":"Casey Gleghorn","email":"info@nononogallery.com","phone":"570-447-5778","rep":""},{"name":"Megan Lindeman","legal":"","email":"megan@meganlindeman.com","phone":"213-210-3801","rep":""},{"name":"Pandele Radu","legal":"","email":"pandeleradu123@gmail.com","phone":"","rep":""},{"name":"Meredith Sellers","legal":"","email":"meredithmsellers@gmail.com","phone":"","rep":""},{"name":"Henry Swanson","legal":"","email":"henryswanson@icloud.com","phone":"","rep":""},{"name":"unitedfutures","legal":"","email":"caco@unitedfutur.es","phone":"617-401-5678","rep":""},{"name":"Srijon Chowdhury","legal":"Eden Deering","email":"eden@ppowgallery.com","phone":"212-647-1044","rep":"P·P·O·W"}];
+const ARTIST_EMAILS = ["cowan.benjamin@gmail.com","zuervos@gmail.com","Kenneth.curwood@gmail.com","goering.charlie@gmail.com","aramisg@gmail.com","ellenrhanson@gmail.com","info@nononogallery.com","megan@meganlindeman.com","pandeleradu123@gmail.com","meredithmsellers@gmail.com","henryswanson@icloud.com","caco@unitedfutur.es","eden@ppowgallery.com"];
 const OPEN = new Date(2026, 10, 12), INSTALL = new Date(2026, 10, 6);
 const TASKS = [
   { src: 'Install', who: 'Pedestals', what: ' — pick up pedestals', u: 1, pin: 3 },
@@ -283,7 +284,7 @@ const TASKS = [
   { src: 'Install', who: 'Entrance wall vinyl', what: ' — show title vinyl for the front door and entry', u: 1, pin: 2 },
   { src: 'Agreements', who: 'Curator agreement', what: ' — CC Jasper (Sienna Berritto) and Douglas Crocco to review and sign', u: 1, link: true, pin: 1, href: 'agreements/curator.html' },
   { src: 'Agreements', who: 'Doug Crocco', what: ' — review his signed consignment agreement and countersign', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=Doug%20Crocco' },
-  { src: 'Install', who: 'Srijon Chowdhury', what: ' — has a small Moth (8 × 6 in) that works; finding out if it’s in NYC · placed in the install plan walkthrough for now', u: 2, pin: 1, link: true, href: 'install-plan.html#walkthrough' },
+  { src: 'Agreements', who: 'Srijon Chowdhury', what: ' — confirmed · consignment comes from P·P·O·W (Eden Deering, eden@ppowgallery.com)', u: 2, link: true, href: 'agreements/srijon.html' },
   { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the 80 / 20 split on L’s work (80% to Casey) and the $8,000 insurance value', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
 ];
 const FLAG = /(talk|confirm|ask|need|tbd|tbc|waiting|awaiting|arrange)/i;
@@ -500,6 +501,7 @@ class Component extends DCLogic {
         { title: 'Consignments', href: 'agreements/index.html', span: 'auto' },
         { title: 'Curator agreement', href: 'agreements/curator.html', span: 'auto' },
         { title: 'Press kit', href: 'press.html', span: 'auto' },
+        { title: 'Press tracker', href: 'press-tracker.html', span: 'auto' },
         { title: 'Shipping', href: 'agreements/shipping.html', span: 'auto' },
         { title: '3D Walkthrough', href: 'install-plan.html#walkthrough', span: 'auto' },
         { title: 'Offer sheets', href: 'offer-sheets.html', span: 'auto' },
