@@ -27,6 +27,7 @@
 <style>details[data-howwrap]>summary::-webkit-details-marker{display:none}details[data-howwrap] [data-hx]::after{content:"+"}details[data-howwrap][open] [data-hx]::after{content:"\2212"}</style>
 <style>@media (max-width:560px){[data-howto]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}</style>
 <script>(function(){var K='didad-howto';function ap(){var d=document.querySelector('details[data-howwrap]');if(!d){return false;}if(d.__hw)return true;d.__hw=1;var v=null;try{v=sessionStorage.getItem(K);}catch(e){}d.open=v!=='0';d.addEventListener('toggle',function(){try{sessionStorage.setItem(K,d.open?'1':'0');}catch(e){}});return true;}var n=0,iv=setInterval(function(){if(ap()||++n>80)clearInterval(iv);},100);})();</script>
+<script data-ctesc="">document.addEventListener('keydown',function(e){if(e.key==='Escape'){var b=document.querySelector('[aria-label="Close contacts"]');if(b)b.click();}});</script>
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav data-tabs="" data-deskmenu="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
     <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
@@ -47,24 +48,44 @@
         <a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:clamp(18px,2.2vw,24px);width:auto;"></a>
         <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door <span style="color:#8f887c;">· 131 Chrystie St</span></div>
       </div>
-      <div data-rowref="" ref="{{ rowRef }}" style="display:flex;flex-direction:column;margin-top:8px;"><h1 style="margin:0 0 22px;padding-bottom:18px;border-bottom:1px solid #2a2722;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.05;color:#f0eadd;">Exhibition Desk</h1>
-      <div data-phead="" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px clamp(20px,4vw,56px);align-items:start;">
-        <div style="display:flex;flex-direction:column;gap:14px;min-width:0;"><p data-deskdesc="" style="margin:0;max-width:640px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">The team’s home base for <i>Death Is a Door</i>. Every workroom page is in the menu above; below are this week’s tasks, the calendar, and artist contacts — copy everyone’s email in one click.</p><div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <button onClick="{{ toggleContacts }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;background:{{ ctBg }};color:{{ ctFg }};border:1px solid #3a3630;" style-hover="border-color:#7fa39b;">Artist contacts {{ ctSign }}</button>
-          <button onClick="{{ copyEmails }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;background:transparent;color:#e9e3d6;border:1px solid #3a3630;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ copyLabel }} ⧉</button>
+      <div data-rowref="" ref="{{ rowRef }}" style="display:flex;flex-direction:column;gap:22px;margin-top:8px;">
+      <div data-phead="" style="display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:20px clamp(20px,4vw,56px);align-items:end;padding-bottom:22px;border-bottom:1px solid #2a2722;">
+        <div style="align-self:start;display:flex;flex-direction:column;gap:22px;min-width:0;"><h1 style="margin:0;align-self:start;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,6vw,84px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1><div data-contacts="" style="display:flex;flex-direction:column;gap:10px;min-width:0;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #2a2722;padding-bottom:8px;">Contacts</div><div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button onClick="{{ toggleContacts }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;background:{{ ctBg }};color:{{ ctFg }};border:1px solid #3a3630;" style-hover="border-color:#7fa39b;">All contacts {{ ctSign }}</button>
         </div><sc-if value="{{ ctOpen }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-direction:column;border-top:1px solid #3a3630;">
-            <sc-for list="{{ contacts }}" as="p" hint-placeholder-count="12">
-              <div data-mg="" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) minmax(0,0.8fr);gap:4px 16px;align-items:baseline;padding:7px 0;border-bottom:1px solid #2a2722;">
-                <span style="font-family:'EB Garamond',serif;font-size:15px;color:#f0eadd;">{{ p.name }}<span style="color:#8f887c;font-size:13px;">{{ p.note }}</span></span>
-                <a href="{{ p.mailto }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" style-hover="color:#e9e3d6;">{{ p.email }}</a>
-                <a href="{{ p.tel }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;white-space:nowrap;" style-hover="color:#7fa39b;">{{ p.phone }}</a>
-              </div>
-            </sc-for>
-          </div>
-        </sc-if></div>
-        <div data-infobox="" style="display:flex;flex-direction:column;gap:12px;min-width:0;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #2a2722;padding-bottom:8px;">Show</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px 24px;"><div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Press preview</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">Wed, Nov 11 · 5–7 pm</span></div><div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Opening</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:#e9e3d6;">Thu, Nov 12 · 6–9 pm</span></div></div><span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#8f887c;">CC Jasper · 131 Chrystie Street, New York</span></div>
-      </div><div data-deskgrid="" ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
+          <div data-noprint="" onClick="{{ toggleContacts }}" style="position:fixed;inset:0;z-index:90;background:rgba(0,0,0,0.6);"></div>
+          <div role="dialog" aria-label="Contacts" style="position:fixed;top:0;right:0;bottom:0;z-index:91;width:min(560px,100vw);box-sizing:border-box;background:#0d0c0b;border-left:1px solid #3a3630;box-shadow:-16px 0 40px rgba(0,0,0,0.5);padding:22px clamp(16px,3vw,28px);overflow-y:auto;display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2a2722;padding-bottom:12px;"><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;line-height:1;color:#f0eadd;">Contacts</span><button onClick="{{ toggleContacts }}" aria-label="Close contacts" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 12px;background:transparent;color:#e9e3d6;border:1px solid #3a3630;cursor:pointer;" style-hover="border-color:#7fa39b;color:#7fa39b;">✕ Close</button></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;"><sc-for list="{{ ctGroups }}" as="g" hint-placeholder-count="6"><button onClick="{{ g.toggle }}" aria-pressed="{{ g.open }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 10px;cursor:pointer;white-space:nowrap;border:1px solid {{ g.bd }};background:{{ g.bg }};color:{{ g.fg }};" style-hover="border-color:#7fa39b;">{{ g.label }} · {{ g.n }}</button></sc-for></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#8f887c;">{{ ctCur.summary }}</span><button onClick="{{ ctCur.copy }}" style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 10px;background:transparent;color:#e9e3d6;border:1px solid #3a3630;cursor:pointer;white-space:nowrap;" style-hover="border-color:#7fa39b;color:#7fa39b;">{{ ctCur.copyLabel }}</button></div>
+            <div style="display:flex;flex-direction:column;">
+              <sc-for list="{{ ctCur.items }}" as="p" hint-placeholder-count="6">
+                <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) minmax(0,0.8fr);gap:2px 14px;align-items:baseline;padding:7px 0;border-top:1px solid #1f1d19;">
+                  <span style="font-family:'EB Garamond',serif;font-size:15px;color:#f0eadd;min-width:0;">{{ p.name }}<span style="display:block;color:#8f887c;font-size:13px;">{{ p.note }}</span></span>
+                  <a href="{{ p.mailto }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;" style-hover="color:#e9e3d6;">{{ p.email }}</a>
+                  <a href="{{ p.tel }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#c4bcae;white-space:nowrap;" style-hover="color:#7fa39b;">{{ p.phone }}</a>
+                </div>
+              </sc-for>
+            </div>
+          </div></div>
+        </sc-if></div></div>
+        <div style="display:flex;flex-direction:column;gap:20px;min-width:0;"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;align-items:end;"><sc-for list="{{ msNext }}" as="n" hint-placeholder-count="2"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:{{ n.c }};">{{ n.label }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ n.big }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">{{ n.date }}</span></div></sc-for></div><div style="display:flex;flex-direction:column;gap:14px;margin-top:2px;font-family:'Space Mono',monospace;">
+        <a href="{{ agTracker }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
+          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
+        </a>
+        <a href="{{ agShipping }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
+          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#7fa39b;"></div></div>
+        </a>
+      </div></div>
+      </div>
+      <div data-phead="" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px clamp(20px,4vw,56px);align-items:start;"><div style="display:flex;flex-direction:column;gap:14px;min-width:0;"><p data-deskdesc="" style="margin:0;max-width:640px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;">The team’s home base for <i>Death Is a Door</i>. Every workroom page is in the menu above; below are this week’s tasks, the calendar, and artist contacts — copy everyone’s email in one click.</p></div><div data-infobox="" style="display:flex;flex-direction:column;gap:10px;min-width:0;"><div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;border-bottom:1px solid #2a2722;padding-bottom:8px;display:flex;justify-content:space-between;"><span>Pressing</span><span style="color:#6d675c;">{{ pnCount }}</span></div>
+          <sc-for list="{{ pNotes }}" as="p" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:10px;align-items:start;"><span role="button" onClick="{{ p.toggle }}" title="Mark done" style="width:14px;height:14px;margin-top:4px;box-sizing:border-box;border:1px solid {{ p.bd }};background:{{ p.bg }};color:#0d0c0b;font-size:10px;line-height:12px;text-align:center;cursor:pointer;">{{ p.mark }}</span><span style="font-family:'EB Garamond',serif;font-size:16px;line-height:1.35;color:{{ p.fg }};text-decoration:{{ p.dec }};text-wrap:pretty;">{{ p.text }}</span><span role="button" onClick="{{ p.del }}" title="Remove" style="font-family:'Space Mono',monospace;font-size:11px;color:#6d675c;cursor:pointer;padding:2px 4px;" style-hover="color:#e0614f;">×</span></div></sc-for>
+          <sc-if value="{{ pnEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-family:'EB Garamond',serif;font-size:15px;color:#6d675c;font-style:italic;">Nothing pressing — add a note below.</span></sc-if>
+          <div style="display:flex;border:1px solid #3a3630;"><input value="{{ pnDraft }}" onChange="{{ pnType }}" onKeyDown="{{ pnKey }}" placeholder="Add a pressing note…" aria-label="Add a pressing note" style="flex:1 1 auto;min-width:0;font-family:'EB Garamond',serif;font-size:15px;padding:7px 10px;background:#0d0c0b;color:#e9e3d6;border:none;outline:none;"><button onClick="{{ pnAdd }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;border:none;border-left:1px solid #3a3630;background:transparent;color:#e9e3d6;cursor:pointer;" style-hover="background:#2b6a60;color:#fff;">Add</button></div>
+        </div></div><div data-deskgrid="" ref="{{ gridRef }}" style="display:grid;grid-template-columns:repeat({{ deskCols }},minmax(0,1fr));grid-auto-rows:1fr;flex:1 1 0;min-width:0;align-self:stretch;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;">
         <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
           <a href="{{ c.href }}" onClick="{{ c.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:clamp(8px,1.2vw,14px) clamp(10px,1.4vw,18px);background:{{ c.bg }};color:{{ c.fg }};text-decoration:none;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;" style-hover="background:#16150f;color:#7fa39b;">
             <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">{{ c.title }}</span>
@@ -74,20 +95,7 @@
       </div></div>
     </header>
 
-    <div data-mg="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);align-items:end;border-top:1px solid #2a2722;padding-top:16px;">
-      <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">{{ instLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ instBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Fri, Nov 6</span></div>
-      <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">{{ countLabel }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,88px);line-height:1;color:#f0eadd;">{{ countBig }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Thu, Nov 12</span></div>
-      <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:14px;font-family:'Space Mono',monospace;">
-        <a href="{{ agTracker }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
-          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
-        </a>
-        <a href="{{ agShipping }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
-          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#7fa39b;"></div></div>
-        </a>
-      </div>
-    </div>
+    
     <details data-howwrap="" data-noprint="" open="" style="margin-top:6px;display:flex;flex-direction:column;gap:10px;"><summary style="list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;"><span data-hx="" style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1px solid #6d675c;font-size:12px;letter-spacing:0;color:#e9e3d6;"></span>How to use this page</summary><div style="margin-top:10px;"><div data-howto="" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;"><div style="display:flex;flex-direction:column;gap:6px;background:rgba(224,97,79,0.12);padding:12px 14px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#e0614f;">Step 1</span><span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.35;color:#e9e3d6;text-wrap:pretty;">Use the menu to open any workroom page.</span></div><div style="display:flex;flex-direction:column;gap:6px;background:rgba(127,163,155,0.12);padding:12px 14px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">Step 2</span><span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.35;color:#e9e3d6;text-wrap:pretty;">Check the countdown and status bars for progress.</span></div><div style="display:flex;flex-direction:column;gap:6px;background:rgba(201,162,74,0.12);padding:12px 14px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#c9a24a;">Step 3</span><span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.35;color:#e9e3d6;text-wrap:pretty;">Work through this week’s tasks and the calendar.</span></div><div style="display:flex;flex-direction:column;gap:6px;background:rgba(169,159,201,0.12);padding:12px 14px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#a99fc9;">Step 4</span><span style="font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.35;color:#e9e3d6;text-wrap:pretty;">Open Artist contacts, or copy every email at once.</span></div></div></div></details>
 
     
@@ -309,6 +317,15 @@ const TASKS = [
   { src: 'Agreements', who: 'Casey Gleghorn', what: ' — confirm the 80 / 20 split on L’s work (80% to Casey) and the $8,000 insurance value', u: 0, link: true, pin: 1, href: 'agreements/index.html?artist=lazaros' }
 ];
 const FLAG = /(talk|confirm|ask|need|tbd|tbc|waiting|awaiting|arrange)/i;
+// Set these when known: new Date(2027, 0, 9) = Jan 9, 2027
+const MS_CLOSE = null, MS_DEINSTALL = null, MS_RETURNS = null;
+const OTHER_CONTACTS = [
+  ['CC Jasper', [{ name: 'Gallery', note: 'General · press · offers', email: 'gallery@ccjasper.nyc' }, { name: 'Sienna Berritto', note: 'Director', email: 's@ccjasper.nyc' }]],
+  ['Artists’ galleries', [{ name: 'Jennifer Brennan', note: 'P·P·O·W · Srijon Chowdhury', email: 'jennifer@ppowgallery.com', phone: '212-647-1044' }, { name: 'Eden Deering', note: 'P·P·O·W · Srijon Chowdhury', email: 'eden@ppowgallery.com', phone: '212-647-1044' }, { name: 'Deanna Evans', note: 'Deanna Evans Projects · Benjamin Cowan', email: 'deanna@deannaevansprojects.com', phone: '201-497-0113' }]],
+  ['Consignors', [{ name: 'Casey Gleghorn', note: 'Owner · L', email: 'info@nononogallery.com', phone: '570-447-5778' }]],
+  ['Printers & graphics', [{ name: 'Laumont Photographics', note: 'Fine art printing · Doug Crocco print · 44-01 21st St, Long Island City', email: '', phone: '718-361-3361' }, { name: 'All In 1 Graphics', note: 'Wall vinyl · Death Is a Door', email: 'info@allin1graphics.com', phone: '(516) 629-6952' }]],
+  ['Shippers & art handlers', [{ name: 'Hangman', note: 'Aramis Gutierrez · Miami ops', email: 'adam@hangmannyc.com', phone: '(212) 974-7669' }]]
+];
 class Component extends DCLogic {
   rowRef = React.createRef(); gridRef = React.createRef();
   state = { con: null, ship: null, todos: [] };
@@ -436,6 +453,23 @@ class Component extends DCLogic {
     const days = Math.round((OPEN - today) / 864e5), idays = Math.round((INSTALL - today) / 864e5);
     const big = d => d > 1 ? d + ' days' : d === 1 ? '1 day' : d === 0 ? 'Today' : Math.abs(d) + ' days ago';
     const span = Math.max(1, days);
+    const PK = 'didad-desk-pressing', rdP = () => { try { return JSON.parse(localStorage.getItem(PK) || '[]'); } catch (e) { return []; } };
+    const PN = this.state.pressing || rdP(), wrP = L => { try { localStorage.setItem(PK, JSON.stringify(L)); } catch (e) {} this.setState({ pressing: L }); };
+    const pnAdd = () => { const v = (this.state.pnDraft || '').trim(); if (!v) return; wrP(PN.concat([{ id: Date.now(), t: v, done: false }])); this.setState({ pnDraft: '' }); };
+    const pNotes = PN.slice().sort((a, b) => (a.done ? 1 : 0) - (b.done ? 1 : 0)).map(n => ({ text: n.t, mark: n.done ? '✓' : '', bg: n.done ? '#5fa08f' : 'transparent', bd: n.done ? '#5fa08f' : '#6d675c', fg: n.done ? '#6d675c' : '#e9e3d6', dec: n.done ? 'line-through' : 'none', toggle: () => wrP(PN.map(x => x.id === n.id ? { ...x, done: !x.done } : x)), del: () => wrP(PN.filter(x => x.id !== n.id)) }));
+    const pnVals = { pNotes, pnEmpty: !PN.length, pnCount: PN.filter(x => !x.done).length ? PN.filter(x => !x.done).length + ' open' : '', pnDraft: this.state.pnDraft || '', pnType: e => this.setState({ pnDraft: e.target.value }), pnKey: e => { if (e.key === 'Enter') pnAdd(); }, pnAdd };
+    const MS = [
+      { d: INSTALL, label: 'Install begins in', now: 'Install begins', date: 'Fri, Nov 6', c: '#7fa39b' },
+      { d: new Date(2026, 10, 11), label: 'Press preview in', now: 'Press preview', date: 'Wed, Nov 11 · 5–7 pm', c: '#c9a24a' },
+      { d: OPEN, label: 'Show opens in', now: 'Show opens', date: 'Thu, Nov 12 · 6–9 pm', c: '#7fa39b' },
+      { d: new Date(2026, 10, 14), label: 'Scent Club in', now: 'Scent Club', date: 'Sat, Nov 14 · afternoon', c: '#c9a24a' },
+      { d: new Date(2026, 10, 15), label: 'Artist talk in', now: 'Artist talk', date: 'Sun, Nov 15 · unitedfutures', c: '#c9a24a' },
+      { d: MS_CLOSE, label: 'Show closes in', now: 'Closing day', date: MS_CLOSE ? MS_CLOSE.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Closing day · date TBD', c: '#e0614f' },
+      { d: MS_DEINSTALL, label: 'Deinstall in', now: 'Deinstall', date: MS_DEINSTALL ? MS_DEINSTALL.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Date TBD', c: '#a99fc9' },
+      { d: MS_RETURNS, label: 'Returns ship by', now: 'Returns ship by', date: MS_RETURNS ? MS_RETURNS.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Date TBD', c: '#a99fc9' }
+    ];
+    const up = MS.filter(m => !m.d || Math.round((m.d - today) / 864e5) >= 0).slice(0, 2);
+    const msNext = (up.length ? up : MS.slice(-2)).map(m => { if (!m.d) return { label: m.label, big: '— days', date: m.date, c: m.c }; const n = Math.round((m.d - today) / 864e5); return { label: n === 0 ? m.now : m.label, big: big(n), date: m.date, c: m.c }; });
     const ag = this.state.ag || 'agreements/';
     const copyLabel = this.state.copied ? '✓ Copied ' + ARTIST_EMAILS.length + ' emails' : 'Copy artist emails';
     const copyEmails = () => { const t = ARTIST_EMAILS.join(', '); const done = () => { this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2500); }; if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, () => { window.prompt('Copy these emails:', t); }); else window.prompt('Copy these emails:', t); };
@@ -444,7 +478,7 @@ class Component extends DCLogic {
     return {
       rowRef: this.rowRef, gridRef: this.gridRef, deskCols: String(this.state.cols || 3), rowDir: this.state.stack ? 'column' : 'row',
       agTracker: ag + 'tracker.html', agShipping: ag + 'shipping.html',
-      countLabel: days >= 0 ? 'Show opens in' : 'Show opened', countBig: big(days),
+      ...pnVals, msNext, countLabel: days >= 0 ? 'Show opens in' : 'Show opened', countBig: big(days),
       instLabel: idays >= 0 ? 'Install begins in' : 'Install began', instBig: big(idays),
       instLeft: Math.min(100, Math.max(0, idays / span * 100)).toFixed(1) + '%',
       todayTxt: today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase(),
@@ -514,6 +548,10 @@ class Component extends DCLogic {
       copyLabel, copyEmails, mailAll,
       ctOpen: !!this.state.ctOpen, ctSign: this.state.ctOpen ? '−' : '+', ctBg: this.state.ctOpen ? '#e9e3d6' : 'transparent', ctFg: this.state.ctOpen ? '#0d0c0b' : '#e9e3d6',
       toggleContacts: () => this.setState({ ctOpen: !this.state.ctOpen }),
+      ...(() => { const mk = p => ({ name: p.name, note: p.note || '', email: p.email || '—', mailto: p.email ? 'mailto:' + p.email : '#', phone: p.phone || '—', tel: p.phone ? 'tel:' + p.phone.replace(/[^0-9+]/g, '') : '#' }); const G = [['Artists', CONTACTS.map(c => mk({ name: c.name, note: c.legal ? 'via ' + c.legal : (c.rep || ''), email: c.email, phone: c.phone }))]].concat(OTHER_CONTACTS.map(([l, L]) => [l, L.map(mk)])); const op = G.find(g => g[0] === this.state.ctG) ? this.state.ctG : 'Artists'; const cur = G.find(g => g[0] === op);
+        const ems = cur[1].filter(p => p.email !== '—').map(p => p.email);
+        return { ctGroups: G.map(([label, items]) => { const on = label === op; return { label, n: String(items.length), open: on, bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#0d0c0b' : '#e9e3d6', bd: on ? '#e9e3d6' : '#3a3630', toggle: () => this.setState({ ctG: label }) }; }),
+          ctCur: { items: cur[1], summary: cur[1].length + ' ' + (op === 'Artists' ? 'artists' : op.toLowerCase()), copyLabel: this.state.ctCopied === op ? '✓ Copied ' + ems.length + ' emails' : (op === 'Artists' ? 'Copy all artist emails ⧉' : 'Copy emails ⧉'), copy: () => { try { navigator.clipboard.writeText(ems.join(', ')); } catch (e) {} this.setState({ ctCopied: op }); setTimeout(() => this.setState({ ctCopied: null }), 2200); } } }; })(),
       contacts: CONTACTS.map(c => ({ name: c.name, note: c.legal ? ' · via ' + c.legal : (c.rep ? ' · ' + c.rep : ''), email: c.email, mailto: 'mailto:' + c.email, phone: c.phone || '—', tel: c.phone ? 'tel:' + c.phone.replace(/[^0-9+]/g, '') : '#' })),
       todos: this.state.todos, todoEmpty: !!s && this.state.todos.length + (this.state.custom || []).length === 0,
       cards: [
