@@ -82,28 +82,28 @@
 <script src="nav.js?v=29"></script>
 <script src="mail.js?v=2"></script>
 <style>@media (max-width:760px){[data-ot-head],[data-ot-body]{grid-template-columns:minmax(0,1fr)!important;}[data-ot-lbl]{display:none!important;}[data-ot-lbl2]{display:block!important;}}</style><style>
-  [data-paper] *{color:#16150f !important;border-color:#d6d1c6 !important}
-  [data-paper] [data-accent]{color:#2b6a60 !important}
-  [data-paper] [data-muted]{color:#5c574c !important}
-  [data-paper] img{background:#fff !important}
-  [data-paper] [contenteditable]:hover{background:#f3efe6 !important}
-  [data-paper] [contenteditable]:focus{background:#ebe5d8 !important}
-  [data-paper] [data-grid],[data-paper] [data-two]{max-width:none !important;margin:12pt 0 0 !important;border-top:0.75pt solid #16150f !important}
-  [data-paper] [data-grid] img{width:0.36in !important;height:0.36in !important}
-  [data-paper] [data-grid] [data-row]{padding-top:3pt !important;padding-bottom:3pt !important}
-  [data-paper] [data-grid] span{font-size:7.5pt !important;line-height:1.2 !important}
-  [data-paper] [data-grid] span[style*="italic"]{font-size:9.5pt !important}
-  [data-paper] [data-two]{column-gap:18pt !important}
-  [data-paper] [data-trow]{padding:4pt 0 !important;gap:0 9pt !important}
-  [data-paper] [data-trow] img{width:0.72in !important;height:0.72in !important}
-  [data-paper] [data-trow] span{font-size:7.5pt !important;line-height:1.3 !important}
-  [data-paper] [data-trow] span[data-accent]{font-size:7pt !important}
-  [data-paper] [data-trow] span[style*="italic"]{font-size:10.5pt !important;line-height:1.2 !important}
-  [data-paper] [data-trow] > div{gap:2pt !important}
-  [data-paper] [data-pfoot]{border-top:0.75pt solid #16150f !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] *{color:#16150f !important;border-color:#d6d1c6 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-accent]{color:#2b6a60 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-muted]{color:#5c574c !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] img{background:#fff !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [contenteditable]:hover{background:#f3efe6 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [contenteditable]:focus{background:#ebe5d8 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-grid],[data-paperwrap]:not([data-dark]) [data-paper] [data-two]{max-width:none !important;margin:12pt 0 0 !important;border-top:0.75pt solid #16150f !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-grid] img{width:0.36in !important;height:0.36in !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-grid] [data-row]{padding-top:3pt !important;padding-bottom:3pt !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-grid] span{font-size:7.5pt !important;line-height:1.2 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-grid] span[style*="italic"]{font-size:9.5pt !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-two]{column-gap:18pt !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-trow]{padding:4pt 0 !important;gap:0 9pt !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-trow] img{width:0.72in !important;height:0.72in !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-trow] span{font-size:7.5pt !important;line-height:1.3 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-trow] span[data-accent]{font-size:7pt !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-trow] span[style*="italic"]{font-size:10.5pt !important;line-height:1.2 !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-trow] > div{gap:2pt !important}
+  [data-paperwrap]:not([data-dark]) [data-paper] [data-pfoot]{border-top:0.75pt solid #16150f !important}
   @media (max-width:700px){[data-paper]{min-height:0 !important;padding:24px 18px !important}}
-  @media print{[data-paperwrap]{margin:0 !important;display:block !important}[data-paper]{width:auto !important;min-height:9.9in !important;padding:0 !important;box-shadow:none !important}[data-paper] [contenteditable]{background:none !important}}
-</style></helmet>
+  @media print{[data-paperwrap]{margin:0 !important;display:block !important}[data-paper]{width:auto !important;min-height:9.9in !important;padding:0 !important;box-shadow:none !important}[data-paperwrap]:not([data-dark]) [data-paper] [contenteditable]{background:none !important}}
+</style><style>[data-paperwrap][data-hide]{display:none !important}@media print{[data-paperwrap][data-hide]{display:block !important}}@media (max-width:760px){[data-edgrid]{grid-template-columns:3em minmax(0,1fr) !important}[data-edgrid]>span:nth-child(-n+6){display:none}}</style><style>[data-paperwrap][data-dark]{max-width:1100px !important;margin:12px auto 0 !important;display:block !important}[data-paperwrap][data-dark] [data-paper]{width:auto !important;max-width:none !important;min-height:0 !important;padding:0 !important;background:transparent !important;box-shadow:none !important}[data-paperwrap][data-dark] [data-papchrome]{display:none !important}</style></helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav data-tabs="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:0;border-top:1px solid #3a3630;border-left:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
     <a href="../desk.html" data-root="desk.html" style="border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
     <a href="../book.html" data-root="book.html" style="background:#0d0c0b;color:#c4bcae;border-right:1px solid #3a3630;border-bottom:1px solid #3a3630;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Catalog</a>
@@ -135,10 +135,10 @@
       <div style="flex:1 1 300px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6d675c;">Email as PDF</span><div style="display:flex;align-items:stretch;border:1px solid #6d675c;width:100%;max-width:460px;"><input type="email" value="{{ emailTo }}" onChange="{{ setEmailTo }}" onKeyDown="{{ emailKey }}" placeholder="name@email.com" aria-label="Email checklist to" style="flex:1 1 auto;min-width:0;width:100%;box-sizing:border-box;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.04em;padding:7px 10px;background:#0d0c0b;color:#e9e3d6;border:none;outline:none;"><button onClick="{{ emailList }}" title="Makes a PDF of the checklist and opens an email to attach it to" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;border-left:1px solid #6d675c;background:transparent;color:#e9e3d6;" style-hover="background:#2b6a60;color:#fff;">{{ emailBtn }}</button></div></div>
     </div>
   </div>
-  <div data-paperwrap="" style="max-width:1100px;margin:28px auto 0;display:flex;justify-content:center;"><div data-paper="" style="width:8.5in;max-width:100%;min-height:11in;box-sizing:border-box;background:#ffffff;color:#16150f;padding:0.5in 0.55in 0.4in;box-shadow:0 12px 48px rgba(0,0,0,0.55);display:flex;flex-direction:column;font-family:'EB Garamond',serif;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16pt;padding-bottom:10pt;border-bottom:0.75pt solid #16150f;"><img src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:16pt;width:auto;"><div data-accent="" style="font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;text-align:right;">Death Is a Door · Checklist</div></div>
-  <h1 style="margin:14pt 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:24pt;line-height:1.05;color:#16150f;">Exhibition Checklist</h1>
-  <div data-muted="" style="margin-top:4pt;font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#5c574c;">Group exhibition · Opening Thursday, November 12, 2026 · 6–9 pm</div>
+  <div data-noprint="" style="max-width:1100px;margin:28px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:10px 16px;"><div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;"><button onClick="{{ viewPage }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ viewPageSt }}" style-hover="color:#7fa39b;">Page</button><button onClick="{{ viewEdit }}" style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;cursor:pointer;white-space:nowrap;border:none;{{ viewEditSt }}" style-hover="color:#7fa39b;">Edit list</button></div><span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#8f887c;">{{ viewNote }}</span></div><div data-paperwrap="" data-dark="{{ editAttr }}" style="max-width:1100px;margin:12px auto 0;display:flex;justify-content:center;"><div data-paper="" style="width:8.5in;max-width:100%;min-height:11in;box-sizing:border-box;background:#ffffff;color:#16150f;padding:0.5in 0.55in 0.4in;box-shadow:0 12px 48px rgba(0,0,0,0.55);display:flex;flex-direction:column;font-family:'EB Garamond',serif;">
+  <div data-papchrome="" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16pt;padding-bottom:10pt;border-bottom:0.75pt solid #16150f;"><img src="art/ccj-logo-black.png" alt="CC Jasper" style="display:block;height:16pt;width:auto;"><div data-accent="" style="font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#2b6a60;text-align:right;">Death Is a Door · Checklist</div></div>
+  <h1 data-papchrome="" style="margin:14pt 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:24pt;line-height:1.05;color:#16150f;">Exhibition Checklist</h1>
+  <div data-papchrome="" data-muted="" style="margin-top:4pt;font-family:'Space Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;text-transform:uppercase;color:#5c574c;">Group exhibition · Opening Thursday, November 12, 2026 · 6–9 pm</div>
   <div data-grid="" data-hide="{{ hideAttr }}" data-noimg="{{ noImgAttr }}" style="max-width:1100px;margin:20px auto 0;display:grid;grid-template-columns:{{ cols }};border-top:1px solid #6d675c;">
     <sc-for list="{{ rows }}" as="r" hint-placeholder-count="15">
       <div data-row="" data-accent="" style="font-family:'Space Mono',monospace;font-size:11px;color:#7fa39b;padding:14px 10px 14px 0;border-bottom:1px solid #2a2722;display:flex;flex-direction:column;gap:4px;"><span>{{ r.num }}</span><sc-if value="{{ noImgs }}" hint-placeholder-val="{{ false }}"><span data-muted="" style="font-size:8.5px;letter-spacing:0.08em;color:#6d675c;white-space:nowrap;">{{ r.loc }}</span></sc-if></div>
@@ -165,7 +165,7 @@
       
       </div>
     </sc-for>
-  </div></sc-if><div style="flex:1 0 16pt;"></div><div data-pfoot="" style="margin-top:auto;padding-top:8pt;border-top:0.75pt solid #16150f;font-family:'Space Mono',monospace;font-size:7pt;letter-spacing:0.06em;line-height:1.6;color:#16150f;"><div style="display:flex;justify-content:space-between;gap:12pt;flex-wrap:wrap;"><span>CC Jasper · 131 Chrystie Street, New York, NY 10002</span><span>gallery@ccjasper.nyc</span></div><div style="color:#5c574c;">All works courtesy the artists. Dimensions height × width × depth.</div></div></div></div>
+  </div></sc-if><div data-papchrome="" style="flex:1 0 16pt;"></div><div data-papchrome="" data-pfoot="" style="margin-top:auto;padding-top:8pt;border-top:0.75pt solid #16150f;font-family:'Space Mono',monospace;font-size:7pt;letter-spacing:0.06em;line-height:1.6;color:#16150f;"><div style="display:flex;justify-content:space-between;gap:12pt;flex-wrap:wrap;"><span>CC Jasper · 131 Chrystie Street, New York, NY 10002</span><span>gallery@ccjasper.nyc</span></div><div style="color:#5c574c;">All works courtesy the artists. Dimensions height × width × depth.</div></div></div></div>
   <div data-noprint="" style="max-width:1100px;margin:48px auto 0;border-top:1px solid #3a3630;padding-top:20px;display:flex;flex-direction:column;gap:16px;font-family:'Space Mono',monospace;font-size:11px;">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 24px;">
       <div style="display:flex;flex-direction:column;gap:6px;max-width:560px;">
@@ -219,14 +219,16 @@ class Component extends DCLogic {
     const log = JSON.parse(localStorage.getItem('didad-checklist-log') || '[]');
     this.setState({ two: localStorage.getItem('didad-checklist-two') === '1', show: true, ed: e, versions: meta.versions || [], cur: meta.cur ?? null, log });
   } catch (e) {} }
+  edType(i, k, v) { const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
+  edDone(i, k, v) { const o = this._orig; this._orig = null; if (!o || o.i !== i || o.k !== k || String(o.v).trim() === String(v).trim()) return; const L = { loc: 'Wall', artist: 'Artist', title: 'Title', line: 'Details', price: 'Price' }; this.addLog({ who: ROWS[i].artist, what: L[k] + ': ' + (o.v || '—') + ' → ' + (v || '—') }); }
   setTwo(v) { this.setState({ two: v }); try { localStorage.setItem('didad-checklist-two', v ? '1' : ''); } catch (e) {} }
   addLog(entry) { const log = [{ t: Date.now(), ...entry }, ...this.state.log].slice(0, 500); this.setState({ log }); try { localStorage.setItem('didad-checklist-log', JSON.stringify(log)); } catch (e) {} }
   setMeta(patch) { this.setState(patch, () => { try { localStorage.setItem('didad-checklist-versions', JSON.stringify({ versions: this.state.versions, cur: this.state.cur })); localStorage.setItem('didad-checklist-edits', JSON.stringify(this.state.ed)); } catch (e) {} }); }
   setEd(i, k, v) { const L = { artist: 'Artist', title: 'Title', line: 'Details', price: 'Price' }; const old = (this.state.ed[i] || {})[k] ?? ROWS[i][k]; if (String(v ?? '').trim() === String(old ?? '').trim()) return; this.addLog({ who: ROWS[i].artist, what: L[k] + ': ' + (old || '—') + ' → ' + (v || '—') }); const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
   renderVals() { const V = this._rvC(); (V.rows || []).forEach(r => { r.intPrice = r.artist === 'L' ? '$8,000' : ''; r.hasInt = !!r.intPrice; });
     { const T = !!this.state.two, n = (V.rows || []).length, on = 'background:#e9e3d6;color:#0d0c0b;', off = 'background:#0d0c0b;color:#e9e3d6;';
-      Object.assign(V, { noImgs: !this.state.imgs && (this.state.ord || 'install') === 'install', two: T, hideAttr: T ? '' : undefined, twoRows: 'repeat(' + Math.max(1, Math.ceil(n / 2)) + ',minmax(0,1fr))', twoCols: '1.8em ' + (this.state.imgs ? '0.72in ' : '') + 'minmax(0,1fr) 4.4em',
-        layList: () => this.setTwo(false), layTwo: () => this.setTwo(true), layListSt: T ? off : on, layTwoSt: T ? on : off }); }
+      Object.assign(V, { editing: !!this.state.editing, editAttr: this.state.editing ? '' : undefined, editBtn: this.state.editing ? 'Back to page view' : 'Edit as list', editSt: this.state.editing ? 'background:#7fa39b;color:#0d0c0b;' : 'background:#0d0c0b;color:#e9e3d6;', toggleEdit: () => this.setState({ editing: !this.state.editing }), viewPage: () => this.setState({ editing: false }), viewEdit: () => this.setState({ editing: true }), viewPageSt: this.state.editing ? 'background:#0d0c0b;color:#e9e3d6;' : 'background:#e9e3d6;color:#0d0c0b;', viewEditSt: this.state.editing ? 'background:#e9e3d6;color:#0d0c0b;' : 'background:#0d0c0b;color:#e9e3d6;', viewNote: this.state.editing ? 'Click any text to edit. Changes save automatically.' : 'Exactly what prints, letter size.', noImgs: !this.state.imgs && (this.state.ord || 'install') === 'install', two: T, hideAttr: T ? '' : undefined, twoRows: 'repeat(' + Math.max(1, Math.ceil(n / 2)) + ',minmax(0,1fr))', twoCols: '1.8em ' + (this.state.imgs ? '0.72in ' : '') + 'minmax(0,1fr) 4.4em',
+        layList: () => this.setTwo(false), ...(this.state.editing ? { noImgs: false, imgs: true, noImgAttr: undefined, cols: '3.4em 72px ' + (V.showPrices ? 'minmax(0,1fr) auto' : 'minmax(0,1fr)') } : {}), two: T && !this.state.editing, hideAttr: T && !this.state.editing ? '' : undefined, layTwo: () => this.setTwo(true), layListSt: T ? off : on, layTwoSt: T ? on : off }); }
     V.emailList = async () => { const show = this.state.show, IM = this.state.imgs, strip = s => String(s || '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim(), to = (this.state.emailTo || '').trim();
       const ld = src => new Promise((res, rej) => { if (window.jspdf) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
       this.setState({ emailBusy: true });
@@ -262,7 +264,7 @@ class Component extends DCLogic {
     return V; }
   _rvC() {
     const show = this.state.show;
-    const rows = ROWS.map((r0, i) => { const o = this.state.ed[i] || {}; const r = { ...r0, ...o, on: {} }; ['artist', 'title', 'line', 'price'].forEach(k => { r.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== r[k]) this.setEd(i, k, v); }; }); return r; });
+    const rows = ROWS.map((r0, i) => { const o = this.state.ed[i] || {}; const r = { ...r0, ...o, on: {} }; ['artist', 'title', 'line', 'price'].forEach(k => { r.on[k] = ev => { const v = ev.currentTarget.innerText.trim(); if (v !== r[k]) this.setEd(i, k, v); }; }); r.v = {}; r.set = {}; r.foc = {}; r.blur = {}; ['loc', 'artist', 'title', 'line', 'price'].forEach(k => { r.v[k] = r[k] == null ? '' : String(r[k]); r.set[k] = ev => this.edType(i, k, ev.target.value); r.foc[k] = () => { this._orig = { i, k, v: r.v[k] }; }; r.blur[k] = ev => this.edDone(i, k, ev.target.value); }); return r; });
     const RV = s => { const m = { I: 1, V: 5, X: 10, L: 50 }; let n = 0, p = 0; String(s || '').toUpperCase().split('').reverse().forEach(c => { const v = m[c] || 0; n += v < p ? -v : v; p = Math.max(p, v); }); return n || 999; };
     const sur = a => { const w = String(a || '').trim().split(/\s+/); return (w.length > 1 ? w[w.length - 1] : w[0]).toLowerCase(); };
     const ordBy = this.state.ord || 'install';
