@@ -217,7 +217,7 @@ class Component extends DCLogic {
     let meta = JSON.parse(localStorage.getItem('didad-checklist-versions') || 'null');
     if (!meta) { const sv = JSON.parse(localStorage.getItem('didad-checklist-saved') || 'null'); meta = { versions: [], cur: null }; if (sv && Object.keys(sv).length) { const id = Date.now(); meta = { versions: [{ id, label: 'v1 · earlier save', ed: sv }], cur: id }; } localStorage.setItem('didad-checklist-versions', JSON.stringify(meta)); }
     const log = JSON.parse(localStorage.getItem('didad-checklist-log') || '[]');
-    this.setState({ two: localStorage.getItem('didad-checklist-two') === '1', show: true, ed: e, versions: meta.versions || [], cur: meta.cur ?? null, log });
+    this.setState({ two: true, imgs: true, editing: false, show: true, ed: e, versions: meta.versions || [], cur: meta.cur ?? null, log });
   } catch (e) {} }
   edType(i, k, v) { const ed = { ...this.state.ed, [i]: { ...(this.state.ed[i] || {}), [k]: v } }; this.setState({ ed }); try { localStorage.setItem('didad-checklist-edits', JSON.stringify(ed)); } catch (e) {} }
   edDone(i, k, v) { const o = this._orig; this._orig = null; if (!o || o.i !== i || o.k !== k || String(o.v).trim() === String(v).trim()) return; const L = { loc: 'Wall', artist: 'Artist', title: 'Title', line: 'Details', price: 'Price' }; this.addLog({ who: ROWS[i].artist, what: L[k] + ': ' + (o.v || '—') + ' → ' + (v || '—') }); }
