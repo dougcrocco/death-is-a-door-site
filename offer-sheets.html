@@ -37,6 +37,7 @@
 <style data-livelink-css="">[data-livelink]{display:none !important}nav[data-tabs]>[data-livemenu]{display:flex;align-items:center;justify-content:center;padding:9px clamp(5px,0.8vw,14px);background:#0d0c0b;color:#7fa39b;text-decoration:none;white-space:nowrap}nav[data-tabs]>[data-livemenu]:hover{background:#16150f;color:#e9e3d6}@media (max-width:980px){html.navopen nav[data-tabs]>[data-livemenu]{justify-content:flex-start;padding:13px 14px !important;font-size:11px !important}}</style>
 <script src="nav.js?v=26"></script>
 <style>details[data-sentoffers]>summary::-webkit-details-marker{display:none}@media (max-width:640px){details[data-sentoffers] [style*="grid-template-columns:70px"]{grid-template-columns:minmax(0,1fr) auto !important}}</style>
+<script src="mail.js?v=1"></script>
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav data-tabs="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
     <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
@@ -51,7 +52,7 @@
     <a href="install-plan.html#walkthrough" style="background:#0d0c0b;color:#c4bcae;flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;" style-hover="background:#16150f;color:#7fa39b;">Walkthrough</a></nav></div>
 
 <div>
-<div data-noprint="" style="background:#16150f;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
+<div data-noprint="" style="background:#0d0c0b;color:#e9e3d6;font-family:'Space Mono',monospace;padding:20px clamp(14px,3vw,32px) 18px;display:flex;flex-direction:column;gap:16px;">
   <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;">
     <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;align-items:baseline;gap:16px;"><a href="desk.html" title="Exhibition Desk" style="display:block;line-height:0;"><img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;"></a><span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#7fa39b;">Death Is a Door</span></div></div>
     
@@ -98,7 +99,7 @@
     </div>
   </div>
 </div>
-<div data-noprint="" style="max-width:1100px;margin:18px auto 0;padding:0 clamp(16px,4vw,40px);box-sizing:border-box;">
+<div data-noprint="" style="max-width:1100px;margin:18px auto 0;padding:0 clamp(16px,4vw,40px) 24px;box-sizing:border-box;">
   <details data-sentoffers="" open="{{ ofHas }}" style="background:#16150f;border:1px solid #2a2722;">
     <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#c9a24a;">Sent offers · {{ ofN }}</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#6d675c;">{{ ofSummary }} ▾</span></summary>
     <sc-if value="{{ ofEmpty }}" hint-placeholder-val="{{ true }}"><div style="padding:4px 16px 14px;font-family:'EB Garamond',serif;font-size:15px;color:#8f887c;">No offers logged yet. Email an offer, then click Confirm sent to log it here.</div></sc-if>
@@ -239,6 +240,15 @@ const ofTok = id => { let h1 = 0x811c9dc5, h2 = 0x1b873593; const s = 'ccj-offer
 class Component extends DCLogic {
   state = { sel: 0, sort: 'num', client: '', disc: '', discText: '', date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) };
   componentDidMount() { try { const s = JSON.parse(localStorage.getItem('didad-offer') || 'null'); if (s) this.setState(s); } catch (e) {} setTimeout(() => { const L = this.ofList(); if (L.some(o => ((o.status === 'Accepted' || o.status === 'Declined') && !o.ack) || (o.wantsMore && !o.ackMore))) this.ofSave(L.map(o => ({ ...o, ...(o.status === 'Accepted' || o.status === 'Declined' ? { ack: true } : {}), ...(o.wantsMore ? { ackMore: true } : {}) }))); }, 1500); }
+  async directSend(o) { if (this.state.dsBusy) return; this.setState({ dsBusy: true, dsMsg: 'Making PDF…' });
+    const ld = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+    try { if (!window.html2canvas) await ld('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'); if (!window.jspdf) await ld('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js');
+      const pages = [...document.querySelectorAll('doc-page section.page')].filter(p => p.offsetParent !== null); const pdf = new window.jspdf.jsPDF({ unit: 'pt', format: 'letter' });
+      for (let i = 0; i < pages.length; i++) { const c = await window.html2canvas(pages[i], { scale: 2, useCORS: true, backgroundColor: '#ffffff' }); if (i) pdf.addPage(); pdf.addImage(c.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, 612, 792); }
+      this.setState({ dsMsg: 'Sending…' }); await window.diadSendMail({ to: o.to, subject: o.subject, body: o.body, blob: pdf.output('blob'), filename: o.filename });
+      this.ofSave([...this.ofList(), { ...o.rec, status: 'Sent', direct: true, by: (() => { try { return localStorage.getItem('didad-who') || ''; } catch (e) { return ''; } })() }]);
+      this.setState({ dsBusy: false, dsMsg: 'Sent to ' + o.to + ' ✓ · logged in Sent offers' }); setTimeout(() => this.setState({ dsMsg: '' }), 10000);
+    } catch (e) { this.setState({ dsBusy: false, dsMsg: 'Couldn’t send (' + e.message + ') — try again or save the PDF' }); } }
   ofList() { try { return JSON.parse(localStorage.getItem('didad-offers-sent') || '[]'); } catch (e) { return []; } }
   ofSave(L) { try { localStorage.setItem('didad-offers-sent', JSON.stringify(L)); } catch (e) {} this.setState({ ofTick: Date.now() }); }
   save(p) { this.setState(p, () => { try { localStorage.setItem('didad-offer', JSON.stringify({ sel: this.state.sel, sort: this.state.sort, client: this.state.client, cover: !!this.state.cover })); } catch (e) {} }); }
@@ -290,8 +300,8 @@ class Component extends DCLogic {
         const href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(em) + '&cc=' + encodeURIComponent('s@ccjasper.nyc,gallery@ccjasper.nyc,doug@allart.la') + '&su=' + encodeURIComponent('Offer — ' + w.artist + ', ' + w.title + ' — CC Jasper') + '&body=' + encodeURIComponent(body);
         const askHref = 'mailto:gallery@ccjasper.nyc?cc=s@ccjasper.nyc,doug@allart.la&subject=' + encodeURIComponent('Question — ' + w.artist + ', ' + w.title) + '&body=' + encodeURIComponent((cl ? 'Hello, this is ' + cl + '.\n\n' : 'Hello,\n\n') + 'I have a question about ' + w.artist + ', ' + w.title + ' (' + price + '):\n\n');
         return { acceptHref: acceptUrl, declineHref: acceptUrl + '&d=1', askHref, mailHref: ok ? href : '#', sendBg: ok ? '#e3c77a' : '#6d675c', sendCur: ok ? 'pointer' : 'not-allowed',
-          sendNote: ok ? 'Opens Gmail · cc s@ccjasper.nyc, gallery@ccjasper.nyc, doug@allart.la · attach the PDF' : 'Enter a client email to send',
-          sendMail: e => { if (!ok) { e.preventDefault(); return; } this.setState({ ofPend: { at: Date.now(), oid, num: w.num, artist: w.artist, title: w.title, client: cl || '—', email: em, price } }); } };
+          sendNote: this.state.dsMsg ? this.state.dsMsg : ok ? (window.DIAD_MAIL_URL ? 'Sends the offer PDF now · cc s@ccjasper.nyc, gallery@ccjasper.nyc, doug@allart.la' : 'Opens Gmail · cc s@ccjasper.nyc, gallery@ccjasper.nyc, doug@allart.la · attach the PDF') : 'Enter a client email to send',
+          sendMail: e => { if (!ok) { e.preventDefault(); return; } if (window.DIAD_MAIL_URL) { e.preventDefault(); this.directSend({ to: em, subject: 'Offer — ' + w.artist + ', ' + w.title + ' — CC Jasper', body, filename: 'Offer - ' + w.artist + ' - ' + w.title + '.pdf', rec: { at: Date.now(), oid, num: w.num, artist: w.artist, title: w.title, client: cl || '—', email: em, price } }); return; } this.setState({ ofPend: { at: Date.now(), oid, num: w.num, artist: w.artist, title: w.title, client: cl || '—', email: em, price } }); } };
       })(),
       setDate: e => this.setState({ date: e.target.value }),
       ...(() => { const L = this.ofList(), SC = { Sent: '#c9a24a', Accepted: '#5fb075', Declined: '#e0614f', Expired: '#8f887c' }, NX = { Sent: 'Accepted', Accepted: 'Declined', Declined: 'Expired', Expired: 'Sent' };
