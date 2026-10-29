@@ -85,11 +85,11 @@
         <div style="align-self:start;display:flex;flex-direction:column;gap:22px;min-width:0;"><h1 style="margin:0;align-self:start;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,6vw,84px);line-height:0.95;color:#f0eadd;">Exhibition<br>Desk</h1><p data-deskdesc="" style="margin:0;max-width:520px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(19px,1.8vw,23px);line-height:1.4;color:#e9e3d6;text-wrap:pretty;"><span data-dlong="">The team’s to-do list — everything that still needs doing, pulled from every workroom page and sorted by urgency. Below are this week’s tasks, the calendar and all contacts.</span><span data-dshort="">The team’s to-do list, sorted by urgency.</span></p></div>
         <div style="display:flex;flex-direction:column;gap:20px;min-width:0;"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;align-items:end;"><sc-for list="{{ msNext }}" as="n" hint-placeholder-count="2"><div style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:{{ n.c }};">{{ n.label }}</span><span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4.6vw,76px);line-height:1.08;padding-bottom:0.12em;white-space:nowrap;color:#f0eadd;">{{ n.big }}</span><span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;margin-top:4px;">{{ n.date }}</span></div></sc-for></div><div style="display:flex;flex-direction:column;gap:14px;margin-top:2px;font-family:'Space Mono',monospace;">
         <a href="{{ agTracker }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Agreements signed</span><span style="color:#5fa08f;">{{ signedTxt }}</span></div>
           <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
         </a>
         <a href="{{ agShipping }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Artwork delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
           <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#7fa39b;"></div></div>
         </a>
       </div></div>
@@ -162,9 +162,9 @@
       </div>
     </div>
 
-    <div style="display:flex;flex-direction:column;border-top:1px solid #6d675c;margin-top:12px;">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;padding:12px 0 14px;">
-        <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#8f887c;">Timeline</span>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #6d675c;margin-top:clamp(36px,5vw,56px);">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px 16px;padding:22px 0 16px;">
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">Timeline</span><h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3.4vw,42px);line-height:1;color:#f0eadd;">Calendar &amp; events</h2></div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;">
           <div style="display:flex;gap:1px;background:#3a3630;border:1px solid #3a3630;">
             <sc-for list="{{ calViews }}" as="v" hint-placeholder-count="2">
@@ -387,7 +387,7 @@ class Component extends DCLogic {
       const all = parseCSV(csv); const h = all.findIndex(r => r[0] === 'No.');
       const rows = saved && saved.rows ? saved.rows : all.slice(h + 1).filter(r => r.length > 5 && r[0]);
       const artists = {}; rows.forEach(r => { const a = artists[r[2]] || (artists[r[2]] = { sent: true, signed: true }); if (!/true/i.test(r[9])) a.sent = false; if (!/true/i.test(r[10])) a.signed = false; });
-      const A = Object.values(artists), n = A.length, signed = A.filter(a => a.signed).length, sent = A.filter(a => a.sent && !a.signed).length, toSend = A.filter(a => !a.sent && !a.signed).length;
+      const curSg = (() => { try { const v = JSON.parse(localStorage.getItem('didad-sig-curator-a') || 'null'); return !!(v && v.src); } catch (e) { return false; } })(); const A = Object.values(artists).concat([{ sent: true, signed: curSg }]), n = A.length, signed = A.filter(a => a.signed).length, sent = A.filter(a => a.sent && !a.signed).length, toSend = A.filter(a => !a.sent && !a.signed).length;
       const st = r => ({ ...(DEF[r[2]] || {}), ...(ship[r[0]] || {}) });
       const del = rows.filter(r => (st(r).status || 0) === 3).length, moving = rows.filter(r => { const s = st(r).status || 0; return s === 1 || s === 2; }).length;
       const todos = TASKS.map(t => ({ u: 1, href: 'install-plan.html', ...t }));
@@ -404,7 +404,8 @@ class Component extends DCLogic {
       sh.forEach(t => { const u = SET_U[t.who] ?? (t.open ? 0 : 2); if (SPLIT[t.who]) SPLIT[t.who].forEach(x => todos.push({ ...t, ...x, u })); else todos.push(t.who === 'L' ? { ...t, u: 0, pin: 2, what: ' — confirm if Casey would be able to deliver the work the week before the show opens' } : t.who === 'Meredith Sellers' ? { ...t, u: 0, pin: 3 } : { ...t, u }); });
       const notBooked = [...new Set(rows.filter(r => !st(r).done && (st(r).status || 0) === 0 && !/local|self|bring|drop|carry|pick ?up|delivery/i.test(st(r).carrier || '')).map(r => r[2]))].length;
       let fu = 0; try { const pt = JSON.parse(localStorage.getItem('didad-press-v1') || localStorage.getItem('didad-press-tracker') || 'null'); const now = Date.now(); const L = pt && (pt.contacts || pt.rows || (Array.isArray(pt) ? pt : null)); if (L) fu = L.filter(c => c && c.followUp && new Date(c.followUp).getTime() <= now && !c.replied).length; } catch (e) {}
-      this.setState({ live: { toSend, waiting: sent, notBooked, fu, tops: todos.slice().sort((a, b) => a.u - b.u || (a.pin || 99) - (b.pin || 99)).slice(0, 6).map(x => ({ t: (x.who || '') + (x.what || ''), h: x.href || '', u: x.u })) } });
+      const waitNames = Object.entries(artists).filter(([, a]) => a.sent && !a.signed).map(([nm]) => nm === 'L' ? 'L' : String(nm).split(/\s+/).pop()).concat(curSg ? [] : ['Curator']);
+      this.setState({ live: { toSend, waiting: n - signed, waitNames, notBooked, fu, tops: todos.slice().sort((a, b) => a.u - b.u || (a.pin || 99) - (b.pin || 99)).slice(0, 6).map(x => ({ t: (x.who || '') + (x.what || ''), h: x.href || '', u: x.u })) } });
       const UC = ['#e0614f', '#e08a3c', '#d9c255', '#7fa39b'];
       todos.sort((a, b) => a.u - b.u).forEach(t => { t.c = UC[t.u]; });
       const MO = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
@@ -502,14 +503,14 @@ class Component extends DCLogic {
     const dk = (() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); })(), DK = 'didad-desk-daily-done';
     const dKey = () => dk + '|' + (this.state.live ? JSON.stringify([this.state.live.toSend, this.state.live.waiting, this.state.live.notBooked, this.state.live.fu]) : ''); const dDone = (() => { try { return JSON.parse(localStorage.getItem(DK) || '{}')[dKey()]; } catch (e) { return false; } })() || (this.state.dailyDone || {})[dKey()];
     const LV = this.state.live, liveTask = (() => { if (!LV) return null; const d0 = new Date(), dd = d0.getFullYear() * 1e4 + (d0.getMonth() + 1) * 100 + d0.getDate();
-      if (LV.toSend) return { t: 'Send ' + LV.toSend + ' consignment agreement' + (LV.toSend === 1 ? '' : 's') + ' still to go out', h: 'agreements/index.html' };
-      if (LV.waiting && dd <= 20261106) return { t: 'Chase ' + LV.waiting + ' unsigned consignment' + (LV.waiting === 1 ? '' : 's'), h: 'agreements/index.html' };
+      
+      if (LV.waiting && dd <= 20261106) return { t: LV.waiting + ' agreement' + (LV.waiting === 1 ? '' : 's') + ' still unsigned — resend through the site so they can sign online.', h: 'agreements/index.html?resend=1' };
       if (LV.notBooked && dd <= 20261108) return { t: 'Confirm shipping for ' + LV.notBooked, h: 'agreements/shipping.html' };
       if (LV.fu) return { t: 'Follow up with ' + LV.fu + ' press contact' + (LV.fu === 1 ? '' : 's') + ' due today', h: 'press-tracker.html' };
       return null; })();
     const T3 = (() => { const L = []; const d0 = new Date(), dd = d0.getFullYear() * 1e4 + (d0.getMonth() + 1) * 100 + d0.getDate(); const fx = h => h && h.indexOf('agreements/') === 0 ? (this.state.ag || 'agreements/') + h.slice(11) : h;
-      if (LV) { if (LV.toSend) L.push({ t: 'Send ' + LV.toSend + ' consignment agreement' + (LV.toSend === 1 ? '' : 's') + ' still to go out', h: 'agreements/index.html', tag: 'Live · Agreements' });
-        if (LV.waiting && dd <= 20261106) L.push({ t: 'Chase ' + LV.waiting + ' unsigned consignment' + (LV.waiting === 1 ? '' : 's'), h: 'agreements/index.html', tag: 'Live · Agreements' });
+      if (LV) {
+        if (LV.waiting && dd <= 20261106) L.push({ t: LV.waiting + ' agreement' + (LV.waiting === 1 ? '' : 's') + ' still unsigned — resend through the site so they can sign online.', h: 'agreements/index.html?resend=1', tag: 'Live · Agreements' });
         if (LV.notBooked && dd <= 20261108) L.push({ t: 'Confirm shipping for ' + LV.notBooked, h: 'agreements/shipping.html', tag: 'Live · Shipping' });
         if (LV.fu) L.push({ t: 'Follow up with ' + LV.fu + ' press contact' + (LV.fu === 1 ? '' : 's') + ' due today', h: 'press-tracker.html', tag: 'Live · Outreach' }); }
       if (DAILY[dk]) L.push({ t: DAILY[dk], h: '', tag: 'Plan · today' });
@@ -523,7 +524,7 @@ class Component extends DCLogic {
     const pnVals = { t1: today3[0] ? { ...today3[0], show: true, go: today3[0].href && today3[0].href !== '#' ? 'Open →' : 'Done? Tick it' } : { show: false }, t23: today3.slice(1), today3, hasDaily: !!dailyText, dailyText, dailyToggle, dailyHref, dailyTag, dailyLink: !!dailyHref, dailyPlain: !dailyHref, dailyMark: dDone ? '✓' : '', dailyBg: dDone ? '#5fa08f' : 'transparent', dailyBd: dDone ? '#5fa08f' : '#c9a24a', dailyTc: dDone ? '#6d675c' : '#f0eadd', pNotes, pnEmpty: !PN.length, pnCount: (this._pinned || []).length ? (this._pinned || []).length + ' pinned' : '', pnDraft: this.state.pnDraft || '', pnType: e => this.setState({ pnDraft: e.target.value }), pnKey: e => { if (e.key === 'Enter') pnAdd(); }, pnAdd };
     const MS = [
       { d: INSTALL, label: 'Install begins in', now: 'Install begins', date: 'Fri, Nov 6', c: '#7fa39b' },
-      { d: new Date(2026, 10, 11), label: 'Press preview in', now: 'Press preview', date: 'Wed, Nov 11 · 5–7 pm', c: '#c9a24a' },
+      { d: new Date(2026, 10, 11), label: 'Press preview in', now: 'Press preview', date: 'Wed, Nov 11', c: '#c9a24a' },
       { d: OPEN, label: 'Show opens in', now: 'Show opens', date: 'Thu, Nov 12 · 6–9 pm', c: '#7fa39b' },
       { d: new Date(2026, 10, 14), label: 'Scent Club in', now: 'Scent Club', date: 'Sat, Nov 14 · afternoon', c: '#c9a24a' },
       { d: new Date(2026, 10, 15), label: 'Artist talk in', now: 'Artist talk', date: 'Sun, Nov 15 · unitedfutures', c: '#c9a24a' },
