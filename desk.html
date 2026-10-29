@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark">
 <style id="cs-css">:root{color-scheme:dark}doc-page,[style*="background:#fff"],[style*="background:#ffffff"],[style*="background:#FFFFFF"],[style*="background:white"]{color-scheme:light}</style>
 <style id="stable-css">html,body{background:#0d0c0b}@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:0.14s}@media screen and (min-width:981px){html.sn-pre body{padding-left:162px !important}html.sn-pre body::before{content:"";position:fixed;top:0;left:0;bottom:0;width:162px;box-sizing:border-box;background:#0d0c0b;border-right:1px solid #2a2722;z-index:69}html.sn-pre nav[data-tabs],html.sn-pre [data-navlogo],html.sn-pre [data-navbtn]{display:none !important}html.sn-pre [data-topbar]:not(:has(> :not(nav):not([data-navlogo]):not([data-navbtn]):not([data-livelink]):not([data-snq]):not(script):not(style))){display:none !important}}</style>
-<script src="undo.js?v=8" data-keys="didad-desk-events,didad-desk-evo,didad-desk-hidden,didad-desk-custom,didad-desk-order,didad-desk-urg,didad-desk-eds,didad-desk-pressing,didad-desk-daily-done,didad-desk-p3dismiss,didad-desk-p3order,didad-desk-pins"></script>
+<script src="undo.js?v=10" data-keys="didad-desk-events,didad-desk-evo,didad-desk-hidden,didad-desk-custom,didad-desk-order,didad-desk-urg,didad-desk-eds,didad-desk-pressing,didad-desk-daily-done,didad-desk-p3dismiss,didad-desk-p3order,didad-desk-pins"></script>
 <script>try{if(!/[?&]p=/.test(location.search)&&localStorage.getItem('didad-sn-hidden')!=='1')document.documentElement.classList.add('sn-pre');}catch(e){document.documentElement.classList.add('sn-pre');}</script>
 <script src="./support.js"></script>
 </head>
@@ -398,10 +398,10 @@ class Component extends DCLogic {
       rows.forEach(r => { const d = st(r); if (seen[r[2]] || d.done || (d.status || 0) === 3 || !d.notes) return; seen[r[2]] = 1; sh.push({ src: 'Shipping', who: r[2], what: ' — ' + d.notes, href: 'agreements/shipping.html?artist=' + encodeURIComponent(r[2]), open: FLAG.test(d.notes + ' ' + (d.carrier || '') + ' ' + (d.eta || '')) }); });
       const SET_U = { 'Benjamin Cowan': 1, 'Kenny Curwood': 2, 'Aramis Gutierrez': 2, 'Henry Swanson': 1, 'Pandele Radu': 1, 'Ellen R Hanson': 1 };
       const SPLIT = { 'Pandele Radu': [
-        { src: 'Shipping', what: ' — friend is bringing it on a flight; may need pickup from a midtown hotel', href: 'agreements/shipping.html' },
+        { src: 'Shipping', what: ' — pick up his work from the Romanian Consulate in NYC', href: 'agreements/shipping.html', u: 0, pin: 1 },
         { src: 'Install', what: ' — arrives rolled in a tube with stretcher bars; find someone to stretch it', href: 'install-plan.html' }
       ] };
-      sh.forEach(t => { const u = SET_U[t.who] ?? (t.open ? 0 : 2); if (SPLIT[t.who]) SPLIT[t.who].forEach(x => todos.push({ ...t, ...x, u })); else todos.push(t.who === 'L' ? { ...t, u: 0, pin: 2, what: ' — confirm if Casey would be able to deliver the work the week before the show opens' } : t.who === 'Meredith Sellers' ? { ...t, u: 0, pin: 3 } : { ...t, u }); });
+      sh.forEach(t => { const u = SET_U[t.who] ?? (t.open ? 0 : 2); if (SPLIT[t.who]) SPLIT[t.who].forEach(x => todos.push({ ...t, u, ...x })); else todos.push(t.who === 'L' ? { ...t, u: 0, pin: 2, what: ' — confirm if Casey would be able to deliver the work the week before the show opens' } : t.who === 'Meredith Sellers' ? { ...t, u: 0, pin: 3 } : { ...t, u }); });
       const notBooked = [...new Set(rows.filter(r => !st(r).done && (st(r).status || 0) === 0 && !/local|self|bring|drop|carry|pick ?up|delivery/i.test(st(r).carrier || '')).map(r => r[2]))].length;
       let fu = 0; try { const pt = JSON.parse(localStorage.getItem('didad-press-v1') || localStorage.getItem('didad-press-tracker') || 'null'); const now = Date.now(); const L = pt && (pt.contacts || pt.rows || (Array.isArray(pt) ? pt : null)); if (L) fu = L.filter(c => c && c.followUp && new Date(c.followUp).getTime() <= now && !c.replied).length; } catch (e) {}
       const waitNames = Object.entries(artists).filter(([, a]) => a.sent && !a.signed).map(([nm]) => nm === 'L' ? 'L' : String(nm).split(/\s+/).pop()).concat(curSg ? [] : ['Curator']);
@@ -509,6 +509,8 @@ class Component extends DCLogic {
       if (LV.fu) return { t: 'Follow up with ' + LV.fu + ' press contact' + (LV.fu === 1 ? '' : 's') + ' due today', h: 'press-tracker.html' };
       return null; })();
     const T3 = (() => { const L = []; const d0 = new Date(), dd = d0.getFullYear() * 1e4 + (d0.getMonth() + 1) * 100 + d0.getDate(); const fx = h => h && h.indexOf('agreements/') === 0 ? (this.state.ag || 'agreements/') + h.slice(11) : h;
+      try { (JSON.parse(localStorage.getItem('didad-offers-sent') || '[]') || []).filter(o => o.wantsMore && !o.ackMore).forEach(o => L.push({ t: (o.client && o.client !== '—' ? o.client : 'A collector') + ' wants other available works by ' + (o.artist || 'the artist') + '. Send them a list.', h: 'offer-sheets.html', tag: 'Live · Offers' })); } catch (e) {}
+      try { (JSON.parse(localStorage.getItem('didad-offers-sent') || '[]') || []).filter(o => (o.status === 'Accepted' || o.status === 'Declined') && !o.ack).forEach(o => L.push({ t: 'Offer ' + (o.status === 'Declined' ? 'declined' : 'accepted') + ' — ' + (o.artist || 'a work') + (o.title ? ', ' + o.title : '') + (o.client && o.client !== '—' ? ' · ' + o.client : '') + (o.status === 'Declined' ? (o.declineNote ? ' — “' + String(o.declineNote).slice(0, 80) + '”' : '') + '. Release the hold.' : '. Confirm and arrange payment.'), h: 'offer-sheets.html', tag: 'Live · Offers' })); } catch (e) {}
       if (LV) {
         if (LV.waiting && dd <= 20261106) L.push({ t: LV.waiting + ' agreement' + (LV.waiting === 1 ? '' : 's') + ' still unsigned — resend through the site so they can sign online.', h: 'agreements/index.html?resend=1', tag: 'Live · Agreements' });
         if (LV.notBooked && dd <= 20261108) L.push({ t: 'Confirm shipping for ' + LV.notBooked, h: 'agreements/shipping.html', tag: 'Live · Shipping' });

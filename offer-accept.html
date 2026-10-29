@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accept offer — Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=EB+Garamond:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f4f1ea;color:#16150f;font-family:'EB Garamond',serif}
+a{color:#2b6a60}a:hover{color:#16150f}
+#app{display:flex;flex-direction:column;gap:18px}
+.wrap{max-width:560px;margin:0 auto;padding:clamp(28px,7vw,64px) 22px;display:flex;flex-direction:column;gap:20px}
+.mono{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#2b6a60}
+h1{margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,46px);line-height:1.05}
+.card{background:#fff;border:1px solid #d6d1c6;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.card .a{font-size:20px}.card .t{font-style:italic;font-size:18px;color:#3a3833}.card .p{font-family:'Space Mono',monospace;font-size:12px;margin-top:6px}
+p{margin:0;font-size:17px;line-height:1.5;color:#3a3833}
+button,.btn{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 20px;border:none;cursor:pointer;background:#16150f;color:#f4f1ea;text-decoration:none;display:inline-block;text-align:center}
+button:hover,.btn:hover{background:#2b6a60;color:#fff}
+button[disabled]{opacity:.5;cursor:default}
+.ghost{background:transparent;color:#16150f;border:1px solid #16150f}
+.ft{border-top:1px solid #16150f;padding-top:10px;font-family:'Space Mono',monospace;font-size:10px;color:#5c574c;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+</style></head>
+<body><div class="wrap">
+<img src="art/ccj-logo-black.png" alt="CC Jasper" style="height:18px;width:auto;align-self:flex-start">
+<div class="mono">Death Is a Door · Offer</div>
+<div id="app"><p>Loading your offer…</p></div>
+<div class="ft"><span>CC Jasper · 131 Chrystie Street, New York, NY 10002</span><span>gallery@ccjasper.nyc</span></div>
+</div>
+<script>
+(function(){try{var u=new URL(location.href),o=u.searchParams.get('o');if(o)sessionStorage.setItem('didad-last-offer-link',o);else{var s=sessionStorage.getItem('didad-last-offer-link');if(s){u.searchParams.set('o',s);history.replaceState(null,'',u.toString());}}}catch(e){}})();
+(function(){
+var URL='https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec',KEY='didad-offers-sent';
+function tok(id){var h1=0x811c9dc5,h2=0x1b873593,s='ccj-offer-2026:'+id;for(var i=0;i<s.length;i++){var c=s.charCodeAt(i);h1=Math.imul(h1^c,16777619);h2=Math.imul(h2^c,2246822519)+(h2>>>13);}return((h1>>>0).toString(36)+(h2>>>0).toString(36)).slice(0,10);}
+var app=document.getElementById('app'),q=(new URLSearchParams(location.search).get('o')||'').split('.'),oid=q[0],k=q[1];
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function mail(o){return 'mailto:gallery@ccjasper.nyc?cc=s@ccjasper.nyc,doug@allart.la&subject='+encodeURIComponent('Accepting offer — '+(o?o.artist+', '+o.title:'Death Is a Door'))+'&body='+encodeURIComponent('Hello,\n\nI would like to accept the offer for '+(o?o.artist+', '+o.title+' ('+String(o.price||'').split(' (')[0]+')':'the work')+'.\n\nThank you,\n'+(o&&o.client&&o.client!=='—'?o.client:''));}
+var DEMO=new URLSearchParams(location.search).get('demo')==='1';if(DEMO){var _f=window.fetch;window.fetch=function(u,o){if(String(u).indexOf('script.google.com')>=0){if(o&&o.method==='POST')return Promise.resolve({json:function(){return Promise.resolve({ok:true});}});var v={};v[KEY]={value:[{at:1793300000000,oid:oid,num:'I',artist:'Doug Crocco',title:'Death Is a Door',client:'Doug Crocco',email:'doug@allart.la',price:'$10,000',status:'Sent'}]};return Promise.resolve({json:function(){return Promise.resolve(v);}});}return _f.apply(this,arguments);};var _b=document.createElement('div');_b.textContent='Demo preview — nothing is sent or saved';_b.style.cssText='position:fixed;top:0;left:0;right:0;background:#c9a24a;color:#16150f;font:11px Space Mono,monospace;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:6px;z-index:9';document.body.appendChild(_b);}
+if(!oid||k!==tok(oid)){app.innerHTML='<h1>Link not valid</h1><p>Please reply to the offer email, or write to <a href="mailto:gallery@ccjasper.nyc">gallery@ccjasper.nyc</a>.</p>'+moreHtml();bindMore();return;}
+var LIST=null,O=null;
+fetch(URL+'?t='+Date.now()).then(function(r){return r.json();}).then(function(all){var v=all&&all[KEY]&&all[KEY].value;LIST=Array.isArray(v)?v:[];var M=LIST.filter(function(o){return o.oid===oid;});O=M.sort(function(a,b){return b.at-a.at;})[0]||null;render();}).catch(function(){render();});
+var DEC=new URLSearchParams(location.search).get('d')==='1';
+function moreHtml(){return '<div style="border-top:1px solid #d6d1c6;padding-top:16px;display:flex;flex-direction:column;gap:10px"><p>Interested in something else?</p><div><button class="ghost" id="more" style="background:transparent;color:#16150f;border:1px solid #16150f">Send me other available works'+(O&&O.artist?' by '+esc(O.artist):'')+'</button></div><p id="mmsg" style="font-size:15px"></p></div>';}
+function bindMore(){var mb=document.getElementById('more');if(!mb)return;mb.onclick=function(){var b=this,now=Date.now();b.disabled=true;b.textContent='Sending…';
+  fetch(URL+'?t='+now).then(function(r){return r.json();}).then(function(all){var v=all&&all[KEY]&&all[KEY].value,L=Array.isArray(v)?v:[],hit=false;L=L.map(function(o){if(o.oid===oid&&(!O||o.at===O.at)){hit=true;return Object.assign({},o,{wantsMore:now,ackMore:false});}return o;});if(!hit)L.push({at:now,oid:oid,num:oid.split('-')[0],status:'Sent',wantsMore:now,ackMore:false,client:'Via offer link'});
+   var who=O&&O.client&&O.client!=='—'?O.client:'Client';return fetch(URL,{method:'POST',keepalive:true,body:JSON.stringify({key:KEY,value:L,by:who+' (offer link)',page:'offer-accept',log:[{ts:now,action:'Wants other works',text:who+' · other available works by '+(O&&O.artist?O.artist:'the artist')}]})});})
+  .then(function(){b.textContent='Request sent ✓';document.getElementById('mmsg').textContent='Thank you — we’ll email you other available works'+(O&&O.artist?' by '+O.artist:'')+' soon.';}).catch(function(){b.disabled=false;b.textContent='Send me other available works';document.getElementById('mmsg').innerHTML='Couldn’t reach us — please <a href="mailto:gallery@ccjasper.nyc?cc=s@ccjasper.nyc,doug@allart.la">email us</a>.';});};}
+function renderDecline(){
+ if(O&&O.status==='Declined'){app.innerHTML='<h1>Offer declined</h1>'+(O&&O.artist?card(O):'')+'<p>Thank you for letting us know — we’ve released the work. If anything changes, just reply to our email or write to <a href="mailto:gallery@ccjasper.nyc">gallery@ccjasper.nyc</a>.</p>'+moreHtml();bindMore();return;}
+ app.innerHTML='<h1>Decline this offer</h1>'+(O?card(O):'')+'<p>No problem — let us know and we’ll release the work. If you’d like, tell us why or what would work better.</p><label style="display:flex;flex-direction:column;gap:6px;font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5c574c">Note (optional)<textarea id="why" rows="4" style="font:16px \'EB Garamond\',serif;padding:10px;border:1px solid #c9c3b6;background:#fff;color:#16150f"></textarea></label><div style="display:flex;gap:10px;flex-wrap:wrap"><button id="dec">Decline offer</button><a class="btn ghost" href="offer-accept.html?o='+oid+'.'+k+'">Accept instead</a></div>'+moreHtml()+'<p id="msg" style="font-size:15px"></p>';
+ bindMore();
+ document.getElementById('dec').onclick=function(){var b=document.getElementById('dec'),why=document.getElementById('why').value.trim(),now=Date.now();b.disabled=true;b.textContent='Sending…';
+  fetch(URL+'?t='+now).then(function(r){return r.json();}).then(function(all){var v=all&&all[KEY]&&all[KEY].value,L=Array.isArray(v)?v:[],hit=false;L=L.map(function(o){if(o.oid===oid&&(!O||o.at===O.at)){hit=true;return Object.assign({},o,{status:'Declined',declinedAt:now,declineNote:why,ack:false,via:'client link'});}return o;});if(!hit)L.push({at:now,oid:oid,num:oid.split('-')[0],status:'Declined',declinedAt:now,declineNote:why,ack:false,client:'Via decline link'});
+   var who=O&&O.client&&O.client!=='—'?O.client:'Client';return fetch(URL,{method:'POST',keepalive:true,body:JSON.stringify({key:KEY,value:L,by:who+' (decline link)',page:'offer-accept',log:[{ts:now,action:'Offer declined',text:(O?O.artist+' — '+O.title:'Offer '+oid)+' · '+who+(why?' · “'+why.slice(0,120)+'”':'')}]})});})
+  .then(function(){O=Object.assign({},O||{},{status:'Declined'});renderDecline();}).catch(function(){b.disabled=false;b.textContent='Decline offer';document.getElementById('msg').innerHTML='Couldn’t reach us — please <a href="mailto:gallery@ccjasper.nyc?cc=s@ccjasper.nyc,doug@allart.la">email us</a>.';});};}
+function render(){ if(DEC){renderDecline();return;}
+ if(O&&O.status==='Accepted'){app.innerHTML='<h1>Offer accepted</h1>'+card(O)+'<p>Thank you'+(O.client&&O.client!=='—'?', '+esc(O.client.split(' ')[0]):'')+'. We have your acceptance.</p><a class="btn" href="offer-pay.html?o='+oid+'.'+k+'">Continue to payment →</a>';return;}
+ app.innerHTML='<h1>Accept this offer</h1>'+(O?card(O):'<p>We couldn’t load the offer details, but you can still accept below.</p>')+'<p>Click accept, then choose delivery and how you’d like to pay. The work is held for you for 48 hours.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button id="go">Accept offer</button><a class="btn ghost" href="'+mail(O)+'">Ask a question</a></div><p id="msg" style="font-size:15px"></p>';
+ document.getElementById('go').onclick=accept;}
+function card(o){return '<div class="card"><span class="a">'+esc(o.artist)+'</span><span class="t">'+esc(o.title)+'</span><span class="p">'+esc(o.price)+'</span>'+(o.client&&o.client!=='—'?'<span class="mono" style="color:#5c574c;margin-top:6px">Offered to '+esc(o.client)+'</span>':'')+'</div>';}
+function accept(){var b=document.getElementById('go'),m=document.getElementById('msg');b.disabled=true;b.textContent='Sending…';
+ var now=Date.now(),L=(LIST||[]).slice(),hit=false;L=L.map(function(o){if(o.oid===oid&&(!O||o.at===O.at)){hit=true;return Object.assign({},o,{status:'Accepted',acceptedAt:now,ack:false,via:'client link'});}return o;});
+ if(!hit){var num=oid.split('-')[0];L.push({at:now,oid:oid,num:num,artist:'',title:'Work '+num,client:'Via accept link',email:'',price:'',status:'Accepted',acceptedAt:now,ack:false,via:'client link'});}
+ var who=O&&O.client&&O.client!=='—'?O.client:'Client';
+ fetch(URL,{method:'POST',keepalive:true,body:JSON.stringify({key:KEY,value:L,by:who+' (accept link)',page:'offer-accept',log:[{ts:now,action:'Offer accepted',text:(O?O.artist+' — '+O.title:'Offer '+oid)+' · '+who}]})}).then(function(r){return r.json();}).then(function(){location.href='offer-pay.html?o='+oid+'.'+k;}).catch(function(){b.disabled=false;b.textContent='Accept offer';m.innerHTML='Couldn’t reach us just now. Please <a href="'+mail(O)+'">email your acceptance</a> instead.';});}
+})();
+</script></body></html>

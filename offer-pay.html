@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment — Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=EB+Garamond:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f4f1ea;color:#16150f;font-family:'EB Garamond',serif}
+a{color:#2b6a60}a:hover{color:#16150f}
+#app{display:flex;flex-direction:column;gap:18px}
+.wrap{max-width:640px;margin:0 auto;padding:clamp(28px,6vw,56px) 22px;display:flex;flex-direction:column;gap:22px}
+.mono{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#2b6a60}
+h1{margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,7vw,46px);line-height:1.05}
+h2{margin:0 0 10px;font-family:'Space Mono',monospace;font-weight:400;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#2b6a60;border-bottom:1px solid #d6d1c6;padding-bottom:8px}
+p{margin:0;font-size:16.5px;line-height:1.5;color:#3a3833}
+.box{background:#fff;border:1px solid #d6d1c6;padding:18px 20px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:16.5px}.row b{font-weight:400}
+.row.t{border-top:1px solid #16150f;margin-top:6px;padding-top:10px;font-size:20px}
+.mut{color:#6d675c;font-size:14px}
+label{display:flex;flex-direction:column;gap:4px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5c574c}
+input,select,textarea{font:16px 'EB Garamond',serif;color:#16150f;background:#fff;border:1px solid #c9c3b6;padding:9px 10px;border-radius:0;width:100%;box-sizing:border-box}
+.g2{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px}.g3{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:10px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid #ece8df;cursor:pointer;font-size:16.5px}.opt:first-of-type{border-top:none}.opt input{width:auto;margin-top:5px}
+.pm{display:none;margin:6px 0 2px 26px;font-size:15px;color:#3a3833;line-height:1.5}.opt input:checked~div .pm{display:block}
+button{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 20px;border:none;cursor:pointer;background:#16150f;color:#f4f1ea}
+button:hover{background:#2b6a60}button[disabled]{opacity:.5;cursor:default}
+.ft{border-top:1px solid #16150f;padding-top:10px;font-family:'Space Mono',monospace;font-size:10px;color:#5c574c;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media (max-width:520px){.g2,.g3{grid-template-columns:minmax(0,1fr)}}
+</style></head>
+<body><div class="wrap">
+<img src="art/ccj-logo-black.png" alt="CC Jasper" style="height:18px;width:auto;align-self:flex-start">
+<div class="mono">Death Is a Door · Payment</div>
+<div id="app"><p>Loading…</p></div>
+<div class="ft"><span>CC Jasper · 131 Chrystie Street, New York, NY 10002</span><span>gallery@ccjasper.nyc</span></div>
+</div>
+<script>
+(function(){try{var u=new URL(location.href),o=u.searchParams.get('o');if(o)sessionStorage.setItem('didad-last-offer-link',o);else{var s=sessionStorage.getItem('didad-last-offer-link');if(s){u.searchParams.set('o',s);history.replaceState(null,'',u.toString());}}}catch(e){}})();
+(function(){
+/* ---- Payment details: fill these in (leave '' to say "details sent with your invoice") ---- */
+var PAY={
+  wire:'',   /* e.g. 'Bank: … · Account name: CC Jasper LLC · Routing: … · Account: …' */
+  check:'Payable to CC Jasper · mail to 131 Chrystie Street, New York, NY 10002',
+  card:'',   /* card payment link URL, e.g. Square or Stripe */
+  zelle:'',  /* Zelle email or phone */
+  venmo:''   /* Venmo handle or PayPal email */
+};
+var NY_RATE=0.08875;
+var URL='https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec',KEY='didad-offers-sent';
+var STATES=['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
+function tok(id){var h1=0x811c9dc5,h2=0x1b873593,s='ccj-offer-2026:'+id;for(var i=0;i<s.length;i++){var c=s.charCodeAt(i);h1=Math.imul(h1^c,16777619);h2=Math.imul(h2^c,2246822519)+(h2>>>13);}return((h1>>>0).toString(36)+(h2>>>0).toString(36)).slice(0,10);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function money(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+var app=document.getElementById('app'),q=(new URLSearchParams(location.search).get('o')||'').split('.'),oid=q[0],k=q[1],LIST=[],O=null;
+var DEMO=new URLSearchParams(location.search).get('demo')==='1';if(DEMO){var _f=window.fetch;window.fetch=function(u,o){if(String(u).indexOf('script.google.com')>=0){if(o&&o.method==='POST')return Promise.resolve({json:function(){return Promise.resolve({ok:true});}});var v={};v[KEY]={value:[{at:1793300000000,oid:oid,num:'I',artist:'Doug Crocco',title:'Death Is a Door',client:'Doug Crocco',email:'doug@allart.la',price:'$10,000',status:'Sent'}]};return Promise.resolve({json:function(){return Promise.resolve(v);}});}return _f.apply(this,arguments);};var _b=document.createElement('div');_b.textContent='Demo preview — nothing is sent or saved';_b.style.cssText='position:fixed;top:0;left:0;right:0;background:#c9a24a;color:#16150f;font:11px Space Mono,monospace;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:6px;z-index:9';document.body.appendChild(_b);}
+if(!oid||k!==tok(oid)){app.innerHTML='<h1>Link not valid</h1><p>Please write to <a href="mailto:gallery@ccjasper.nyc">gallery@ccjasper.nyc</a>.</p>';return;}
+fetch(URL+'?t='+Date.now()).then(function(r){return r.json();}).then(function(all){var v=all&&all[KEY]&&all[KEY].value;LIST=Array.isArray(v)?v:[];O=LIST.filter(function(o){return o.oid===oid;}).sort(function(a,b){return b.at-a.at;})[0]||null;render();}).catch(render);
+function base(){var m=String(O&&O.price||'').match(/\$([\d,]+(?:\.\d+)?)/);return m?parseFloat(m[1].replace(/,/g,'')):0;}
+function pm(id,label,val,extra){return '<label class="opt" style="flex-direction:row;font-family:inherit;font-size:16.5px;letter-spacing:0;text-transform:none;color:#16150f"><input type="radio" name="pay" value="'+id+'"><div style="flex:1"><span>'+label+'</span><div class="pm">'+(val?esc(val):({wire:'We’ll email wire / ACH instructions with your invoice. For your security, please confirm them with us by phone before sending.',card:'We’ll email a secure card payment link with your invoice.',zelle:'We’ll email our Zelle details with your invoice.',venmo:'We’ll email our Venmo / PayPal details with your invoice.',check:'Details sent with your invoice.'}[id]))+(extra||'')+'</div></div></label>';}
+function render(){
+ if(O&&O.order){app.innerHTML='<h1>Thank you</h1><p>We have your order details for <i>'+esc(O.title)+'</i>. You’ll receive your invoice by email soon.</p>';return;}
+ var b=base();
+ app.innerHTML='<h1>Complete your purchase</h1><p>You’ve accepted the offer — please fill out the details below to complete your purchase.</p>'
+ +(O?'<div class="box"><div style="font-size:20px">'+esc(O.artist)+'</div><div style="font-style:italic;font-size:18px;color:#3a3833">'+esc(O.title)+'</div></div>':'')
+ +'<div class="box"><h2>Billing address</h2><div style="display:flex;flex-direction:column;gap:10px"><label>Full name<input id="bnm"></label><label>Street address<input id="bst"></label><div class="g3"><label>City<input id="bct"></label><label>State<select id="bsa">'+'<option value="">—</option>'+STATES.map(function(s){return '<option>'+s+'</option>';}).join('')+'<option value="INTL">Outside US</option>'+'</select></label><label>ZIP / postcode<input id="bzp"></label></div><label id="bcyL" style="display:none">Country<input id="bcy"></label></div></div>'
+ +'<div class="box"><h2>Delivery</h2><label class="opt" style="flex-direction:row;font-family:inherit;font-size:16.5px;letter-spacing:0;text-transform:none;color:#16150f"><input type="radio" name="dl" value="pickup" checked><div><span>Pick up at the gallery</span><div class="mut">131 Chrystie Street, New York · within 7 days after the show closes</div><div class="mut" style="margin-top:3px">If you send your own shipper or art handler to collect from the gallery, this counts as a New York pickup and NY sales tax applies.</div></div></label><label class="opt" style="flex-direction:row;font-family:inherit;font-size:16.5px;letter-spacing:0;text-transform:none;color:#16150f"><input type="radio" name="dl" value="ship"><div><span>Ship to me</span><div class="mut">Shipping is quoted separately once we have your address</div></div></label>'
+ +'<div id="addr" style="display:none;flex-direction:column;gap:10px;margin-top:10px"><label style="flex-direction:row;align-items:center;gap:8px;font-family:inherit;font-size:16px;letter-spacing:0;text-transform:none;color:#16150f"><input type="checkbox" id="same" checked style="width:auto">Ship to my billing address</label><div id="shipf" style="display:none;flex-direction:column;gap:10px"><label>Full name<input id="nm"></label><label>Street address<input id="st"></label><div class="g3"><label>City<input id="ct"></label><label>State<select id="sa"><option value="">—</option>'+STATES.map(function(s){return '<option>'+s+'</option>';}).join('')+'<option value="INTL">Outside US</option></select></label><label>ZIP / postcode<input id="zp"></label></div><label id="cyL" style="display:none">Country<input id="cy"></label></div></div></div>'
+ +'<div class="box"><h2>Summary</h2><div class="row"><b>Price</b><span id="sp">'+(b?money(b):esc(O&&O.price||'—'))+'</span></div><div class="row"><b id="tl">NY sales tax (8.875%)</b><span id="tx"></span></div><div class="row"><b>Shipping</b><span id="sh">—</span></div><div class="row t"><b>Total due</b><span id="tt"></span></div><div class="mut" id="tn" style="margin-top:8px"></div></div>'
+ +'<div class="box"><h2>Payment method</h2>'+pm('wire','Wire transfer / ACH',PAY.wire)+pm('check','Check',PAY.check)+pm('card','Credit card',PAY.card?'':'', PAY.card?'<a href="'+esc(PAY.card)+'" target="_blank" rel="noopener">Pay by card →</a>':'')+pm('zelle','Zelle',PAY.zelle)+pm('venmo','Venmo / PayPal',PAY.venmo)+'</div>'
+ +'<label>Email for your invoice<input id="em" type="email" value="'+esc(O&&O.email||'')+'"></label>'
+ +'<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button id="go">Submit order</button><span class="mut" id="msg"></span></div>';
+ var $=function(id){return document.getElementById(id);};
+ function nyc(z){z=String(z||'').trim();return /^(10[0-4]|11[0-4]|116)\d{2}/.test(z);}
+ function calc(){var dl=(document.querySelector('input[name=dl]:checked')||{}).value,same=$('same').checked;$('addr').style.display=dl==='ship'?'flex':'none';$('shipf').style.display=dl==='ship'&&!same?'flex':'none';$('bcyL').style.display=$('bsa').value==='INTL'?'flex':'none';$('cyL').style.display=$('sa').value==='INTL'?'flex':'none';
+  var s=dl==='ship'?(same?$('bsa').value:$('sa').value):'NY',z=dl==='ship'?(same?$('bzp').value:$('zp').value):'10002',intl=s==='INTL';
+  var ready=!!$('bsa').value&&(dl!=='ship'||same||!!$('sa').value);
+  if(!ready){$('tl').textContent='Sales tax';$('tx').textContent='Enter your address';$('sh').textContent=dl==='ship'?'Quoted separately':'Pick up — none';$('tt').textContent=b?money(b)+' + tax':'—';$('tn').textContent='Tax is calculated once you choose your state'+(dl==='ship'&&!same?' and shipping address':'')+'.';return {dl:dl,state:s,tax:0,total:b,county:false,ready:false};}
+  var zOk=String(z).trim().length>=5,city=s==='NY'&&(!zOk||nyc(z)),county=s==='NY'&&zOk&&!nyc(z),taxed=dl==='pickup'||city,t=taxed?Math.round(b*NY_RATE*100)/100:0;
+  $('tl').textContent=taxed?'NY sales tax (8.875%)':county?'NY sales tax (county rate)':'Sales tax';$('tx').textContent=taxed?(b?money(t):'8.875%'):county?'On invoice':(dl==='ship'&&!s?'Enter your address':(b?'$0.00':'0%'));
+  $('sh').textContent=dl==='ship'?'Quoted separately':'Pick up — none';$('tt').textContent=b?money(b+t)+(dl==='ship'?' + shipping':''):'—';
+  $('tn').textContent=dl==='pickup'?'Works picked up at the gallery are subject to New York City sales tax (8.875%).':city?(zOk?'Delivery within New York City is subject to 8.875% sales tax.':'New York City rate shown — it updates when you enter your ZIP.'):county?'Delivery elsewhere in New York State is taxed at your county’s rate — we’ll add it to your invoice.':intl?'No US sales tax. Import duties and taxes in your country may apply.':s?'No New York sales tax for delivery to '+s+'. You may owe use tax in your state.':'';
+  return {dl:dl,state:s,tax:t,total:b+t,county:county};}
+ [].forEach.call(document.querySelectorAll('input[name=dl]'),function(r){r.onchange=calc;});['sa','bsa','same'].forEach(function(i){$(i).onchange=calc;});['zp','bzp'].forEach(function(i){$(i).oninput=calc;});calc();
+ $('go').onclick=function(){var c=calc(),pay=(document.querySelector('input[name=pay]:checked')||{}).value,em=$('em').value.trim(),B={name:$('bnm').value.trim(),street:$('bst').value.trim(),city:$('bct').value.trim(),state:$('bsa').value,zip:$('bzp').value.trim(),country:$('bsa').value==='INTL'?$('bcy').value.trim():'US'},A=$('same').checked?B:{name:$('nm').value.trim(),street:$('st').value.trim(),city:$('ct').value.trim(),state:$('sa').value,zip:$('zp').value.trim(),country:$('sa').value==='INTL'?$('cy').value.trim():'US'};
+  if(!B.name||!B.street||!B.city||!B.state||!B.zip||c.ready===false){$('msg').textContent='Please complete your billing address.';return;}
+  if(c.dl==='ship'&&(!A.name||!A.street||!A.city||!A.state||!A.zip)){$('msg').textContent='Please complete your shipping address.';return;}
+  if(!pay){$('msg').textContent='Please choose a payment method.';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$('msg').textContent='Please enter your email.';return;}
+  var btn=$('go');btn.disabled=true;btn.textContent='Sending…';var now=Date.now();
+  var order={at:now,delivery:c.dl==='ship'?'Ship':'Gallery pick up',billing:B,address:c.dl==='ship'?A:null,tax:c.tax,total:c.total,price:base(),payMethod:pay,email:em};
+  fetch(URL+'?t='+now).then(function(r){return r.json();}).then(function(all){var v=all&&all[KEY]&&all[KEY].value,L=Array.isArray(v)?v:[],hit=false;L=L.map(function(o){if(o.oid===oid&&(!O||o.at===O.at)){hit=true;return Object.assign({},o,{order:order,ack:false});}return o;});if(!hit)L.push({at:now,oid:oid,num:oid.split('-')[0],status:'Accepted',order:order,ack:false,client:A.name||em,email:em});
+   return fetch(URL,{method:'POST',keepalive:true,body:JSON.stringify({key:KEY,value:L,by:(A.name||em)+' (payment page)',page:'offer-pay',log:[{ts:now,action:'Order details',text:(O?O.artist+' — '+O.title:oid)+' · '+order.delivery+' · '+pay+' · total '+money(c.total)}]})});})
+  .then(function(){var body='Hello,\n\nI have accepted the offer for '+(O?O.artist+', '+O.title:'the work')+'.\n\nDelivery: '+order.delivery+(order.address?'\n'+[A.name,A.street,A.city+', '+A.state+' '+A.zip,A.country].join('\n'):'')+'\nPayment: '+pay+'\nTotal: '+money(c.total)+(c.dl==='ship'?' + shipping':'')+'\n\nThank you';
+   app.innerHTML='<h1>Thank you</h1><p>Your order details are with us. You’ll receive your invoice by email soon'+(c.dl==='ship'?', with a shipping quote':'')+'.</p>';})
+  .catch(function(){btn.disabled=false;btn.textContent='Submit order';$('msg').innerHTML='Couldn’t reach us — please <a href="mailto:gallery@ccjasper.nyc">email us</a>.';});};
+}
+})();
+</script></body></html>
