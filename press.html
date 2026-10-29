@@ -170,7 +170,7 @@ const MED = {"Doug Crocco|Death Is a Door":"Print on metallic photo paper face-m
 const medFor = im => { const k = Object.keys(MED).find(k => { const [a, t] = k.split('|'); return a === im.artist && im.title.indexOf(t) === 0; }); return k ? MED[k] : ''; };
 class Component extends DCLogic {
   frameRef = React.createRef();
-  componentDidMount() { try { const k = JSON.parse(localStorage.getItem(KKEY) || 'null'); if (k) this.setState({ kd: k.docs, kimg: k.imgs ? k.imgs.length >= IMAGES.length : true, kSel: k.imgs && k.imgs.length < IMAGES.length ? k.imgs : [], kcap: k.caps !== false, cvSel: k.cvSel, bioSel: k.bioSel }); } catch (e) {} this.onR = () => this.applyZoom(); window.addEventListener('resize', this.onR); }
+  componentDidMount() { this.setState({ kd: [], kimg: false, kSel: [], cvSel: [], bioSel: [] }); this.onR = () => this.applyZoom(); window.addEventListener('resize', this.onR); }
   componentWillUnmount() { window.removeEventListener('resize', this.onR); }
   componentDidUpdate() { this.applyZoom(); }
   applyZoom() {
