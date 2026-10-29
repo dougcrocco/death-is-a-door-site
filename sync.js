@@ -24,11 +24,12 @@
     var t = e.target; if (!t || !t.closest) return;
     if (t.closest('[data-didad-ui]')) return;
     var ed = t.closest('input, textarea, select, [contenteditable="true"], [contenteditable=""]');
+    if (!ed && (e.type === 'click' || e.type === 'mousedown')) { var bt = t.closest('button, [role="button"]'); if (bt && !bt.closest('nav, [data-sidenav], [data-topbar]')) { var lbl = ((bt.getAttribute('title') || '') + ' ' + (bt.getAttribute('aria-label') || '') + ' ' + (bt.textContent || '')).trim(); if (/^[×✕+−]$|delete|remove|clear|mark|add|save|done|undo|✓|sent|signed|reset|even out/i.test(lbl)) ed = bt; } }
     if (!ed) return;
     e.preventDefault(); e.stopPropagation(); if (ed.blur) ed.blur();
     if (Date.now() - lastToast > 800) { lastToast = Date.now(); setTimeout(function () { askName('This page is view-only until you enter your name.'); }, 0); }
   }
-  ['focusin', 'mousedown', 'beforeinput', 'keydown', 'paste', 'drop'].forEach(function (ev) { document.addEventListener(ev, blockEdit, true); });
+  ['focusin', 'mousedown', 'click', 'beforeinput', 'keydown', 'paste', 'drop'].forEach(function (ev) { document.addEventListener(ev, blockEdit, true); });
 
   function label(k) { return ({ 'didad-tracker-v1': 'Consignment Tracker', 'didad-shipping-v1': 'Shipping Tracker', 'didad-press-v1': 'Press Tracker', 'didad-consign-v1': 'Agreements', 'didad-desk-custom': 'Desk · items', 'didad-desk-hidden': 'Desk · deleted items', 'didad-desk-urg': 'Desk · urgency', 'didad-desk-order': 'Desk · order', 'didad-desk-events': 'Calendar · events', 'didad-desk-evo': 'Calendar · built-in dates', 'didad-desk-log': 'Desk · log', 'didad-desk-eds': 'Desk · edited items', 'didad-install-versions': 'Install · versions' })[k] || k.replace('didad-', ''); }
 
@@ -52,8 +53,9 @@
     });
   }
   function schedule() { if (!timer) timer = setTimeout(flush, 1200); }
-  LS.setItem = function (k, v) { if (synced(k) && ro()) return; rawSet(k, v); if (synced(k)) { pending[k] = 1; schedule(); } };
-  LS.removeItem = function (k) { if (synced(k) && ro()) return; rawRemove(k); if (synced(k)) { pending[k] = 1; schedule(); } };
+  var roNote = 0; function roWarn() { if (Date.now() - roNote < 4000) return; roNote = Date.now(); setTimeout(function () { if (!ro()) return; if (window.confirm('View only — this change won’t be saved.\n\nSign in with your name and the team password to edit?')) askName(); }, 0); }
+  LS.setItem = function (k, v) { if (synced(k) && ro()) { roWarn(); return; } rawSet(k, v); if (synced(k)) { pending[k] = 1; schedule(); } };
+  LS.removeItem = function (k) { if (synced(k) && ro()) { roWarn(); return; } rawRemove(k); if (synced(k)) { pending[k] = 1; schedule(); } };
 
   function pull(auto) {
     return fetch(URL + '?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (all) {
@@ -99,7 +101,7 @@
   }
   function paintName() { if (nameBtn) nameBtn.textContent = who() && pass() ? 'You: ' + who() : who() ? 'To edit, enter password' : 'To edit, enter name'; }
   var roStyle;
-  function paintRo() { if (!roStyle) { roStyle = document.createElement('style'); document.head.appendChild(roStyle); } roStyle.textContent = ro() ? '[contenteditable]{-webkit-user-modify:read-only !important;cursor:default !important}input,textarea,select{pointer-events:none !important;opacity:0.85}' : ''; if (nameBtn) nameBtn.style.color = ro() ? '#e0a24f' : '#7fa39b'; }
+  var roBar; function paintRo() { if (!roBar && document.body) { roBar = document.createElement('div'); roBar.setAttribute('data-noprint', ''); roBar.setAttribute('data-didad-ui', ''); roBar.style.cssText = 'position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9998;display:none;align-items:center;gap:12px;background:#e0a24f;color:#0d0c0b;padding:8px 14px;font:10.5px "Space Mono",monospace;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,0.45);'; var t = document.createElement('span'); t.textContent = 'View only · changes aren’t saved'; var b = document.createElement('button'); b.textContent = 'Sign in'; b.style.cssText = 'background:#0d0c0b;color:#e9e3d6;border:none;padding:5px 10px;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;'; b.onclick = function () { askName(); }; roBar.appendChild(t); roBar.appendChild(b); document.body.appendChild(roBar); } if (roBar) roBar.style.display = ro() ? 'flex' : 'none'; if (!roStyle) { roStyle = document.createElement('style'); document.head.appendChild(roStyle); } roStyle.textContent = ro() ? '[contenteditable]{-webkit-user-modify:read-only !important;cursor:default !important}input,textarea,select{pointer-events:none !important;opacity:0.85}' : ''; if (nameBtn) nameBtn.style.color = ro() ? '#e0a24f' : '#7fa39b'; }
   function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'], locked: ['#e0a24f', 'Not saved · password needed'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; }
   function showBanner(changed) {
     if (banner) return; ui();
