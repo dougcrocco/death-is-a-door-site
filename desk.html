@@ -6,6 +6,7 @@
 <meta name="color-scheme" content="dark">
 <style id="cs-css">:root{color-scheme:dark}doc-page,[style*="background:#fff"],[style*="background:#ffffff"],[style*="background:#FFFFFF"],[style*="background:white"]{color-scheme:light}</style>
 <style id="stable-css">html,body{background:#0d0c0b}@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:0.14s}@media screen and (min-width:981px){html.sn-pre body{padding-left:162px !important}html.sn-pre body::before{content:"";position:fixed;top:0;left:0;bottom:0;width:162px;box-sizing:border-box;background:#0d0c0b;border-right:1px solid #2a2722;z-index:69}html.sn-pre nav[data-tabs],html.sn-pre [data-navlogo],html.sn-pre [data-navbtn]{display:none !important}html.sn-pre [data-topbar]:not(:has(> :not(nav):not([data-navlogo]):not([data-navbtn]):not([data-livelink]):not([data-snq]):not(script):not(style))){display:none !important}}</style>
+<script src="undo.js?v=7" data-keys="didad-desk-events,didad-desk-evo,didad-desk-hidden,didad-desk-custom,didad-desk-order,didad-desk-urg,didad-desk-eds,didad-desk-pressing,didad-desk-daily-done,didad-desk-p3dismiss,didad-desk-p3order,didad-desk-pins"></script>
 <script>try{if(!/[?&]p=/.test(location.search)&&localStorage.getItem('didad-sn-hidden')!=='1')document.documentElement.classList.add('sn-pre');}catch(e){document.documentElement.classList.add('sn-pre');}</script>
 <script src="./support.js"></script>
 </head>
@@ -38,6 +39,7 @@
 <style>[data-dshort]{display:none}@media (max-width:640px){[data-dlong]{display:none}[data-dshort]{display:inline}}</style>
 <style>@media (max-width:640px){[data-fwrap]{overflow-x:visible !important}[data-fcal]{grid-template-columns:minmax(0,1fr) !important;min-width:0 !important}[data-fcal]>[data-fh]{display:none !important}[data-fcal]>[data-fd]{flex-direction:row !important;align-items:flex-start;gap:12px !important;min-height:0 !important;padding:10px 12px !important}[data-fcal]>[data-fd]>[data-fn]{align-self:flex-start !important;width:4.2em;flex:none;text-align:left}[data-fcal]>[data-fd]>[data-fn]::after{content:attr(data-dow);display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;margin-top:4px}[data-fcal]>[data-fd]:not(:has([data-fe])){display:none !important}[data-fcal]>[data-fd] [data-fe]{flex:1 1 auto}[data-fcal]>[data-fd]>[data-fevs]{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}}</style>
 <style>@media (max-width:640px){[data-mcalwrap]{max-width:none !important;width:100%}[data-mcal]>*{min-width:0}}</style>
+<style>[data-updcol]{grid-column:1/-1}@media (max-width:760px){[data-updcol]{grid-column:auto !important}}</style>
 </helmet>
 <div data-noprint="" data-topbar="" style="position:sticky;top:0;z-index:60;background:#0d0c0b;border-bottom:1px solid #2a2722;padding:10px clamp(14px,3vw,32px);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;"><nav data-tabs="" data-deskmenu="" style="display:flex;flex-wrap:wrap;max-width:100%;gap:1px;background:#3a3630;border:1px solid #3a3630;font-family:'Space Mono',monospace;font-size:clamp(9.5px,0.8vw,10.5px);letter-spacing:clamp(0.04em,0.25vw,0.12em);text-transform:uppercase;box-sizing:border-box;">
     <a href="desk.html" style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px clamp(6px,0.9vw,14px);text-decoration:none;white-space:nowrap;background:#e9e3d6;color:#0d0c0b;" style-hover="background:#7fa39b;">← Desk</a>
@@ -138,8 +140,7 @@
             <button type="button" onClick="{{ col.add }}" style="background:transparent;border:1px dashed #3a3630;color:#6d675c;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 10px;cursor:pointer;text-align:left;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add</button>
           </div>
         </sc-for>
-      </div>
-      <div onDragOver="{{ upd.over }}" onDrop="{{ upd.drop }}" style="display:flex;flex-direction:column;gap:6px;min-width:0;min-height:80px;">
+      <div data-updcol="" onDragOver="{{ upd.over }}" onDrop="{{ upd.drop }}" style="display:flex;flex-direction:column;gap:6px;min-width:0;min-height:80px;">
             <div style="display:flex;align-items:center;gap:7px;padding-bottom:6px;border-bottom:2px solid {{ upd.c }};"><span style="width:7px;height:7px;flex:none;border-radius:50%;background:{{ upd.c }};"></span><span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ upd.c }};">{{ upd.name }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;color:#6d675c;">{{ upd.count }}</span></div>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:6px;"><sc-for list="{{ upd.items }}" as="t" hint-placeholder-count="2">
               <a href="{{ t.href }}" draggable="true" onDragStart="{{ t.drag }}" onDragOver="{{ t.over }}" onDrop="{{ t.drop }}" onDragEnd="{{ t.end }}" style="cursor:grab;opacity:{{ t.op }};background:#16150f;padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:{{ t.tc }};" style-hover="background:#201e18;">
@@ -149,6 +150,7 @@
             </sc-for></div>
             <button type="button" onClick="{{ upd.add }}" style="background:transparent;border:1px dashed #3a3630;color:#6d675c;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 10px;cursor:pointer;text-align:left;" style-hover="border-color:#7fa39b;color:#7fa39b;">+ Add</button>
           </div>
+      </div>
       <div style="display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;">
       <button type="button" onClick="{{ openLog }}" style="background:transparent;color:#8f887c;border:none;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 0;margin-top:10px;cursor:pointer;white-space:nowrap;" style-hover="color:#e9e3d6;">Log {{ logCount }}</button>
       <sc-if value="{{ hasHidden }}" hint-placeholder-val="{{ false }}">
