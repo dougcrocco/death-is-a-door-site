@@ -113,3 +113,5 @@ var st=document.createElement('style');st.id='cmp-css';st.textContent="html.cmp 
 document.head.appendChild(st);
 function addTog(){var s=document.querySelector('[data-sidenav]');if(!s)return false;if(s.querySelector('[data-cmp-tog]'))return true;var b=document.createElement('button');b.type='button';b.setAttribute('data-cmp-tog','');b.title='Switch page layout — compact tops or the classic layout';var lab=function(){b.innerHTML='<span>Layout</span><span style="color:#e9e3d6">'+(cmp?'Compact':'Classic')+'</span>';};lab();b.onclick=function(){cmp=!cmp;try{localStorage.setItem(K,cmp?'compact':'classic');}catch(e){}apply();lab();};s.appendChild(b);return true;}
 var n=0,iv=setInterval(function(){if(addTog()||++n>80)clearInterval(iv);},100);})();
+
+(function(){var s=document.createElement('style');s.id='didad-darkbg';s.textContent='@media screen{html body{background:#0d0c0b}}';(document.head||document.documentElement).appendChild(s);})();
