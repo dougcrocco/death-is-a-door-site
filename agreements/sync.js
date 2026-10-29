@@ -3,17 +3,21 @@
 (function () {
   if (window.__didadSync) return; window.__didadSync = true;
   var URL = 'https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec';
-  var SKIP = { 'didad-name-asked': 1, 'didad-sync-ts': 1, 'didad-who': 1, 'didad-desk-lastsent': 1, 'didad-sync-logts': 1 };
+  var SKIP = { 'didad-pass': 1, 'didad-pass-ts': 1, 'didad-name-asked': 1, 'didad-sync-ts': 1, 'didad-who': 1, 'didad-desk-lastsent': 1, 'didad-sync-logts': 1 };
   var LS = window.localStorage, rawSet = LS.setItem.bind(LS), rawRemove = LS.removeItem.bind(LS);
   var page = (location.pathname.split('/').pop() || 'index.html').replace(/\.dc\.html$|\.html$/, '');
   var synced = function (k) { return k && k.indexOf('didad-') === 0 && !SKIP[k]; };
   var ts = function () { try { return JSON.parse(LS.getItem('didad-sync-ts') || '{}'); } catch (e) { return {}; } };
   var setTs = function (k, v) { var t = ts(); t[k] = v; rawSet('didad-sync-ts', JSON.stringify(t)); };
   var who = function () { return LS.getItem('didad-who') || ''; };
-  var pending = {}, timer = null, state = 'idle';
+  var pending = {}, timer = null, state = 'idle', authAsked = false;
   var PRIV = /[?&]p=/.test(location.search);
-  var ro = function () { return !PRIV && !who(); };
-  var askName = function (why) { var n = prompt((why ? why + '\n\n' : '') + 'Enter your name to edit (so the team can see who made each change):', ''); if (n && n.trim()) { rawSet('didad-who', n.trim()); paintName(); paintRo(); return true; } return false; };
+  var PASS_DAYS = 7;
+  (function () { var t = +LS.getItem('didad-pass-ts') || 0; if (LS.getItem('didad-pass') && (!t || Date.now() - t > PASS_DAYS * 864e5)) { rawRemove('didad-pass'); rawRemove('didad-pass-ts'); } })();
+  var pass = function () { return LS.getItem('didad-pass') || ''; };
+  var ro = function () { return !PRIV && (!who() || !pass()); };
+  var askPass = function (why) { var p = prompt((why ? why + '\n\n' : '') + 'Team password:', ''); if (p && p.trim()) { rawSet('didad-pass', p.trim()); rawSet('didad-pass-ts', String(Date.now())); return true; } return false; };
+  var askName = function (why) { if (!who()) { var n = prompt((why ? why + '\n\n' : '') + 'Enter your name to edit (so the team can see who made each change):', ''); if (!n || !n.trim()) return false; rawSet('didad-who', n.trim()); why = ''; } var ok = pass() || askPass(why); paintName(); paintRo(); return !!ok; };
   var lastToast = 0;
   function blockEdit(e) {
     if (!ro()) return;
@@ -41,9 +45,9 @@
         log = [{ ts: Date.now(), action: 'Updated', text: label(k) }];
       }
       setStatus('saving');
-      fetch(URL, { method: 'POST', keepalive: true, body: JSON.stringify({ key: k, value: val, by: who(), page: page, log: log }) })
+      fetch(URL, { method: 'POST', keepalive: true, body: JSON.stringify({ key: k, value: val, by: who(), page: page, log: log, pass: pass() }) })
         .then(function (r) { return r.json(); })
-        .then(function (j) { setTs(k, Date.parse(j.updated) || Date.now()); setStatus('saved'); })
+        .then(function (j) { if (j && j.ok === false && j.error === 'auth') { rawRemove('didad-pass'); paintName(); paintRo(); setStatus('locked'); if (!authAsked) { authAsked = true; setTimeout(function () { if (askPass('That password didn’t work.')) { authAsked = false; pending[k] = 1; schedule(); paintName(); paintRo(); } }, 0); } return; } setTs(k, Date.parse(j.updated) || Date.now()); setStatus('saved'); })
         .catch(function () { pending[k] = 1; setStatus('offline'); setTimeout(schedule, 15000); });
     });
   }
@@ -86,17 +90,17 @@
     txt = document.createElement('span');
     nameBtn = document.createElement('button');
     nameBtn.style.cssText = 'background:transparent;border:none;border-left:1px solid #3a3630;padding:0 0 0 10px;color:#7fa39b;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;';
-    nameBtn.onclick = function () { var n = prompt('Your name (shown in the change log):', who()); if (n != null) { rawSet('didad-who', n.trim()); paintName(); paintRo(); } };
+    nameBtn.onclick = function () { var n = prompt('Your name (shown in the change log):', who()); if (n != null) { rawSet('didad-who', n.trim()); if (n.trim() && !pass()) askPass(); paintName(); paintRo(); } };
     box.appendChild(dot); box.appendChild(txt); box.appendChild(nameBtn); document.body.appendChild(box);
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
     paintRo();
     var SS = (function () { try { return window.sessionStorage; } catch (e) { return null; } })(); if (ro() && !(SS && SS.getItem('didad-name-asked'))) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; try { SS && SS.setItem('didad-name-asked', '1'); } catch (e) {} askName('Welcome to the Death Is a Door desk.'); }, 1200);
   }
-  function paintName() { if (nameBtn) nameBtn.textContent = who() ? 'You: ' + who() : 'To edit, enter name'; }
+  function paintName() { if (nameBtn) nameBtn.textContent = who() && pass() ? 'You: ' + who() : who() ? 'To edit, enter password' : 'To edit, enter name'; }
   var roStyle;
   function paintRo() { if (!roStyle) { roStyle = document.createElement('style'); document.head.appendChild(roStyle); } roStyle.textContent = ro() ? '[contenteditable]{-webkit-user-modify:read-only !important;cursor:default !important}input,textarea,select{pointer-events:none !important;opacity:0.85}' : ''; if (nameBtn) nameBtn.style.color = ro() ? '#e0a24f' : '#7fa39b'; }
-  function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; }
+  function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'], locked: ['#e0a24f', 'Not saved · password needed'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; }
   function showBanner(changed) {
     if (banner) return; ui();
     banner = document.createElement('div'); banner.setAttribute('data-noprint', '');
