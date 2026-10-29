@@ -3,7 +3,7 @@
 (function () {
   if (window.__didadSync) return; window.__didadSync = true;
   var URL = 'https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec';
-  var SKIP = { 'didad-sync-ts': 1, 'didad-who': 1, 'didad-desk-lastsent': 1, 'didad-sync-logts': 1 };
+  var SKIP = { 'didad-name-asked': 1, 'didad-sync-ts': 1, 'didad-who': 1, 'didad-desk-lastsent': 1, 'didad-sync-logts': 1 };
   var LS = window.localStorage, rawSet = LS.setItem.bind(LS), rawRemove = LS.removeItem.bind(LS);
   var page = (location.pathname.split('/').pop() || 'index.html').replace(/\.dc\.html$|\.html$/, '');
   var synced = function (k) { return k && k.indexOf('didad-') === 0 && !SKIP[k]; };
@@ -91,7 +91,7 @@
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
     paintRo();
-    if (ro()) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; askName('Welcome to the Death Is a Door desk.'); }, 1200);
+    var SS = (function () { try { return window.sessionStorage; } catch (e) { return null; } })(); if (ro() && !(SS && SS.getItem('didad-name-asked'))) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; try { SS && SS.setItem('didad-name-asked', '1'); } catch (e) {} askName('Welcome to the Death Is a Door desk.'); }, 1200);
   }
   function paintName() { if (nameBtn) nameBtn.textContent = who() ? 'You: ' + who() : 'To edit, enter name'; }
   var roStyle;

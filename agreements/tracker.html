@@ -28,7 +28,7 @@
   [contenteditable]:empty:before{content:'—';color:#4a4640}
 </style>
 <script>(function(){var b='../';fetch('../desk.html',{method:'HEAD'}).then(function(r){if(!r.ok)b='../site/';}).catch(function(){b='../site/';});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-root]');if(a)a.href=b+a.getAttribute('data-root');},true);})();</script>
-<script src="sync.js"></script>
+<script src="sync.js?v=2"></script>
 <style>@media (max-width:560px){[data-howto]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}</style>
 <style>details[data-howwrap]>summary::-webkit-details-marker{display:none}details[data-howwrap] [data-hx]::after{content:"+"}details[data-howwrap][open] [data-hx]::after{content:"\2212"}</style>
 <script>(function(){var K='didad-howto';function ap(){var d=document.querySelector('details[data-howwrap]');if(!d){return false;}if(d.__hw)return true;d.__hw=1;var v=null;try{v=sessionStorage.getItem(K);}catch(e){}d.open=false;d.addEventListener('toggle',function(){try{sessionStorage.setItem(K,d.open?'1':'0');}catch(e){}});return true;}var n=0,iv=setInterval(function(){if(ap()||++n>80)clearInterval(iv);},100);})();</script>
