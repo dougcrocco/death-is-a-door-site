@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>DIAD mailer — copy</title><style>body{margin:0;background:#0d0c0b;color:#e9e3d6;font-family:'Space Mono',monospace}.w{max-width:900px;margin:0 auto;padding:28px 22px;display:flex;flex-direction:column;gap:14px}button{font:12px 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:14px 22px;border:none;cursor:pointer;background:#e9e3d6;color:#0d0c0b;align-self:flex-start}button:hover{background:#7fa39b}pre{background:#16150f;border:1px solid #2a2722;padding:16px;overflow:auto;font-size:12px;line-height:1.5;white-space:pre}ol{margin:0;padding-left:20px;font:15px/1.6 Georgia,serif;color:#c4bcae}</style></head><body><div class="w"><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7fa39b">DIAD mailer · Google Apps Script</div><button id="b">Copy code</button><pre id="c">var SECRET = 'ccj-diad-mail-2026';            // must match the pages
+var ALWAYS_CC = ['s@ccjasper.nyc', 'gallery@ccjasper.nyc', 'doug@allart.la'];
+var FROM_NAME = 'CC Jasper';
+var REPLY_TO = 'gallery@ccjasper.nyc';
+var DAILY_LIMIT = 60;                          // safety cap on sends per day
+
+function doPost(e) {
+  try {
+    var d = JSON.parse(e.postData.contents || '{}');
+    if (d.secret !== SECRET) return out({ ok: false, error: 'not allowed' });
+    var to = String(d.to || '').trim();
+    if (!/^[^\s@,]+@[^\s@,]+\.[^\s@,]+$/.test(to)) return out({ ok: false, error: 'bad address' });
+    var props = PropertiesService.getScriptProperties(), day = Utilities.formatDate(new Date(), 'America/New_York', 'yyyy-MM-dd');
+    var n = Number(props.getProperty('n-' + day) || 0);
+    if (n &gt;= DAILY_LIMIT) return out({ ok: false, error: 'daily limit reached' });
+    var opts = { name: FROM_NAME, replyTo: REPLY_TO, cc: ALWAYS_CC.filter(function (c) { return c.toLowerCase() !== to.toLowerCase(); }).join(',') };
+    if (d.pdf) opts.attachments = [Utilities.newBlob(Utilities.base64Decode(String(d.pdf).replace(/^data:[^,]+,/, '')), 'application/pdf', String(d.filename || 'Death Is a Door.pdf'))];
+    var subject = String(d.subject || 'Death Is a Door — CC Jasper').slice(0, 200);
+    var body = String(d.body || '').slice(0, 20000);
+    MailApp.sendEmail(to, subject, body, opts);
+    props.setProperty('n-' + day, String(n + 1));
+    return out({ ok: true, sentAt: new Date().toISOString() });
+  } catch (err) {
+    return out({ ok: false, error: String(err) });
+  }
+}
+
+function doGet() { return out({ ok: true, service: 'DIAD mailer' }); }
+function out(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
+</pre><ol><li>script.google.com → New project → name it DIAD mailer</li><li>Delete the sample code, paste, Save</li><li>Deploy → New deployment → Web app · Execute as: Me · Who has access: Anyone → Deploy → Authorize</li><li>Copy the /exec URL and send it to Claude</li></ol></div><script>document.getElementById('b').onclick=function(){var t=document.getElementById('c').textContent,b=this;var done=function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy code';},2500);};if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,function(){var r=document.createRange();r.selectNodeContents(document.getElementById('c'));getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');done();});else{var r=document.createRange();r.selectNodeContents(document.getElementById('c'));getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');done();}};</script></body></html>

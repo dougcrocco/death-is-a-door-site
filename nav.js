@@ -99,3 +99,17 @@ var p=document.createElement('button');p.type='button';p.setAttribute('aria-labe
 var x=document.createElement('button');x.type='button';x.setAttribute('data-mx','');x.setAttribute('data-noprint','');x.setAttribute('aria-label','Close menu');x.textContent='×';x.onclick=function(){de.classList.remove('sn-mob');};document.body.appendChild(x);
 var fix=function(){var s=document.querySelector('[data-navlogo] img, [data-sidenav] img');if(s&&im.src!==s.src)im.src=s.src;var l=document.querySelector('[data-sidenav] a[href]');if(l)a.href=l.href;};setTimeout(fix,300);setTimeout(fix,1500);
 })();
+(function(){if(!/claudeusercontent|localhost/.test(location.hostname))return;var inAg=/\/agreements\//.test(location.pathname);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||/^(https?:|mailto:|tel:|#|javascript:)/i.test(h))return;var n=h;
+if(inAg){if(/^\.\.\/(?!agreements\/|site\/)/.test(h))n=h.replace(/^\.\.\//,'../site/');}else{if(/^agreements\//.test(h))n='../'+h;}
+if(n!==h){e.preventDefault();e.stopImmediatePropagation();if(a.target==='_blank')window.open(n,'_blank');else location.href=n;}},true);})();
+(function(){var de=document.documentElement,K='didad-layout';var cmp=true;try{cmp=localStorage.getItem(K)!=='classic';}catch(e){}var qp=(location.search.match(/[?&]layout=(\w+)/)||[])[1];if(qp)cmp=qp!=='classic';
+function apply(){de.classList.toggle('cmp',cmp);}apply();
+try{if(cmp){var pg='didad-howto:'+location.pathname.split('/').pop();if(localStorage.getItem(pg)==null)Storage.prototype.setItem.call(localStorage,pg,'0');}}catch(e){}
+var st=document.createElement('style');st.id='cmp-css';st.textContent="html.cmp h1{font-size:clamp(28px,3vw,38px) !important;line-height:1.05 !important}html.cmp h1[style*='border-bottom']{margin-bottom:14px !important;padding-bottom:12px !important}"+
+"html.cmp [data-phead]{gap:12px 40px !important}html.cmp [data-phead] p{font-size:17px !important;line-height:1.45 !important;margin:0 !important}html.cmp [data-infobox]{gap:8px !important}html.cmp [data-infobox] [style*='font-size:16px']{font-size:15px !important}"+
+"html.cmp details[data-howwrap]{margin-top:10px !important}html.cmp details[data-howwrap]:not([open])>summary{opacity:.85}"+
+"[data-cmp-tog]{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding:8px 9px;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8f887c;background:transparent;border:1px solid #2a2722;cursor:pointer;width:100%;box-sizing:border-box}[data-cmp-tog]:hover{color:#e9e3d6;border-color:#3a3630}";
+document.head.appendChild(st);
+function addTog(){var s=document.querySelector('[data-sidenav]');if(!s)return false;if(s.querySelector('[data-cmp-tog]'))return true;var b=document.createElement('button');b.type='button';b.setAttribute('data-cmp-tog','');b.title='Switch page layout — compact tops or the classic layout';var lab=function(){b.innerHTML='<span>Layout</span><span style="color:#e9e3d6">'+(cmp?'Compact':'Classic')+'</span>';};lab();b.onclick=function(){cmp=!cmp;try{localStorage.setItem(K,cmp?'compact':'classic');}catch(e){}apply();lab();};s.appendChild(b);return true;}
+var n=0,iv=setInterval(function(){if(addTog()||++n>80)clearInterval(iv);},100);})();
