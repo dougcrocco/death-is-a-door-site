@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Social images · Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=EB+Garamond:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<style>body{margin:0;background:#0d0c0b}a{color:#7fa39b;text-decoration:none}a:hover{color:#e9e3d6}</style>
+</helmet>
+<div style="min-height:100vh;background:#0d0c0b;color:#e9e3d6;font-family:'EB Garamond',serif;padding:clamp(24px,5vw,64px);box-sizing:border-box;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,4vw,44px);">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+      <img src="art/ccj-logo-light.png" alt="CC Jasper" style="display:block;height:18px;width:auto;">
+      <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#7fa39b;">Social images</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px clamp(24px,4vw,56px);align-items:end;padding-bottom:20px;border-bottom:1px solid #2a2722;">
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(38px,5vw,64px);line-height:1;color:#f0eadd;">Death Is a Door</h1>
+      <div style="display:flex;flex-direction:column;gap:6px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:#c4bcae;">
+        <span>Opening Thursday, November 12, 2026 · 6–9 pm</span>
+        <span>CC Jasper · 131 Chrystie Street, New York</span>
+        <span style="color:#8f887c;">Image: Doug Crocco, Death Is a Door, 2026. Courtesy the artist and CC Jasper</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;">
+      <button type="button" onClick="{{ zipAll }}" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:10px 16px;cursor:pointer;background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;" style-hover="background:#e9e3d6;border-color:#e9e3d6;">{{ zipLabel }}</button>
+      <span style="font-family:'Space Mono',monospace;font-size:10.5px;color:#8f887c;">Or download each image below. Questions: <a href="mailto:gallery@ccjasper.nyc">gallery@ccjasper.nyc</a></span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 28px;align-items:flex-end;">
+      <sc-for list="{{ imgs }}" as="im" hint-placeholder-count="5">
+        <figure style="margin:0;display:flex;flex-direction:column;gap:10px;flex:{{ im.grow }} 1 {{ im.basis }};min-width:min(100%,160px);max-width:100%;">
+          <a href="{{ im.src }}" target="_blank" rel="noopener" style="display:block;aspect-ratio:{{ im.ar }};background:#16150f;"><img src="{{ im.src }}" alt="{{ im.alt }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:contain;"></a>
+          <figcaption style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 12px;align-items:baseline;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#e9e3d6;">{{ im.use }}</span>
+            <a href="{{ im.src }}" download="{{ im.dl }}" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#7fa39b;" style-hover="color:#e9e3d6;">Download ↓</a>
+            <span style="grid-column:1 / -1;font-family:'Space Mono',monospace;font-size:10px;color:#6d675c;">{{ im.size }}</span>
+          </figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const IMGS = [
+  ['doug-crocco-death-is-a-door-pr-listing-16x9-1920x1080.png', 'Show announcements', '1920 × 1080 px · full image, uncropped', 1920, 1080],
+  ['doug-crocco-death-is-a-door-pr-square-1080x1080.png', 'Instagram square', '1080 × 1080 px', 1080, 1080],
+  ['doug-crocco-death-is-a-door-pr-portrait-1080x1350.png', 'Instagram feed', '1080 × 1350 px', 1080, 1350],
+  ['doug-crocco-death-is-a-door-pr-story-1080x1920.png', 'Story · Reels', '1080 × 1920 px', 1080, 1920],
+  ['doug-crocco-death-is-a-door-pr-seesaw-1418x1000.png', 'Horizontal', '1418 × 1000 px', 1418, 1000],
+  ['doug-crocco-death-is-a-door-pr-seesaw-wide-1900x1000.png', 'See Saw · full width', '1900 × 1000 px', 1900, 1000]
+];
+const dl = f => 'CC-Jasper_Death-Is-a-Door_' + f;
+class Component extends DCLogic {
+  state = {};
+  renderVals() {
+    return {
+      imgs: IMGS.map(([f, use, size, w, h]) => ({ src: 'art/social/' + f, alt: 'Death Is a Door — ' + use, use, size, dl: dl(f), ar: w + ' / ' + h, grow: (w / h).toFixed(3), basis: Math.round(220 * w / h) + 'px' })),
+      zipLabel: this.state.busy ? 'Preparing… ' + this.state.n + ' / ' + IMGS.length : 'Download all (.zip) ↓',
+      zipAll: async () => {
+        if (this.state.busy) return;
+        if (!window.JSZip) { IMGS.forEach(([f]) => { const a = document.createElement('a'); a.href = 'art/social/' + f; a.download = dl(f); document.body.appendChild(a); a.click(); a.remove(); }); return; }
+        this.setState({ busy: true, n: 0 });
+        const zip = new JSZip(), dir = zip.folder('Death-Is-a-Door_CC-Jasper_Social');
+        let n = 0; for (const [f] of IMGS) { try { const r = await fetch('art/social/' + f); if (r.ok) dir.file(dl(f), await r.blob()); } catch (e) {} this.setState({ n: ++n }); }
+        dir.file('Credit.txt', 'Death Is a Door — CC Jasper, 131 Chrystie Street, New York\nOpening Thursday, November 12, 2026, 6–9 pm\n\nImage: Doug Crocco, Death Is a Door, 2026. Courtesy the artist and CC Jasper\n');
+        const blob = await zip.generateAsync({ type: 'blob' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Death-Is-a-Door_CC-Jasper_Social.zip'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+        this.setState({ busy: false });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
