@@ -1,0 +1,4 @@
+Delete these from the site repo:
+art/doug-crocco-death-is-a-door-install.jpg
+art/doug-crocco-death-is-a-door-vinyl.jpg
+agreements/art/doug-crocco-death-is-a-door-vinyl.jpg
