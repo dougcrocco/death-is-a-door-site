@@ -97,7 +97,7 @@
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
     paintRo();
-    var SS = (function () { try { return window.sessionStorage; } catch (e) { return null; } })(); if (ro() && !(SS && SS.getItem('didad-name-asked'))) setTimeout(function () { if (document.querySelector('canvas[data-sig]')) return; try { SS && SS.setItem('didad-name-asked', '1'); } catch (e) {} askName('Welcome to the Death Is a Door desk.'); }, 1200);
+    var SS = (function () { try { return window.sessionStorage; } catch (e) { return null; } })(); if (ro() && !(SS && SS.getItem('didad-name-asked'))) setTimeout(function () { if (document.querySelector('canvas[data-sig]') || document.getElementById('didad-gate')) return; try { SS && SS.setItem('didad-name-asked', '1'); } catch (e) {} askName('Welcome to the Death Is a Door desk.'); }, 1200);
   }
   function paintName() { if (nameBtn) nameBtn.textContent = who() && pass() ? 'You: ' + who() : who() ? 'To edit, enter password' : 'To edit, enter name'; }
   var roStyle;
