@@ -412,10 +412,10 @@
         <div style="display:flex;flex-direction:column;gap:3pt;">
           <div contentEditable="{{ editable }}" suppressContentEditableWarning="{{ true }}" onBlur="{{ w.onTitle }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-style:italic;font-size:14pt;color:#16150f;outline:none;border-radius:2px;">{{ w.title }}</div>
           <div contentEditable="{{ editable }}" suppressContentEditableWarning="{{ true }}" onBlur="{{ w.onDesc }}" style-hover="background:#f7f4ee;" style-focus="background:#efe9dc;" style="font-size:10.5pt;color:#3c382f;white-space:pre-line;outline:none;border-radius:2px;">{{ w.desc }}</div>
-          <div style="margin-top:8pt;display:flex;align-items:baseline;gap:8pt;font-family:'Space Mono',monospace;font-size:9.5pt;">
+          <sc-if value="{{ w.noIns }}" hint-placeholder-val="{{ true }}"><div style="margin-top:8pt;display:flex;align-items:baseline;gap:8pt;font-family:'Space Mono',monospace;font-size:9.5pt;">
             <span style="letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">Retail price</span>
             <input value="{{ w.price }}" onChange="{{ w.onPrice }}" placeholder="$ —" style="font-family:'Space Mono',monospace;font-size:10.5pt;color:#16150f;border:none;border-bottom:1px dashed #9a948a;background:transparent;padding:0 2px;width:9em;">
-          </div>
+          </div></sc-if>
           <sc-if value="{{ w.hasIns }}" hint-placeholder-val="{{ false }}">
             <div style="display:flex;align-items:baseline;gap:8pt;font-family:'Space Mono',monospace;font-size:9.5pt;">
               <span style="letter-spacing:0.1em;text-transform:uppercase;color:#6d675c;">Price</span>
@@ -584,7 +584,7 @@ async function buildDocx(m) {
   m.works.forEach(w => {
     b.push(P(R(w.title, { i: true, sz: 26 }), { before: 120, after: 40, keep: true }));
     w.desc.split('\n').forEach(line => b.push(P(R(line), { after: 20, keep: true })));
-    b.push(P([R('Retail price: ', { b: true }), R(blank(w.price, 10))], { before: 80, after: 40, keep: true }));
+    b.push(P(w.hasIns ? [R('Price: ', { b: true }), R(w.ins)] : [R('Retail price: ', { b: true }), R(blank(w.price, 10))], { before: 80, after: 40, keep: true }));
     b.push(P(R(m.splitNote, { c: '5C574C', sz: 20 }), { after: 200 }));
   });
   if (m.hasCosts) {
@@ -712,7 +712,7 @@ class Component extends DCLogic {
     const SPLIT = (() => {
         const rep = val('rep', A.rep || '');
         const prod = val('prod', typeof A.prod === 'string' ? A.prod : '');
-        let t = A.prod ? `Production costs${prod ? ' of ' + prod : ''} are first reimbursed to the Artist from the sale price; the balance is split ${GP}% Gallery / ${100 - GP}% Artist.` : `Sale price is split ${GP}% Gallery / ${100 - GP}% Artist.`;
+        let t = A.prod ? `Production costs${prod ? ' of ' + prod : ''} are first reimbursed to the Artist from the sale price; the balance is split ${GP}% Gallery / ${100 - GP}% ${OWN ? 'Consignor' : 'Artist'}.` : `Sale price is split ${GP}% Gallery / ${100 - GP}% ${OWN ? 'Consignor' : 'Artist'}.`;
         if (rep) t += ` Any commission owed to ${rep} is paid from the Artist’s share.`;
         return t + ' See Commission clause.';
       })();
@@ -889,7 +889,7 @@ class Component extends DCLogic {
       f: { date: val('date', 'October 14, 2026'), legal: val('legal', A.legal || A.name), address: val('address', A.address || ''), email: val('email', A.email), phone: val('phone', A.phone || '') },
       on,
       clauses,
-      works: A.works.map((w, i) => ({ ins: w.ins || '', hasIns: !!w.ins, title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(val('wt' + i, w.t))) return; if (NRM(v) === NRM(w.t)) this.unsetField('wt' + i); else this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(val('wd' + i, w.d))) return; if (NRM(v) === NRM(w.d)) this.unsetField('wd' + i); else this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
+      works: A.works.map((w, i) => ({ ins: w.ins || '', hasIns: !!w.ins, noIns: !w.ins, title: val('wt' + i, w.t), desc: val('wd' + i, w.d), onTitle: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(val('wt' + i, w.t))) return; if (NRM(v) === NRM(w.t)) this.unsetField('wt' + i); else this.setField('wt' + i, v); }, onDesc: ev => { const v = ev.currentTarget.innerText.trim(); if (NRM(v) === NRM(val('wd' + i, w.d))) return; if (NRM(v) === NRM(w.d)) this.unsetField('wd' + i); else this.setField('wd' + i, v); }, short: val('wd' + i, w.d).split('\n').slice(0, 2).join(' · '), img: w.i, price: val('price' + i, w.p || ''), onPrice: ev => this.setField('price' + i, ev.target.value) }))
     };
     vals.aItems.forEach(it => { const ax = ARTISTS.find(x => x.name === it.name) || {}; it.csLabel2 = 'Review terms'; it.csEd = it.cs && (it.csEd || !!ax.reviewTerms); it.csQuick = it.cs && !it.csEd; });
     vals.aSplit = (this.state.asort || (() => { try { return localStorage.getItem('didad-cons-view'); } catch (e) {} })() || 'status') === 'status'; vals.aOpen = vals.aSplit ? vals.aItems.filter(x => x.r < 2) : vals.aItems; vals.aSigned = vals.aItems.filter(x => x.r === 2); vals.aSignedN = String(vals.aSigned.length); vals.aCols = [['To send', '#8f887c', 0], ['Sent', '#c9a24a', 1], ['Via artist’s gallery', '#a99fc9', 3], ['Signed', '#5fa08f', 2]].map(([label, c, r]) => { const items = vals.aItems.filter(x => x.r === r).map(x => ({ ...x, ring: x.fg === '#ffffff' ? 'inset 0 0 0 1px ' + c : 'none', nextLabel: r === 3 ? (x.vs ? 'Signed ✓' : 'Unsigned ○') : ['Sent ○', 'Signed ○', 'Undo signed'][r], nextC: r === 3 ? (x.vs ? '#8f887c' : '#5fa08f') : ['#c9a24a', '#5fa08f', '#8f887c'][r] })); const hx = parseInt(c.slice(1), 16), rgb = (hx >> 16 & 255) + ',' + (hx >> 8 & 255) + ',' + (hx & 255); return { label, c, items, r, sep: '#2a2722', tint: 'rgba(' + rgb + ',0.14)', tintH: 'rgba(' + rgb + ',0.24)', n: String(items.length), hasCs: r === 2 && !!vals.hasCs, csLabel: vals.csLabel || '' }; });
