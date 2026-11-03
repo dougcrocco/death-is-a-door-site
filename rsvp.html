@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSVP — After-party · Death Is a Door</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=EB+Garamond:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141210;color:#f0eadd;font-family:'EB Garamond',serif}
+a{color:#e9e3d6}a:hover{color:#7fa39b}
+.wrap{max-width:520px;margin:0 auto;padding:clamp(28px,7vw,64px) 22px;display:flex;flex-direction:column;gap:22px}
+.mono{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7fa39b}
+h1{margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,8vw,52px);line-height:1.02}
+p{margin:0;font-size:18px;line-height:1.5;color:#b7af9f}
+form{display:flex;flex-direction:column;gap:14px;border-top:1px solid #3a3530;padding-top:20px}
+label{display:flex;flex-direction:column;gap:6px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8f887c}
+input,select{font-family:'EB Garamond',serif;font-size:19px;padding:11px 12px;background:#1f1c19;color:#f0eadd;border:1px solid #3a3530;border-radius:0}
+input:focus,select:focus{outline:none;border-color:#7fa39b}
+button{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;padding:15px 22px;border:none;cursor:pointer;background:#e9e3d6;color:#141210;margin-top:6px}
+button:hover{background:#7fa39b}
+button[disabled]{opacity:.5;cursor:default}
+.msg{font-family:'Space Mono',monospace;font-size:11px;color:#c98a6a;min-height:14px}
+.ft{border-top:1px solid #2c2824;padding-top:12px;font-family:'Space Mono',monospace;font-size:10px;line-height:1.6;color:#8f887c}
+</style></head>
+<body><div class="wrap">
+<img src="art/ccj-logo-light.png" alt="CC Jasper" style="height:18px;width:auto;align-self:flex-start">
+<div class="mono">Death Is a Door · After-party</div>
+<div id="app">
+<div style="display:flex;flex-direction:column;gap:14px">
+<h1>Home Sweet Home<br>9:30 pm</h1>
+<p>Thursday, November 12 — downstairs at 131 Chrystie Street, right after the opening reception. Space is limited; please RSVP by Monday, November 9.</p>
+</div>
+<form id="f" style="margin-top:22px">
+<label>Name<input id="n" autocomplete="name" required></label>
+<label>Email<input id="e" type="email" autocomplete="email" required></label>
+<label>Guests<select id="g"><option value="1">Just me</option><option value="2">Me + 1</option></select></label>
+<button id="b" type="submit">Request a spot</button>
+<div class="msg" id="m"></div>
+</form>
+</div>
+<div class="ft">CC Jasper · 131 Chrystie Street, New York, NY 10002<br><a href="mailto:gallery@ccjasper.nyc">gallery@ccjasper.nyc</a></div>
+</div>
+<script>
+(function(){
+var URL='https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec',KEY='didad-afterparty-rsvp';
+var q=new URLSearchParams(location.search),pe=(q.get('e')||'').trim();
+if(pe&&pe.indexOf('{')<0)document.getElementById('e').value=pe;
+var f=document.getElementById('f'),b=document.getElementById('b'),m=document.getElementById('m');
+f.onsubmit=function(ev){ev.preventDefault();
+ var n=document.getElementById('n').value.trim(),e=document.getElementById('e').value.trim(),g=+document.getElementById('g').value,now=Date.now();
+ if(!n||!e){m.textContent='Please add your name and email.';return;}
+ b.disabled=true;b.textContent='Sending…';m.textContent='';
+ fetch(URL+'?t='+now).then(function(r){return r.json();}).then(function(all){
+  var v=all&&all[KEY]&&all[KEY].value,L=Array.isArray(v)?v:[];
+  L=L.filter(function(x){return (x.email||'').toLowerCase()!==e.toLowerCase();});
+  L.push({at:now,name:n,email:e,guests:g,status:'Requested'});
+  return fetch(URL,{method:'POST',keepalive:true,body:JSON.stringify({key:KEY,value:L,by:n+' (RSVP)',page:'rsvp',log:[{ts:now,action:'After-party RSVP',text:n+' · '+e+' · '+(g>1?'+1':'solo')}]})});
+ }).then(function(){
+  document.getElementById('app').innerHTML='<div style="display:flex;flex-direction:column;gap:14px"><h1>Request received</h1><p>Thank you, '+n.split(' ')[0].replace(/[<>&"]/g,'')+'. Space is limited — we’ll email you to confirm your spot.</p></div>';
+ }).catch(function(){b.disabled=false;b.textContent='Request a spot';m.innerHTML='Couldn’t send — please email <a href="mailto:gallery@ccjasper.nyc?subject=After-party%20RSVP">gallery@ccjasper.nyc</a>.';});
+};
+})();
+</script></body></html>
