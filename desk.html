@@ -34,7 +34,7 @@
 <script>(function(){var K='didad-howto-desk';function ap(){var d=document.querySelector('details[data-howwrap]');if(!d){return false;}if(d.__hw)return true;d.__hw=1;var v=null;try{v=sessionStorage.getItem(K);}catch(e){}d.open=v==='1';d.addEventListener('toggle',function(){try{sessionStorage.setItem(K,d.open?'1':'0');}catch(e){}});return true;}var n=0,iv=setInterval(function(){if(ap()||++n>80)clearInterval(iv);},100);})();</script>
 <script data-ctesc="">document.addEventListener('keydown',function(e){if(e.key==='Escape'){var b=document.querySelector('[aria-label="Close contacts"]');if(b)b.click();}});</script>
 <style data-livelink-css="">[data-livelink]{display:none !important}nav[data-tabs]>[data-livemenu]{display:flex;align-items:center;justify-content:center;padding:9px clamp(5px,0.8vw,14px);background:#0d0c0b;color:#7fa39b;text-decoration:none;white-space:nowrap}nav[data-tabs]>[data-livemenu]:hover{background:#16150f;color:#e9e3d6}@media (max-width:980px){html.navopen nav[data-tabs]>[data-livemenu]{justify-content:flex-start;padding:13px 14px !important;font-size:11px !important}}</style>
-<script src="nav.js?v=34"></script>
+<script src="nav.js?v=35"></script>
 <style>@media (max-width:640px){[data-today3]{grid-template-columns:minmax(0,1fr) !important}}</style>
 <style>[data-dshort]{display:none}@media (max-width:640px){[data-dlong]{display:none}[data-dshort]{display:inline}}</style>
 <style>@media (max-width:640px){[data-fwrap]{overflow-x:visible !important}[data-fcal]{grid-template-columns:minmax(0,1fr) !important;min-width:0 !important}[data-fcal]>[data-fh]{display:none !important}[data-fcal]>[data-fd]{flex-direction:row !important;align-items:flex-start;gap:12px !important;min-height:0 !important;padding:10px 12px !important}[data-fcal]>[data-fd]>[data-fn]{align-self:flex-start !important;width:4.2em;flex:none;text-align:left}[data-fcal]>[data-fd]>[data-fn]::after{content:attr(data-dow);display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6d675c;margin-top:4px}[data-fcal]>[data-fd]:not(:has([data-fe])){display:none !important}[data-fcal]>[data-fd] [data-fe]{flex:1 1 auto}[data-fcal]>[data-fd]>[data-fevs]{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}}</style>
@@ -89,8 +89,8 @@
           <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barSigned }};background:#5fa08f;"></div><div style="width:{{ barSent }};background:#c9a24a;"></div></div>
         </a>
         <a href="{{ agShipping }}" style="display:flex;flex-direction:column;gap:5px;color:#e9e3d6;">
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Artwork delivered</span><span style="color:#c9a24a;">{{ delTxt }}</span></div>
-          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#7fa39b;"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#8f887c;letter-spacing:0.12em;text-transform:uppercase;">Artwork delivered</span><span style="color:#5fa08f;">{{ delTxt }}</span></div>
+          <div style="height:3px;background:#2a2722;display:flex;gap:2px;"><div style="width:{{ barDel }};background:#5fa08f;"></div><div style="width:{{ barMove }};background:#c9a24a;"></div></div>
         </a>
       </div></div>
       </div>
@@ -565,7 +565,7 @@ class Component extends DCLogic {
       ...(() => {
         const fix = h => h && h.indexOf('agreements/') === 0 ? (this.state.ag || 'agreements/') + h.slice(11) : h;
         const K = t => t.key || (t.src + '|' + t.who), eds = this.state.eds || {}, ord = this.state.order || [], urgO = this.state.urg || {};
-        const UCc = ['#e07a9a', '#e08a3c', '#d9c255', '#7fa39b'], HREF = { Install: 'install-plan.html', Agreements: 'agreements/tracker.html', Shipping: 'agreements/shipping.html', Other: 'desk.html' };
+        const UCc = ['#e07a9a', '#e08a3c', '#d9c255', '#7fa39b'], HREF = { Install: 'install-plan.html', Agreements: 'agreements/tracker.html', Shipping: 'agreements/shipping.html', Other: 'desk.html' , Press: 'press.html' };
         const logIt = (action, text) => { const lg = [{ ts: Date.now(), action, text }].concat(this.state.log || []).slice(0, 500); localStorage.setItem('didad-desk-log', JSON.stringify(lg)); this.setState({ log: lg }); };
         const UN = ['Urgent', 'Soon', 'Follow up', 'Updates'], desc = t => t.src + ' · ' + t.who + (t.what || '');
         const saveCu = cu => { localStorage.setItem('didad-desk-custom', JSON.stringify(cu)); this.setState({ custom: cu }); };
@@ -589,7 +589,7 @@ class Component extends DCLogic {
         const _pp = all.filter(it => PINS.indexOf(pk(it)) >= 0).sort((a, b) => PINS.indexOf(pk(a)) - PINS.indexOf(pk(b))).map(it => ({ ...deco(it), ...pinOf(it) })); const _sig = _pp.map(p => p.src + p.who).join('|'); if (_sig !== this._pinSig) { this._pinSig = _sig; setTimeout(() => this.forceUpdate(), 0); } this._pinned = _pp;
         const mkCol = ([name, u]) => { const items = list.filter(t => t.u === u); return { name, anim: 'none', c: UCc[u], count: String(items.length), items: items.map((it, j) => ({ ...deco(it), ...pinOf(it), up: e => { e.preventDefault(); e.stopPropagation(); if (j > 0) place(K(it), K(items[j - 1])); }, down: e => { e.preventDefault(); e.stopPropagation(); if (j < items.length - 1) place(K(items[j + 1]), K(it)); }, upOp: j > 0 ? '1' : '0.25', downOp: j < items.length - 1 ? '1' : '0.25' })), add: () => openForm(u), over: e => e.preventDefault(), drop: e => { e.preventDefault(); const from = this.state.dragKey; if (!from) return; setU(from, u); place(from, null); } }; };
         const cols = [['Pressing', 0], ['Soon', 1], ['Follow up', 2]].map(mkCol), upd = mkCol(['Updates', 3]);
-        const tabs = ['All', 'Agreements', 'Shipping', 'Install', 'Other'].map(k => { const n = k === 'All' ? all.length : all.filter(t => t.src === k).length; const on = k === tab; return { label: k + ' ' + n, tc: on ? '#e9e3d6' : '#8f887c', ul: on ? '#7fa39b' : 'transparent', pick: () => this.setState({ tab: k }) }; });
+        const tabs = ['All', 'Agreements', 'Shipping', 'Install', 'Press', 'Other'].map(k => { const n = k === 'All' ? all.length : all.filter(t => t.src === k).length; const on = k === tab; return { label: k + ' ' + n, tc: on ? '#e9e3d6' : '#8f887c', ul: on ? '#7fa39b' : 'transparent', pick: () => this.setState({ tab: k }) }; });
         const F = this.state.form, setF = p => this.setState(s => ({ form: { ...s.form, ...p } }));
         const seg = (on) => ({ bg: on ? '#e9e3d6' : 'transparent', fg: on ? '#0d0c0b' : '#c4bcae' });
         return {
@@ -614,7 +614,7 @@ class Component extends DCLogic {
           logList: (this.state.log || []).map(l => ({ ...l, c: { Added: '#5fa08f', Deleted: '#e0614f', Moved: '#e08a3c', Restored: '#7fa39b', Reset: '#8f887c', Edited: '#d9c255' }[l.action] || '#8f887c', when: new Date(l.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) })),
           openAdd: () => openForm(1), formOpen: !!F, closeForm: () => this.setState({ form: null }), closeBg: e => { if (e.target === e.currentTarget) this.setState({ form: null }); },
           fWho: F ? F.who : '', fWhat: F ? F.what : '', setWho: e => setF({ who: e.target.value }), setWhat: e => setF({ what: e.target.value }),
-          areaOpts: ['Agreements', 'Shipping', 'Install', 'Other'].map(k => ({ label: k, ...seg(F && F.src === k), pick: () => setF({ src: k }) })),
+          areaOpts: ['Agreements', 'Shipping', 'Install', 'Press', 'Other'].map(k => ({ label: k, ...seg(F && F.src === k), pick: () => setF({ src: k }) })),
           urgOpts: [['Urgent', 0], ['Soon', 1], ['Follow up', 2], ['Updates', 3]].map(([label, u]) => ({ label, c: UCc[u], ...seg(F && F.u === u), pick: () => setF({ u }) })),
           formTitle: F && F.edit ? 'Edit item' : F && F.pin ? 'New urgent pin' : 'New item', addUrgent: () => { if (all.filter(x => PINS.indexOf(pk(x)) >= 0).length >= 6) { alert('Urgent holds up to 6 pins. Unpin one first.'); return; } this.setState({ form: { who: '', what: '', src: tab !== 'All' ? tab : 'Other', u: 0, pin: true } }); }, formSave: F && F.edit ? 'Save changes' : 'Save item',
           saveItem: e => { e.preventDefault(); if (!F || !F.who.trim()) return;
