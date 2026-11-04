@@ -1,3 +1,44 @@
+/* Team password gate — internal pages only. Skipped for private ?p= links and inside the editor preview. */
+(function(){
+var LS;try{LS=window.localStorage;}catch(e){return;}
+if(/[?&]p=/.test(location.search))return;
+try{if(window.top!==window)return;}catch(e){return;}
+var URL='https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec';
+var DAYS=7,t=+LS.getItem('didad-pass-ts')||0;
+if(LS.getItem('didad-pass')&&t&&Date.now()-t<DAYS*864e5)return;
+var hide=document.createElement('style');hide.id='didad-gate-css';hide.textContent='html.didad-locked body>*:not(#didad-gate){visibility:hidden!important}html.didad-locked,html.didad-locked body{overflow:hidden!important;background:#0d0c0b!important}';
+document.documentElement.classList.add('didad-locked');(document.head||document.documentElement).appendChild(hide);
+var M="font-family:'Space Mono',monospace;",G="font-family:'EB Garamond',Georgia,serif;";
+var lbl=M+"font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#8f887c;";
+var inp="background:#0d0c0b;color:#f0eadd;border:1px solid #6d675c;font-size:16px;padding:10px;outline:none;width:100%;box-sizing:border-box;border-radius:0;";
+function build(){
+if(document.getElementById('didad-gate'))return;
+var w=document.createElement('div');w.id='didad-gate';w.setAttribute('data-noprint','');
+w.style.cssText='position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;background:#0d0c0b;visibility:visible;';
+w.innerHTML='<form style="width:min(100%,400px);background:#16150f;border:1px solid #6d675c;padding:26px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box;box-shadow:0 18px 48px rgba(0,0,0,0.5);">'
++'<div style="display:flex;flex-direction:column;gap:6px;"><span style="'+M+'font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#7fa39b;">Death Is a Door · CC Jasper</span>'
++'<span style="font-family:\'Cormorant Garamond\',Georgia,serif;font-weight:300;font-size:30px;line-height:1.1;color:#f0eadd;">Team sign-in</span>'
++'<span style="'+G+'font-size:15px;line-height:1.4;color:#c4bcae;">These pages are for the exhibition team. Enter your name and the team password — you’ll stay signed in on this browser for 7 days.</span></div>'
++'<label style="display:flex;flex-direction:column;gap:6px;"><span style="'+lbl+'">Your name</span><input name="n" autocomplete="name" style="'+inp+G+'"></label>'
++'<label style="display:flex;flex-direction:column;gap:6px;"><span style="'+lbl+'">Team password</span><input name="p" type="password" autocomplete="current-password" style="'+inp+M+'font-size:14px;"></label>'
++'<div data-err style="display:none;'+G+'font-size:14px;color:#e0614f;"></div>'
++'<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:4px;"><a href="./index.html" style="'+M+'font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#8f887c;text-decoration:none;">← Public site</a>'
++'<button type="submit" style="background:#7fa39b;color:#0d0c0b;border:1px solid #7fa39b;'+M+'font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;padding:10px 16px;cursor:pointer;">Sign in</button></div></form>';
+document.body.appendChild(w);
+var f=w.querySelector('form'),n=f.n,p=f.p,err=w.querySelector('[data-err]'),btn=f.querySelector('button');
+if(/\/agreements\//.test(location.pathname))w.querySelector('a').setAttribute('href','../site/index.html');
+n.value=LS.getItem('didad-who')||'';setTimeout(function(){(n.value?p:n).focus();},50);
+function say(m){err.textContent=m;err.style.display=m?'':'none';}
+f.addEventListener('submit',function(e){e.preventDefault();var nv=n.value.trim(),pv=p.value.trim();
+if(!nv){say('Please enter your name.');n.focus();return;}if(!pv){say('Please enter the team password.');p.focus();return;}
+say('');btn.disabled=true;btn.textContent='Checking…';
+fetch(URL,{method:'POST',body:JSON.stringify({key:'didad-gate-signin',value:{ts:Date.now()},by:nv,page:'sign-in',log:[],pass:pv})}).then(function(r){return r.json();}).then(function(j){
+if(j&&j.ok===false){btn.disabled=false;btn.textContent='Sign in';say(j.error==='auth'?'That password didn’t work.':'Couldn’t check the password — try again.');p.select();return;}
+var S=Storage.prototype.setItem;S.call(LS,'didad-who',nv);S.call(LS,'didad-pass',pv);S.call(LS,'didad-pass-ts',String(Date.now()));location.reload();
+}).catch(function(){btn.disabled=false;btn.textContent='Sign in';say('Couldn’t reach the server — check your connection and try again.');});});
+}
+if(document.body)build();else document.addEventListener('DOMContentLoaded',build);
+})();
 
 (function(){try{window.__uz=parseFloat(localStorage.getItem('didad-doczoom'))||1;}catch(e){window.__uz=1;}
 var STEPS=[0.5,0.67,0.8,1,1.25,1.5,2];var M="font-family:'Space Mono',monospace;";
@@ -12,8 +53,8 @@ setInterval(function(){var h=has();if(h&&!el)build();if(el)el.style.display=h?''
 if(window.__uz!==1)setTimeout(function(){window.dispatchEvent(new Event('resize'));},300);
 })();
 (function(){
-var GROUPS=[['Prepare',['consignments','checklist','catalog']],['Install',['shipping','walkthrough']],['Press',['outreach','press kit','images','events']],['Sell',['offers']],['Team',['contacts']]];
-var LABEL={'consignments':'Consignments','checklist':'Checklist','catalog':'Catalog','shipping':'Shipping','walkthrough':'Walkthrough','outreach':'Outreach','press kit':'Press kit','images':'Images','events':'Events','offers':'Offers','desk':'Desk','contacts':'Contacts'};
+var GROUPS=[['Prepare',['consignments','checklist','catalog']],['Install',['shipping','install','walkthrough']],['Press',['outreach','press kit','images','events']],['Sell',['offers']],['Team',['contacts']]];
+var LABEL={'consignments':'Consignments','checklist':'Checklist','catalog':'Catalog','shipping':'Shipping','install':'Install Planner','walkthrough':'Walkthrough','outreach':'Outreach','press kit':'Press kit','images':'Images','events':'Events','offers':'Offers','desk':'Desk','contacts':'Contacts'};
 var ARTISTS=['Aramis Gutierrez','Benjamin Cowan','Charlie Goering','Doug Crocco','Ellen R Hanson','Henry Swanson','Kenny Curwood','L','Megan Lindeman','Meredith Sellers','Pandele Radu','Srijon Chowdhury','Tom DeLaney','unitedfutures'];
 var M="font-family:'Space Mono',monospace;";
 function norm(s){s=(s||'').replace(/[\u2190\u2197\u2302]/g,'').trim().toLowerCase();return s==='press tracker'?'outreach':s;}
@@ -44,7 +85,7 @@ function css(){if(document.getElementById('sn-css'))return;var st=document.creat
 "[data-snpal] .ft{display:flex;justify-content:space-between;padding:8px 16px;border-top:1px solid #2a2722;font-size:9.5px;color:#6d675c}";
 document.head.appendChild(st);}
 var links={},nav=null;
-function collect(){nav=document.querySelector('nav[data-tabs]');if(!nav)return false;links={};nav.querySelectorAll('a').forEach(function(a){var k=norm(a.textContent);if(k&&!links[k])links[k]=a;});if(!links['images']&&links['desk']){var ic=document.createElement('a');var idh=links['desk'].getAttribute('href')||'desk.html';ic.setAttribute('href',idh.replace(/desk\.html.*$/,'image-bank.html'));ic.textContent='Images';ic.setAttribute('style',links['desk'].nextElementSibling?links['desk'].nextElementSibling.getAttribute('style')||'':'');var ilm=nav.querySelector('[data-livemenu]');nav.insertBefore(ic,ilm||null);links['images']=ic;}if(!links['contacts']&&links['desk']){var c=document.createElement('a');var dh=links['desk'].getAttribute('href')||'desk.html';c.setAttribute('href',dh.replace(/desk\.html.*$/,'contacts.html'));c.textContent='Contacts';c.setAttribute('style',links['desk'].nextElementSibling?links['desk'].nextElementSibling.getAttribute('style')||'':'');c.setAttribute('data-sn-synth','');var lm=nav.querySelector('[data-livemenu]');nav.insertBefore(c,lm||null);links['contacts']=c;}return true;}
+function collect(){nav=document.querySelector('nav[data-tabs]');if(!nav)return false;links={};nav.querySelectorAll('a').forEach(function(a){var k=norm(a.textContent);if(k&&!links[k])links[k]=a;});if(!links['images']&&links['desk']){var ic=document.createElement('a');var idh=links['desk'].getAttribute('href')||'desk.html';ic.setAttribute('href',idh.replace(/desk\.html.*$/,'image-bank.html'));ic.textContent='Images';ic.setAttribute('style',links['desk'].nextElementSibling?links['desk'].nextElementSibling.getAttribute('style')||'':'');var ilm=nav.querySelector('[data-livemenu]');nav.insertBefore(ic,ilm||null);links['images']=ic;}if(!links['contacts']&&links['desk']){var c=document.createElement('a');var dh=links['desk'].getAttribute('href')||'desk.html';c.setAttribute('href',dh.replace(/desk\.html.*$/,'contacts.html'));c.textContent='Contacts';c.setAttribute('style',links['desk'].nextElementSibling?links['desk'].nextElementSibling.getAttribute('style')||'':'');c.setAttribute('data-sn-synth','');var lm=nav.querySelector('[data-livemenu]');nav.insertBefore(c,lm||null);links['contacts']=c;}if(!links['install']&&links['shipping']){var ia=document.createElement('a');ia.setAttribute('href',(links['shipping'].getAttribute('href')||'shipping.html').replace(/shipping\.html/,'install.html'));if(links['shipping'].getAttribute('data-ag'))ia.setAttribute('data-ag','install.html');ia.textContent='Install';ia.setAttribute('style',links['shipping'].getAttribute('style')||'');ia.setAttribute('data-sn-synth','');links['shipping'].parentNode.insertBefore(ia,links['shipping'].nextSibling);links['install']=ia;}return true;}
 function isCur(a){var p=location.pathname.split('/').pop()||'index.html';var raw=(a.getAttribute('data-ag')||a.getAttribute('href')||'');if(/^https?:/.test(raw))return false;var h=raw.split('#')[0].split('?')[0].split('/').pop();if(norm(a.textContent)==='walkthrough')return false;return h===p;}
 function mk(a,label,extra){var c=a.cloneNode(false);c.removeAttribute('style');c.removeAttribute('class');c.textContent=label;c.setAttribute('data-sn-item','');if(extra)c.setAttribute(extra,'');if(isCur(a))c.setAttribute('data-cur','');return c;}
 function buildSide(){if(document.querySelector('[data-sidenav]'))return;var s=document.createElement('aside');s.setAttribute('data-sidenav','');s.setAttribute('data-noprint','');
