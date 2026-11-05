@@ -32,6 +32,16 @@
   .badge{display:inline-block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;margin-left:8px;vertical-align:middle;border:1px solid #34312b;color:#8f887c}
   .s-ready{color:#e0a24f;border-color:#e0a24f} .s-submitted{color:#7fa39b;border-color:#7fa39b} .s-published{color:#0d0c0b;background:#7fa39b;border-color:#7fa39b} .s-declined{color:#e0614f;border-color:#e0614f}
   .tally{font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;letter-spacing:.06em}
+  .howto{margin:22px 0 0;max-width:820px;border:1px solid #2a2722;background:#16150f}
+  .howto summary{cursor:pointer;list-style:none;padding:12px 16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7fa39b}
+  .howto summary::-webkit-details-marker{display:none}
+  .howto summary:hover{color:#e9e3d6}
+  .howto .pm{display:inline-block;width:14px}
+  .howto[open] .pm{transform:rotate(45deg)}
+  .howto ol{margin:0;padding:0 20px 4px 40px;color:#c4bcae;font-size:16.5px;line-height:1.5}
+  .howto li{margin:0 0 10px}
+  .howto b{color:#f0eadd;font-weight:400}
+  .howto p{margin:0;padding:0 20px 16px;color:#8f887c;font-size:14.5px}
   @media (max-width:720px){.site{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
@@ -40,6 +50,18 @@
   <h1>Submissions</h1>
   <p class="lede">Exhibition-documentation sites to send <i>Death Is a Door</i> to once the installation photos are in. Most use a web form, not email — the same pack covers them all.</p>
   <div class="tally" id="tally"></div>
+
+  <details class="howto">
+    <summary><span class="pm">+</span> How to use this page</summary>
+    <ol>
+      <li><b>Get the photos first.</b> Once the show is hung, have it photographed: wide room views, each wall, and every work in place. These sites publish installation views, so nothing goes out before that.</li>
+      <li><b>Work through “Before you submit.”</b> Tick each item as it’s done — closing date, photo credit, Vimeo link, and a Dropbox or Drive folder with the pack and photos (link set to never expire).</li>
+      <li><b>Start with the pack.</b> “Art Viewer - Death Is a Door” in Downloads has the press release, checklist and pre-filled form answers. Most of it copies straight into every form.</li>
+      <li><b>Submit one site at a time.</b> Click <i>Open submission form</i>, follow that site’s notes on the card (image sizes differ — Daily Lazy needs files under 2MB), then set the status to <i>Submitted</i> and add the date.</li>
+      <li><b>Track replies.</b> When a site publishes the show, set the status to <i>Published</i> and paste the link. No answer after two to three weeks? Mark it <i>Declined / no reply</i>.</li>
+    </ol>
+    <p>Everything you change here saves for the whole team. Sign in with your name and the team password to edit.</p>
+  </details>
 
   <h2>Before you submit</h2>
   <div class="need" id="need"></div>
