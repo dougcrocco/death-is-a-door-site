@@ -13,9 +13,15 @@
   var pending = {}, timer = null, state = 'idle', authAsked = false;
   var PRIV = /[?&]p=/.test(location.search);
   var PASS_DAYS = 7;
+  /* Outside the live site (e.g. the Claude project preview) the Sheet can't be reached: show a dated read-only snapshot instead of stale data. */
+  var HOSTED = /(^|\.)github\.io$/.test(location.hostname);
+  var cut = false, snapAt = '', snapTried = false;
+  var LIVE = 'https://dougcrocco.github.io/death-is-a-door-site/';
+  var liveUrl = function () { var f = (location.pathname.split('/').pop() || 'index.html').replace(/\.dc\.html$/, '.html'); return LIVE + (/\/agreements\//.test(location.pathname) ? 'agreements/' : '') + f; };
+  var when = function (iso) { var d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
   (function () { var t = +LS.getItem('didad-pass-ts') || 0; if (LS.getItem('didad-pass') && (!t || Date.now() - t > PASS_DAYS * 864e5)) { rawRemove('didad-pass'); rawRemove('didad-pass-ts'); } })();
   var pass = function () { return LS.getItem('didad-pass') || ''; };
-  var ro = function () { return !PRIV && (!who() || !pass()); };
+  var ro = function () { return cut || (!PRIV && (!who() || !pass())); };
   var askPass = function (why) { var p = prompt((why ? why + '\n\n' : '') + 'Team password:', ''); if (p && p.trim()) { rawSet('didad-pass', p.trim()); rawSet('didad-pass-ts', String(Date.now())); return true; } return false; };
   var askName = function (why) { if (!who()) { var n = prompt((why ? why + '\n\n' : '') + 'Enter your name to edit (so the team can see who made each change):', ''); if (!n || !n.trim()) return false; rawSet('didad-who', n.trim()); why = ''; } var ok = pass() || askPass(why); paintName(); paintRo(); return !!ok; };
   var lastToast = 0;
@@ -27,6 +33,7 @@
     if (!ed && (e.type === 'click' || e.type === 'mousedown')) { var bt = t.closest('button, [role="button"]'); if (bt && !bt.closest('nav, [data-sidenav], [data-topbar]')) { var lbl = ((bt.getAttribute('title') || '') + ' ' + (bt.getAttribute('aria-label') || '') + ' ' + (bt.textContent || '')).trim(); if (/^[×✕+−]$|delete|remove|clear|mark|add|save|done|undo|✓|sent|signed|reset|even out/i.test(lbl)) ed = bt; } }
     if (!ed) return;
     e.preventDefault(); e.stopPropagation(); if (ed.blur) ed.blur();
+    if (cut) return;
     if (Date.now() - lastToast > 800) { lastToast = Date.now(); setTimeout(function () { askName('This page is view-only until you enter your name.'); }, 0); }
   }
   ['focusin', 'mousedown', 'click', 'beforeinput', 'keydown', 'paste', 'drop'].forEach(function (ev) { document.addEventListener(ev, blockEdit, true); });
@@ -53,7 +60,7 @@
     });
   }
   function schedule() { if (!timer) timer = setTimeout(flush, 1200); }
-  var roNote = 0; function roWarn() { if (Date.now() - roNote < 4000) return; roNote = Date.now(); setTimeout(function () { if (!ro()) return; if (window.confirm('View only — this change won’t be saved.\n\nSign in with your name and the team password to edit?')) askName(); }, 0); }
+  var roNote = 0; function roWarn() { if (cut) return; if (Date.now() - roNote < 4000) return; roNote = Date.now(); setTimeout(function () { if (!ro()) return; if (window.confirm('View only — this change won’t be saved.\n\nSign in with your name and the team password to edit?')) askName(); }, 0); }
   LS.setItem = function (k, v) { if (synced(k) && ro()) { roWarn(); return; } rawSet(k, v); if (synced(k)) { pending[k] = 1; schedule(); } };
   LS.removeItem = function (k) { if (synced(k) && ro()) { roWarn(); return; } rawRemove(k); if (synced(k)) { pending[k] = 1; schedule(); } };
 
@@ -73,7 +80,22 @@
       if (!changed.length) { setStatus(state === 'idle' ? 'saved' : state); return; }
       if (auto || /[?&]p=/.test(location.search)) { apply(changed); return; }
       showBanner(changed);
-    }).catch(function () { setStatus('offline'); });
+    }).catch(function () { if (HOSTED) setStatus('offline'); else goCut(); });
+  }
+  function goCut() {
+    if (snapTried) return; snapTried = true; cut = true; pending = {}; paintName(); paintRo(); setStatus('offline');
+    fetch('didad-snapshot.json?t=' + Date.now()).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+      if (!j || !j.data) return;
+      snapAt = j.at || '';
+      var SS = null; try { SS = window.sessionStorage; } catch (e) {}
+      var changed = 0;
+      Object.keys(j.data).forEach(function (k) {
+        if (!synced(k)) return; var rem = j.data[k], nv = rem && rem.value != null ? JSON.stringify(rem.value) : null;
+        if (LS.getItem(k) !== nv) { changed++; if (nv == null) rawRemove(k); else rawSet(k, nv); }
+      });
+      paintRo(); setStatus('snapshot');
+      if (changed && SS && SS.getItem('didad-snap-done') !== snapAt) { try { SS.setItem('didad-snap-done', snapAt); } catch (e) {} location.reload(); }
+    }).catch(function () { paintRo(); });
   }
   function apply(changed) {
     if (document.querySelector('canvas[data-sig]')) { setTimeout(function () { apply(changed); }, 5000); return; }
@@ -97,12 +119,12 @@
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
     paintRo();
-    var SS = (function () { try { return window.sessionStorage; } catch (e) { return null; } })(); if (ro() && !(SS && SS.getItem('didad-name-asked'))) setTimeout(function () { if (document.querySelector('canvas[data-sig]') || document.getElementById('didad-gate')) return; try { SS && SS.setItem('didad-name-asked', '1'); } catch (e) {} askName('Welcome to the Death Is a Door desk.'); }, 1200);
+    var SS = (function () { try { return window.sessionStorage; } catch (e) { return null; } })(); if (ro() && !(SS && SS.getItem('didad-name-asked'))) setTimeout(function () { if (cut || document.querySelector('canvas[data-sig]') || document.getElementById('didad-gate')) return; try { SS && SS.setItem('didad-name-asked', '1'); } catch (e) {} askName('Welcome to the Death Is a Door desk.'); }, 1200);
   }
-  function paintName() { if (nameBtn) nameBtn.textContent = who() && pass() ? 'You: ' + who() : who() ? 'To edit, enter password' : 'To edit, enter name'; }
+  function paintName() { if (nameBtn) nameBtn.textContent = cut ? 'Read only' : who() && pass() ? 'You: ' + who() : who() ? 'To edit, enter password' : 'To edit, enter name'; }
   var roStyle;
-  var roBar; function paintRo() { if (!roBar && document.body) { roBar = document.createElement('div'); roBar.setAttribute('data-noprint', ''); roBar.setAttribute('data-didad-ui', ''); roBar.style.cssText = 'position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9998;display:none;align-items:center;gap:12px;background:#e0a24f;color:#0d0c0b;padding:8px 14px;font:10.5px "Space Mono",monospace;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,0.45);'; var t = document.createElement('span'); t.textContent = 'View only · changes aren’t saved'; var b = document.createElement('button'); b.textContent = 'Sign in'; b.style.cssText = 'background:#0d0c0b;color:#e9e3d6;border:none;padding:5px 10px;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;'; b.onclick = function () { askName(); }; roBar.appendChild(t); roBar.appendChild(b); document.body.appendChild(roBar); } if (roBar) roBar.style.display = ro() ? 'flex' : 'none'; if (!roStyle) { roStyle = document.createElement('style'); document.head.appendChild(roStyle); } roStyle.textContent = ro() ? '[contenteditable]{-webkit-user-modify:read-only !important;cursor:default !important}input,textarea,select{pointer-events:none !important;opacity:0.85}' : ''; if (nameBtn) nameBtn.style.color = ro() ? '#e0a24f' : '#7fa39b'; }
-  function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'], locked: ['#e0a24f', 'Not saved · password needed'] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; box.title = m[1]; txt.style.display = (s === 'offline' || s === 'locked') ? '' : 'none'; }
+  var roBar; function paintRo() { if (!roBar && document.body) { roBar = document.createElement('div'); roBar.setAttribute('data-noprint', ''); roBar.setAttribute('data-didad-ui', ''); roBar.style.cssText = 'position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9998;display:none;align-items:center;gap:12px;background:#e0a24f;color:#0d0c0b;padding:8px 14px;font:10.5px "Space Mono",monospace;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,0.45);'; var t = document.createElement('span'); t.setAttribute('data-ro-t', ''); t.textContent = 'View only · changes aren’t saved'; var b = document.createElement('button'); b.setAttribute('data-ro-b', ''); b.textContent = 'Sign in'; b.style.cssText = 'background:#0d0c0b;color:#e9e3d6;border:none;padding:5px 10px;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;'; b.onclick = function () { if (cut) window.open(liveUrl(), '_blank', 'noopener'); else askName(); }; roBar.appendChild(t); roBar.appendChild(b); document.body.appendChild(roBar); } if (roBar) { roBar.style.display = ro() ? 'flex' : 'none'; roBar.style.background = cut ? '#c9a24f' : '#e0a24f'; roBar.querySelector('[data-ro-t]').textContent = cut ? (snapAt ? 'Snapshot of live data · ' + when(snapAt) + ' · read only' : 'Not live data · read only') : 'View only · changes aren’t saved'; roBar.querySelector('[data-ro-b]').textContent = cut ? 'Open live page ↗' : 'Sign in'; } if (!roStyle) { roStyle = document.createElement('style'); document.head.appendChild(roStyle); } roStyle.textContent = (cut ? '[data-undo]{display:none !important}' : '') + (ro() ? '[contenteditable]{-webkit-user-modify:read-only !important;cursor:default !important}input,textarea,select{pointer-events:none !important;opacity:0.85}' : ''); if (nameBtn) nameBtn.style.color = ro() ? '#e0a24f' : '#7fa39b'; }
+  function setStatus(s) { state = s; if (!dot) return; var m = { idle: ['#6d675c', 'Connecting…'], saving: ['#e08a3c', 'Saving…'], saved: ['#5fa08f', 'Shared · saved'], offline: ['#e0614f', 'Offline · saved here'], locked: ['#e0a24f', 'Not saved · password needed'], snapshot: ['#c9a24f', 'Snapshot · ' + when(snapAt)] }[s] || ['#6d675c', s]; dot.style.background = m[0]; txt.textContent = m[1]; box.title = m[1]; txt.style.display = (s === 'offline' || s === 'locked' || s === 'snapshot') ? '' : 'none'; }
   function showBanner(changed) {
     if (banner) return; ui();
     banner = document.createElement('div'); banner.setAttribute('data-noprint', '');

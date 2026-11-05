@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSVPs · Death Is a Door</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=EB+Garamond&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;background:#0d0c0b;color:#e9e3d6;-webkit-font-smoothing:antialiased}
+  body{font-family:'EB Garamond',Georgia,serif;padding:40px 16px 80px;box-sizing:border-box}
+  .wrap{max-width:1100px;margin:0 auto}
+  .mono{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7fa39b}
+  a{color:#7fa39b;text-decoration:none} a:hover{color:#e9e3d6}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,5vw,52px);line-height:1;margin:14px 0 8px}
+  .lede{color:#8f887c;font-size:17px;margin:0 0 32px}
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+  .card{background:#16150f;border:1px solid #2a2722;padding:22px 22px 18px;min-width:0}
+  .card h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;line-height:1.05;margin:8px 0 4px}
+  .when{color:#8f887c;font-size:15px}
+  .count{display:flex;gap:18px;margin:16px 0 14px;padding:12px 0;border-top:1px solid #2a2722;border-bottom:1px solid #2a2722}
+  .count b{display:block;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38px;line-height:1;color:#f0eadd}
+  .count span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8f887c}
+  ol{list-style:none;margin:0;padding:0}
+  li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-bottom:1px solid #22201b}
+  li .n{font-size:18px;color:#f0eadd}
+  li .g{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;color:#7fa39b;align-self:center}
+  li .e{grid-column:1/-1;font-family:'Space Mono',monospace;font-size:11.5px;color:#8f887c;word-break:break-all}
+  .empty{color:#6d675c;font-style:italic;padding:10px 0}
+  button{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;cursor:pointer;border:1px solid #6d675c;background:transparent;color:#e9e3d6;margin-top:14px}
+  button:hover{border-color:#7fa39b;color:#7fa39b}
+  .status{margin:28px 0 0;font-family:'Space Mono',monospace;font-size:11px;color:#6d675c}
+</style>
+</head>
+<body><div class="wrap">
+  <div class="mono"><a href="desk.html">⌂ Desk</a> · Death Is a Door · Events</div>
+  <h1>RSVPs</h1>
+  <p class="lede">Everyone who has responded through the email RSVP buttons. Updates when you reload.</p>
+  <div class="cols">
+    <div class="card" data-ev="didad-afterparty-rsvp">
+      <div class="mono">After-party</div>
+      <h2>Fig. 19</h2>
+      <div class="when">Thursday, November 12 · after the opening</div>
+      <div class="count"><div><b data-people>–</b><span>People</span></div><div><b data-replies>–</b><span>Replies</span></div></div>
+      <ol data-list><li class="empty">Loading…</li></ol>
+      <button type="button" data-copy>Copy emails</button>
+    </div>
+    <div class="card" data-ev="didad-scentclub-rsvp">
+      <div class="mono">Event</div>
+      <h2>Silverlake Scent Club</h2>
+      <div class="when">Saturday, November 14 · 2–3 pm · with Megan Lindeman</div>
+      <div class="count"><div><b data-people>–</b><span>People</span></div><div><b data-replies>–</b><span>Replies</span></div></div>
+      <ol data-list><li class="empty">Loading…</li></ol>
+      <button type="button" data-copy>Copy emails</button>
+    </div>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+<script>
+(function () {
+  var URL = 'https://script.google.com/macros/s/AKfycbxFcWwhdD7p_ik8z8d4CxQK38QbWZ8na921Riq3deBbDcswPMJPL_MFHpkR5TZmkV6hPg/exec';
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function render(all, note) {
+    document.querySelectorAll('[data-ev]').forEach(function (card) {
+      var k = card.getAttribute('data-ev'), rec = all && all[k], v = rec && rec.value, L = Array.isArray(v) ? v.slice() : [];
+      L.sort(function (a, b) { return (a.at || 0) - (b.at || 0); });
+      var people = L.reduce(function (n, x) { return n + (+x.guests || 1); }, 0);
+      card.querySelector('[data-people]').textContent = people;
+      card.querySelector('[data-replies]').textContent = L.length;
+      card.querySelector('[data-list]').innerHTML = L.length ? L.map(function (x) {
+        var d = x.at ? new Date(x.at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : '';
+        return '<li><span class="n">' + esc(x.name) + '</span><span class="g">' + ((+x.guests || 1) > 1 ? '+1' : 'Solo') + (d ? ' · ' + esc(d) : '') + '</span><span class="e">' + esc(x.email) + '</span></li>';
+      }).join('') : '<li class="empty">No RSVPs yet.</li>';
+      card.querySelector('[data-copy]').onclick = function () {
+        var t = L.map(function (x) { return x.email; }).filter(Boolean).join(', '), b = this;
+        var done = function (ok) { b.textContent = ok ? 'Copied ✓' : 'Couldn’t copy'; setTimeout(function () { b.textContent = 'Copy emails'; }, 1600); };
+        try { navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
+      };
+    });
+    document.getElementById('status').textContent = note;
+  }
+  fetch(URL + '?t=' + Date.now()).then(function (r) { return r.json(); })
+    .then(function (all) { render(all, 'Live from the shared sheet · ' + new Date().toLocaleString()); })
+    .catch(function () {
+      fetch('didad-snapshot.json?t=' + Date.now()).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (j) { render(j.data || {}, 'Not live · snapshot from ' + new Date(j.at).toLocaleString() + ' · open the live site for current RSVPs'); })
+        .catch(function () { render({}, 'Couldn’t reach the shared sheet.'); });
+    });
+})();
+</script>
+<script src="nav.js?v=35"></script>
+</body></html>
