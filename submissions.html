@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submissions · Death Is a Door</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=EB+Garamond:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;background:#0d0c0b;color:#e9e3d6;-webkit-font-smoothing:antialiased}
+  body{font-family:'EB Garamond',Georgia,serif;padding:40px 16px 120px;box-sizing:border-box}
+  .wrap{max-width:1100px;margin:0 auto}
+  .mono{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7fa39b}
+  a{color:#7fa39b;text-decoration:none} a:hover{color:#e9e3d6}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,5vw,52px);line-height:1;margin:14px 0 8px}
+  h2{font-family:'Space Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7fa39b;margin:40px 0 12px;padding-top:14px;border-top:1px solid #2a2722}
+  .lede{color:#8f887c;font-size:17px;margin:0 0 8px;max-width:760px}
+  .need{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px 24px}
+  .need label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #22201b;cursor:pointer;font-size:17px;line-height:1.35}
+  .need input{margin-top:5px;accent-color:#7fa39b;width:16px;height:16px;flex:none}
+  .need small{display:block;color:#8f887c;font-size:14px}
+  .need label.done span{color:#6d675c;text-decoration:line-through}
+  .sites{display:flex;flex-direction:column;gap:14px}
+  .site{background:#16150f;border:1px solid #2a2722;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:10px 28px}
+  .site h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;line-height:1.05;margin:0}
+  .site .how{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:#8f887c;margin-top:6px}
+  .site ul{margin:10px 0 0;padding:0 0 0 18px;color:#c4bcae;font-size:15.5px;line-height:1.45}
+  .site .go{display:inline-block;margin-top:12px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border:1px solid #6d675c;color:#e9e3d6}
+  .site .go:hover{border-color:#7fa39b;color:#7fa39b}
+  .side{display:flex;flex-direction:column;gap:8px}
+  .side label{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#6d675c;display:flex;flex-direction:column;gap:4px}
+  select,input[type=text],input[type=date],textarea{font-family:'EB Garamond',serif;font-size:15px;background:#0d0c0b;color:#e9e3d6;border:1px solid #34312b;padding:6px 8px;border-radius:0;width:100%;box-sizing:border-box}
+  textarea{min-height:52px;resize:vertical}
+  .badge{display:inline-block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;margin-left:8px;vertical-align:middle;border:1px solid #34312b;color:#8f887c}
+  .s-ready{color:#e0a24f;border-color:#e0a24f} .s-submitted{color:#7fa39b;border-color:#7fa39b} .s-published{color:#0d0c0b;background:#7fa39b;border-color:#7fa39b} .s-declined{color:#e0614f;border-color:#e0614f}
+  .tally{font-family:'Space Mono',monospace;font-size:11px;color:#8f887c;letter-spacing:.06em}
+  @media (max-width:720px){.site{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body><div class="wrap">
+  <div class="mono"><a href="desk.html">⌂ Desk</a> · <a href="press-tracker.html">Outreach</a> · Submissions</div>
+  <h1>Submissions</h1>
+  <p class="lede">Exhibition-documentation sites to send <i>Death Is a Door</i> to once the installation photos are in. Most use a web form, not email — the same pack covers them all.</p>
+  <div class="tally" id="tally"></div>
+
+  <h2>Before you submit</h2>
+  <div class="need" id="need"></div>
+
+  <h2>Sites</h2>
+  <div class="sites" id="sites"></div>
+</div>
+<script>
+(function () {
+  var KEY = 'didad-submissions-v1';
+  var NEED = [
+    ['photos', 'Installation photos', '20–40 shots once the show is hung: wide room views, each wall, every work in place.'],
+    ['hires', 'High-res images, 3000px+', 'Full-size files from the photographer or artists (Art Viewer’s minimum).'],
+    ['small', '2MB copies for Daily Lazy', 'Ask Claude to resize the set in one go.'],
+    ['closing', 'Closing date', 'Still “[closing date]” in the press release.'],
+    ['credit', 'Photo credit', 'Photographer’s name, e.g. “Photo: Name. Courtesy the artists and CC Jasper”.'],
+    ['vimeo', 'Vimeo link for unitedfutures', 'The Isle of the Dead 2026 — downloads switched on.'],
+    ['link', 'Non-expiring Dropbox / Drive link', 'Pack + photos in one folder, link set to never expire.']
+  ];
+  var SITES = [
+    { id: 'artviewer', name: 'Art Viewer', url: 'https://artviewer.org/submissions/', how: 'Web form · free', notes: ['Installation views + individual works, 3000px minimum', 'Press release and checklist; venue, opening and closing dates', 'Files via SwissTransfer, Dropbox or Google Drive (non-expiring); video on Vimeo', 'Pack ready: “Art Viewer - Death Is a Door” in Downloads'] },
+    { id: 'cad', name: 'Contemporary Art Daily', url: 'https://www.contemporaryartlibrary.org/submit-project', how: 'Contemporary Art Library form · free (partners get priority)', notes: ['Most selective of the list', 'The venue may need a Library record first (“Submit a New Space/Venue”)', 'Submit as a current project'] },
+    { id: 'tzvetnik', name: 'Tzvetnik', url: 'https://tally.so/r/J9vYZR', how: 'Web form · free gallery form', notes: ['Up to 10 images, 2000px+ and under 10MB each, or a Drive/Dropbox link', 'Caption per image: title, medium, size, year (installs: show, venue, year)', 'Instagram handles, websites, photographer credit'] },
+    { id: 'dailylazy', name: 'Daily Lazy', url: 'https://daily-lazy.com/submit', how: 'Web form · free', notes: ['Current or recently closed shows, up to 50 images', '2MB maximum per image', 'Headline: “Death Is a Door at CC Jasper / New York”', 'Tags: all artist names + CC Jasper'] },
+    { id: 'kubaparis', name: 'KUBAPARIS', url: 'https://kubaparis.com/submit/exhibition', how: 'Web form', notes: ['Check the form for image limits'] },
+    { id: 'ofluxo', name: 'O Fluxo', url: 'https://www.ofluxo.net/submit/', how: 'Web form', notes: ['Check the Submit page for requirements'] },
+    { id: 'artobserved', name: 'Art Observed', url: 'https://artobserved.com', how: 'Email · free', notes: ['Mostly larger New York shows — a long shot', 'Send press release, checklist and a link to the photos'] }
+  ];
+  var STATUS = [['', 'Not started'], ['ready', 'Ready to send'], ['submitted', 'Submitted'], ['published', 'Published'], ['declined', 'Declined / no reply']];
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; } }
+  var st = load(); st.need = st.need || {}; st.sites = st.sites || {};
+  var timer = null;
+  function save() { clearTimeout(timer); timer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }, 400); }
+
+  function tally() {
+    var c = { submitted: 0, published: 0 };
+    SITES.forEach(function (s) { var v = (st.sites[s.id] || {}).status; if (v === 'submitted') c.submitted++; if (v === 'published') c.published++; });
+    var done = NEED.filter(function (n) { return st.need[n[0]]; }).length;
+    document.getElementById('tally').textContent = 'Prep ' + done + '/' + NEED.length + ' · Submitted ' + (c.submitted + c.published) + '/' + SITES.length + ' · Published ' + c.published;
+  }
+  function renderNeed() {
+    document.getElementById('need').innerHTML = NEED.map(function (n) {
+      var on = !!st.need[n[0]];
+      return '<label class="' + (on ? 'done' : '') + '"><input type="checkbox" data-need="' + n[0] + '"' + (on ? ' checked' : '') + '><span>' + esc(n[1]) + '<small>' + esc(n[2]) + '</small></span></label>';
+    }).join('');
+    document.querySelectorAll('[data-need]').forEach(function (cb) {
+      cb.onchange = function () { st.need[cb.getAttribute('data-need')] = cb.checked; cb.closest('label').className = cb.checked ? 'done' : ''; save(); tally(); };
+    });
+  }
+  function renderSites() {
+    document.getElementById('sites').innerHTML = SITES.map(function (s) {
+      var v = st.sites[s.id] || {};
+      var lbl = (STATUS.filter(function (x) { return x[0] === (v.status || ''); })[0] || STATUS[0])[1];
+      return '<div class="site" data-site="' + s.id + '"><div>' +
+        '<h3>' + esc(s.name) + '<span class="badge s-' + (v.status || 'none') + '" data-badge>' + esc(lbl) + '</span></h3>' +
+        '<div class="how">' + esc(s.how) + '</div>' +
+        '<ul>' + s.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>' +
+        '<a class="go" href="' + esc(s.url) + '" target="_blank" rel="noopener">Open ' + (s.how.indexOf('Email') === 0 ? 'site' : 'submission form') + ' ↗</a></div>' +
+        '<div class="side">' +
+        '<label>Status<select data-f="status">' + STATUS.map(function (x) { return '<option value="' + x[0] + '"' + ((v.status || '') === x[0] ? ' selected' : '') + '>' + x[1] + '</option>'; }).join('') + '</select></label>' +
+        '<label>Date sent<input type="date" data-f="date" value="' + esc(v.date || '') + '"></label>' +
+        '<label>Published link<input type="text" data-f="link" placeholder="https://" value="' + esc(v.link || '') + '"></label>' +
+        '<label>Notes<textarea data-f="notes">' + esc(v.notes || '') + '</textarea></label>' +
+        '</div></div>';
+    }).join('');
+    document.querySelectorAll('[data-site]').forEach(function (card) {
+      var id = card.getAttribute('data-site');
+      card.querySelectorAll('[data-f]').forEach(function (el) {
+        var ev = el.tagName === 'SELECT' || el.type === 'date' ? 'change' : 'input';
+        el.addEventListener(ev, function () {
+          st.sites[id] = st.sites[id] || {}; st.sites[id][el.getAttribute('data-f')] = el.value;
+          if (el.getAttribute('data-f') === 'status') {
+            var b = card.querySelector('[data-badge]'); b.className = 'badge s-' + (el.value || 'none');
+            b.textContent = (STATUS.filter(function (x) { return x[0] === el.value; })[0] || STATUS[0])[1];
+          }
+          save(); tally();
+        });
+      });
+    });
+  }
+  renderNeed(); renderSites(); tally();
+})();
+</script>
+<script src="undo.js?v=11" data-keys="didad-submissions-v1"></script>
+<script src="sync.js?v=8"></script>
+<script src="nav.js?v=35"></script>
+</body></html>
