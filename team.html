@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team · Death Is a Door · CC Jasper</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0c0b; --panel:#16150f; --line:#2a2722; --line-2:#3a3630;
+    --ink:#e9e3d6; --ink-hi:#f0eadd; --ink-2:#c4bcae; --muted:#8f887c; --faint:#6d675c;
+    --accent:#7fa39b;
+    --serif:'EB Garamond',Georgia,serif; --mono:'Space Mono',ui-monospace,monospace;
+    --side:208px; --bar:56px;
+    --t-fast:160ms; --t-slide:260ms;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  [hidden]:not([hidden="until-found" i]){display:none !important}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  body{font-family:var(--serif);overflow:hidden}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- layout ---------- */
+  .app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);height:100vh;height:100dvh}
+  .side{display:flex;flex-direction:column;gap:20px;min-height:0;overflow-y:auto;scrollbar-width:none;
+        padding:24px 16px 16px;border-right:1px solid var(--line);background:var(--bg)}
+  .side::-webkit-scrollbar{display:none}
+  .main{position:relative;display:flex;flex-direction:column;min-width:0;min-height:0}
+  .frame{flex:1 1 auto;width:100%;min-height:0;border:0;display:block;background:var(--bg)}
+
+  /* ---------- sidebar ---------- */
+  .brand{display:flex;flex-direction:column;gap:8px;padding:0 8px;text-decoration:none}
+  .brand img{display:block;height:14px;width:auto}
+  .brand span{font:10px/1.2 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .group{display:flex;flex-direction:column;gap:2px}
+  .group h2{margin:0;padding:0 8px 6px;font:400 10px/1.2 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+  .item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px;border:1px solid transparent;
+        font:16px/1.25 var(--serif);color:var(--ink);text-decoration:none;cursor:pointer;
+        transition:background-color var(--t-fast) ease-out,color var(--t-fast) ease-out}
+  .item[aria-current="page"]{background:var(--ink);color:var(--bg)}
+  .item.desk{font:10.5px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;border-color:var(--line-2);padding:10px 8px}
+  .item.desk[aria-current="page"]{border-color:var(--ink)}
+  @media (hover:hover){
+    .item:not([aria-current="page"]):hover{background:var(--panel);color:var(--accent)}
+  }
+  .foot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--line)}
+  .foot a{display:block;padding:6px 8px;font:10px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+  @media (hover:hover){.foot a:hover{color:var(--ink)}}
+
+  /* ---------- loading + notice ---------- */
+  .load{position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform-origin:left;transform:scaleX(0);opacity:0;pointer-events:none;z-index:3}
+  .main.is-loading .load{opacity:1;animation:grow 1.6s ease-out forwards}
+  @keyframes grow{from{transform:scaleX(.05)}to{transform:scaleX(.85)}}
+  .notice{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:12px;
+          max-width:calc(100% - 32px);padding:10px 14px;background:var(--panel);border:1px solid var(--line-2);
+          box-shadow:0 8px 24px rgba(0,0,0,.45);font:11px/1.4 var(--mono);letter-spacing:.06em;color:var(--ink-2)}
+  .notice a{color:var(--accent);white-space:nowrap}
+  .notice button{background:transparent;border:1px solid var(--line-2);color:var(--ink-2);font:inherit;padding:4px 8px;cursor:pointer}
+
+  /* ---------- mobile ---------- */
+  .mbar{display:none}
+  .scrim{display:none}
+  @media (max-width:980px){
+    .app{grid-template-columns:minmax(0,1fr);grid-template-rows:var(--bar) minmax(0,1fr)}
+    .mbar{display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--line);background:var(--bg);min-width:0}
+    .mbar img{display:block;height:15px;width:auto;flex:none}
+    .mbar .cur{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+    .mbar button{flex:none;min-width:44px;height:44px;padding:0 12px;background:var(--panel);border:1px solid var(--line-2);color:var(--ink);
+                 font:10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+    .side{position:fixed;top:0;left:0;bottom:0;width:min(288px,84vw);z-index:20;transform:translateX(-102%);visibility:hidden;
+          transition:transform var(--t-slide) ease-in,visibility 0s linear var(--t-slide)}
+    .app.open .side{transform:none;visibility:visible;transition:transform var(--t-slide) ease-out;box-shadow:8px 0 30px rgba(0,0,0,.5)}
+    .scrim{display:block;position:fixed;inset:0;z-index:15;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity 180ms ease-in}
+    .app.open .scrim{opacity:1;pointer-events:auto;transition-timing-function:ease-out}
+    .item{padding-top:10px;padding-bottom:10px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none !important;animation:none !important}
+  }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="mbar">
+    <img src="art/ccj-logo-light.png" alt="CC Jasper">
+    <span class="cur" id="mcur">Desk</span>
+    <button type="button" id="menuBtn" aria-controls="side" aria-expanded="false">Menu</button>
+  </header>
+
+  <nav class="side" id="side" aria-label="Team tools">
+    <a class="brand" href="desk.html" data-tool="desk">
+      <img src="art/ccj-logo-light.png" alt="CC Jasper">
+      <span>Death Is a Door</span>
+    </a>
+    <div id="groups"></div>
+    <div class="foot">
+      <a id="ownLink" href="desk.html" target="_blank" rel="noopener">Open Desk on its own ↗</a>
+      <a href="https://dougcrocco.github.io/death-is-a-door-site/" target="_blank" rel="noopener">Exhibition site ↗</a>
+    </div>
+  </nav>
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main" id="main">
+    <div class="load" aria-hidden="true"></div>
+    <iframe class="frame" id="frame" title="Desk"></iframe>
+    <div class="notice" id="notice" role="status" hidden>
+      <span id="noticeText">Still loading?</span>
+      <a id="noticeLink" href="desk.html" target="_blank" rel="noopener">Open on its own ↗</a>
+      <button type="button" id="noticeClose" aria-label="Dismiss">✕</button>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  /* The tools shown in the workspace. Paths are relative to this page. */
+  var TOOLS = [
+    { id: 'desk',         label: 'Desk',            file: 'desk.html' },
+    { id: 'consignments', label: 'Consignments',    file: 'agreements/index.html',     group: 'Prepare' },
+    { id: 'checklist',    label: 'Checklist',       file: 'agreements/checklist.html', group: 'Prepare' },
+    { id: 'catalog',      label: 'Catalog',         file: 'book.html',                 group: 'Prepare' },
+    { id: 'shipping',     label: 'Shipping',        file: 'agreements/shipping.html',  group: 'Install' },
+    { id: 'install',      label: 'Install Planner', file: 'agreements/install.html',   group: 'Install' },
+    { id: 'walkthrough',  label: 'Walkthrough',     file: 'install-plan.html', hash: '#walkthrough', group: 'Install' },
+    { id: 'outreach',     label: 'Outreach',        file: 'press-tracker.html',        group: 'Press' },
+    { id: 'submissions',  label: 'Submissions',     file: 'submissions.html',          group: 'Press' },
+    { id: 'presskit',     label: 'Press kit',       file: 'press.html',                group: 'Press' },
+    { id: 'images',       label: 'Images',          file: 'image-bank.html',           group: 'Press' },
+    { id: 'events',       label: 'Events',          file: 'events.html',               group: 'Press' },
+    { id: 'offers',       label: 'Offers',          file: 'offer-sheets.html',         group: 'Sell' },
+    { id: 'contacts',     label: 'Contacts',        file: 'contacts.html',             group: 'Team' },
+    { id: 'rsvps',        label: 'RSVPs',           file: 'rsvps.html',                group: 'Team' }
+  ];
+  var LAST_KEY = 'ccj-team-last'; /* not "didad-": keeps this out of the shared team sheet */
+  var byId = {}; TOOLS.forEach(function (t) { byId[t.id] = t; });
+
+  var app = document.getElementById('app'), frame = document.getElementById('frame'), main = document.getElementById('main');
+  var groupsEl = document.getElementById('groups'), ownLink = document.getElementById('ownLink'), mcur = document.getElementById('mcur');
+  var menuBtn = document.getElementById('menuBtn'), scrim = document.getElementById('scrim');
+  var notice = document.getElementById('notice'), noticeText = document.getElementById('noticeText'), noticeLink = document.getElementById('noticeLink');
+  var current = null, slowTimer = null;
+
+  /* ---- build the menu ---- */
+  function link(t, extra) {
+    var a = document.createElement('a');
+    a.className = 'item' + (extra ? ' ' + extra : '');
+    a.href = t.file + (t.hash || '');
+    a.setAttribute('data-tool', t.id);
+    a.textContent = t.id === 'desk' ? '⌂ Desk' : t.label;
+    return a;
+  }
+  groupsEl.style.cssText = 'display:flex;flex-direction:column;gap:18px';
+  var deskWrap = document.createElement('div'); deskWrap.className = 'group';
+  deskWrap.appendChild(link(byId.desk, 'desk')); groupsEl.appendChild(deskWrap);
+  ['Prepare', 'Install', 'Press', 'Sell', 'Team'].forEach(function (g) {
+    var box = document.createElement('div'); box.className = 'group';
+    var h = document.createElement('h2'); h.textContent = g; box.appendChild(h);
+    TOOLS.filter(function (t) { return t.group === g; }).forEach(function (t) { box.appendChild(link(t)); });
+    groupsEl.appendChild(box);
+  });
+
+  /* ---- url helpers ---- */
+  var baseDir = location.pathname.replace(/[^\/]*$/, '');
+  function toolForUrl(href) {
+    var u; try { u = new URL(href, location.href); } catch (e) { return null; }
+    if (u.origin !== location.origin || u.pathname.indexOf(baseDir) !== 0) return null;
+    var rel = decodeURIComponent(u.pathname.slice(baseDir.length));
+    var hits = TOOLS.filter(function (t) { return t.file === rel; });
+    if (!hits.length) return null;
+    var exact = hits.filter(function (t) { return (t.hash || '') === u.hash; })[0];
+    return { tool: exact || hits[0], hash: u.hash, search: u.search };
+  }
+
+  /* ---- open a tool ---- */
+  function setCurrent(t) {
+    current = t;
+    document.querySelectorAll('[data-tool].item').forEach(function (a) {
+      if (a.getAttribute('data-tool') === t.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    var own = t.file + (t.hash || '');
+    ownLink.href = own; ownLink.textContent = 'Open ' + t.label + ' on its own ↗';
+    noticeLink.href = own; noticeText.textContent = t.label + ' still loading?';
+    mcur.textContent = t.label;
+    frame.title = t.label;
+    document.title = t.label + ' · Team · Death Is a Door';
+    try { localStorage.setItem(LAST_KEY, t.id); } catch (e) {}
+    try { history.replaceState(null, '', '#' + t.id); } catch (e) {}
+  }
+  function open(t, opts) {
+    opts = opts || {};
+    setCurrent(t);
+    var src = t.file + (opts.search || '') + (opts.hash != null ? opts.hash : (t.hash || ''));
+    notice.hidden = true; clearTimeout(slowTimer);
+    main.classList.add('is-loading');
+    slowTimer = setTimeout(function () { notice.hidden = false; }, 9000);
+    frame.src = src;
+    closeMenu();
+  }
+  frame.addEventListener('load', function () {
+    main.classList.remove('is-loading'); clearTimeout(slowTimer); notice.hidden = true;
+    /* keep the menu in step if the tool moved to another page by itself */
+    try {
+      var hit = toolForUrl(frame.contentWindow.location.href);
+      if (hit && (!current || hit.tool.id !== current.id)) setCurrent(hit.tool);
+    } catch (e) {}
+  });
+
+  /* Tools shown inside the workspace call this (via nav.js) when one of their links points at another tool. */
+  window.__didadHub = {
+    route: function (href) {
+      var hit = toolForUrl(href);
+      if (!hit) return false;
+      open(hit.tool, { hash: hit.hash, search: hit.search });
+      return true;
+    }
+  };
+
+  /* ---- menu clicks ---- */
+  document.getElementById('side').addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-tool]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    open(byId[a.getAttribute('data-tool')]);
+  });
+
+  /* ---- mobile drawer ---- */
+  function openMenu() {
+    app.classList.add('open'); menuBtn.setAttribute('aria-expanded', 'true'); menuBtn.textContent = 'Close';
+    var c = document.querySelector('.item[aria-current="page"]') || document.querySelector('.item');
+    setTimeout(function () { c && c.focus(); }, 280);
+  }
+  function closeMenu() {
+    if (!app.classList.contains('open')) return;
+    app.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'Menu';
+    menuBtn.focus();
+  }
+  menuBtn.addEventListener('click', function () { app.classList.contains('open') ? closeMenu() : openMenu(); });
+  scrim.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+  document.getElementById('noticeClose').addEventListener('click', function () { notice.hidden = true; });
+
+  /* ---- start: #tool in the address, else the last tool used, else the Desk ---- */
+  var start = byId[(location.hash || '').slice(1)];
+  if (!start) { try { start = byId[localStorage.getItem(LAST_KEY)]; } catch (e) {} }
+  open(start || byId.desk);
+})();
+</script>
+<script>window.__didadHubPage = true;</script>
+<script src="nav.js?v=36"></script>
+</body>
+</html>
