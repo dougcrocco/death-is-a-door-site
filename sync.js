@@ -22,8 +22,52 @@
   (function () { var t = +LS.getItem('didad-pass-ts') || 0; if (LS.getItem('didad-pass') && (!t || Date.now() - t > PASS_DAYS * 864e5)) { rawRemove('didad-pass'); rawRemove('didad-pass-ts'); } })();
   var pass = function () { return LS.getItem('didad-pass') || ''; };
   var ro = function () { return cut || (!PRIV && (!who() || !pass())); };
-  var askPass = function (why) { var p = prompt((why ? why + '\n\n' : '') + 'Team password:', ''); if (p && p.trim()) { rawSet('didad-pass', p.trim()); rawSet('didad-pass-ts', String(Date.now())); return true; } return false; };
-  var askName = function (why) { if (!who()) { var n = prompt((why ? why + '\n\n' : '') + 'Enter your name to edit (so the team can see who made each change):', ''); if (!n || !n.trim()) return false; rawSet('didad-who', n.trim()); why = ''; } var ok = pass() || askPass(why); paintName(); paintRo(); return !!ok; };
+  /* In-page sign-in box (replaces browser prompt() pop-ups, which embedded previews block). */
+  var signBox = null;
+  function signIn(why, opts, done) {
+    opts = opts || {}; if (signBox || !document.body) return;
+    var F = '"Space Mono",monospace';
+    var ov = document.createElement('div'); ov.setAttribute('data-didad-ui', ''); ov.setAttribute('data-noprint', '');
+    ov.style.cssText = 'position:fixed;inset:0;z-index:2147482000;background:rgba(13,12,11,0.72);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;';
+    var bx = document.createElement('form'); bx.setAttribute('role', 'dialog'); bx.setAttribute('aria-modal', 'true'); bx.setAttribute('aria-label', 'Sign in to edit'); bx.noValidate = true;
+    bx.style.cssText = 'width:min(100%,380px);background:#16150f;border:1px solid #3a3630;padding:22px 22px 18px;box-sizing:border-box;color:#e9e3d6;font-family:"EB Garamond",Georgia,serif;box-shadow:0 18px 48px rgba(0,0,0,0.6);display:flex;flex-direction:column;gap:14px;';
+    var h = document.createElement('div'); h.textContent = 'Sign in to edit'; h.style.cssText = 'font:11px ' + F + ';letter-spacing:0.16em;text-transform:uppercase;color:#7fa39b;';
+    bx.appendChild(h);
+    if (why) { var w = document.createElement('p'); w.textContent = why; w.style.cssText = 'margin:0;font-size:16px;line-height:1.4;color:#c4bcae;'; bx.appendChild(w); }
+    var fld = function (label, type, val, ac) {
+      var l = document.createElement('label'); l.style.cssText = 'display:flex;flex-direction:column;gap:6px;font:10px ' + F + ';letter-spacing:0.14em;text-transform:uppercase;color:#8f887c;';
+      var sp = document.createElement('span'); sp.textContent = label; l.appendChild(sp);
+      var i = document.createElement('input'); i.type = type; i.value = val || ''; i.autocomplete = ac;
+      i.style.cssText = 'font:16px "EB Garamond",Georgia,serif;letter-spacing:0;text-transform:none;background:#0d0c0b;color:#e9e3d6;border:1px solid #3a3630;padding:9px 10px;border-radius:0;outline:none;width:100%;box-sizing:border-box;';
+      i.addEventListener('focus', function () { i.style.borderColor = '#7fa39b'; }); i.addEventListener('blur', function () { i.style.borderColor = '#3a3630'; });
+      l.appendChild(i); bx.appendChild(l); return i;
+    };
+    var nIn = fld('Your name (shown in the change log)', 'text', who(), 'name');
+    var pIn = opts.nameOnly ? null : fld('Team password', 'password', '', 'current-password');
+    var err = document.createElement('div'); err.setAttribute('role', 'alert'); err.style.cssText = 'font:10px ' + F + ';letter-spacing:0.08em;color:#e0614f;min-height:12px;'; bx.appendChild(err);
+    var row = document.createElement('div'); row.style.cssText = 'display:flex;justify-content:flex-end;gap:8px;';
+    var bs = 'font:10.5px ' + F + ';letter-spacing:0.12em;text-transform:uppercase;padding:9px 14px;cursor:pointer;border-radius:0;';
+    var cancel = document.createElement('button'); cancel.type = 'button'; cancel.textContent = 'Cancel'; cancel.style.cssText = bs + 'background:transparent;color:#c4bcae;border:1px solid #3a3630;';
+    var ok = document.createElement('button'); ok.type = 'submit'; ok.textContent = opts.nameOnly ? 'Save' : 'Sign in'; ok.style.cssText = bs + 'background:#e9e3d6;color:#0d0c0b;border:1px solid #e9e3d6;';
+    row.appendChild(cancel); row.appendChild(ok); bx.appendChild(row); ov.appendChild(bx);
+    var prev = document.activeElement;
+    var close = function (res) { if (!signBox) return; ov.remove(); signBox = null; document.removeEventListener('keydown', esc, true); try { prev && prev.focus && prev.focus(); } catch (e) {} if (done) done(res); };
+    var esc = function (e) { if (e.key === 'Escape') { e.preventDefault(); close(false); } };
+    cancel.onclick = function () { close(false); };
+    ov.addEventListener('mousedown', function (e) { if (e.target === ov) close(false); });
+    bx.onsubmit = function (e) {
+      e.preventDefault(); var n = nIn.value.trim(), pw = pIn ? pIn.value.trim() : '';
+      if (!n) { err.textContent = 'Enter your name so the team can see who changed what.'; nIn.focus(); return; }
+      if (pIn && !pw) { err.textContent = 'Enter the team password.'; pIn.focus(); return; }
+      rawSet('didad-who', n); if (pIn) { rawSet('didad-pass', pw); rawSet('didad-pass-ts', String(Date.now())); }
+      paintName(); paintRo(); close(true);
+    };
+    document.addEventListener('keydown', esc, true);
+    signBox = ov; document.body.appendChild(ov);
+    setTimeout(function () { (nIn.value && pIn ? pIn : nIn).focus(); }, 0);
+  }
+  var askPass = function (why, done) { signIn(why, {}, done); return false; };
+  var askName = function (why, done) { if (who() && pass()) { if (done) done(true); return true; } signIn(why || '', {}, done); return false; };
   var lastToast = 0;
   function blockEdit(e) {
     if (!ro()) return;
@@ -55,12 +99,12 @@
       setStatus('saving');
       fetch(URL, { method: 'POST', keepalive: true, body: JSON.stringify({ key: k, value: val, by: who(), page: page, log: log, pass: pass() }) })
         .then(function (r) { return r.json(); })
-        .then(function (j) { if (j && j.ok === false && j.error === 'auth') { rawRemove('didad-pass'); paintName(); paintRo(); setStatus('locked'); if (!authAsked) { authAsked = true; setTimeout(function () { if (askPass('That password didn’t work.')) { authAsked = false; pending[k] = 1; schedule(); paintName(); paintRo(); } }, 0); } return; } setTs(k, Date.parse(j.updated) || Date.now()); setStatus('saved'); })
+        .then(function (j) { if (j && j.ok === false && j.error === 'auth') { rawRemove('didad-pass'); paintName(); paintRo(); setStatus('locked'); if (!authAsked) { authAsked = true; setTimeout(function () { askPass('That password didn’t work. Try again.', function (ok) { authAsked = false; if (ok) { pending[k] = 1; schedule(); paintName(); paintRo(); } }); }, 0); } return; } setTs(k, Date.parse(j.updated) || Date.now()); setStatus('saved'); })
         .catch(function () { pending[k] = 1; setStatus('offline'); setTimeout(schedule, 15000); });
     });
   }
   function schedule() { if (!timer) timer = setTimeout(flush, 1200); }
-  var roNote = 0; function roWarn() { if (cut) return; if (Date.now() - roNote < 4000) return; roNote = Date.now(); setTimeout(function () { if (!ro()) return; if (window.confirm('View only — this change won’t be saved.\n\nSign in with your name and the team password to edit?')) askName(); }, 0); }
+  var roNote = 0; function roWarn() { if (cut) return; if (Date.now() - roNote < 4000) return; roNote = Date.now(); setTimeout(function () { if (!ro()) return; askName('View only — that change wasn’t saved. Sign in with your name and the team password to edit.'); }, 0); }
   LS.setItem = function (k, v) { if (synced(k) && ro()) { roWarn(); return; } rawSet(k, v); if (synced(k)) { pending[k] = 1; schedule(); } };
   LS.removeItem = function (k) { if (synced(k) && ro()) { roWarn(); return; } rawRemove(k); if (synced(k)) { pending[k] = 1; schedule(); } };
 
@@ -114,7 +158,7 @@
     txt = document.createElement('span'); txt.style.display = 'none'; box.addEventListener('mouseenter', function () { txt.style.display = ''; box.style.opacity = '1'; }); box.addEventListener('mouseleave', function () { if (state === 'offline' || state === 'locked') return; txt.style.display = 'none'; box.style.opacity = '0.85'; });
     nameBtn = document.createElement('button');
     nameBtn.style.cssText = 'white-space:nowrap;background:transparent;border:none;border-left:1px solid #3a3630;padding:0 0 0 8px;color:#7fa39b;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;';
-    nameBtn.onclick = function () { var n = prompt('Your name (shown in the change log):', who()); if (n != null) { rawSet('didad-who', n.trim()); if (n.trim() && !pass()) askPass(); paintName(); paintRo(); } };
+    nameBtn.onclick = function () { if (cut) return; signIn('', pass() ? { nameOnly: true } : {}); };
     box.appendChild(dot); box.appendChild(txt); box.appendChild(nameBtn); document.body.appendChild(box);
     var st = document.createElement('style'); st.textContent = '@media print{[data-noprint]{display:none!important}}'; document.head.appendChild(st);
     paintName(); setStatus(state);
